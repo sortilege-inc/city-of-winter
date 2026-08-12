@@ -975,9 +975,10 @@ FRAME "CityOfWinter_City" {
         }
     }
 
-    LOCATION ^"The Wandering Borough" #COW2341bf28ebf9da9f8ff72 {
+    LOCATION ^"The Wandering Burrough" #COW7d52b96d83991b9cc1b05 {
         TAGS [ "city", "wandering-borough" ]
         PRINTED_TITLE "The Wandering Burrough"
+        RULES_SPELLING "The Wandering Borough"
         LOCAL_TRADITIONS [ #COW1dbe2130e389b16018eb3 ^"Mask Maker", #COW3b54561e865765f8089c4 ^"Blank sun icon" ]
         SCENES {
             #COW1871477a4344767610804 ^"An Affordable Eatery" DEF {

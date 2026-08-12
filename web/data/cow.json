@@ -2879,7 +2879,7 @@
   }
  ],
  "wanderingBorough": {
-  "name": "The Wandering Borough",
+  "name": "The Wandering Burrough",
   "printedTitle": "The Wandering Burrough",
   "region": "City",
   "traditions": [
@@ -4589,13 +4589,13 @@
   }
  ],
  "sourceAnomalies": [
-  "The rules (p.8, Components) state the Tradition Cards are separated into 11 Tradition Decks; the print-and-play card set contains 10 (9 named traditions plus the Umbra). The Design Notes sidebar (p.52) instead says ‘Ten Tradition Decks’.",
-  "The Mask Maker deck contains 24 cards where every other deck contains 25 (249 tradition cards total). Confirmed independently against CoW-TraditionCards.pdf, whose 250 pages are the 249 tradition cards plus the X-Card.",
-  "The Umbra deck prints two copies each of ‘who joins the Umbra’ and ‘a lie of the Umbra’.",
-  "Atlas p.9 (Temple Island) cites ‘We Join a Caravan (p.12)’; that location is on p.11 (p.12 is Through a Kingdom of Towers).",
-  "Atlas p.16 cites ‘...and seek work in Glowtown (p.19)’; Glowtown is on p.22 (p.19 is the Refuge).",
-  "The Transit Distance table (Atlas p.40) is symmetric but not internally consistent with the City Transit Map: Glowtown-Undertown is 1 and Undertown-Husk is 1, yet Glowtown-Husk is printed as 7+. The table is reproduced exactly as printed.",
-  "Wintermount appears on the City Transit Map (p.38, Moon Path) and has its own location page (p.37), but is absent from the Transit Distance table (p.40).",
-  "The Wandering Borough location card is titled ‘The Wandering Burrough’ and its eighth scene is printed ‘WANDERERING’; the rules use ‘Wandering Borough’ throughout."
+  "The Mask Maker deck contains 24 cards where every other deck contains 25 (249 tradition cards total). Confirmed independently against CoW-TraditionCards.pdf, whose 250 pages are the 249 tradition cards plus the X-Card. Owner-confirmed 2026-08-12.",
+  "The gutterfold print-and-play sheets and the printed cards photographed in CoW-TraditionCards.pdf disagree on 14 of the 249 card faces — see build/card-errata.json. Five are different prompts, nine are spelling. The printed cards are authoritative.",
+  "Wintermount appears on the City Transit Map (p.38, Moon Path) and has its own location page (p.37), but is absent from the Transit Distance table (p.40). Open — owner following up.",
+  "The Transit Distance table (Atlas p.40) is not consistent with the City Transit Map (Glowtown-Undertown 1, Undertown-Husk 1, Glowtown-Husk 7+). Owner ruling 2026-08-12: THE TABLE IS AUTHORITATIVE; travel and migration reach are computed from it, not from the line topology.",
+  "The rules give the deck count as 11 (p.8) and as ten (p.52). Not a contradiction: it depends what is counted. The box holds the X-Card, an initial deck naming each tradition, and the 10 tradition decks (9 traditions + the Umbra). Owner ruling 2026-08-12.",
+  "‘Glowdog of the Dust’ (p.52) names a starting Home whose Atlas page carries no Glowdog icon. Not an anomaly: the Dust’s icons are a blank circle and a blank diamond, Glowdog is a diamond deck, and the Blank Tradition Icons rule (p.38) permits it. Owner ruling 2026-08-12.",
+  "The location is spelled ‘The Wandering Burrough’ on its card and ‘Wandering Borough’ in the rules text. Owner ruling 2026-08-12: BURROUGH is correct; the corpus names the location that way and leaves the rules quotations verbatim.",
+  "Atlas page cross-references on p.9 (‘We Join a Caravan (p.12)’, actually p.11) and p.16 (‘Glowtown (p.19)’, actually p.22) are wrong. Tracked here only; page numbers are carried per location as ATLAS_PAGE and are not surfaced to players."
  ]
 }

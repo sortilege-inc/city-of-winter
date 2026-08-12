@@ -746,6 +746,7 @@ wb = data["wanderingBorough"]
 w.open(f'LOCATION {caret(wb["name"])} #{decl("location", wb["name"])} {{')
 w.line('TAGS [ "city", "wandering-borough" ]')
 w.line(f'PRINTED_TITLE {q(wb["cardTitle"])}')
+w.line(f'RULES_SPELLING {q(wb["rulesSpelling"])}')
 w.line("LOCAL_TRADITIONS [ " + ", ".join(tradition_refs(wb["traditions"])) + " ]")
 w.open("SCENES {")
 for s in wb["scenes"]:

@@ -125,7 +125,7 @@ for line in pdftext(ATLAS_PDF, 3, 3).splitlines():
                 add("Location", title)
 add("Location", "We reach the City of Winter (by Lantern Ship)")
 add("Location", "We reach the City of Winter (by Caravan)")
-add("Location", "The Wandering Borough")
+add("Location", "The Wandering Burrough")
 
 # --- Banners: title-case headings on the banner sheets ------------------------
 for line in pdftext(BANNERS_PDF, 1, 2).splitlines():
