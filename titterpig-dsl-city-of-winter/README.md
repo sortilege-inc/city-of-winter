@@ -76,16 +76,20 @@ The ones worth knowing before building on this corpus:
 2. The **Mask Maker deck has 24 cards**; every other deck has 25 (249 total). Confirmed against both
    the gutterfold set and the 250-page VTT card photos (= 249 cards + the X-Card).
 3. The **Umbra deck prints two copies** each of "who joins the Umbra" and "a lie of the Umbra".
-4. Rules p.52 lists "**Glowdog of the Dust**", but the Atlas prints the Glowdog icon at **Glowtown**;
-   the Dust carries two blank icons.
-5. The **Transit Distance table** (Atlas p.40) is symmetric but not consistent with the Transit Map:
+4. The **Transit Distance table** (Atlas p.40) is symmetric but not consistent with the Transit Map:
    Glowtown–Undertown is 1 and Undertown–Husk is 1, yet Glowtown–Husk is printed 7+.
-6. **Wintermount** is on the Transit Map and has a location page but is **absent from the distance
+5. **Wintermount** is on the Transit Map and has a location page but is **absent from the distance
    table**.
-7. Two page cross-references in the Atlas are wrong (p.9 → "We Join a Caravan (p.12)", actually
+6. Two page cross-references in the Atlas are wrong (p.9 → "We Join a Caravan (p.12)", actually
    p.11; p.16 → "Glowtown (p.19)", actually p.22).
-8. The Wandering Borough card is titled "The Wandering **Burrough**" and its eighth scene is printed
+7. The Wandering Borough card is titled "The Wandering **Burrough**" and its eighth scene is printed
    "**WANDERERING**".
+
+*Not* an anomaly, though it reads like one: "Glowdog of the Dust" (p.52) names a starting Home whose
+Atlas page carries no Glowdog icon. The Dust's icons are a blank circle and a **blank diamond**, and
+Glowdog is a diamond deck — so the Blank Tradition Icons rule (p.38) already permits Glowdog there.
+Five of the six City starting options name a printed icon; this one goes through the blank-shape rule
+instead.
 
 ## Licence / rights
 
