@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Traditions · City of Winter</title>
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Cormorant+SC:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../winter.css">
+<style>
+  .deckbar{ display:flex; flex-wrap:wrap; gap:0.4rem; margin:1rem 0; }
+  .deckbar button.on{ background:linear-gradient(var(--steel),var(--slate)); border-color:var(--ice-deep); }
+  .banner{
+    background:var(--night-3); border:1px solid var(--edge); border-radius:5px;
+    padding:0.9rem 1rem;
+  }
+  .banner h4{ margin-top:0; }
+  .names{ font-style:italic; color:var(--chalk-2); }
+</style>
+</head>
+<body>
+<div class="wrap wide">
+  <header class="masthead" style="padding-bottom:0.4rem">
+    <div class="eyebrow">The Tradition Decks</div>
+    <h1>Traditions</h1>
+    <p class="sub">Holding a Tradition might mean that this tradition is important to your character, that they exemplify this tradition, or that they are somehow obligated to uphold this tradition.</p>
+  </header>
+  <div class="flourish"></div>
+  <div id="root"></div>
+</div>
+
+<script type="module">
+import { loadData } from '../app/data.js';
+import { $, el, clear, mountNav, mountFooter, cardEl, shapeIcon } from '../app/ui.js';
+
+mountNav('traditions');
+const data = await loadData();
+const root = $('#root');
+let filter = null;
+let search = '';
+
+function shapeNote(shape) {
+  const fam = data.shapeFamilies[shape];
+  if (!fam) return null;
+  return el('p', { class: 'small muted' },
+    'A blank ', shapeIcon(shape), shape, ' icon may be drawn from: ', fam.join(', '), '.');
+}
+
+function render() {
+  clear(root);
+
+  root.append(el('div', { class: 'panel' },
+    el('h3', { style: 'margin-top:0', text: 'Blank Tradition Icons' }),
+    el('p', { class: 'small', text: 'In the City, some Local Tradition icons are just blank shapes with no image. A blank icon means that each time you would draw a Tradition Card, you may choose from any of the Tradition Decks with the matching shape.' }),
+    Object.keys(data.shapeFamilies).map(shapeNote)));
+
+  const bar = el('div', { class: 'deckbar' },
+    el('button', { class: filter === null ? 'on' : '', text: `All (${data.cards.length})`,
+      onclick: () => { filter = null; render(); } }),
+    data.decks.map((k) => el('button', {
+      class: filter === k.name ? 'on' : '',
+      onclick: () => { filter = k.name; render(); },
+    }, shapeIcon(k.shape), `${k.name} (${k.cardCount})`)),
+    el('input', {
+      type: 'search', placeholder: 'search prompts…', value: search,
+      style: 'margin-left:auto;min-width:200px',
+      oninput: (e) => { search = e.target.value; renderCards(); },
+    }));
+  root.append(bar);
+
+  root.append(el('div', { id: 'cards' }));
+  renderCards();
+
+  root.append(el('div', { class: 'flourish' }));
+  root.append(el('h2', { text: 'Banners' }));
+  root.append(el('p', { class: 'small muted', text: 'Each Tradition Deck has a Banner that goes with it. These Banners contain name-lists and are also used as dividers to keep the Tradition Decks organized. Use these prompts to inspire other characters we meet in our story.' }));
+  root.append(el('div', { class: 'grid' },
+    data.decks.filter((k) => k.names && k.names.length).map((k) =>
+      el('div', { class: 'banner' },
+        el('h4', {}, shapeIcon(k.shape), k.banner),
+        el('p', { class: 'names', text: k.names.join(', ') + '…' }),
+        el('p', { class: 'small muted', text: k.namePrompt || '' })))));
+}
+
+function renderCards() {
+  const host = clear($('#cards'));
+  const q = search.trim().toLowerCase();
+  const decks = filter ? [data.byDeck.get(filter)] : data.decks;
+  for (const k of decks) {
+    const cards = data.cardsByDeck.get(k.name)
+      .filter((c) => !q || c.prompt.toLowerCase().includes(q));
+    if (!cards.length) continue;
+    host.append(el('h3', {}, shapeIcon(k.shape), `${k.name} `,
+      el('span', { class: 'tag ' + (k.shape === 'umbra' ? 'umbra' : k.region === 'City' ? 'city' : 'river'), text: k.region }),
+      el('span', { class: 'tag', text: `${cards.length} of ${k.cardCount}` })));
+    host.append(el('div', { class: 'cardrow' }, cards.map((c) => cardEl(c, data))));
+  }
+  if (!host.children.length) host.append(el('p', { class: 'muted', text: 'No prompt matches that search.' }));
+}
+
+render();
+mountFooter();
+</script>
+</body>
+</html>

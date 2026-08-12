@@ -1,0 +1,30 @@
+# Design Notes
+
+> Over the last four years, I’ve explored many ways to play City of Winter.
+>
+> In this section, I’ve included some ideas that I think are interesting enough to share but don’t
+> recommend as part of the first-time experience. Try them as-is, or use them to inspire your own
+> explorations.
+
+The Design Notes section holds *Ask Fate*, *Solo Play*, *Starting in the City* and the *Umbra
+Variations*. Their mechanical content is carried in the corpus as rules and `OPTIONAL` variants
+(see `cityofwinter-0.5-procedures.ttrpg`); this file keeps the section’s framing voice.
+
+## Using the Atlas
+
+This Atlas replaces the River Scroll and City Map components for City of Winter.
+
+**Location Pages.** Each Location has a dedicated page in the Atlas. The Location page shows the
+illustration, name, local tradition and scene prompts. Riverlands Locations also include the page
+number of connected Locations.
+
+**Riverlands Map.** This map shows how the Locations in the Riverlands are connected. Use it to
+pick a destination during Family Migration.
+
+**City Transit Map.** The City Transit Map shows how the City Locations are connected by Transit
+Lines. When your Family Migrates, or when your wishes to Visit another Location, turn to this map
+to see which Locations are availible.
+
+**Travel Distance Table.** The Travel Distance Table is a quick reference guide to the shortest
+Distance between any two City Locations. As a reminder, each Station and and Line transfer adds 1
+to the total distance.

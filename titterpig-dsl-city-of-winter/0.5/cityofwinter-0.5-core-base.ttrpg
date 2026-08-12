@@ -1,0 +1,633 @@
+BASE "CityOfWinter_Core_Base" {
+    NAME "City of Winter — core components, characters, and vocabulary"
+    VERSION "0.5"
+    SPEC_VERSION "0.5"
+    RELEASE_DATE "2026-08-12"
+
+    # City of Winter (Heart of the Deernicorn, 2022), Rules V2, by Ross Cowman.
+    # A GM-less story game about a family migrating from the Riverlands to the
+    # City of Winter. This file defines the component and actor types that the
+    # card, procedure and map files build on. Rules prose is verbatim.
+
+    # ====================================================================
+    # ACTOR HIERARCHY
+    # ====================================================================
+
+    #COWca1ecfd931af449ca2b4f ACTOR "Entity" DEF {
+        PROPERTIES {
+            ^"Name" STRING REQUIRED
+            ^"Pronouns" STRING
+        }
+    }
+
+    #COW1dd4fd9f091792c9b2980 ACTOR "Main Character" DEF {
+        EXTENDS #COWca1ecfd931af449ca2b4f ^"Entity"
+        # A player's character, tracked on a Notecard (also called a Character Card).
+        PROPERTIES {
+            ^"Marks of Age" INTEGER MIN 0 MAX 6 DEFAULT 0
+            ^"Crossed-off Marks" INTEGER MIN 0 MAX 6 DEFAULT 0
+            ^"City Marks" INTEGER MIN 0 DEFAULT 0
+            ^"Crossed-off City Marks" INTEGER MIN 0 DEFAULT 0
+            ^"Bonds" LIST OF ^"Bond"
+            ^"Hand" LIST OF ^"Tradition Card"
+            ^"Token" ^"Token"
+            ^"Home" ^"Location"
+            ^"Is Memory" BOOLEAN DEFAULT false
+        }
+    }
+
+    #COWbcf2cb02323d31288006e ACTOR "Side Character" DEF {
+        EXTENDS #COWca1ecfd931af449ca2b4f ^"Entity"
+        # Created by taking any unused name from a Banner in play.
+        PROPERTIES {
+            ^"Marks of Age" INTEGER MIN 0 MAX 6 DEFAULT 0
+            ^"From Banner" ^"Tradition Banner"
+        }
+    }
+
+    #COW6a7b002765e49a0e3ce44 ACTOR "Memory" DEF {
+        EXTENDS #COW1dd4fd9f091792c9b2980 ^"Main Character"
+        DESCRIPTION "For the rest of the Chapter you will play as our family’s memory of your character.\\n\\nA character who is a Memory does not participate in the Migration Scene procedure or in another character’s Share a Tradition Scene.\\n\\nOtherwise, continue to participate fully in other players’ turns, offering suggestions and playing side characters, or roleplaying a tradition in a Witness a Tradition Scene, as normal.\\n\\nOn your turn, follow the Memory Scene procedure."
+        PROPERTIES {
+            ^"Is Memory" BOOLEAN true
+        }
+    }
+
+    #COWf668032897eb1f4c8f165 ACTOR "Facilitator" DEF {
+        EXTENDS #COWca1ecfd931af449ca2b4f ^"Entity"
+        # City of Winter has no GM; a facilitator is whoever teaches the rules.
+    }
+
+
+    # ====================================================================
+    # PLAY STRUCTURE
+    # ====================================================================
+
+    #COWb35380f5379539b870c1b ^"Session" DEF {
+        DESCRIPTION "A single sitting of play. A game can last just one session (a one-shot) or run as an ongoing campaign lasting many sessions."
+    }
+
+    #COWfcc9995e7bd1df781c46a ^"Chapter" DEF {
+        DESCRIPTION "City of Winter is played in Chapters. During a Chapter, we take turns leading the group in a Tradition Scene. To start a new Chapter, decide who will go first then continue taking turns, clockwise."
+    }
+
+    #COW0d05ebd3dcc876d3b8fcb ^"Campaign" DEF {
+        DESCRIPTION "A Campaign is the fullest way to experience City of Winter. You can start a Campaign by planning in advance, or evolve a one-shot into a Campaign by simply playing more Sessions."
+    }
+
+
+    # ====================================================================
+    # COMPONENTS
+    # ====================================================================
+
+    #COW441b63f83083926d0c5ab ^"River Scroll" DEF {
+        DESCRIPTION "A map of connected Locations we unroll as we migrate from the Riverlands on the left, to the City of Winter at the far end of the scroll."
+        PROPERTIES {
+            ^"Page" INTEGER 8
+        }
+    }
+
+    #COW27e5c7e6ddd89200cceeb ^"City Map" DEF {
+        DESCRIPTION "When we arrive at the City of Winter, the River Scroll is replaced by the City Map that shows its numerous Locations and Transit System in detail."
+        PROPERTIES {
+            ^"Page" INTEGER 8
+        }
+    }
+
+    #COWd2acafbaab4957949a348 ^"Token" DEF {
+        DESCRIPTION "Double-sided Tokens represent our characters in the story."
+        PROPERTIES {
+            ^"Page" INTEGER 8
+        }
+    }
+
+    #COW662bcf5470eea3b54495c ^"Die" DEF {
+        DESCRIPTION "City of Winter uses a single, six-sided Die."
+        PROPERTIES {
+            ^"Page" INTEGER 8
+        }
+    }
+
+    #COW1e9b889c0885fc2cc4624 ^"X-Card" DEF {
+        DESCRIPTION "A safety tool used to address anything causing discomfort or spoiling our fun in our game."
+        PROPERTIES {
+            ^"Page" INTEGER 8
+        }
+    }
+
+    #COWed0d26f0f448e17d97ecd ^"Wandering Borough Card" DEF {
+        DESCRIPTION "An additional location that is used with the City Map."
+        PROPERTIES {
+            ^"Page" INTEGER 8
+        }
+    }
+
+    #COW61fc42b139a4beca35c84 ^"Notecard" DEF {
+        DESCRIPTION "Each player needs a Notecard (or small piece of paper) to track information about their character. This is also called a Character Card."
+        PROPERTIES {
+            ^"Page" INTEGER 8
+        }
+    }
+
+    #COW68fe5daa73b70d2d9e760 ^"Writing Utensils" DEF {
+        DESCRIPTION "Everyone will need something to write with. Pencils, pens, colored markers are all fine."
+        PROPERTIES {
+            ^"Page" INTEGER 8
+        }
+    }
+
+
+    # ====================================================================
+    # TRADITIONS — decks, icons, cards, banners
+    # ====================================================================
+
+    #COW740d68049750fa37cd154 ^"Tradition Icon Shape" DEF {
+        # Every Tradition Deck icon is drawn inside one of these border shapes. A
+        # blank icon of a given shape lets the drawing player choose any deck of
+        # that shape. The Umbra icon has no border shape.
+        ENUM ["circle", "sun", "diamond", "umbra"]
+    }
+
+    #COW6217aca5853194cde3408 ^"Tradition Deck" DEF {
+        DESCRIPTION "The Tradition Cards are separated into 11 Tradition Decks. Every card has an icon on the back showing which deck it belongs to."
+        PROPERTIES {
+            ^"Shape" ^"Tradition Icon Shape" REQUIRED
+            ^"Region" ENUM ["Riverlands", "City"]
+            ^"Card Count" INTEGER MIN 0
+            ^"Banner" ^"Tradition Banner"
+        }
+    }
+
+    #COW340430629a9c9ddf85b8f ^"Tradition Card" DEF {
+        # The prompt printed on the card face, verbatim, plus the deck it belongs to.
+        PROPERTIES {
+            ^"Prompt" STRING REQUIRED
+            ^"Deck" ^"Tradition Deck" REQUIRED
+        }
+    }
+
+    #COW58c97a0996410827e972d ^"Tradition Banner" DEF {
+        DESCRIPTION "Each Tradition Deck has a Banner that goes with it. These Banners contain name-lists and are also used as dividers to keep the Tradition Decks organized."
+        PROPERTIES {
+            ^"Names" LIST OF STRING
+            ^"Open Prompt" STRING
+            ^"Deck" ^"Tradition Deck"
+        }
+    }
+
+    #COW30253fd3d99502a46bd65 ^"Shape Family" DEF {
+        # Which decks a blank icon of each shape may be drawn from (rules p.38).
+    }
+
+    #COW65bc7acf649478eb7eef3 ^"Blank circle icon" DEF {
+        EXTENDS #COW30253fd3d99502a46bd65 ^"Shape Family"
+        PROPERTIES {
+            ^"Shape" ^"Tradition Icon Shape" "circle"
+            ^"Decks" LIST OF ^"Tradition Deck" [ #COW734276ea584a893c4fea1 ^"Temple Heron", #COW268e8561b067204313e37 ^"Ox of Rivertown", #COW61ede29d5478b4480aaf6 ^"Lion of the Citadel", #COW47f20f9fdbcb99f684e39 ^"Fox of the Towers" ]
+        }
+    }
+
+    #COW3b54561e865765f8089c4 ^"Blank sun icon" DEF {
+        EXTENDS #COW30253fd3d99502a46bd65 ^"Shape Family"
+        PROPERTIES {
+            ^"Shape" ^"Tradition Icon Shape" "sun"
+            ^"Decks" LIST OF ^"Tradition Deck" [ #COW9d6c514bd85e69d16a696 ^"Lantern Crow", #COW1dbe2130e389b16018eb3 ^"Mask Maker" ]
+        }
+    }
+
+    #COWcf824d8efa07bfcb550cc ^"Blank diamond icon" DEF {
+        EXTENDS #COW30253fd3d99502a46bd65 ^"Shape Family"
+        PROPERTIES {
+            ^"Shape" ^"Tradition Icon Shape" "diamond"
+            ^"Decks" LIST OF ^"Tradition Deck" [ #COWff9e2875b73d4008351eb ^"Glowdog", #COW36a2ab23469a974948854 ^"Brass Ones", #COWb6415ac566c9c446d6cdf ^"Moonbee" ]
+        }
+    }
+
+
+    # ====================================================================
+    # TRADITION BANNERS
+    # ====================================================================
+
+    #COWf25ee6c1e7e6f1a48523e ^"Temple Heron Banner" DEF {
+        EXTENDS #COW58c97a0996410827e972d ^"Tradition Banner"
+        PROPERTIES {
+            ^"Names" LIST OF STRING [ "Zephyr", "Rainbow", "Blaze", "Cloud", "Frost", "Snow", "Breezy", "Flood", "Tranquil", "Squall", "Misty", "Rain", "Thunder" ]
+            ^"Open Prompt" STRING "or another weather name"
+            ^"Deck" ^"Tradition Deck" #COW734276ea584a893c4fea1 ^"Temple Heron"
+        }
+    }
+
+    #COWdfaebed63fbef1391371b ^"Ox of Rivertown Banner" DEF {
+        EXTENDS #COW58c97a0996410827e972d ^"Tradition Banner"
+        PROPERTIES {
+            ^"Names" LIST OF STRING [ "Olive", "Fern", "Chayote", "Rye", "Saffron", "Quince", "Blossom", "Haven", "Apple", "Stone", "Tater", "Sweetgrass", "Thistle" ]
+            ^"Open Prompt" STRING "or another pastoral name"
+            ^"Deck" ^"Tradition Deck" #COW268e8561b067204313e37 ^"Ox of Rivertown"
+        }
+    }
+
+    #COW0b656120a5353ee060b9a ^"Lion of the Citadel Banner" DEF {
+        EXTENDS #COW58c97a0996410827e972d ^"Tradition Banner"
+        PROPERTIES {
+            ^"Names" LIST OF STRING [ "Glory", "Zeal", "Pride", "Brave", "Harmony", "Grace", "Destiny", "Guile", "Courage", "Majesty", "Valor", "Wisdom", "Able" ]
+            ^"Open Prompt" STRING "or another virtuous name"
+            ^"Deck" ^"Tradition Deck" #COW61ede29d5478b4480aaf6 ^"Lion of the Citadel"
+        }
+    }
+
+    #COWb641dfe31c320e40ee8fc ^"Umbra Banner" DEF {
+        EXTENDS #COW58c97a0996410827e972d ^"Tradition Banner"
+        PROPERTIES {
+            ^"Names" LIST OF STRING [] FIAT "The Umbra Banner carries no name-list; the Umbra is not a people."
+            ^"Deck" ^"Tradition Deck" #COW11cf4a1aa4614b97d6cf7 ^"Umbra"
+        }
+    }
+
+    #COW86ff0a6a0178e769400b6 ^"Fox of the Towers Banner" DEF {
+        EXTENDS #COW58c97a0996410827e972d ^"Tradition Banner"
+        PROPERTIES {
+            ^"Names" LIST OF STRING [ "Glade", "Lichen", "Meadow", "Ivy", "Gulley", "Willow", "Thicket", "Oakley", "Vale", "Juniper", "Briar", "Lake", "Acorn", "Huckleberry" ]
+            ^"Open Prompt" STRING "or another wilderness name"
+            ^"Deck" ^"Tradition Deck" #COW47f20f9fdbcb99f684e39 ^"Fox of the Towers"
+        }
+    }
+
+    #COW3c35bfaaa08ecc546163a ^"Lantern Crow Banner" DEF {
+        EXTENDS #COW58c97a0996410827e972d ^"Tradition Banner"
+        PROPERTIES {
+            ^"Names" LIST OF STRING [ "Hraa", "Kraa", "Graak", "Awkaw", "Akac", "Aaa", "Rakaka", "Raah", "Kahw", "Kew", "Keow", "Maow" ]
+            ^"Open Prompt" STRING "or another crow sound"
+            ^"Deck" ^"Tradition Deck" #COW9d6c514bd85e69d16a696 ^"Lantern Crow"
+        }
+    }
+
+    #COW378a6b45af435e1c6a915 ^"Mask Maker Banner" DEF {
+        EXTENDS #COW58c97a0996410827e972d ^"Tradition Banner"
+        PROPERTIES {
+            ^"Names" LIST OF STRING [ "Cat", "Owl", "Raven", "Leopard", "Snake", "Panda", "Monkey", "Beetle", "Moth", "Deer", "Ibis", "Frog", "Snake", "Wolf", "Goat" ]
+            ^"Open Prompt" STRING "or another kind of mask"
+            ^"Deck" ^"Tradition Deck" #COW1dbe2130e389b16018eb3 ^"Mask Maker"
+        }
+    }
+
+    #COW6d248ce960b4ff775c5ab ^"Glowdog Banner" DEF {
+        EXTENDS #COW58c97a0996410827e972d ^"Tradition Banner"
+        PROPERTIES {
+            ^"Names" LIST OF STRING [ "Truthful", "Swift", "Dreamer", "Baron", "Vandal", "Mender", "Graves", "Happy", "Whisper", "Prophet", "Howl" ]
+            ^"Open Prompt" STRING "or another earned name"
+            ^"Deck" ^"Tradition Deck" #COWff9e2875b73d4008351eb ^"Glowdog"
+        }
+    }
+
+    #COWaa73ab33d75a82a52a74e ^"Brass Ones Banner" DEF {
+        EXTENDS #COW58c97a0996410827e972d ^"Tradition Banner"
+        PROPERTIES {
+            ^"Names" LIST OF STRING [ "Amethyst", "Opal", "Lapis", "Ruby", "Sapphire", "Obsidian", "Gold", "Silver", "Jade", "Copper", "Onyx", "Diamond", "Amber" ]
+            ^"Open Prompt" STRING "or another precious name"
+            ^"Deck" ^"Tradition Deck" #COW36a2ab23469a974948854 ^"Brass Ones"
+        }
+    }
+
+    #COW9ff644a168c857b52cf40 ^"Moonbee Banner" DEF {
+        EXTENDS #COW58c97a0996410827e972d ^"Tradition Banner"
+        PROPERTIES {
+            ^"Names" LIST OF STRING [ "Dazzle", "Braid", "Joy", "Wonder", "Glaze", "Lyric", "Crystal", "Vivid", "Artifice", "Dye", "Bard", "Forge", "Painter", "Weave", "Dancer" ]
+            ^"Open Prompt" STRING "or another artful name"
+            ^"Deck" ^"Tradition Deck" #COWb6415ac566c9c446d6cdf ^"Moonbee"
+        }
+    }
+
+    #COW7750fe254c5618bbb6fc1 ^"Our Family Banner" DEF {
+        EXTENDS #COW58c97a0996410827e972d ^"Tradition Banner"
+        DESCRIPTION "Store character cards and held traditions here between sessions."
+        FIAT "A storage divider printed with the Banners; it carries no name-list and belongs to no Tradition Deck."
+    }
+
+
+    # ====================================================================
+    # TRADITION DECKS
+    # ====================================================================
+
+    #COW734276ea584a893c4fea1 ^"Temple Heron" DEF {
+        EXTENDS #COW6217aca5853194cde3408 ^"Tradition Deck"
+        PROPERTIES {
+            ^"Shape" ^"Tradition Icon Shape" "circle"
+            ^"Region" ENUM "Riverlands"
+            ^"Card Count" INTEGER 25
+            ^"Banner" ^"Tradition Banner" #COWf25ee6c1e7e6f1a48523e ^"Temple Heron Banner"
+        }
+    }
+
+    #COW268e8561b067204313e37 ^"Ox of Rivertown" DEF {
+        EXTENDS #COW6217aca5853194cde3408 ^"Tradition Deck"
+        PROPERTIES {
+            ^"Shape" ^"Tradition Icon Shape" "circle"
+            ^"Region" ENUM "Riverlands"
+            ^"Card Count" INTEGER 25
+            ^"Banner" ^"Tradition Banner" #COWdfaebed63fbef1391371b ^"Ox of Rivertown Banner"
+        }
+    }
+
+    #COW61ede29d5478b4480aaf6 ^"Lion of the Citadel" DEF {
+        EXTENDS #COW6217aca5853194cde3408 ^"Tradition Deck"
+        PROPERTIES {
+            ^"Shape" ^"Tradition Icon Shape" "circle"
+            ^"Region" ENUM "Riverlands"
+            ^"Card Count" INTEGER 25
+            ^"Banner" ^"Tradition Banner" #COW0b656120a5353ee060b9a ^"Lion of the Citadel Banner"
+        }
+    }
+
+    #COW11cf4a1aa4614b97d6cf7 ^"Umbra" DEF {
+        EXTENDS #COW6217aca5853194cde3408 ^"Tradition Deck"
+        PROPERTIES {
+            ^"Shape" ^"Tradition Icon Shape" "umbra"
+            ^"Region" ENUM "Riverlands"
+            ^"Card Count" INTEGER 25
+            ^"Banner" ^"Tradition Banner" #COWb641dfe31c320e40ee8fc ^"Umbra Banner"
+        }
+    }
+
+    #COW47f20f9fdbcb99f684e39 ^"Fox of the Towers" DEF {
+        EXTENDS #COW6217aca5853194cde3408 ^"Tradition Deck"
+        PROPERTIES {
+            ^"Shape" ^"Tradition Icon Shape" "circle"
+            ^"Region" ENUM "City"
+            ^"Card Count" INTEGER 25
+            ^"Banner" ^"Tradition Banner" #COW86ff0a6a0178e769400b6 ^"Fox of the Towers Banner"
+        }
+    }
+
+    #COW9d6c514bd85e69d16a696 ^"Lantern Crow" DEF {
+        EXTENDS #COW6217aca5853194cde3408 ^"Tradition Deck"
+        PROPERTIES {
+            ^"Shape" ^"Tradition Icon Shape" "sun"
+            ^"Region" ENUM "City"
+            ^"Card Count" INTEGER 25
+            ^"Banner" ^"Tradition Banner" #COW3c35bfaaa08ecc546163a ^"Lantern Crow Banner"
+        }
+    }
+
+    #COW1dbe2130e389b16018eb3 ^"Mask Maker" DEF {
+        EXTENDS #COW6217aca5853194cde3408 ^"Tradition Deck"
+        PROPERTIES {
+            ^"Shape" ^"Tradition Icon Shape" "sun"
+            ^"Region" ENUM "City"
+            ^"Card Count" INTEGER 24
+            ^"Banner" ^"Tradition Banner" #COW378a6b45af435e1c6a915 ^"Mask Maker Banner"
+        }
+    }
+
+    #COWff9e2875b73d4008351eb ^"Glowdog" DEF {
+        EXTENDS #COW6217aca5853194cde3408 ^"Tradition Deck"
+        PROPERTIES {
+            ^"Shape" ^"Tradition Icon Shape" "diamond"
+            ^"Region" ENUM "City"
+            ^"Card Count" INTEGER 25
+            ^"Banner" ^"Tradition Banner" #COW6d248ce960b4ff775c5ab ^"Glowdog Banner"
+        }
+    }
+
+    #COW36a2ab23469a974948854 ^"Brass Ones" DEF {
+        EXTENDS #COW6217aca5853194cde3408 ^"Tradition Deck"
+        PROPERTIES {
+            ^"Shape" ^"Tradition Icon Shape" "diamond"
+            ^"Region" ENUM "City"
+            ^"Card Count" INTEGER 25
+            ^"Banner" ^"Tradition Banner" #COWaa73ab33d75a82a52a74e ^"Brass Ones Banner"
+        }
+    }
+
+    #COWb6415ac566c9c446d6cdf ^"Moonbee" DEF {
+        EXTENDS #COW6217aca5853194cde3408 ^"Tradition Deck"
+        PROPERTIES {
+            ^"Shape" ^"Tradition Icon Shape" "diamond"
+            ^"Region" ENUM "City"
+            ^"Card Count" INTEGER 25
+            ^"Banner" ^"Tradition Banner" #COW9ff644a168c857b52cf40 ^"Moonbee Banner"
+        }
+    }
+
+
+    # ====================================================================
+    # MARKS OF AGE & AGE TIERS
+    # ====================================================================
+
+    #COW4f3860f653a7d02b4972b ^"Marks of Age" DEF {
+        DESCRIPTION "We track our character’s age by drawing circles called Marks of Age. There is no direct correlation between the number of Marks and the exact age of a character in years. We can decide for ourselves what they mean as we play."
+        INTEGER MIN 0 MAX 6
+    }
+
+    #COW1d67848dae70cef1f61f7 ^"City Marks" DEF {
+        DESCRIPTION "If our family’s Home is in the City of Winter, we mark age with diamond-shaped City Marks instead of a circles. City Marks represent both your age, and how much you’ve adapted to life in the city.\\n\\nIf an Elder has both regular and City Marks, they may cross off either when we Mark Age."
+        INTEGER MIN 0
+    }
+
+    #COWfed610cea84584bf50b84 ^"Age Tier" DEF {
+        PROPERTIES {
+            ^"Marks" LIST OF STRING
+            ^"Marks Text" STRING
+        }
+    }
+
+    #COWee11b2685c700c6634938 ^"Child" DEF {
+        EXTENDS #COWfed610cea84584bf50b84 ^"Age Tier"
+        PROPERTIES {
+            ^"Marks" LIST OF STRING [ "0" ]
+            ^"Marks Text" STRING "no Marks"
+        }
+    }
+
+    #COWb770a01865be0c1ae1d73 ^"Youth" DEF {
+        EXTENDS #COWfed610cea84584bf50b84 ^"Age Tier"
+        PROPERTIES {
+            ^"Marks" LIST OF STRING [ "1", "2" ]
+            ^"Marks Text" STRING "one or two Marks"
+        }
+    }
+
+    #COWc15522a50bae39b9b237e ^"Parent" DEF {
+        EXTENDS #COWfed610cea84584bf50b84 ^"Age Tier"
+        PROPERTIES {
+            ^"Marks" LIST OF STRING [ "3", "4", "5" ]
+            ^"Marks Text" STRING "three, four, or five Marks"
+        }
+    }
+
+    #COW01d5a8e6abb1e0721d6fe ^"Elder" DEF {
+        EXTENDS #COWfed610cea84584bf50b84 ^"Age Tier"
+        PROPERTIES {
+            ^"Marks" LIST OF STRING [ "6" ]
+            ^"Marks Text" STRING "six Marks"
+        }
+    }
+
+
+    # ====================================================================
+    # BONDS
+    # ====================================================================
+
+    #COW712f1f579806f60d7898f ^"Bond" DEF {
+        DESCRIPTION "Our characters begin with two Bonds. A Bond represents an important relationship that helps to define your character’s role in our family.\\n\\nTo create a Bond, combine a prompt from the Bonds List with the name of another character and write it on your Notecard.\\n\\nThe prompts are organized by age, and you may only choose prompts at your age or younger."
+        PROPERTIES {
+            ^"Prompt" STRING REQUIRED
+            ^"Subject" STRING REQUIRED
+        }
+    }
+
+    #COW8e0c6eb4135ddd65419ee ^"Bonds List" DEF {
+        PROPERTIES {
+            ^"Tier" STRING REQUIRED
+            ^"Kind" ENUM ["Bonds", "Memory Bonds", "City Bonds"]
+            ^"Prompts" LIST OF STRING
+            ^"Open Prompt" STRING
+        }
+    }
+
+    #COW423016cf3579c2c29ff97 ^"Child Bonds" DEF {
+        EXTENDS #COW8e0c6eb4135ddd65419ee ^"Bonds List"
+        PROPERTIES {
+            ^"Tier" STRING "Child"
+            ^"Kind" ENUM "Bonds"
+            ^"Prompts" LIST OF STRING [ "Ward", "Heir", "Foundling", "Sibling", "Cousin", "Orphan" ]
+            ^"Open Prompt" STRING "or Child of..."
+        }
+    }
+
+    #COW8c30bb53b300049fe2467 ^"Youth Bonds" DEF {
+        EXTENDS #COW8e0c6eb4135ddd65419ee ^"Bonds List"
+        PROPERTIES {
+            ^"Tier" STRING "Youth"
+            ^"Kind" ENUM "Bonds"
+            ^"Prompts" LIST OF STRING [ "Follower", "Admirer", "Bully", "Rival", "Defender", "Apprentice", "Favorite", "Squire", "Jealous", "Idol" ]
+            ^"Open Prompt" STRING "or Likeness of..."
+        }
+    }
+
+    #COWe552580912bb9112161eb ^"Parent Bonds" DEF {
+        EXTENDS #COW8e0c6eb4135ddd65419ee ^"Bonds List"
+        PROPERTIES {
+            ^"Tier" STRING "Parent"
+            ^"Kind" ENUM "Bonds"
+            ^"Prompts" LIST OF STRING [ "Disciple", "Caretaker", "Guardian", "Suitor", "Beloved", "Spouse", "Champion", "Ally", "Widow(er)" ]
+            ^"Open Prompt" STRING "or Parent of..."
+        }
+    }
+
+    #COWd3bf8a78491dd505ce011 ^"Elder Bonds" DEF {
+        EXTENDS #COW8e0c6eb4135ddd65419ee ^"Bonds List"
+        PROPERTIES {
+            ^"Tier" STRING "Elder"
+            ^"Kind" ENUM "Bonds"
+            ^"Prompts" LIST OF STRING [ "Grandparent", "Teacher", "Mentor", "Council", "Spoiler", "Burden", "Ashamed" ]
+            ^"Open Prompt" STRING "or Proud of..."
+        }
+    }
+
+    #COW7be41d7bd65385484fedd ^"Memory Memory Bonds" DEF {
+        EXTENDS #COW8e0c6eb4135ddd65419ee ^"Bonds List"
+        PROPERTIES {
+            ^"Tier" STRING "Memory"
+            ^"Kind" ENUM "Memory Bonds"
+            ^"Prompts" LIST OF STRING [ "Grieved", "Honored", "Remembered", "Reviled", "Forgotten", "Disavowed" ]
+            ^"Open Prompt" STRING "or Succeeded by..."
+        }
+    }
+
+    #COW6f5fc587059d848bd8390 ^"City 0 City Bonds" DEF {
+        EXTENDS #COW8e0c6eb4135ddd65419ee ^"Bonds List"
+        PROPERTIES {
+            ^"Tier" STRING "City 0"
+            ^"Kind" ENUM "City Bonds"
+            ^"Prompts" LIST OF STRING [ "Befriended", "Watched", "Betrayed", "Trusted", "Favored", "Feared", "Taught", "Protected", "Funded", "Adored" ]
+            ^"Open Prompt" STRING "or Shadowed by..."
+        }
+    }
+
+    #COWa3132c39bdd63be2047c0 ^"City 1 City Bonds" DEF {
+        EXTENDS #COW8e0c6eb4135ddd65419ee ^"Bonds List"
+        PROPERTIES {
+            ^"Tier" STRING "City 1"
+            ^"Kind" ENUM "City Bonds"
+            ^"Prompts" LIST OF STRING [ "Driftmate", "Shard", "Whisper", "Hauler", "Servant", "Dustie", "Adept", "Glimmer", "Boarder", "Echo", "Client" ]
+            ^"Open Prompt" STRING "or Eyes of..."
+        }
+    }
+
+    #COWe5ec551387a91894fbb58 ^"City 2 City Bonds" DEF {
+        EXTENDS #COW8e0c6eb4135ddd65419ee ^"Bonds List"
+        PROPERTIES {
+            ^"Tier" STRING "City 2"
+            ^"Kind" ENUM "City Bonds"
+            ^"Prompts" LIST OF STRING [ "Glowtender", "Moonsworn", "Flame", "Discordant", "Patron", "Harmony", "Brassbound", "Giftgiver" ]
+            ^"Open Prompt" STRING "or Lost to..."
+        }
+    }
+
+
+    # ====================================================================
+    # MAP VOCABULARY
+    # ====================================================================
+
+    #COW6d4d0aac9cd0387161644 ^"Location" DEF {
+        PROPERTIES {
+            ^"Region" ENUM ["Riverlands", "City"]
+            ^"Page" INTEGER
+            ^"Local Traditions" LIST OF STRING
+        }
+    }
+
+    #COWc584d205c370fbb6d520b ^"Scene" DEF {
+        DESCRIPTION "Each location has several prompts called Scenes. On your turn, move your token to a scene at our family’s current location. You may choose any scene, even if another player’s token is already there."
+        PROPERTIES {
+            ^"Prompt" STRING REQUIRED
+        }
+    }
+
+    #COWcb9176c4eab418b78cf29 ^"Transit Line" DEF {
+        DESCRIPTION "Every Location has a Transit Station that is connected to one or more Transit Lines. On your turn, whenever you Choose a Scene, you have the option to Travel to another Location."
+        PROPERTIES {
+            ^"Stations" LIST OF STRING
+            ^"Borough Die Result" INTEGER MIN 1 MAX 6
+        }
+    }
+
+
+    # ====================================================================
+    # SCENE OPTIONS
+    # ====================================================================
+
+    #COW9261f8ddfc1d278d12a1a ^"Share a Tradition" DEF {
+        DESCRIPTION "Play a card from your hand, face down onto the table. (You must have at least one card in hand to choose this option.)"
+    }
+
+    #COWc3f9ee44050ccdbc64043 ^"Witness a Tradition" DEF {
+        DESCRIPTION "Draw a card from either the Umbra Deck or the Local Tradition Deck (indicated by the icon next to our current location) and without looking at it, give it to another player who privately reads the prompt on the card."
+    }
+
+
+    # ====================================================================
+    # PROCEDURE & RULE TYPES
+    # ====================================================================
+
+    #COWdd203f5d990a61b496a78 ^"Procedure" DEF {
+        PROPERTIES {
+            ^"Phase" STRING
+            ^"Page" INTEGER
+        }
+    }
+
+    #COW739d7d78413a091e8523c ^"Rule" DEF {
+        PROPERTIES {
+            ^"Phase" STRING
+            ^"Page" INTEGER
+        }
+    }
+
+    #COW2a7a9356dd70402814e37 ^"Step" DEF {
+        PROPERTIES {
+            ^"Order" INTEGER MIN 1
+        }
+    }
+
+}

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rules · City of Winter</title>
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Cormorant+SC:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../winter.css">
+<style>
+  .layout{ display:grid; gap:1.4rem; grid-template-columns:minmax(180px,230px) 1fr; align-items:start; }
+  @media (max-width:820px){ .layout{ grid-template-columns:1fr; } }
+  .toc{ position:sticky; top:64px; max-height:calc(100vh - 90px); overflow-y:auto; }
+  .toc a{ display:block; font-family:var(--caps); font-variant:small-caps; letter-spacing:0.07em;
+    color:var(--chalk-dim); text-decoration:none; padding:0.1rem 0; font-size:0.95rem; }
+  .toc a:hover{ color:var(--ice); }
+  .toc .pg{ float:right; color:var(--chalk-faint); font-size:0.8rem; }
+  .step{ border-left:2px solid var(--edge); padding:0.1rem 0 0.1rem 0.9rem; margin:0.8rem 0; }
+  .step > h4{ margin:0 0 0.25rem; color:var(--ice); }
+  .teaching{
+    border-left:3px solid var(--ice-deep); background:rgba(188,216,230,0.06);
+    padding:0.5rem 0.85rem; margin:0.5rem 0; font-style:italic; color:var(--chalk-2);
+  }
+  .option{ background:var(--night-3); border:1px solid var(--edge-soft); border-radius:4px;
+    padding:0.5rem 0.8rem; margin:0.45rem 0; }
+  .option b{ color:var(--sand); }
+  .sidebar{ border:1px dashed var(--edge-hair); border-radius:5px; padding:0.7rem 0.9rem;
+    margin:0.7rem 0; background:rgba(255,255,255,0.02); }
+  .sidebar .lbl{ font-family:var(--caps); font-variant:small-caps; letter-spacing:0.1em;
+    color:var(--gold); font-size:0.86rem; }
+  .variant{ border:1px solid rgba(232,145,46,0.35); border-radius:5px; padding:0.8rem 1rem; margin:0.8rem 0; }
+  pre.plain{ white-space:pre-wrap; font-family:var(--serif); margin:0.3rem 0; }
+</style>
+</head>
+<body>
+<div class="wrap wide">
+  <header class="masthead" style="padding-bottom:0.4rem">
+    <div class="eyebrow">Rules V2</div>
+    <h1>Rules</h1>
+    <p class="sub">Every procedure, rule and sidebar of City of Winter, in the book’s own words.</p>
+  </header>
+  <div class="flourish"></div>
+  <div class="layout">
+    <nav class="toc panel" id="toc"></nav>
+    <main id="root"></main>
+  </div>
+</div>
+
+<script type="module">
+import { loadData } from '../app/data.js';
+import { $, el, mountNav, mountFooter, miniMarkdown } from '../app/ui.js';
+
+mountNav('rules');
+const data = await loadData();
+const root = $('#root'), toc = $('#toc');
+
+const slug = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+const anchors = [];
+function section(title, page, ...kids) {
+  const id = slug(title);
+  anchors.push({ id, title, page });
+  return el('section', { id }, el('h2', {}, title,
+    page ? el('span', { class: 'tag', style: 'margin-left:0.6rem', text: 'p.' + page }) : null), ...kids);
+}
+
+function paras(text) {
+  return (text || '').split('\n\n').map((p) => el('pre', { class: 'plain', text: p }));
+}
+
+function stepEl(s, prefix = '') {
+  return el('div', { class: 'step' },
+    el('h4', { text: `${prefix}${s.n}. ${s.name}` }),
+    s.instruction ? paras(s.instruction) : null,
+    s.teaching ? el('div', { class: 'teaching' }, paras(s.teaching)) : null,
+    s.followUp ? paras(s.followUp) : null,
+    s.teachingTwo ? el('div', { class: 'teaching' }, paras(s.teachingTwo)) : null,
+    (s.options || []).map((o) => el('div', { class: 'option' },
+      el('b', { text: o.name }), paras(o.instruction))),
+    (s.substeps || []).map((ss) => stepEl(ss, '')));
+}
+
+// procedures
+for (const p of data.procedures) {
+  root.append(section(p.name, p.page,
+    p.instruction ? paras(p.instruction) : null,
+    p.steps.map((s) => stepEl(s))));
+}
+
+// rules
+root.append(el('div', { class: 'flourish' }));
+for (const r of data.rules) {
+  root.append(section(r.name, r.page, paras(r.text)));
+}
+
+// Ask Fate outcome table
+root.append(section('Fate Answers', 47,
+  el('table', {}, el('tbody', {}, data.askFate.map((o) =>
+    el('tr', {},
+      el('td', { text: o.roll }),
+      el('td', {},
+        el('b', { text: o.outcome }),
+        el('div', { class: 'small muted', text: o.definition }))))))));
+
+// optional & variant rules
+root.append(el('div', { class: 'flourish' }));
+root.append(el('h2', { text: 'Optional & variant rules' }));
+for (const o of data.optionalRules) {
+  root.append(el('div', { class: 'variant' },
+    el('h3', { style: 'margin-top:0' }, o.name,
+      el('span', { class: 'tag', style: 'margin-left:0.5rem', text: `default ${o.default}` }),
+      el('span', { class: 'tag', text: 'p.' + o.page })),
+    el('div', { class: 'teaching' }, paras(o.optionalText)),
+    paras(o.text)));
+}
+
+// solo modules
+root.append(el('div', { class: 'flourish' }));
+root.append(section('Solo Play — journal modules', 48,
+  data.soloModules.map((m) => el('div', { class: 'step' },
+    el('h4', { text: m.name }), paras(m.text)))));
+
+// sidebars
+root.append(el('div', { class: 'flourish' }));
+root.append(el('h2', { text: 'Sidebars & advice' }));
+for (const g of data.guidance) {
+  root.append(el('div', { class: 'sidebar' },
+    el('div', { class: 'lbl' }, g.label.replace(/-/g, ' '),
+      el('span', { class: 'tag', style: 'margin-left:0.5rem', text: 'p.' + g.page })),
+    paras(g.text)));
+}
+
+// lore essays carried in the corpus
+root.append(el('div', { class: 'flourish' }));
+for (const l of data.lore || []) {
+  root.append(el('article', { html: miniMarkdown(l.markdown) }));
+}
+
+// table of contents
+toc.append(el('div', { class: 'small muted', style: 'margin-bottom:0.4rem', text: 'Contents' }));
+for (const a of anchors) {
+  toc.append(el('a', { href: '#' + a.id },
+    a.page ? el('span', { class: 'pg', text: a.page }) : null, a.title));
+}
+
+mountFooter();
+</script>
+</body>
+</html>

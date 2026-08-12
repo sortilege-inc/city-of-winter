@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Atlas · City of Winter</title>
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Cormorant+SC:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../winter.css">
+<style>
+  .loc{ background:var(--night-2); border:1px solid var(--edge); border-radius:5px; padding:1rem 1.1rem; }
+  .loc h3{ margin:0 0 0.2rem; color:var(--chalk); }
+  .loc .icons{ color:var(--ice); }
+  .loc[data-region="City"] .icons{ color:var(--sand); }
+  .loc .scenelist{ display:flex; flex-wrap:wrap; gap:0.3rem; margin-top:0.55rem; }
+  .loc .scenelist span{
+    font-family:var(--caps); font-variant:small-caps; letter-spacing:0.09em;
+    font-size:0.86rem; color:var(--chalk-2);
+    border:1px solid var(--edge-soft); border-radius:3px; padding:0.1rem 0.45rem;
+  }
+  .lines .line{ margin-bottom:0.5rem; }
+  .lines .line b{ color:var(--sand); }
+  .dist td:first-child{ color:var(--chalk-2); white-space:nowrap; }
+  .dist td.far{ color:var(--chalk-faint); }
+  .dist td.near{ color:var(--amber); }
+  .dist th{ font-size:0.72rem; writing-mode:vertical-rl; transform:rotate(200grad); height:8.5em; padding:0; }
+  .dist td, .dist th{ border:1px solid var(--edge-soft); text-align:center; }
+</style>
+</head>
+<body>
+<div class="wrap wide">
+  <header class="masthead" style="padding-bottom:0.4rem">
+    <div class="eyebrow">The River Scroll &amp; the City Map</div>
+    <h1>Atlas</h1>
+    <p class="sub">A map of connected Locations we unroll as we migrate from the Riverlands on the left, to the City of Winter at the far end of the scroll.</p>
+  </header>
+  <div class="flourish"></div>
+  <div id="root"></div>
+</div>
+
+<script type="module">
+import { loadData } from '../app/data.js';
+import { $, el, mountNav, mountFooter, shapeIcon } from '../app/ui.js';
+
+mountNav('atlas');
+const data = await loadData();
+const root = $('#root');
+
+function icons(loc) {
+  return el('span', { class: 'icons' }, loc.traditions.map((t) => {
+    if (t.startsWith('ANY:')) {
+      const shape = t.slice(4);
+      return el('span', { title: `blank ${shape}: any of ${data.shapeFamilies[shape].join(', ')}` },
+        shapeIcon(shape), el('span', { class: 'small muted', text: `any ${shape} ` }));
+    }
+    const k = data.byDeck.get(t);
+    return el('span', { title: t }, shapeIcon(k?.shape), el('span', { class: 'small', text: t + ' ' }));
+  }));
+}
+
+function locCard(loc) {
+  return el('div', { class: 'loc', dataset: { region: loc.region }, id: 'loc-' + encodeURIComponent(loc.name) },
+    el('h3', { text: loc.name }),
+    el('div', {}, icons(loc)),
+    loc.connects && loc.connects.length
+      ? el('p', { class: 'small muted', style: 'margin:0.4rem 0 0' }, 'Connects to: ', loc.connects.join(' · '))
+      : null,
+    loc.entrances && loc.entrances.length
+      ? el('p', { class: 'small', style: 'margin:0.4rem 0 0' },
+          loc.entrances.map((e) => el('div', { class: 'muted', text: `${e.text} → ${e.target}` })))
+      : null,
+    loc.scenes.length
+      ? el('div', { class: 'scenelist' }, loc.scenes.map((s) => el('span', { text: s })))
+      : null,
+    el('p', { class: 'small muted', style: 'margin:0.5rem 0 0' }, `Atlas p.${loc.page || '—'}`));
+}
+
+root.append(
+  el('h2', { text: 'The Riverlands' }),
+  el('p', { class: 'small muted', text: 'Some Locations have two versions depending if we are traveling by Caravan or by Lantern Ship.' }),
+  el('div', { class: 'grid' }, data.riverlands.map(locCard)),
+
+  el('div', { class: 'flourish' }),
+  el('h2', { text: 'The City of Winter' }),
+  el('p', { class: 'small muted', text: 'Most Locations in the City have multiple Local Traditions. When you Witness a Tradition in the City, draw one Tradition Card for each Local Tradition icon, and give all of the cards you have drawn to one other player.' }),
+  el('div', { class: 'grid' }, data.city.map(locCard)),
+
+  el('div', { class: 'flourish' }),
+  el('h2', { text: 'The Wandering Borough' }),
+  el('div', { class: 'grid' }, locCard(data.wanderingBorough)),
+
+  el('div', { class: 'flourish' }),
+  el('h2', { text: 'Transit Lines & Stations' }),
+  el('p', { class: 'small muted', text: 'Every Location has a Transit Station that is connected to one or more Transit Lines. The total number of Stations a character can travel from Home is equal to that character’s City Marks. You may change from one Line to another mid-journey, but each change adds one to the total City Marks required for the journey.' }),
+  el('div', { class: 'panel lines' }, data.transitLines.map((t) =>
+    el('div', { class: 'line' },
+      el('b', { text: t.name }),
+      t.boroughDie ? el('span', { class: 'tag', text: `Borough die ${t.boroughDie}` }) : el('span', { class: 'tag', text: 'not on the Borough table' }),
+      el('div', { class: 'small muted', text: t.stations.join('  ·  ') })))),
+);
+
+// --- the printed transit distance table -------------------------------------
+const order = data.transitDistance.order;
+const tbl = el('table', { class: 'dist' },
+  el('thead', {}, el('tr', {}, el('th', {}), order.map((c) => el('th', { text: c })))),
+  el('tbody', {}, order.map((r) => el('tr', {},
+    el('td', { text: r }),
+    data.transitDistance.rows[r].map((v) => el('td', {
+      class: v === '7+' ? 'far' : v === '1' ? 'near' : '',
+      text: v === '-' ? '' : v,
+    }))))));
+
+root.append(
+  el('div', { class: 'flourish' }),
+  el('h2', { text: 'Transit Distance' }),
+  el('p', { class: 'small muted', text: '(# of Stations + Line Transfers between Locations.) Reproduced exactly as printed on Atlas p.40 — including the places where it disagrees with the Transit Map, and the absence of Wintermount.' }),
+  el('div', { class: 'scroller panel' }, tbl));
+
+mountFooter();
+</script>
+</body>
+</html>

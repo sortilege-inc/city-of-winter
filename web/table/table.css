@@ -1,0 +1,98 @@
+/* The Table — layout for the play surface. */
+
+.tablelayout{
+  display:grid; gap:1.1rem;
+  grid-template-columns:minmax(0,1fr) minmax(280px,340px);
+  align-items:start;
+}
+@media (max-width:980px){ .tablelayout{ grid-template-columns:1fr; } }
+
+.statusbar{
+  display:flex; flex-wrap:wrap; align-items:center; gap:0.6rem 1.1rem;
+  background:var(--night-2); border:1px solid var(--edge); border-radius:5px;
+  padding:0.6rem 0.95rem; margin-bottom:1rem;
+}
+.statusbar .field{ display:flex; align-items:baseline; gap:0.35rem; }
+.statusbar .k{
+  font-family:var(--caps); font-variant:small-caps; letter-spacing:0.1em;
+  font-size:0.84rem; color:var(--chalk-faint);
+}
+.statusbar .v{ font-family:var(--disp); font-size:1.02rem; color:var(--chalk); }
+.statusbar .v.home{ color:var(--ice); }
+.statusbar .grow{ flex:1 1 auto; }
+
+/* --- characters ---------------------------------------------------------- */
+.chars{ display:grid; gap:0.75rem; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); }
+.ch{
+  background:var(--night-2); border:1px solid var(--edge); border-radius:5px;
+  padding:0.8rem 0.9rem; position:relative;
+}
+.ch.turn{ border-color:var(--amber); box-shadow:0 0 0 1px rgba(232,145,46,0.35); }
+.ch.memory{ background:repeating-linear-gradient(135deg,var(--night-2),var(--night-2) 10px,#15151d 10px,#15151d 20px); }
+.ch.forgotten{ opacity:0.45; }
+.ch h3{ margin:0; color:var(--chalk); font-family:var(--disp); font-size:1.16rem; letter-spacing:0.01em; }
+.ch .pronouns{ font-family:var(--serif); font-size:0.88rem; color:var(--chalk-faint); font-style:italic; margin-left:0.4rem; }
+.ch .row{ display:flex; flex-wrap:wrap; gap:0.5rem 0.9rem; align-items:center; margin-top:0.45rem; }
+.ch .tierlabel{
+  font-family:var(--caps); font-variant:small-caps; letter-spacing:0.11em;
+  font-size:0.86rem; color:var(--ice-deep);
+}
+.ch .bonds{ margin:0.45rem 0 0; padding:0; list-style:none; }
+.ch .bonds li{ font-size:0.94rem; color:var(--chalk-2); }
+.ch .bonds li::before{ content:"•"; color:var(--gold); margin-right:0.45rem; }
+.ch .hand{ display:grid; gap:0.4rem; grid-template-columns:repeat(auto-fill,minmax(118px,1fr)); margin-top:0.55rem; }
+.ch .hand .tcard{ min-height:104px; font-size:0.9rem; padding:0.6rem 0.45rem 0.5rem; }
+.ch .hand .tcard .prompt{ font-size:0.9rem; }
+.ch .scenechip{
+  font-family:var(--caps); font-variant:small-caps; letter-spacing:0.09em;
+  font-size:0.82rem; color:var(--amber);
+}
+.ch .badge{
+  position:absolute; top:0.6rem; right:0.7rem;
+  font-family:var(--caps); font-variant:small-caps; letter-spacing:0.1em;
+  font-size:0.78rem; color:var(--chalk-faint);
+}
+.ch .handcount{ font-size:0.84rem; color:var(--chalk-faint); }
+.ch .handcount.over{ color:var(--amber); }
+.ch .handcount.under{ color:var(--ice); }
+
+/* --- the current scene --------------------------------------------------- */
+.stage{
+  background:linear-gradient(180deg,var(--night-3),var(--night-2));
+  border:1px solid var(--edge-hair); border-radius:6px; padding:1rem 1.1rem;
+}
+.stage .phase{
+  font-family:var(--caps); font-variant:small-caps; letter-spacing:0.14em;
+  color:var(--gold); font-size:0.9rem;
+}
+.stage h2{ margin:0.15rem 0 0.5rem; }
+.stage .prompt{ color:var(--chalk-2); }
+
+/* --- decks --------------------------------------------------------------- */
+.decks{ display:flex; flex-wrap:wrap; gap:0.5rem; }
+.deckchip{
+  display:flex; flex-direction:column; align-items:center; gap:0.1rem;
+  border:1px solid var(--edge); border-radius:4px; padding:0.4rem 0.6rem;
+  background:var(--night-3); min-width:110px;
+}
+.deckchip .n{ font-family:var(--disp); font-size:1.1rem; }
+.deckchip .nm{ font-family:var(--caps); font-variant:small-caps; font-size:0.8rem; letter-spacing:0.08em; color:var(--chalk-dim); text-align:center; }
+
+/* --- side rail ----------------------------------------------------------- */
+.rail .panel{ margin-top:0; }
+.rail h3{ margin-top:0; }
+.pool{ display:grid; gap:0.4rem; grid-template-columns:repeat(auto-fill,minmax(112px,1fr)); }
+.pool .tcard{ min-height:96px; font-size:0.86rem; padding:0.55rem 0.4rem 0.45rem; }
+.pool .tcard .prompt{ font-size:0.86rem; }
+
+.wizard .stepnav{ display:flex; gap:0.4rem; flex-wrap:wrap; margin-bottom:0.8rem; }
+.wizard .stepnav span{
+  font-family:var(--caps); font-variant:small-caps; letter-spacing:0.08em; font-size:0.84rem;
+  color:var(--chalk-faint); border:1px solid var(--edge-soft); border-radius:99px; padding:0.05rem 0.6rem;
+}
+.wizard .stepnav span.on{ color:var(--night); background:var(--ice); border-color:var(--ice); }
+.wizard .stepnav span.done{ color:var(--ice); border-color:var(--ice-deep); }
+
+.charform{ display:grid; gap:0.5rem; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); align-items:end; }
+.namelist button{ margin:0 0.25rem 0.25rem 0; }
+.fate{ font-family:var(--disp); font-size:2.4rem; color:var(--gold-lit); }

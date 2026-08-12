@@ -1,0 +1,450 @@
+FRAME "CityOfWinter_Riverlands" {
+    NAME "City of Winter — the Riverlands (River Scroll / Atlas)"
+    VERSION "0.5"
+    SPEC_VERSION "0.5"
+    RELEASE_DATE "2026-08-12"
+
+    DEPENDS_ON "CityOfWinter_Core_Base"
+
+    THEMES {
+        "The Umbra is coming, and the Riverlands are no longer safe. Our family must flee to the City of Winter, to find another home."
+        "Of Tradition & migration — what a family carries, saves, and leaves behind"
+    }
+
+    # Locations, scene prompts, local traditions and connections are as printed
+    # in the Atlas Edition (CoW-Atlas.pdf, pp.2, 7-17).
+
+    LOCATION ^"Cloud Citadel" #COW895eecd8ad4a5ac2f52dd {
+        TAGS [ "riverlands", "starting-home" ]
+        ATLAS_PAGE 7
+        LOCAL_TRADITIONS [ #COW61ede29d5478b4480aaf6 ^"Lion of the Citadel" ]
+        CONNECTS_TO [ "Rivertown", "We Board a Lantern Ship" ]
+        SCENES {
+            #COWae4d01614c896505c1345 ^"Above the Clouds" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Above the Clouds"
+                }
+            }
+            #COWe211811692d2115680e60 ^"Hall of Lions" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Hall of Lions"
+                }
+            }
+            #COW99b4dd6a1302bd1038b13 ^"Heart of the Citadel" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Heart of the Citadel"
+                }
+            }
+            #COWba48b171b2020e8a6c3d4 ^"Children’s Garden" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Children’s Garden"
+                }
+            }
+            #COWc7fdbd9124f376641533d ^"Waterfall" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Waterfall"
+                }
+            }
+            #COWb3c32d2c6c44e4bb8c8fb ^"In the Kitchen" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "In the Kitchen"
+                }
+            }
+            #COW7c72d9204cc5b2baa6a91 ^"Singing Chamber" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Singing Chamber"
+                }
+            }
+            #COW4164755e5d47cc1cde049 ^"The Wild River" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "The Wild River"
+                }
+            }
+        }
+    }
+
+    LOCATION ^"Rivertown" #COW1b2d74f45a585da9b2d4e {
+        TAGS [ "riverlands", "starting-home" ]
+        ATLAS_PAGE 8
+        LOCAL_TRADITIONS [ #COW268e8561b067204313e37 ^"Ox of Rivertown" ]
+        CONNECTS_TO [ "Cloud Citadel", "Temple Island" ]
+        SCENES {
+            #COWc56b91c0c988346b3f57d ^"When It Rains" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "When It Rains"
+                }
+            }
+            #COW080e4c7bde7b1af7cb463 ^"Hills" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Hills"
+                }
+            }
+            #COW8850dbe699b773c646a3b ^"Ox Bridge" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Ox Bridge"
+                }
+            }
+            #COWa68d573385f47f60945d8 ^"The Old Orchard" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "The Old Orchard"
+                }
+            }
+            #COW919b6d39fb3c12dba97c9 ^"Elders’ Cottage" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Elders’ Cottage"
+                }
+            }
+            #COW78776b32bc2ea572dec4a ^"Fairgrounds" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Fairgrounds"
+                }
+            }
+            #COWe64178aa6ddf443d129d5 ^"The Strong River" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "The Strong River"
+                }
+            }
+        }
+    }
+
+    LOCATION ^"Temple Island" #COWf6938dabb1f7f4793d3be {
+        TAGS [ "riverlands", "starting-home" ]
+        ATLAS_PAGE 9
+        LOCAL_TRADITIONS [ #COW734276ea584a893c4fea1 ^"Temple Heron" ]
+        CONNECTS_TO [ "Rivertown", "We Board a Lantern Ship", "We Join a Caravan" ]
+        SCENES {
+            #COW3c2605678be5e22b5ddf6 ^"The Calm River" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "The Calm River"
+                }
+            }
+            #COW19004ea515b59e8c46a07 ^"Palace of the Riverlands" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Palace of the Riverlands"
+                }
+            }
+            #COWcd3959e35453185f9d74f ^"Floating Market" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Floating Market"
+                }
+            }
+            #COW3cc52ea3899da2e542273 ^"Heron Villa" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Heron Villa"
+                }
+            }
+            #COW722985460b22bbbda1bee ^"Temple" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Temple"
+                }
+            }
+            #COWd5b1a24f4d99dfa38c3cc ^"Stilt Road" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Stilt Road"
+                }
+            }
+        }
+    }
+
+    LOCATION ^"We Board a Lantern Ship" #COW3a487a7322da958cd9007 {
+        TAGS [ "riverlands", "route-lantern-ship" ]
+        ATLAS_PAGE 10
+        LOCAL_TRADITIONS [ #COW9d6c514bd85e69d16a696 ^"Lantern Crow" ]
+        CONNECTS_TO [ "Cloud Citadel", "Temple Island", "Above a Kingdom of Towers" ]
+        SCENES {
+            #COW2be069789062d3868b97c ^"Lantern Deck" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Lantern Deck"
+                }
+            }
+            #COWdb3216c0d554905d975b9 ^"On Crowded Decks" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "On Crowded Decks"
+                }
+            }
+            #COW946401bf7adb67a63bbcf ^"When Passengers Board" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "When Passengers Board"
+                }
+            }
+            #COWa1da242a9e80b584bf417 ^"Gossamer Room" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Gossamer Room"
+                }
+            }
+            #COWe2938b34029b99bdc48e4 ^"In Our Quarters" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "In Our Quarters"
+                }
+            }
+            #COWdf450524785616b960657 ^"The Distant River" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "The Distant River"
+                }
+            }
+        }
+    }
+
+    LOCATION ^"We Join a Caravan" #COW10d1510ae1e00b50a83b9 {
+        TAGS [ "riverlands", "route-caravan" ]
+        ATLAS_PAGE 11
+        LOCAL_TRADITIONS [ #COW268e8561b067204313e37 ^"Ox of Rivertown" ]
+        CONNECTS_TO [ "Temple Island", "Through a Kingdom of Towers" ]
+        SCENES {
+            #COW75646e9becee747c609e3 ^"The Lantern Road" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "The Lantern Road"
+                }
+            }
+            #COW2f6cb1c6eacfe0cacf8c2 ^"When the Caravan Stops" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "When the Caravan Stops"
+                }
+            }
+            #COW85bae60f4c0c3188ac5cb ^"Passing Travelers" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Passing Travelers"
+                }
+            }
+            #COW66564ed7c25819d7f3de1 ^"Snowfall" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Snowfall"
+                }
+            }
+            #COW0b89ed93d4fb682397d5f ^"A Border Crossing" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "A Border Crossing"
+                }
+            }
+            #COW0557ff27884f8d4cf0df3 ^"The Cold River" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "The Cold River"
+                }
+            }
+        }
+    }
+
+    LOCATION ^"Through a Kingdom of Towers" #COWe53a80ff563ad7035e90a {
+        TAGS [ "riverlands", "route-caravan" ]
+        ATLAS_PAGE 12
+        LOCAL_TRADITIONS [ #COW47f20f9fdbcb99f684e39 ^"Fox of the Towers" ]
+        CONNECTS_TO [ "We Join a Caravan", "We Meet a Nomad Village" ]
+        SCENES {
+            #COWb0e5ff13ed6c5ff062f98 ^"A Tower in Ruins" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "A Tower in Ruins"
+                }
+            }
+            #COWb0d0100f76e32b5aebb55 ^"The Frozen River" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "The Frozen River"
+                }
+            }
+            #COW39d22cdb46b5e489da72f ^"A Tower of Foxes" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "A Tower of Foxes"
+                }
+            }
+            #COWaee67e41fdb36a635f120 ^"A Tower in Celebration" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "A Tower in Celebration"
+                }
+            }
+            #COWa7405b15a7f0d40db9d47 ^"A Tower of Bells" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "A Tower of Bells"
+                }
+            }
+        }
+    }
+
+    LOCATION ^"We Meet a Nomad Village" #COWcea19590138040c5e152c {
+        TAGS [ "riverlands", "route-caravan" ]
+        ATLAS_PAGE 13
+        LOCAL_TRADITIONS [ #COW1dbe2130e389b16018eb3 ^"Mask Maker" ]
+        CONNECTS_TO [ "Through a Kingdom of Towers", "At Last We Reach the City of Winter (by Caravan)" ]
+        SCENES {
+            #COWe0b212574c2697ddb76b0 ^"When the Village Rests" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "When the Village Rests"
+                }
+            }
+            #COW79f390ab1098d10b1b4e2 ^"The Boiler" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "The Boiler"
+                }
+            }
+            #COW5879d7a873b533ae04dfe ^"Artisan Market" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Artisan Market"
+                }
+            }
+            #COW463a013cef6040868f332 ^"The Brass Teahouse" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "The Brass Teahouse"
+                }
+            }
+            #COW48ccb4efbedfbbf4cbdac ^"River’s End" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "River’s End"
+                }
+            }
+        }
+    }
+
+    LOCATION ^"Above a Kingdom of Towers" #COWb10ceb5bd53b886ea60e6 {
+        TAGS [ "riverlands", "route-lantern-ship" ]
+        ATLAS_PAGE 14
+        LOCAL_TRADITIONS [ #COW9d6c514bd85e69d16a696 ^"Lantern Crow" ]
+        CONNECTS_TO [ "We Board a Lantern Ship", "Above a Nomad Village" ]
+        SCENES {
+            #COW8ace236d65052e710acfc ^"A Tower of Crows" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "A Tower of Crows"
+                }
+            }
+            #COW7ec42dc50ad1236614496 ^"A Tower, Still Burning" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "A Tower, Still Burning"
+                }
+            }
+            #COW03960e6382bac3f726a66 ^"A Tower Besieged" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "A Tower Besieged"
+                }
+            }
+            #COW579d8977c3d387aa45022 ^"When We Find the Stowaway" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "When We Find the Stowaway"
+                }
+            }
+            #COW9af8c5e6f51980f60e026 ^"A Tower of Colors" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "A Tower of Colors"
+                }
+            }
+        }
+    }
+
+    LOCATION ^"Above a Nomad Village" #COW880405b88384d108a088d {
+        TAGS [ "riverlands", "route-lantern-ship" ]
+        ATLAS_PAGE 15
+        LOCAL_TRADITIONS [ #COW1dbe2130e389b16018eb3 ^"Mask Maker" ]
+        CONNECTS_TO [ "Above a Kingdom of Towers", "At Last We Reach the City of Winter (by Lantern Ship)" ]
+        SCENES {
+            #COWded6e5a539e6a920624ad ^"When Merchants Board" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "When Merchants Board"
+                }
+            }
+            #COWca9a87143a2d5e248ada3 ^"Smuggler’s Hold" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Smuggler’s Hold"
+                }
+            }
+            #COW0013de484b08d8d3d0c9f ^"By Rope and Ladder" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "By Rope and Ladder"
+                }
+            }
+            #COW5c15c18086f945d93b63e ^"Over Rooftops" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Over Rooftops"
+                }
+            }
+            #COW3b6111cd0dbff42aed136 ^"When the Village Runs" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "When the Village Runs"
+                }
+            }
+        }
+    }
+
+    LOCATION ^"At Last We Reach the City of Winter (by Lantern Ship)" #COW4eb71e0d741a331467d80 {
+        TAGS [ "riverlands", "city-entrance", "route-lantern-ship" ]
+        ATLAS_PAGE 16
+        CONNECTS_TO [ "Above a Nomad Village" ]
+        ENTRANCES {
+            ENTRANCE ^"...and are smuggled into the Drift" {
+                DESTINATION STRING "the Drift"
+            }
+            ENTRANCE ^"...and pledge service to the Palace of the Moon" {
+                DESTINATION STRING "Palace of the Moon"
+            }
+            ENTRANCE ^"...and seek work in Glowtown" {
+                DESTINATION STRING "Glowtown"
+            }
+        }
+    }
+
+    LOCATION ^"At Last We Reach the City of Winter (by Caravan)" #COW6483f45d5a30e9f80635e {
+        TAGS [ "riverlands", "city-entrance", "route-caravan" ]
+        ATLAS_PAGE 17
+        CONNECTS_TO [ "We Meet a Nomad Village" ]
+        ENTRANCES {
+            ENTRANCE ^"...and seek work in Glowtown" {
+                DESTINATION STRING "Glowtown"
+            }
+            ENTRANCE ^"...and claim asylum at the Lantern Gate" {
+                DESTINATION STRING "Lantern Gate"
+            }
+            ENTRANCE ^"...and find shelter in the Refuge" {
+                DESTINATION STRING "the Refuge"
+            }
+        }
+    }
+
+}

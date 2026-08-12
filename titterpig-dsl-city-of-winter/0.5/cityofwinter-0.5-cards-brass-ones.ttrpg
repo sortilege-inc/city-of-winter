@@ -1,0 +1,210 @@
+EXTENSION "CityOfWinter_Cards_BrassOnes" EXTENDS "CityOfWinter_Core_Base" {
+    NAME "City of Winter — the Brass Ones Tradition Deck"
+    VERSION "0.5"
+    SPEC_VERSION "0.5"
+    RELEASE_DATE "2026-08-12"
+
+    # 25 cards. Prompts are verbatim from the card faces;
+    # deck membership is taken from the icon printed on each card back.
+
+    #COW6af0543facb8bd8d5a3e4 ^"Brass Ones: loyalty without question" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "loyalty without question"
+            ^"Deck" ^"Tradition Deck" #COW36a2ab23469a974948854 ^"Brass Ones"
+        }
+    }
+
+    #COW7122c53f10b046a742a94 ^"Brass Ones: orchestra" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "orchestra"
+            ^"Deck" ^"Tradition Deck" #COW36a2ab23469a974948854 ^"Brass Ones"
+        }
+    }
+
+    #COW14eef6301169c2ad06dd5 ^"Brass Ones: how to keep the peace" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "how to keep the peace"
+            ^"Deck" ^"Tradition Deck" #COW36a2ab23469a974948854 ^"Brass Ones"
+        }
+    }
+
+    #COW7c667faa0c4760c11053a ^"Brass Ones: for leisure" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "for leisure"
+            ^"Deck" ^"Tradition Deck" #COW36a2ab23469a974948854 ^"Brass Ones"
+        }
+    }
+
+    #COWe3b8dadda291ee493f7e7 ^"Brass Ones: with a horse’s endurance" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "with a horse’s endurance"
+            ^"Deck" ^"Tradition Deck" #COW36a2ab23469a974948854 ^"Brass Ones"
+        }
+    }
+
+    #COW8ed07b61eff1ed5a4228f ^"Brass Ones: in jewels" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "in jewels"
+            ^"Deck" ^"Tradition Deck" #COW36a2ab23469a974948854 ^"Brass Ones"
+        }
+    }
+
+    #COWb5b9bce0c48b2e37abe03 ^"Brass Ones: with a mask of brass" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "with a mask of brass"
+            ^"Deck" ^"Tradition Deck" #COW36a2ab23469a974948854 ^"Brass Ones"
+        }
+    }
+
+    #COW3a5f2ee9cd13a99e36464 ^"Brass Ones: without words" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "without words"
+            ^"Deck" ^"Tradition Deck" #COW36a2ab23469a974948854 ^"Brass Ones"
+        }
+    }
+
+    #COWc2c514cc6b79cc1d230d8 ^"Brass Ones: fresh apples" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "fresh apples"
+            ^"Deck" ^"Tradition Deck" #COW36a2ab23469a974948854 ^"Brass Ones"
+        }
+    }
+
+    #COWaa0733adaf268cba57335 ^"Brass Ones: the price of failure" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "the price of failure"
+            ^"Deck" ^"Tradition Deck" #COW36a2ab23469a974948854 ^"Brass Ones"
+        }
+    }
+
+    #COWda70c9881a30f356f58e8 ^"Brass Ones: on a fire-eyed steed" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "on a fire-eyed steed"
+            ^"Deck" ^"Tradition Deck" #COW36a2ab23469a974948854 ^"Brass Ones"
+        }
+    }
+
+    #COWca7754341459b89cad5cf ^"Brass Ones: with a trainer’s harness" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "with a trainer’s harness"
+            ^"Deck" ^"Tradition Deck" #COW36a2ab23469a974948854 ^"Brass Ones"
+        }
+    }
+
+    #COW3c213da830b65327a9799 ^"Brass Ones: in fashion" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "in fashion"
+            ^"Deck" ^"Tradition Deck" #COW36a2ab23469a974948854 ^"Brass Ones"
+        }
+    }
+
+    #COW85e12ac4352b12b737e8f ^"Brass Ones: the rule of law" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "the rule of law"
+            ^"Deck" ^"Tradition Deck" #COW36a2ab23469a974948854 ^"Brass Ones"
+        }
+    }
+
+    #COW1b0c6b81a290f19230633 ^"Brass Ones: flawless" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "flawless"
+            ^"Deck" ^"Tradition Deck" #COW36a2ab23469a974948854 ^"Brass Ones"
+        }
+    }
+
+    #COW42f411ea7507b4b1e80c8 ^"Brass Ones: as the dumplings steam" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "as the dumplings steam"
+            ^"Deck" ^"Tradition Deck" #COW36a2ab23469a974948854 ^"Brass Ones"
+        }
+    }
+
+    #COWc9a16d66924cbbd93dd4b ^"Brass Ones: unbridled" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "unbridled"
+            ^"Deck" ^"Tradition Deck" #COW36a2ab23469a974948854 ^"Brass Ones"
+        }
+    }
+
+    #COW0efa6a4e8f3b3db75bb67 ^"Brass Ones: The Borough Wanders" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "The Borough Wanders"
+            ^"Deck" ^"Tradition Deck" #COW36a2ab23469a974948854 ^"Brass Ones"
+        }
+    }
+
+    #COWfb54a22abe7f9a65bdb94 ^"Brass Ones: only if we allow" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "only if we allow"
+            ^"Deck" ^"Tradition Deck" #COW36a2ab23469a974948854 ^"Brass Ones"
+        }
+    }
+
+    #COWef66fafbbb60855ffaafe ^"Brass Ones: a criminal’s mark" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "a criminal’s mark"
+            ^"Deck" ^"Tradition Deck" #COW36a2ab23469a974948854 ^"Brass Ones"
+        }
+    }
+
+    #COWd19de179f0ab513756c4e ^"Brass Ones: honest but not kind" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "honest but not kind"
+            ^"Deck" ^"Tradition Deck" #COW36a2ab23469a974948854 ^"Brass Ones"
+        }
+    }
+
+    #COWb5238158e4444d159a588 ^"Brass Ones: of brass" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "of brass"
+            ^"Deck" ^"Tradition Deck" #COW36a2ab23469a974948854 ^"Brass Ones"
+        }
+    }
+
+    #COW12c3d78c15f905a2939a8 ^"Brass Ones: a display of wealth" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "a display of wealth"
+            ^"Deck" ^"Tradition Deck" #COW36a2ab23469a974948854 ^"Brass Ones"
+        }
+    }
+
+    #COW77629988dbb24c07c1cbb ^"Brass Ones: to protect the City" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "to protect the City"
+            ^"Deck" ^"Tradition Deck" #COW36a2ab23469a974948854 ^"Brass Ones"
+        }
+    }
+
+    #COW834973bae347ff11f6795 ^"Brass Ones: we ring the moon bell" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "we ring the moon bell"
+            ^"Deck" ^"Tradition Deck" #COW36a2ab23469a974948854 ^"Brass Ones"
+        }
+    }
+
+}

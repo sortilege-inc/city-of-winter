@@ -1,0 +1,1132 @@
+FRAME "CityOfWinter_City" {
+    NAME "City of Winter — the City (City Map / Atlas), transit and the Wandering Borough"
+    VERSION "0.5"
+    SPEC_VERSION "0.5"
+    RELEASE_DATE "2026-08-12"
+
+    DEPENDS_ON "CityOfWinter_Core_Base"
+
+    THEMES {
+        "Arrival, asylum, and adapting to a city that is not yet home"
+        "Traditions that combine into something new"
+    }
+
+    LOCATION ^"Lantern Gate" #COW4131a616377eec8445bbf {
+        TAGS [ "city" ]
+        ATLAS_PAGE 18
+        LOCAL_TRADITIONS [ #COW36a2ab23469a974948854 ^"Brass Ones", #COW65bc7acf649478eb7eef3 ^"Blank circle icon" ]
+        SCENES {
+            #COW4863c60ded15940a34c31 ^"The Charity Tents" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "The Charity Tents"
+                }
+            }
+            #COW3b981e532a12591251092 ^"Immigration Tower" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Immigration Tower"
+                }
+            }
+            #COWdbb573b1f027e6a8fddd3 ^"In Shadows" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "In Shadows"
+                }
+            }
+            #COW5284b55b2442237efa992 ^"In Line" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "In Line"
+                }
+            }
+            #COWe646fef6bebd619fb266e ^"The Public Fire" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "The Public Fire"
+                }
+            }
+            #COW4ad1dcf4e2140fbaf10a9 ^"When the Gatelighter Comes" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "When the Gatelighter Comes"
+                }
+            }
+        }
+    }
+
+    LOCATION ^"the Refuge" #COW814642391e539ce191d87 {
+        TAGS [ "city" ]
+        ATLAS_PAGE 19
+        LOCAL_TRADITIONS [ #COW47f20f9fdbcb99f684e39 ^"Fox of the Towers", #COW65bc7acf649478eb7eef3 ^"Blank circle icon" ]
+        SCENES {
+            #COWc83a359d06d9f152a86a2 ^"Rooftops" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Rooftops"
+                }
+            }
+            #COW7f5063182cdad21ee69e8 ^"Crooked Street" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Crooked Street"
+                }
+            }
+            #COWdba3bfbda26eaeb69cbd8 ^"Gren’s Clinic" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Gren’s Clinic"
+                }
+            }
+            #COWfcc9327faaab48e7a1f74 ^"In a Crowded Tenement" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "In a Crowded Tenement"
+                }
+            }
+            #COWb88b91d8515409817cee8 ^"When the Refuge Grows" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "When the Refuge Grows"
+                }
+            }
+            #COW55998d304ba88cafa7fd3 ^"Where Children Play" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Where Children Play"
+                }
+            }
+            #COWa1c1c6011ba119f4739c0 ^"The Garden" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "The Garden"
+                }
+            }
+        }
+    }
+
+    LOCATION ^"Undertown" #COWe1fc326b2ca0b976ec866 {
+        TAGS [ "city" ]
+        ATLAS_PAGE 20
+        LOCAL_TRADITIONS [ #COW65bc7acf649478eb7eef3 ^"Blank circle icon", #COW65bc7acf649478eb7eef3 ^"Blank circle icon" ]
+        SCENES {
+            #COWeccdfdc3e5f1e41e43b3e ^"Illegal Work" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Illegal Work"
+                }
+            }
+            #COWdaca596a3764af0b0fb72 ^"Cistern" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Cistern"
+                }
+            }
+            #COW73180b517c110ef0bc83b ^"When Wardens Come" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "When Wardens Come"
+                }
+            }
+            #COWeb3cc3269efcb28d84655 ^"Steam Guild" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Steam Guild"
+                }
+            }
+            #COWaa93a3f7cf9bdbc1b62c4 ^"Market of Lost Things" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Market of Lost Things"
+                }
+            }
+            #COWfe9c5fba22033116079e6 ^"The Kitchens" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "The Kitchens"
+                }
+            }
+        }
+    }
+
+    LOCATION ^"Husk" #COW0ae3ede5c5c7fcfdf5626 {
+        TAGS [ "city" ]
+        ATLAS_PAGE 21
+        LOCAL_TRADITIONS [ #COW3b54561e865765f8089c4 ^"Blank sun icon", #COW65bc7acf649478eb7eef3 ^"Blank circle icon" ]
+        SCENES {
+            #COW09b88c08a36cbd8e7660b ^"Ruins" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Ruins"
+                }
+            }
+            #COWb0d6dca83d8389865928b ^"The Nameless Church" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "The Nameless Church"
+                }
+            }
+            #COW11e60a54f11886113ba7e ^"Toppled Statue" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Toppled Statue"
+                }
+            }
+            #COW7132194393fc2ea3e8483 ^"The Nest" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "The Nest"
+                }
+            }
+            #COWab4a91e1e1b5f7311d38a ^"Tomb Town" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Tomb Town"
+                }
+            }
+            #COWc556fc8b5a23320d0ca83 ^"Tourists" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Tourists"
+                }
+            }
+            #COWb072a9735eb2d3be27221 ^"The Guild of Restoration" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "The Guild of Restoration"
+                }
+            }
+        }
+    }
+
+    LOCATION ^"Glowtown" #COW3968f8ac77de60a3e2653 {
+        TAGS [ "city" ]
+        ATLAS_PAGE 22
+        LOCAL_TRADITIONS [ #COWff9e2875b73d4008351eb ^"Glowdog", #COW65bc7acf649478eb7eef3 ^"Blank circle icon" ]
+        SCENES {
+            #COW262bba58d8a0f5d228aac ^"When the Glow Shifts" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "When the Glow Shifts"
+                }
+            }
+            #COWa4d2c8dd8b6791a37dedb ^"Boarding House" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Boarding House"
+                }
+            }
+            #COW2219c23d5f9a6e2bb943a ^"Mine of Colors" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Mine of Colors"
+                }
+            }
+            #COWf57880ec2bfb1d09a35ba ^"Mine of Voices" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Mine of Voices"
+                }
+            }
+            #COWa441619b086471b150026 ^"Baths" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Baths"
+                }
+            }
+            #COWf89329b14e101020d1678 ^"Dangerous Work" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Dangerous Work"
+                }
+            }
+            #COW37012a925ff99966e0f0f ^"In a Brass Elevator" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "In a Brass Elevator"
+                }
+            }
+            #COWf9e2345be4672d16cb705 ^"Warehouse Squat" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Warehouse Squat"
+                }
+            }
+        }
+    }
+
+    LOCATION ^"the Dust" #COWe1356a5fed27258c6da6c {
+        TAGS [ "city" ]
+        ATLAS_PAGE 23
+        LOCAL_TRADITIONS [ #COW65bc7acf649478eb7eef3 ^"Blank circle icon", #COWcf824d8efa07bfcb550cc ^"Blank diamond icon" ]
+        SCENES {
+            #COW8d8e26e542f295823b9b5 ^"In Company Housing" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "In Company Housing"
+                }
+            }
+            #COW8cdf539058979d00638cc ^"Factory" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Factory"
+                }
+            }
+            #COW55413f335a9de8ec03391 ^"The Barber Who Smiles" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "The Barber Who Smiles"
+                }
+            }
+            #COW764ac7561a74db00dccf2 ^"Hard Work" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Hard Work"
+                }
+            }
+            #COW4ea65696360b07deb9572 ^"Holiday" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Holiday"
+                }
+            }
+            #COWe042aaffb834bb6e9234d ^"Mess Hall" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Mess Hall"
+                }
+            }
+            #COW5b4aa30fec0cd6fc21724 ^"Duster’s Pub" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Duster’s Pub"
+                }
+            }
+        }
+    }
+
+    LOCATION ^"Spiral Avenue" #COW8823fdc077416a7c818dc {
+        TAGS [ "city" ]
+        ATLAS_PAGE 24
+        LOCAL_TRADITIONS [ #COW65bc7acf649478eb7eef3 ^"Blank circle icon", #COW65bc7acf649478eb7eef3 ^"Blank circle icon", #COWcf824d8efa07bfcb550cc ^"Blank diamond icon" ]
+        SCENES {
+            #COW5c5adc86d9d2164f77011 ^"Smoke Station" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Smoke Station"
+                }
+            }
+            #COW6b45bb346bf7acae1a7a2 ^"Heron Theatre" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Heron Theatre"
+                }
+            }
+            #COW13b3996770dde37e01742 ^"Street Food" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Street Food"
+                }
+            }
+            #COW492c27562acde6ecb05f3 ^"Spiral Center" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Spiral Center"
+                }
+            }
+            #COW47460e606a7bb47291c19 ^"In an Apartment Over a Bakery" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "In an Apartment Over a Bakery"
+                }
+            }
+            #COWa64836daa0e467e6e02a7 ^"Graffiti" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Graffiti"
+                }
+            }
+            #COWa48600a868bac08fece21 ^"The Red Tea House" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "The Red Tea House"
+                }
+            }
+        }
+    }
+
+    LOCATION ^"Invisible Town" #COW93f216b654d955f428670 {
+        TAGS [ "city" ]
+        ATLAS_PAGE 25
+        LOCAL_TRADITIONS [ #COW65bc7acf649478eb7eef3 ^"Blank circle icon" ]
+        SCENES {
+            #COW161d6fc9acb52678620d7 ^"Blu’s House" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Blu’s House"
+                }
+            }
+            #COWc86f4d5e5f557d3325d28 ^"The Secret Cafe" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "The Secret Cafe"
+                }
+            }
+            #COW3d6c1720607dec3676571 ^"Echoes" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Echoes"
+                }
+            }
+            #COW3ae6d1c830d20b6856fcc ^"Unseen Library" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Unseen Library"
+                }
+            }
+            #COW3229899326e6cd682b980 ^"Where Elders Complain" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Where Elders Complain"
+                }
+            }
+            #COW759bb1fc8520edeb50deb ^"The Popular Grocer" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "The Popular Grocer"
+                }
+            }
+            #COW5a7f772e0559072173d2f ^"Where the Park Was" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Where the Park Was"
+                }
+            }
+        }
+    }
+
+    LOCATION ^"Arcanium of Brass" #COWf2826e57d9d07bd5342db {
+        TAGS [ "city" ]
+        ATLAS_PAGE 26
+        LOCAL_TRADITIONS [ #COW3b54561e865765f8089c4 ^"Blank sun icon", #COWcf824d8efa07bfcb550cc ^"Blank diamond icon", #COW65bc7acf649478eb7eef3 ^"Blank circle icon" ]
+        SCENES {
+            #COW2d21b5770cf08cd2be524 ^"Spark Palace" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Spark Palace"
+                }
+            }
+            #COWb36d414c9300dd3764164 ^"Twilight Park" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Twilight Park"
+                }
+            }
+            #COW07890f0d83baf71bc1bef ^"Observing Tower" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Observing Tower"
+                }
+            }
+            #COWf0c954d84431eac338e67 ^"Museum of Magic" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Museum of Magic"
+                }
+            }
+            #COW44a7ed0eee12b07e0f7fb ^"When Smoke Comes" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "When Smoke Comes"
+                }
+            }
+            #COW7ac8065b12e179c09ac11 ^"Children’s School" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Children’s School"
+                }
+            }
+            #COW71081c0e5fe709c8403b4 ^"Brassworks" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Brassworks"
+                }
+            }
+            #COWe4f62cc5cb0c73cf1c42f ^"The Renowned Restaurant" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "The Renowned Restaurant"
+                }
+            }
+        }
+    }
+
+    LOCATION ^"Moonspire Ward" #COW55c8c0969785309713d32 {
+        TAGS [ "city" ]
+        ATLAS_PAGE 27
+        LOCAL_TRADITIONS [ #COW65bc7acf649478eb7eef3 ^"Blank circle icon", #COW65bc7acf649478eb7eef3 ^"Blank circle icon" ]
+        SCENES {
+            #COW6a2974f092b241a1256d5 ^"Moonspire Station" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Moonspire Station"
+                }
+            }
+            #COWbfa77a688c5733b13bdf2 ^"Climber’s Guild" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Climber’s Guild"
+                }
+            }
+            #COW5e9393a82c233a45dbbab ^"The Silent Florist" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "The Silent Florist"
+                }
+            }
+            #COWd3c0ef433d188381524fa ^"Mender’s Row" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Mender’s Row"
+                }
+            }
+            #COW1fb29a6ffd042d83a221b ^"Traveler Alley" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Traveler Alley"
+                }
+            }
+            #COWa056f07cdf23e8c7c4bdd ^"Brass Manor" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Brass Manor"
+                }
+            }
+        }
+    }
+
+    LOCATION ^"Five Temples" #COWc769b380ef749a69c7b00 {
+        TAGS [ "city" ]
+        ATLAS_PAGE 28
+        LOCAL_TRADITIONS [ #COW65bc7acf649478eb7eef3 ^"Blank circle icon", #COW65bc7acf649478eb7eef3 ^"Blank circle icon", #COW65bc7acf649478eb7eef3 ^"Blank circle icon" ]
+        SCENES {
+            #COWb79fa593d19cb2a1d9d6e ^"A Crowded Temple" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "A Crowded Temple"
+                }
+            }
+            #COW50f0b6bfad2a5dd50a531 ^"A Temple in Ceremony" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "A Temple in Ceremony"
+                }
+            }
+            #COWbf0640a5ac7df26d344ab ^"Souvenir Shop" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Souvenir Shop"
+                }
+            }
+            #COWafdb2c42ce95259e268de ^"A False Temple" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "A False Temple"
+                }
+            }
+            #COWe0ae16194d26229e57712 ^"A Forbidden Temple" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "A Forbidden Temple"
+                }
+            }
+            #COW0491034a4f319785b7e9a ^"A Temple, Defiled" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "A Temple, Defiled"
+                }
+            }
+        }
+    }
+
+    LOCATION ^"Holy Well" #COW45883875fa414d64cf380 {
+        TAGS [ "city" ]
+        ATLAS_PAGE 29
+        LOCAL_TRADITIONS [ #COW65bc7acf649478eb7eef3 ^"Blank circle icon" ]
+        SCENES {
+            #COW663b0b636345962987b73 ^"The Floating Monastery" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "The Floating Monastery"
+                }
+            }
+            #COW475203b5fcd473fbc7f52 ^"When We See the Holy Ones" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "When We See the Holy Ones"
+                }
+            }
+            #COW7218d305bcdc35f0603c5 ^"Pilgrims’ Hovel" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Pilgrims’ Hovel"
+                }
+            }
+            #COW9aae7f727d2e211481393 ^"Chamber of Truths" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Chamber of Truths"
+                }
+            }
+            #COW845512e017cbfd18f146d ^"The Sunken Reliquary" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "The Sunken Reliquary"
+                }
+            }
+        }
+    }
+
+    LOCATION ^"Ascending the Spire" #COWd59331606978e004b6ca5 {
+        TAGS [ "city" ]
+        ATLAS_PAGE 30
+        LOCAL_TRADITIONS [ #COWcf824d8efa07bfcb550cc ^"Blank diamond icon", #COW65bc7acf649478eb7eef3 ^"Blank circle icon" ]
+        SCENES {
+            #COW838fea64b29570d8001d6 ^"Moonbound Merchants" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Moonbound Merchants"
+                }
+            }
+            #COW336a3980e680a1f2e1ab5 ^"Sightseer Guild" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Sightseer Guild"
+                }
+            }
+            #COWb71b7449f776ebe98009c ^"On the Scaffold" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "On the Scaffold"
+                }
+            }
+            #COW4578802ea6bb1612fb438 ^"Builder’s Camp" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Builder’s Camp"
+                }
+            }
+            #COW6cb9f6e8e06a471526e98 ^"A Well-Run Bodega" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "A Well-Run Bodega"
+                }
+            }
+            #COW837ee512b1528b584ef1e ^"Checkpoint" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Checkpoint"
+                }
+            }
+        }
+    }
+
+    LOCATION ^"Archipelago" #COW96a506e40db5ffa7d7668 {
+        TAGS [ "city" ]
+        ATLAS_PAGE 31
+        LOCAL_TRADITIONS [ #COWcf824d8efa07bfcb550cc ^"Blank diamond icon", #COW65bc7acf649478eb7eef3 ^"Blank circle icon" ]
+        SCENES {
+            #COW265146b67018fe3d9b078 ^"Island of Three Kings" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Island of Three Kings"
+                }
+            }
+            #COW545708a43ea6abbe717e7 ^"Island of Cats" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Island of Cats"
+                }
+            }
+            #COW9399ddb0f797b22c3d0a0 ^"Isle of Children" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Isle of Children"
+                }
+            }
+            #COWfde95fd4a341411e7273c ^"Smugglers’ Cove" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Smugglers’ Cove"
+                }
+            }
+            #COW12385fe52f34f09879f90 ^"Twisting Bridges" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Twisting Bridges"
+                }
+            }
+            #COWb10b017f1439af4fd6ab2 ^"The Painted Island" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "The Painted Island"
+                }
+            }
+        }
+    }
+
+    LOCATION ^"the Drift" #COW8dde229f595f424ed1634 {
+        TAGS [ "city" ]
+        ATLAS_PAGE 32
+        LOCAL_TRADITIONS [ #COW9d6c514bd85e69d16a696 ^"Lantern Crow", #COW65bc7acf649478eb7eef3 ^"Blank circle icon" ]
+        SCENES {
+            #COW0003250e7809912fafaab ^"The Mansion" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "The Mansion"
+                }
+            }
+            #COWdb585a4de6d9165aa471c ^"Redd’s Diner" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Redd’s Diner"
+                }
+            }
+            #COW64afc8d3345e8e53e1da0 ^"Passing Flocks" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Passing Flocks"
+                }
+            }
+            #COW75937f910785936761304 ^"Drifting Apart" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Drifting Apart"
+                }
+            }
+            #COW8c4b6b61a2264591ec660 ^"Speakeasy" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Speakeasy"
+                }
+            }
+            #COWa7a48f5142241468bfa71 ^"Caught in the Nets" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Caught in the Nets"
+                }
+            }
+            #COW22e988763e5c59ba9497b ^"In a House Made of Trash" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "In a House Made of Trash"
+                }
+            }
+        }
+    }
+
+    LOCATION ^"High Lake" #COW19063071cda9006e806f6 {
+        TAGS [ "city" ]
+        ATLAS_PAGE 33
+        LOCAL_TRADITIONS [ #COWcf824d8efa07bfcb550cc ^"Blank diamond icon", #COWcf824d8efa07bfcb550cc ^"Blank diamond icon" ]
+        SCENES {
+            #COW0f8dbc5cecabe005fc965 ^"Balloons" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Balloons"
+                }
+            }
+            #COWd6fdc1acc9be24e4e0cfe ^"Winterwine Estate" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Winterwine Estate"
+                }
+            }
+            #COWf4ebcfc0d45b4c144ddc7 ^"Beach House" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Beach House"
+                }
+            }
+            #COWbf339ebc986a110ad5f1a ^"Thornrose Estate" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Thornrose Estate"
+                }
+            }
+            #COWe0332a8c4aef18d5271ac ^"In the Company of Nobles" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "In the Company of Nobles"
+                }
+            }
+            #COW0ca65f6a1007e21688c5d ^"Rivertown Bistro" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Rivertown Bistro"
+                }
+            }
+            #COWaefbacb4f1b9779150eeb ^"On the Lake" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "On the Lake"
+                }
+            }
+        }
+    }
+
+    LOCATION ^"Palace of the Moon" #COW01a7558dfb8faf4e570e3 {
+        TAGS [ "city" ]
+        ATLAS_PAGE 34
+        LOCAL_TRADITIONS [ #COWb6415ac566c9c446d6cdf ^"Moonbee", #COWcf824d8efa07bfcb550cc ^"Blank diamond icon" ]
+        SCENES {
+            #COWf94e316cc5cfc1459638c ^"Before the Throne" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Before the Throne"
+                }
+            }
+            #COW6d680bc54ab4bfc6b845b ^"Shard Villa" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Shard Villa"
+                }
+            }
+            #COWc4d32161c5eab10b32e99 ^"Lunar Garden" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Lunar Garden"
+                }
+            }
+            #COW0bd7d74ed6c0fff7c3ed8 ^"Skyport" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Skyport"
+                }
+            }
+            #COWa418ea29b116c2001354a ^"The Royal Aviary" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "The Royal Aviary"
+                }
+            }
+            #COW4aa8d1f65e925d39dd1e7 ^"Worker Apartments" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Worker Apartments"
+                }
+            }
+            #COW2ed6e27ab3360fbb3d41d ^"Crystal Ballroom" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Crystal Ballroom"
+                }
+            }
+            #COWf6b6ee0776b4b17b9f054 ^"Waxworks" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Waxworks"
+                }
+            }
+        }
+    }
+
+    LOCATION ^"Forest of the Spire" #COW3881cb2ac7db84cb79b40 {
+        TAGS [ "city" ]
+        ATLAS_PAGE 35
+        LOCAL_TRADITIONS [ #COWcf824d8efa07bfcb550cc ^"Blank diamond icon", #COW65bc7acf649478eb7eef3 ^"Blank circle icon" ]
+        SCENES {
+            #COW17dc1cb954186d36aae35 ^"By the Light of the City" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "By the Light of the City"
+                }
+            }
+            #COWabc52c18f78e2b788697f ^"When the Spire Gate Opens" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "When the Spire Gate Opens"
+                }
+            }
+            #COWe8fa19cf9c3d5c0f36751 ^"Migrant Camps" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Migrant Camps"
+                }
+            }
+            #COW8125379777200642cee8f ^"Fort of Wardens" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Fort of Wardens"
+                }
+            }
+            #COWab93ae60ca2061e2bb934 ^"Glimmer Shrine" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Glimmer Shrine"
+                }
+            }
+            #COW644dbd8dec521d25b7bcd ^"Outlaw Caravan" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Outlaw Caravan"
+                }
+            }
+        }
+    }
+
+    LOCATION ^"Glasstown" #COWbb6680bfc6765070c60ab {
+        TAGS [ "city" ]
+        ATLAS_PAGE 36
+        LOCAL_TRADITIONS [ #COWcf824d8efa07bfcb550cc ^"Blank diamond icon", #COWcf824d8efa07bfcb550cc ^"Blank diamond icon" ]
+        SCENES {
+            #COW237e677b5df935766232c ^"Outside the Glass" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Outside the Glass"
+                }
+            }
+            #COW26766a293480852234fbc ^"Riverlands Museum" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Riverlands Museum"
+                }
+            }
+            #COW3aa9b898632f9cd0f4d22 ^"Domed Orchard" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Domed Orchard"
+                }
+            }
+            #COW9ac9befe20a4516d66906 ^"The Everystore" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "The Everystore"
+                }
+            }
+            #COWac2b80d2f9a4653a5c79b ^"Glassworks Academy" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Glassworks Academy"
+                }
+            }
+            #COW1e442d42092c7831e4b9c ^"Vacation Dome" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Vacation Dome"
+                }
+            }
+            #COWfe0567c1fbbe94e53198a ^"Pearl Avenue" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Pearl Avenue"
+                }
+            }
+            #COW785b812f1a9b4362cb383 ^"Hospital" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Hospital"
+                }
+            }
+        }
+    }
+
+    LOCATION ^"Wintermount" #COWfe269d8191900b9b388d6 {
+        TAGS [ "city" ]
+        ATLAS_PAGE 37
+        LOCAL_TRADITIONS [ #COWcf824d8efa07bfcb550cc ^"Blank diamond icon", #COW65bc7acf649478eb7eef3 ^"Blank circle icon" ]
+        SCENES {
+            #COW5afc7ea51030696764bb0 ^"Caverns" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Caverns"
+                }
+            }
+            #COW7bc3fe8b53efbb7f4c565 ^"Summit" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Summit"
+                }
+            }
+            #COW90593706fb49e666ca548 ^"Temple of Winter" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Temple of Winter"
+                }
+            }
+            #COWfcba2dd79e8f492c15987 ^"Climbing" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Climbing"
+                }
+            }
+            #COWacab1574f6b9508768258 ^"Mountain Village" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Mountain Village"
+                }
+            }
+            #COWcd7a3336633169181dd93 ^"When We See the River" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "When We See the River"
+                }
+            }
+        }
+    }
+
+    LOCATION ^"The Wandering Borough" #COW2341bf28ebf9da9f8ff72 {
+        TAGS [ "city", "wandering-borough" ]
+        PRINTED_TITLE "The Wandering Burrough"
+        LOCAL_TRADITIONS [ #COW1dbe2130e389b16018eb3 ^"Mask Maker", #COW3b54561e865765f8089c4 ^"Blank sun icon" ]
+        SCENES {
+            #COW1871477a4344767610804 ^"An Affordable Eatery" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "An Affordable Eatery"
+                }
+            }
+            #COW54b310df59625f9715de6 ^"Palace" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Palace"
+                }
+            }
+            #COWb141ad9e1e427d528cfb0 ^"The Giving Bazaar" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "The Giving Bazaar"
+                }
+            }
+            #COWa8da45bf4d65a55e3eddf ^"The Hotel by the Park" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "The Hotel by the Park"
+                }
+            }
+            #COWb19a138fcf311c18728ca ^"Tea Market" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Tea Market"
+                }
+            }
+            #COW0a79cc369f10cef276e84 ^"Unfinished Library" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Unfinished Library"
+                }
+            }
+            #COWf3cf4145a81e29fa67fd0 ^"Temple of the Engine" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Temple of the Engine"
+                }
+            }
+            #COW3635dff50b03f631b086e ^"Wanderering" DEF {
+                EXTENDS #COWc584d205c370fbb6d520b ^"Scene"
+                PROPERTIES {
+                    ^"Prompt" STRING "Wanderering"
+                }
+            }
+        }
+    }
+
+
+    # ====================================================================
+    # TRANSIT LINES
+    # ====================================================================
+
+    #COW53f23ef6d100118177280 ^"Lantern Wall" DEF {
+        EXTENDS #COWcb9176c4eab418b78cf29 ^"Transit Line"
+        PROPERTIES {
+            ^"Stations" LIST OF STRING [ "Husk", "Lantern Gate", "the Refuge" ]
+            ^"Borough Die Result" INTEGER 1
+        }
+    }
+
+    #COWf03adfce6ca2d4930ca28 ^"Smoke Street" DEF {
+        EXTENDS #COWcb9176c4eab418b78cf29 ^"Transit Line"
+        PROPERTIES {
+            ^"Stations" LIST OF STRING [ "the Drift", "Holy Well", "the Dust", "Spiral Avenue", "Lantern Gate" ]
+            ^"Borough Die Result" INTEGER 2
+        }
+    }
+
+    #COWcbfc4c75fa0889083fde9 ^"Ruin Street" DEF {
+        EXTENDS #COWcb9176c4eab418b78cf29 ^"Transit Line"
+        PROPERTIES {
+            ^"Stations" LIST OF STRING [ "Five Temples", "Glowtown", "the Dust", "Undertown", "Husk" ]
+            ^"Borough Die Result" INTEGER 3
+        }
+    }
+
+    #COW1868c109d33cc8e39df63 ^"Spire Road" DEF {
+        EXTENDS #COWcb9176c4eab418b78cf29 ^"Transit Line"
+        PROPERTIES {
+            ^"Stations" LIST OF STRING [ "Moonspire Ward", "Ascending the Spire", "Forest of the Spire" ]
+            ^"Borough Die Result" INTEGER 4
+        }
+    }
+
+    #COW4f79c274f36ce44143b66 ^"In the Pull" DEF {
+        EXTENDS #COWcb9176c4eab418b78cf29 ^"Transit Line"
+        PROPERTIES {
+            ^"Stations" LIST OF STRING [ "Ascending the Spire", "Archipelago", "the Drift", "High Lake" ]
+            ^"Borough Die Result" INTEGER 5
+        }
+    }
+
+    #COWf256001261a4fcf696793 ^"Moon Path" DEF {
+        EXTENDS #COWcb9176c4eab418b78cf29 ^"Transit Line"
+        PROPERTIES {
+            ^"Stations" LIST OF STRING [ "Forest of the Spire", "Glasstown", "Palace of the Moon", "Wintermount" ]
+            ^"Borough Die Result" INTEGER 6
+        }
+    }
+
+    #COWa4225025036b994565535 ^"The Brass Rail" DEF {
+        EXTENDS #COWcb9176c4eab418b78cf29 ^"Transit Line"
+        PROPERTIES {
+            ^"Stations" LIST OF STRING [ "Five Temples", "Holy Well", "Arcanium of Brass", "Moonspire Ward" ]
+        }
+    }
+
+    #COWaa4028cba4b976b154b17 ^"Winter Rail" DEF {
+        EXTENDS #COWcb9176c4eab418b78cf29 ^"Transit Line"
+        PROPERTIES {
+            ^"Stations" LIST OF STRING [ "Spiral Avenue", "Invisible Town", "Moonspire Ward" ]
+        }
+    }
+
+
+    # ====================================================================
+    # TRANSIT DISTANCE TABLE (Atlas p.40, reproduced as printed)
+    # ====================================================================
+
+    #COWcab0d3884efc94ac40747 ^"Transit Distance" DEF {
+        DESCRIPTION "(# of Stations + Line Transfers between Locations.)"
+        COLUMNS [ "Ascending the Spire", "Archipelago", "Arcanium of Brass", "the Dust", "the Drift", "Five Temples", "Forest of the Spire", "Glasstown", "Glowtown", "High Lake", "Holy Well", "Husk", "Invisible Town", "Lantern Gate", "Moonspire Ward", "Palace of the Moon", "the Refuge", "Spiral Avenue", "Undertown" ]
+        ROWS {
+            ROW "Ascending the Spire" [ "-", "1", "3", "5", "2", "5", "1", "3", "7+", "3", "4", "7+", "3", "6", "1", "4", "7+", "4", "7+" ]
+            ROW "Archipelago" [ "1", "-", "5", "3", "1", "5", "3", "5", "6", "2", "3", "7+", "5", "6", "3", "5", "7+", "5", "7+" ]
+            ROW "Arcanium of Brass" [ "3", "5", "-", "3", "3", "2", "4", "6", "4", "5", "1", "6", "3", "5", "1", "7+", "7+", "4", "5" ]
+            ROW "the Dust" [ "5", "3", "3", "-", "2", "3", "7+", "7+", "1", "4", "1", "3", "3", "2", "4", "7+", "4", "1", "2" ]
+            ROW "the Drift" [ "2", "1", "3", "2", "-", "3", "4", "4", "4", "1", "1", "6", "5", "4", "4", "4", "6", "3", "5" ]
+            ROW "Five Temples" [ "5", "5", "2", "3", "3", "-", "6", "7+", "1", "5", "1", "3", "5", "5", "3", "7+", "6", "4", "2" ]
+            ROW "Forest of the Spire" [ "1", "3", "4", "7+", "4", "6", "-", "1", "7+", "4", "5", "7+", "4", "7+", "2", "2", "7+", "5", "7+" ]
+            ROW "Glasstown" [ "3", "5", "6", "7+", "4", "7+", "1", "-", "7+", "3", "6", "7+", "6", "7+", "4", "1", "7+", "7+", "7+" ]
+            ROW "Glowtown" [ "7+", "6", "4", "1", "4", "1", "7+", "7+", "-", "6", "3", "7+", "5", "4", "5", "7+", "5", "3", "1" ]
+            ROW "High Lake" [ "3", "2", "5", "4", "1", "5", "4", "3", "6", "-", "3", "7+", "7+", "6", "5", "3", "7+", "5", "7+" ]
+            ROW "Holy Well" [ "4", "3", "1", "1", "1", "1", "5", "6", "3", "3", "-", "5", "4", "3", "2", "6", "5", "2", "4" ]
+            ROW "Husk" [ "7+", "7+", "6", "3", "6", "3", "7+", "7+", "7+", "7+", "5", "-", "5", "1", "6", "7+", "2", "3", "1" ]
+            ROW "Invisible Town" [ "3", "5", "3", "3", "5", "5", "4", "6", "5", "7+", "4", "5", "-", "3", "1", "7+", "5", "1", "6" ]
+            ROW "Lantern Gate" [ "6", "6", "5", "2", "4", "5", "7+", "7+", "4", "6", "3", "1", "3", "-", "4", "7+", "1", "1", "3" ]
+            ROW "Moonspire Ward" [ "1", "3", "1", "4", "4", "3", "2", "4", "5", "5", "2", "6", "1", "4", "-", "5", "6", "2", "6" ]
+            ROW "Palace of the Moon" [ "4", "5", "7+", "7+", "4", "7+", "2", "1", "7+", "3", "6", "7+", "7+", "7+", "5", "-", "7+", "7+", "7+" ]
+            ROW "the Refuge" [ "7+", "7+", "7+", "4", "6", "6", "7+", "7+", "5", "7+", "5", "2", "5", "1", "6", "7+", "-", "3", "4" ]
+            ROW "Spiral Avenue" [ "4", "5", "4", "1", "3", "4", "5", "7+", "3", "5", "2", "3", "1", "1", "2", "7+", "3", "-", "4" ]
+            ROW "Undertown" [ "7+", "7+", "5", "2", "5", "2", "7+", "7+", "1", "7+", "4", "1", "6", "3", "6", "7+", "4", "4", "-" ]
+        }
+    }
+
+}

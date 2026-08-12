@@ -1,0 +1,210 @@
+EXTENSION "CityOfWinter_Cards_Glowdog" EXTENDS "CityOfWinter_Core_Base" {
+    NAME "City of Winter — the Glowdog Tradition Deck"
+    VERSION "0.5"
+    SPEC_VERSION "0.5"
+    RELEASE_DATE "2026-08-12"
+
+    # 25 cards. Prompts are verbatim from the card faces;
+    # deck membership is taken from the icon printed on each card back.
+
+    #COWc2daf48102e958006ae0c ^"Glowdog: love without condition" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "love without condition"
+            ^"Deck" ^"Tradition Deck" #COWff9e2875b73d4008351eb ^"Glowdog"
+        }
+    }
+
+    #COW450fdc5dbded4383fdd92 ^"Glowdog: devotion" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "devotion"
+            ^"Deck" ^"Tradition Deck" #COWff9e2875b73d4008351eb ^"Glowdog"
+        }
+    }
+
+    #COW5d7561a8b86ac9735800d ^"Glowdog: The Borough Wanders" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "The Borough Wanders"
+            ^"Deck" ^"Tradition Deck" #COWff9e2875b73d4008351eb ^"Glowdog"
+        }
+    }
+
+    #COWa3a4944217d98650c8e9b ^"Glowdog: call of the moon" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "call of the moon"
+            ^"Deck" ^"Tradition Deck" #COWff9e2875b73d4008351eb ^"Glowdog"
+        }
+    }
+
+    #COWe875caa3aaed4f0173956 ^"Glowdog: glowing" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "glowing"
+            ^"Deck" ^"Tradition Deck" #COWff9e2875b73d4008351eb ^"Glowdog"
+        }
+    }
+
+    #COW39e4598d0abf27f0f694d ^"Glowdog: a flashy tattoo" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "a flashy tattoo"
+            ^"Deck" ^"Tradition Deck" #COWff9e2875b73d4008351eb ^"Glowdog"
+        }
+    }
+
+    #COW3a136df7a2df782400382 ^"Glowdog: how we share the news" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "how we share the news"
+            ^"Deck" ^"Tradition Deck" #COWff9e2875b73d4008351eb ^"Glowdog"
+        }
+    }
+
+    #COWf72edeb0582b027ddc711 ^"Glowdog: how to find a job" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "how to find a job"
+            ^"Deck" ^"Tradition Deck" #COWff9e2875b73d4008351eb ^"Glowdog"
+        }
+    }
+
+    #COWa90b7bec64bb9cc2738cf ^"Glowdog: with a troupe of performers" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "with a troupe of performers"
+            ^"Deck" ^"Tradition Deck" #COWff9e2875b73d4008351eb ^"Glowdog"
+        }
+    }
+
+    #COW55c877efe3bb292a73833 ^"Glowdog: wearing a glow mask" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "wearing a glow mask"
+            ^"Deck" ^"Tradition Deck" #COWff9e2875b73d4008351eb ^"Glowdog"
+        }
+    }
+
+    #COW0d9797ef43c19ca34a3ce ^"Glowdog: on a glimmer loom" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "on a glimmer loom"
+            ^"Deck" ^"Tradition Deck" #COWff9e2875b73d4008351eb ^"Glowdog"
+        }
+    }
+
+    #COW1d49c2aa795d73ca30956 ^"Glowdog: how to start trouble" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "how to start trouble"
+            ^"Deck" ^"Tradition Deck" #COWff9e2875b73d4008351eb ^"Glowdog"
+        }
+    }
+
+    #COW1d2b11813dc6163439bad ^"Glowdog: the song we sing" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "the song we sing"
+            ^"Deck" ^"Tradition Deck" #COWff9e2875b73d4008351eb ^"Glowdog"
+        }
+    }
+
+    #COWc541f4ecc1fe12da462bb ^"Glowdog: with a crew of workers" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "with a crew of workers"
+            ^"Deck" ^"Tradition Deck" #COWff9e2875b73d4008351eb ^"Glowdog"
+        }
+    }
+
+    #COW1cbddc1ac165b6b8e7421 ^"Glowdog: territory" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "territory"
+            ^"Deck" ^"Tradition Deck" #COWff9e2875b73d4008351eb ^"Glowdog"
+        }
+    }
+
+    #COWadbf4356fe1fbbd5ada28 ^"Glowdog: with bone broth" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "with bone broth"
+            ^"Deck" ^"Tradition Deck" #COWff9e2875b73d4008351eb ^"Glowdog"
+        }
+    }
+
+    #COWd8a117e343483fdc3a6df ^"Glowdog: honest wages" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "honest wages"
+            ^"Deck" ^"Tradition Deck" #COWff9e2875b73d4008351eb ^"Glowdog"
+        }
+    }
+
+    #COW3f01b634b5c3552aac031 ^"Glowdog: mealtime" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "mealtime"
+            ^"Deck" ^"Tradition Deck" #COWff9e2875b73d4008351eb ^"Glowdog"
+        }
+    }
+
+    #COW3d5187a393ad0b96b32c6 ^"Glowdog: when to throw a party" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "when to throw a party"
+            ^"Deck" ^"Tradition Deck" #COWff9e2875b73d4008351eb ^"Glowdog"
+        }
+    }
+
+    #COW06e4a4e76d38d0580a2ca ^"Glowdog: with a rebel’s mark" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "with a rebel’s mark"
+            ^"Deck" ^"Tradition Deck" #COWff9e2875b73d4008351eb ^"Glowdog"
+        }
+    }
+
+    #COW8f99e8319c55171e98b99 ^"Glowdog: my family’s debt" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "my family’s debt"
+            ^"Deck" ^"Tradition Deck" #COWff9e2875b73d4008351eb ^"Glowdog"
+        }
+    }
+
+    #COW84496a966f63511332097 ^"Glowdog: free and wild" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "free and wild"
+            ^"Deck" ^"Tradition Deck" #COWff9e2875b73d4008351eb ^"Glowdog"
+        }
+    }
+
+    #COW83dae7c518245116461a8 ^"Glowdog: three handsome hounds" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "three handsome hounds"
+            ^"Deck" ^"Tradition Deck" #COWff9e2875b73d4008351eb ^"Glowdog"
+        }
+    }
+
+    #COW4b9a67a1bd1823deb59e1 ^"Glowdog: waste nothing" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "waste nothing"
+            ^"Deck" ^"Tradition Deck" #COWff9e2875b73d4008351eb ^"Glowdog"
+        }
+    }
+
+    #COW407b55202a33c40f96dcd ^"Glowdog: kind, but not honest." DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "kind, but not honest."
+            ^"Deck" ^"Tradition Deck" #COWff9e2875b73d4008351eb ^"Glowdog"
+        }
+    }
+
+}

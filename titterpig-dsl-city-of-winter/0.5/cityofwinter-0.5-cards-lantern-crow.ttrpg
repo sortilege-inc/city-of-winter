@@ -1,0 +1,210 @@
+EXTENSION "CityOfWinter_Cards_LanternCrow" EXTENDS "CityOfWinter_Core_Base" {
+    NAME "City of Winter — the Lantern Crow Tradition Deck"
+    VERSION "0.5"
+    SPEC_VERSION "0.5"
+    RELEASE_DATE "2026-08-12"
+
+    # 25 cards. Prompts are verbatim from the card faces;
+    # deck membership is taken from the icon printed on each card back.
+
+    #COWd063e2403c0cbd9f9ad03 ^"Lantern Crow: we watch from above" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "we watch from above"
+            ^"Deck" ^"Tradition Deck" #COW9d6c514bd85e69d16a696 ^"Lantern Crow"
+        }
+    }
+
+    #COWe521a99e6543a7f9449b5 ^"Lantern Crow: funeral" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "funeral"
+            ^"Deck" ^"Tradition Deck" #COW9d6c514bd85e69d16a696 ^"Lantern Crow"
+        }
+    }
+
+    #COWf20caa3c3e40e75e368a5 ^"Lantern Crow: how to lose an argument" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "how to lose an argument"
+            ^"Deck" ^"Tradition Deck" #COW9d6c514bd85e69d16a696 ^"Lantern Crow"
+        }
+    }
+
+    #COWe2e2c0b81525057050acf ^"Lantern Crow: the strength of numbers" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "the strength of numbers"
+            ^"Deck" ^"Tradition Deck" #COW9d6c514bd85e69d16a696 ^"Lantern Crow"
+        }
+    }
+
+    #COWfbff9c58f3be625466cf9 ^"Lantern Crow: who lights the lantern" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "who lights the lantern"
+            ^"Deck" ^"Tradition Deck" #COW9d6c514bd85e69d16a696 ^"Lantern Crow"
+        }
+    }
+
+    #COW61086938d265b01d56be0 ^"Lantern Crow: a scholar’s question" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "a scholar’s question"
+            ^"Deck" ^"Tradition Deck" #COW9d6c514bd85e69d16a696 ^"Lantern Crow"
+        }
+    }
+
+    #COW6799933f0314d36cf15ce ^"Lantern Crow: stained with ink" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "stained with ink"
+            ^"Deck" ^"Tradition Deck" #COW9d6c514bd85e69d16a696 ^"Lantern Crow"
+        }
+    }
+
+    #COWb066be2ce555ded7395cd ^"Lantern Crow: dressed in black" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "dressed in black"
+            ^"Deck" ^"Tradition Deck" #COW9d6c514bd85e69d16a696 ^"Lantern Crow"
+        }
+    }
+
+    #COW1fbf60d7caebdbea3cbe1 ^"Lantern Crow: a profitable trade" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "a profitable trade"
+            ^"Deck" ^"Tradition Deck" #COW9d6c514bd85e69d16a696 ^"Lantern Crow"
+        }
+    }
+
+    #COW702ef60bc772fd9689e9e ^"Lantern Crow: a token of love" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "a token of love"
+            ^"Deck" ^"Tradition Deck" #COW9d6c514bd85e69d16a696 ^"Lantern Crow"
+        }
+    }
+
+    #COWd326a8bb1138d044929c9 ^"Lantern Crow: wearing a crow mask" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "wearing a crow mask"
+            ^"Deck" ^"Tradition Deck" #COW9d6c514bd85e69d16a696 ^"Lantern Crow"
+        }
+    }
+
+    #COW3c201b0c3b4d389a90e3e ^"Lantern Crow: the greatest value" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "the greatest value"
+            ^"Deck" ^"Tradition Deck" #COW9d6c514bd85e69d16a696 ^"Lantern Crow"
+        }
+    }
+
+    #COW87b479d6827860951f26e ^"Lantern Crow: with a merchant’s scale" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "with a merchant’s scale"
+            ^"Deck" ^"Tradition Deck" #COW9d6c514bd85e69d16a696 ^"Lantern Crow"
+        }
+    }
+
+    #COWc6e26065ac5dfc5e429c1 ^"Lantern Crow: scavenger’s stew" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "scavenger’s stew"
+            ^"Deck" ^"Tradition Deck" #COW9d6c514bd85e69d16a696 ^"Lantern Crow"
+        }
+    }
+
+    #COW7c4041a3f8f3c5c350ec6 ^"Lantern Crow: a trial of knowledge" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "a trial of knowledge"
+            ^"Deck" ^"Tradition Deck" #COW9d6c514bd85e69d16a696 ^"Lantern Crow"
+        }
+    }
+
+    #COWd69f27114f3aa49a1fe3f ^"Lantern Crow: law of the skies" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "law of the skies"
+            ^"Deck" ^"Tradition Deck" #COW9d6c514bd85e69d16a696 ^"Lantern Crow"
+        }
+    }
+
+    #COWb3e00b616ff18c288dbf9 ^"Lantern Crow: as the coffee brews" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "as the coffee brews"
+            ^"Deck" ^"Tradition Deck" #COW9d6c514bd85e69d16a696 ^"Lantern Crow"
+        }
+    }
+
+    #COWa53b7cb359765ba29d7c9 ^"Lantern Crow: who is cast out" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "who is cast out"
+            ^"Deck" ^"Tradition Deck" #COW9d6c514bd85e69d16a696 ^"Lantern Crow"
+        }
+    }
+
+    #COWe7a10a9a0745cbc67898d ^"Lantern Crow: a theory of magic" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "a theory of magic"
+            ^"Deck" ^"Tradition Deck" #COW9d6c514bd85e69d16a696 ^"Lantern Crow"
+        }
+    }
+
+    #COW935f1bd022174001458cd ^"Lantern Crow: while the candle burns" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "while the candle burns"
+            ^"Deck" ^"Tradition Deck" #COW9d6c514bd85e69d16a696 ^"Lantern Crow"
+        }
+    }
+
+    #COW9a9b842702c7c4a13ab23 ^"Lantern Crow: a mocking game" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "a mocking game"
+            ^"Deck" ^"Tradition Deck" #COW9d6c514bd85e69d16a696 ^"Lantern Crow"
+        }
+    }
+
+    #COW5b0dc2df87c4cd8e23887 ^"Lantern Crow: a salvaged treasure" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "a salvaged treasure"
+            ^"Deck" ^"Tradition Deck" #COW9d6c514bd85e69d16a696 ^"Lantern Crow"
+        }
+    }
+
+    #COWc6c7fc8afdaa2dd6b4d51 ^"Lantern Crow: with silver feathers" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "with silver feathers"
+            ^"Deck" ^"Tradition Deck" #COW9d6c514bd85e69d16a696 ^"Lantern Crow"
+        }
+    }
+
+    #COW74d1275a5c016f49d2be8 ^"Lantern Crow: we remember our enemy" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "we remember our enemy"
+            ^"Deck" ^"Tradition Deck" #COW9d6c514bd85e69d16a696 ^"Lantern Crow"
+        }
+    }
+
+    #COW78eb6ae0b1d947dfafd1e ^"Lantern Crow: how to teach a lesson" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "how to teach a lesson"
+            ^"Deck" ^"Tradition Deck" #COW9d6c514bd85e69d16a696 ^"Lantern Crow"
+        }
+    }
+
+}

@@ -1,0 +1,210 @@
+EXTENSION "CityOfWinter_Cards_OxofRivertown" EXTENDS "CityOfWinter_Core_Base" {
+    NAME "City of Winter — the Ox of Rivertown Tradition Deck"
+    VERSION "0.5"
+    SPEC_VERSION "0.5"
+    RELEASE_DATE "2026-08-12"
+
+    # 25 cards. Prompts are verbatim from the card faces;
+    # deck membership is taken from the icon printed on each card back.
+
+    #COW256aee2ffccc35d71c424 ^"Ox of Rivertown: we bear the burden" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "we bear the burden"
+            ^"Deck" ^"Tradition Deck" #COW268e8561b067204313e37 ^"Ox of Rivertown"
+        }
+    }
+
+    #COW91764136d01a5d8b596db ^"Ox of Rivertown: we sow the seeds" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "we sow the seeds"
+            ^"Deck" ^"Tradition Deck" #COW268e8561b067204313e37 ^"Ox of Rivertown"
+        }
+    }
+
+    #COW86dd462043b4f30dd4927 ^"Ox of Rivertown: we share the harvest" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "we share the harvest"
+            ^"Deck" ^"Tradition Deck" #COW268e8561b067204313e37 ^"Ox of Rivertown"
+        }
+    }
+
+    #COWf6eecc40de6ac9b4ee268 ^"Ox of Rivertown: made to last" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "made to last"
+            ^"Deck" ^"Tradition Deck" #COW268e8561b067204313e37 ^"Ox of Rivertown"
+        }
+    }
+
+    #COW791e67004309d46c0e6f5 ^"Ox of Rivertown: wearing an ox mask" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "wearing an ox mask"
+            ^"Deck" ^"Tradition Deck" #COW268e8561b067204313e37 ^"Ox of Rivertown"
+        }
+    }
+
+    #COW69a3d379b646234e84e71 ^"Ox of Rivertown: with a clay flute" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "with a clay flute"
+            ^"Deck" ^"Tradition Deck" #COW268e8561b067204313e37 ^"Ox of Rivertown"
+        }
+    }
+
+    #COW233e616dac60423361b5f ^"Ox of Rivertown: a pot of river stew" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "a pot of river stew"
+            ^"Deck" ^"Tradition Deck" #COW268e8561b067204313e37 ^"Ox of Rivertown"
+        }
+    }
+
+    #COWb468ca6694b779d9cf293 ^"Ox of Rivertown: a dancing game" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "a dancing game"
+            ^"Deck" ^"Tradition Deck" #COW268e8561b067204313e37 ^"Ox of Rivertown"
+        }
+    }
+
+    #COWe9d0fdb2b9911f6415093 ^"Ox of Rivertown: a ritual tattoo" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "a ritual tattoo"
+            ^"Deck" ^"Tradition Deck" #COW268e8561b067204313e37 ^"Ox of Rivertown"
+        }
+    }
+
+    #COW606e8c57272ac24a42744 ^"Ox of Rivertown: will of the herd" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "will of the herd"
+            ^"Deck" ^"Tradition Deck" #COW268e8561b067204313e37 ^"Ox of Rivertown"
+        }
+    }
+
+    #COW83df9eda46ff06b2be159 ^"Ox of Rivertown: the oldest ox" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "the oldest ox"
+            ^"Deck" ^"Tradition Deck" #COW268e8561b067204313e37 ^"Ox of Rivertown"
+        }
+    }
+
+    #COW8bfcfa69b5e36d61f199c ^"Ox of Rivertown: way of the forge" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "way of the forge"
+            ^"Deck" ^"Tradition Deck" #COW268e8561b067204313e37 ^"Ox of Rivertown"
+        }
+    }
+
+    #COWf574667257867c58bb34f ^"Ox of Rivertown: with a potter’s wheel" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "with a potter’s wheel"
+            ^"Deck" ^"Tradition Deck" #COW268e8561b067204313e37 ^"Ox of Rivertown"
+        }
+    }
+
+    #COW8111eb9cfe636c210aabd ^"Ox of Rivertown: with bitter greens" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "with bitter greens"
+            ^"Deck" ^"Tradition Deck" #COW268e8561b067204313e37 ^"Ox of Rivertown"
+        }
+    }
+
+    #COW7c76c5b5be87381fb0737 ^"Ox of Rivertown: we ring the dusk bell" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "we ring the dusk bell"
+            ^"Deck" ^"Tradition Deck" #COW268e8561b067204313e37 ^"Ox of Rivertown"
+        }
+    }
+
+    #COWa09d504a144f7026e33d0 ^"Ox of Rivertown: right of hospitality" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "right of hospitality"
+            ^"Deck" ^"Tradition Deck" #COW268e8561b067204313e37 ^"Ox of Rivertown"
+        }
+    }
+
+    #COW0e1dfd1b3264e7e4e821a ^"Ox of Rivertown: a fair trade" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "a fair trade"
+            ^"Deck" ^"Tradition Deck" #COW268e8561b067204313e37 ^"Ox of Rivertown"
+        }
+    }
+
+    #COW937a5852c4bfd2316cfa7 ^"Ox of Rivertown: song of the village" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "song of the village"
+            ^"Deck" ^"Tradition Deck" #COW268e8561b067204313e37 ^"Ox of Rivertown"
+        }
+    }
+
+    #COW84bcb99b68702a7063fee ^"Ox of Rivertown: to harness the river" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "to harness the river"
+            ^"Deck" ^"Tradition Deck" #COW268e8561b067204313e37 ^"Ox of Rivertown"
+        }
+    }
+
+    #COWa9c13a7333ba65498d831 ^"Ox of Rivertown: our finest attire" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "our finest attire"
+            ^"Deck" ^"Tradition Deck" #COW268e8561b067204313e37 ^"Ox of Rivertown"
+        }
+    }
+
+    #COWf8bec9218af24f2101b51 ^"Ox of Rivertown: with a team of oxen" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "with a team of oxen"
+            ^"Deck" ^"Tradition Deck" #COW268e8561b067204313e37 ^"Ox of Rivertown"
+        }
+    }
+
+    #COWf3babbdc1d66258d380c0 ^"Ox of Rivertown: wisdom of the council" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "wisdom of the council"
+            ^"Deck" ^"Tradition Deck" #COW268e8561b067204313e37 ^"Ox of Rivertown"
+        }
+    }
+
+    #COW5b49f965451a776b036aa ^"Ox of Rivertown: where medicine grows" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "where medicine grows"
+            ^"Deck" ^"Tradition Deck" #COW268e8561b067204313e37 ^"Ox of Rivertown"
+        }
+    }
+
+    #COWeb72b089d41a1a0218a96 ^"Ox of Rivertown: a gift of bread" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "a gift of bread"
+            ^"Deck" ^"Tradition Deck" #COW268e8561b067204313e37 ^"Ox of Rivertown"
+        }
+    }
+
+    #COW964cc95db03060cedb522 ^"Ox of Rivertown: an oath of stone" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "an oath of stone"
+            ^"Deck" ^"Tradition Deck" #COW268e8561b067204313e37 ^"Ox of Rivertown"
+        }
+    }
+
+}

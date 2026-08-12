@@ -1,0 +1,210 @@
+EXTENSION "CityOfWinter_Cards_Moonbee" EXTENDS "CityOfWinter_Core_Base" {
+    NAME "City of Winter — the Moonbee Tradition Deck"
+    VERSION "0.5"
+    SPEC_VERSION "0.5"
+    RELEASE_DATE "2026-08-12"
+
+    # 25 cards. Prompts are verbatim from the card faces;
+    # deck membership is taken from the icon printed on each card back.
+
+    #COW9c772e44d2386b0337fe8 ^"Moonbee: oneness" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "oneness"
+            ^"Deck" ^"Tradition Deck" #COWb6415ac566c9c446d6cdf ^"Moonbee"
+        }
+    }
+
+    #COW1240310eb30786cfc1a2f ^"Moonbee: choir" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "choir"
+            ^"Deck" ^"Tradition Deck" #COWb6415ac566c9c446d6cdf ^"Moonbee"
+        }
+    }
+
+    #COW937e5d1106861794914dc ^"Moonbee: The Borough Wanders" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "The Borough Wanders"
+            ^"Deck" ^"Tradition Deck" #COWb6415ac566c9c446d6cdf ^"Moonbee"
+        }
+    }
+
+    #COW9f662be09ef48e4d2ef3f ^"Moonbee: Queen" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "Queen"
+            ^"Deck" ^"Tradition Deck" #COWb6415ac566c9c446d6cdf ^"Moonbee"
+        }
+    }
+
+    #COW4426d6b372735e4c79922 ^"Moonbee: hum" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "hum"
+            ^"Deck" ^"Tradition Deck" #COWb6415ac566c9c446d6cdf ^"Moonbee"
+        }
+    }
+
+    #COW1f2fb79aa153cad0914d5 ^"Moonbee: wing" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "wing"
+            ^"Deck" ^"Tradition Deck" #COWb6415ac566c9c446d6cdf ^"Moonbee"
+        }
+    }
+
+    #COW39bed055b9e5de185eef0 ^"Moonbee: fruit" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "fruit"
+            ^"Deck" ^"Tradition Deck" #COWb6415ac566c9c446d6cdf ^"Moonbee"
+        }
+    }
+
+    #COWc89a81ed285d0ca59e7bf ^"Moonbee: royal" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "royal"
+            ^"Deck" ^"Tradition Deck" #COWb6415ac566c9c446d6cdf ^"Moonbee"
+        }
+    }
+
+    #COW48d12e3164338f130de9f ^"Moonbee: beauty" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "beauty"
+            ^"Deck" ^"Tradition Deck" #COWb6415ac566c9c446d6cdf ^"Moonbee"
+        }
+    }
+
+    #COW34c1f96357785340434b1 ^"Moonbee: flower" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "flower"
+            ^"Deck" ^"Tradition Deck" #COWb6415ac566c9c446d6cdf ^"Moonbee"
+        }
+    }
+
+    #COW77e74f2f7f70dea05a87b ^"Moonbee: garden" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "garden"
+            ^"Deck" ^"Tradition Deck" #COWb6415ac566c9c446d6cdf ^"Moonbee"
+        }
+    }
+
+    #COW4b9779fd2efb7032183aa ^"Moonbee: birthday" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "birthday"
+            ^"Deck" ^"Tradition Deck" #COWb6415ac566c9c446d6cdf ^"Moonbee"
+        }
+    }
+
+    #COW2c3ea9cbd5b83ba1df100 ^"Moonbee: moonlight" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "moonlight"
+            ^"Deck" ^"Tradition Deck" #COWb6415ac566c9c446d6cdf ^"Moonbee"
+        }
+    }
+
+    #COWe3513ab31a471e7eafac1 ^"Moonbee: antenna" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "antenna"
+            ^"Deck" ^"Tradition Deck" #COWb6415ac566c9c446d6cdf ^"Moonbee"
+        }
+    }
+
+    #COW0a3217b1fa7cc4e182474 ^"Moonbee: thousands" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "thousands"
+            ^"Deck" ^"Tradition Deck" #COWb6415ac566c9c446d6cdf ^"Moonbee"
+        }
+    }
+
+    #COW2e84a3275ab6cd12e5056 ^"Moonbee: gilded" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "gilded"
+            ^"Deck" ^"Tradition Deck" #COWb6415ac566c9c446d6cdf ^"Moonbee"
+        }
+    }
+
+    #COWfe89f98b4d740f9adae0b ^"Moonbee: honey" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "honey"
+            ^"Deck" ^"Tradition Deck" #COWb6415ac566c9c446d6cdf ^"Moonbee"
+        }
+    }
+
+    #COW7de70411beb17096c4362 ^"Moonbee: fragrance" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "fragrance"
+            ^"Deck" ^"Tradition Deck" #COWb6415ac566c9c446d6cdf ^"Moonbee"
+        }
+    }
+
+    #COW770efe5da6ee83b93ed0f ^"Moonbee: worker" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "worker"
+            ^"Deck" ^"Tradition Deck" #COWb6415ac566c9c446d6cdf ^"Moonbee"
+        }
+    }
+
+    #COW8bf8a3ebf869e000c9918 ^"Moonbee: alarm" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "alarm"
+            ^"Deck" ^"Tradition Deck" #COWb6415ac566c9c446d6cdf ^"Moonbee"
+        }
+    }
+
+    #COW18225b76f61dc15fea2b3 ^"Moonbee: busy" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "busy"
+            ^"Deck" ^"Tradition Deck" #COWb6415ac566c9c446d6cdf ^"Moonbee"
+        }
+    }
+
+    #COWb2d25ec08b6d714e20ca0 ^"Moonbee: sting" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "sting"
+            ^"Deck" ^"Tradition Deck" #COWb6415ac566c9c446d6cdf ^"Moonbee"
+        }
+    }
+
+    #COW14501c8dfe25f45d61370 ^"Moonbee: morning" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "morning"
+            ^"Deck" ^"Tradition Deck" #COWb6415ac566c9c446d6cdf ^"Moonbee"
+        }
+    }
+
+    #COW3d79934f5c95f98d4cb64 ^"Moonbee: dessert" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "dessert"
+            ^"Deck" ^"Tradition Deck" #COWb6415ac566c9c446d6cdf ^"Moonbee"
+        }
+    }
+
+    #COWb65a0334665fc4164bd39 ^"Moonbee: assleep" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "assleep"
+            ^"Deck" ^"Tradition Deck" #COWb6415ac566c9c446d6cdf ^"Moonbee"
+        }
+    }
+
+}

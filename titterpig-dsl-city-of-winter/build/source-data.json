@@ -1,0 +1,1539 @@
+{
+ "_note": "Mechanically extracted from the City of Winter print-and-play source set (Heart of the Deernicorn, 2022). Card prompts come from CoW-Cards-Gutterfold.pdf text layer (exact, no OCR); deck identity from the per-card PDF image XObject id, visually confirmed one page per deck. Location names, scene prompts and connections come from CoW-Atlas.pdf; local-tradition icons were read visually from rendered pages. Banner name-lists come from CoW-Cards-Banners-PnP-v1.pdf. Rules text from CoW-Instructions.pdf.",
+ "decks": [
+  {
+   "name": "Temple Heron",
+   "shape": "circle",
+   "region": "Riverlands",
+   "banner": "Temple Heron",
+   "namePrompt": "or another weather name",
+   "names": [
+    "Zephyr",
+    "Rainbow",
+    "Blaze",
+    "Cloud",
+    "Frost",
+    "Snow",
+    "Breezy",
+    "Flood",
+    "Tranquil",
+    "Squall",
+    "Misty",
+    "Rain",
+    "Thunder"
+   ]
+  },
+  {
+   "name": "Ox of Rivertown",
+   "shape": "circle",
+   "region": "Riverlands",
+   "banner": "Ox of Rivertown",
+   "namePrompt": "or another pastoral name",
+   "names": [
+    "Olive",
+    "Fern",
+    "Chayote",
+    "Rye",
+    "Saffron",
+    "Quince",
+    "Blossom",
+    "Haven",
+    "Apple",
+    "Stone",
+    "Tater",
+    "Sweetgrass",
+    "Thistle"
+   ]
+  },
+  {
+   "name": "Lion of the Citadel",
+   "shape": "circle",
+   "region": "Riverlands",
+   "banner": "Lion of the Citadel",
+   "namePrompt": "or another virtuous name",
+   "names": [
+    "Glory",
+    "Zeal",
+    "Pride",
+    "Brave",
+    "Harmony",
+    "Grace",
+    "Destiny",
+    "Guile",
+    "Courage",
+    "Majesty",
+    "Valor",
+    "Wisdom",
+    "Able"
+   ]
+  },
+  {
+   "name": "Umbra",
+   "shape": "umbra",
+   "region": "Riverlands",
+   "banner": "Umbra",
+   "namePrompt": null,
+   "names": []
+  },
+  {
+   "name": "Fox of the Towers",
+   "shape": "circle",
+   "region": "City",
+   "banner": "Fox of the Towers",
+   "namePrompt": "or another wilderness name",
+   "names": [
+    "Glade",
+    "Lichen",
+    "Meadow",
+    "Ivy",
+    "Gulley",
+    "Willow",
+    "Thicket",
+    "Oakley",
+    "Vale",
+    "Juniper",
+    "Briar",
+    "Lake",
+    "Acorn",
+    "Huckleberry"
+   ]
+  },
+  {
+   "name": "Lantern Crow",
+   "shape": "sun",
+   "region": "City",
+   "banner": "Lantern Crow",
+   "namePrompt": "or another crow sound",
+   "names": [
+    "Hraa",
+    "Kraa",
+    "Graak",
+    "Awkaw",
+    "Akac",
+    "Aaa",
+    "Rakaka",
+    "Raah",
+    "Kahw",
+    "Kew",
+    "Keow",
+    "Maow"
+   ]
+  },
+  {
+   "name": "Mask Maker",
+   "shape": "sun",
+   "region": "City",
+   "banner": "Mask Maker",
+   "namePrompt": "or another kind of mask",
+   "names": [
+    "Cat",
+    "Owl",
+    "Raven",
+    "Leopard",
+    "Snake",
+    "Panda",
+    "Monkey",
+    "Beetle",
+    "Moth",
+    "Deer",
+    "Ibis",
+    "Frog",
+    "Snake",
+    "Wolf",
+    "Goat"
+   ]
+  },
+  {
+   "name": "Glowdog",
+   "shape": "diamond",
+   "region": "City",
+   "banner": "Glowdog",
+   "namePrompt": "or another earned name",
+   "names": [
+    "Truthful",
+    "Swift",
+    "Dreamer",
+    "Baron",
+    "Vandal",
+    "Mender",
+    "Graves",
+    "Happy",
+    "Whisper",
+    "Prophet",
+    "Howl"
+   ]
+  },
+  {
+   "name": "Brass Ones",
+   "shape": "diamond",
+   "region": "City",
+   "banner": "Brass Ones",
+   "namePrompt": "or another precious name",
+   "names": [
+    "Amethyst",
+    "Opal",
+    "Lapis",
+    "Ruby",
+    "Sapphire",
+    "Obsidian",
+    "Gold",
+    "Silver",
+    "Jade",
+    "Copper",
+    "Onyx",
+    "Diamond",
+    "Amber"
+   ]
+  },
+  {
+   "name": "Moonbee",
+   "shape": "diamond",
+   "region": "City",
+   "banner": "Moonbee",
+   "namePrompt": "or another artful name",
+   "names": [
+    "Dazzle",
+    "Braid",
+    "Joy",
+    "Wonder",
+    "Glaze",
+    "Lyric",
+    "Crystal",
+    "Vivid",
+    "Artifice",
+    "Dye",
+    "Bard",
+    "Forge",
+    "Painter",
+    "Weave",
+    "Dancer"
+   ]
+  }
+ ],
+ "shapeFamilies": {
+  "circle": [
+   "Temple Heron",
+   "Ox of Rivertown",
+   "Lion of the Citadel",
+   "Fox of the Towers"
+  ],
+  "sun": [
+   "Lantern Crow",
+   "Mask Maker"
+  ],
+  "diamond": [
+   "Glowdog",
+   "Brass Ones",
+   "Moonbee"
+  ]
+ },
+ "ageTiers": [
+  {
+   "name": "Child",
+   "marks": [
+    0
+   ],
+   "marksText": "no Marks"
+  },
+  {
+   "name": "Youth",
+   "marks": [
+    1,
+    2
+   ],
+   "marksText": "one or two Marks"
+  },
+  {
+   "name": "Parent",
+   "marks": [
+    3,
+    4,
+    5
+   ],
+   "marksText": "three, four, or five Marks"
+  },
+  {
+   "name": "Elder",
+   "marks": [
+    6
+   ],
+   "marksText": "six Marks"
+  }
+ ],
+ "bondLists": [
+  {
+   "tier": "Child",
+   "kind": "Bonds",
+   "prompts": [
+    "Ward",
+    "Heir",
+    "Foundling",
+    "Sibling",
+    "Cousin",
+    "Orphan"
+   ],
+   "openPrompt": "or Child of..."
+  },
+  {
+   "tier": "Youth",
+   "kind": "Bonds",
+   "prompts": [
+    "Follower",
+    "Admirer",
+    "Bully",
+    "Rival",
+    "Defender",
+    "Apprentice",
+    "Favorite",
+    "Squire",
+    "Jealous",
+    "Idol"
+   ],
+   "openPrompt": "or Likeness of..."
+  },
+  {
+   "tier": "Parent",
+   "kind": "Bonds",
+   "prompts": [
+    "Disciple",
+    "Caretaker",
+    "Guardian",
+    "Suitor",
+    "Beloved",
+    "Spouse",
+    "Champion",
+    "Ally",
+    "Widow(er)"
+   ],
+   "openPrompt": "or Parent of..."
+  },
+  {
+   "tier": "Elder",
+   "kind": "Bonds",
+   "prompts": [
+    "Grandparent",
+    "Teacher",
+    "Mentor",
+    "Council",
+    "Spoiler",
+    "Burden",
+    "Ashamed"
+   ],
+   "openPrompt": "or Proud of..."
+  },
+  {
+   "tier": "Memory",
+   "kind": "Memory Bonds",
+   "prompts": [
+    "Grieved",
+    "Honored",
+    "Remembered",
+    "Reviled",
+    "Forgotten",
+    "Disavowed"
+   ],
+   "openPrompt": "or Succeeded by..."
+  },
+  {
+   "tier": "City 0",
+   "kind": "City Bonds",
+   "prompts": [
+    "Befriended",
+    "Watched",
+    "Betrayed",
+    "Trusted",
+    "Favored",
+    "Feared",
+    "Taught",
+    "Protected",
+    "Funded",
+    "Adored"
+   ],
+   "openPrompt": "or Shadowed by..."
+  },
+  {
+   "tier": "City 1",
+   "kind": "City Bonds",
+   "prompts": [
+    "Driftmate",
+    "Shard",
+    "Whisper",
+    "Hauler",
+    "Servant",
+    "Dustie",
+    "Adept",
+    "Glimmer",
+    "Boarder",
+    "Echo",
+    "Client"
+   ],
+   "openPrompt": "or Eyes of..."
+  },
+  {
+   "tier": "City 2",
+   "kind": "City Bonds",
+   "prompts": [
+    "Glowtender",
+    "Moonsworn",
+    "Flame",
+    "Discordant",
+    "Patron",
+    "Harmony",
+    "Brassbound",
+    "Giftgiver"
+   ],
+   "openPrompt": "or Lost to..."
+  }
+ ],
+ "riverlands": [
+  {
+   "page": 7,
+   "name": "Cloud Citadel",
+   "traditions": [
+    "Lion of the Citadel"
+   ],
+   "scenes": [
+    "Above the Clouds",
+    "Hall of Lions",
+    "Heart of the Citadel",
+    "Children’s Garden",
+    "Waterfall",
+    "In the Kitchen",
+    "Singing Chamber",
+    "The Wild River"
+   ],
+   "connects": [
+    "Rivertown",
+    "We Board a Lantern Ship"
+   ],
+   "startingHome": true
+  },
+  {
+   "page": 8,
+   "name": "Rivertown",
+   "traditions": [
+    "Ox of Rivertown"
+   ],
+   "scenes": [
+    "When It Rains",
+    "Hills",
+    "Ox Bridge",
+    "The Old Orchard",
+    "Elders’ Cottage",
+    "Fairgrounds",
+    "The Strong River"
+   ],
+   "connects": [
+    "Cloud Citadel",
+    "Temple Island"
+   ],
+   "startingHome": true
+  },
+  {
+   "page": 9,
+   "name": "Temple Island",
+   "traditions": [
+    "Temple Heron"
+   ],
+   "scenes": [
+    "The Calm River",
+    "Palace of the Riverlands",
+    "Floating Market",
+    "Heron Villa",
+    "Temple",
+    "Stilt Road"
+   ],
+   "connects": [
+    "Rivertown",
+    "We Board a Lantern Ship",
+    "We Join a Caravan"
+   ],
+   "startingHome": true
+  },
+  {
+   "page": 10,
+   "name": "We Board a Lantern Ship",
+   "traditions": [
+    "Lantern Crow"
+   ],
+   "route": "Lantern Ship",
+   "scenes": [
+    "Lantern Deck",
+    "On Crowded Decks",
+    "When Passengers Board",
+    "Gossamer Room",
+    "In Our Quarters",
+    "The Distant River"
+   ],
+   "connects": [
+    "Cloud Citadel",
+    "Temple Island",
+    "Above a Kingdom of Towers"
+   ]
+  },
+  {
+   "page": 11,
+   "name": "We Join a Caravan",
+   "traditions": [
+    "Ox of Rivertown"
+   ],
+   "route": "Caravan",
+   "scenes": [
+    "The Lantern Road",
+    "When the Caravan Stops",
+    "Passing Travelers",
+    "Snowfall",
+    "A Border Crossing",
+    "The Cold River"
+   ],
+   "connects": [
+    "Temple Island",
+    "Through a Kingdom of Towers"
+   ]
+  },
+  {
+   "page": 12,
+   "name": "Through a Kingdom of Towers",
+   "traditions": [
+    "Fox of the Towers"
+   ],
+   "route": "Caravan",
+   "scenes": [
+    "A Tower in Ruins",
+    "The Frozen River",
+    "A Tower of Foxes",
+    "A Tower in Celebration",
+    "A Tower of Bells"
+   ],
+   "connects": [
+    "We Join a Caravan",
+    "We Meet a Nomad Village"
+   ]
+  },
+  {
+   "page": 13,
+   "name": "We Meet a Nomad Village",
+   "traditions": [
+    "Mask Maker"
+   ],
+   "route": "Caravan",
+   "scenes": [
+    "When the Village Rests",
+    "The Boiler",
+    "Artisan Market",
+    "The Brass Teahouse",
+    "River’s End"
+   ],
+   "connects": [
+    "Through a Kingdom of Towers",
+    "At Last We Reach the City of Winter (by Caravan)"
+   ]
+  },
+  {
+   "page": 14,
+   "name": "Above a Kingdom of Towers",
+   "traditions": [
+    "Lantern Crow"
+   ],
+   "route": "Lantern Ship",
+   "scenes": [
+    "A Tower of Crows",
+    "A Tower, Still Burning",
+    "A Tower Besieged",
+    "When We Find the Stowaway",
+    "A Tower of Colors"
+   ],
+   "connects": [
+    "We Board a Lantern Ship",
+    "Above a Nomad Village"
+   ]
+  },
+  {
+   "page": 15,
+   "name": "Above a Nomad Village",
+   "traditions": [
+    "Mask Maker"
+   ],
+   "route": "Lantern Ship",
+   "scenes": [
+    "When Merchants Board",
+    "Smuggler’s Hold",
+    "By Rope and Ladder",
+    "Over Rooftops",
+    "When the Village Runs"
+   ],
+   "connects": [
+    "Above a Kingdom of Towers",
+    "At Last We Reach the City of Winter (by Lantern Ship)"
+   ]
+  },
+  {
+   "page": 16,
+   "name": "At Last We Reach the City of Winter (by Lantern Ship)",
+   "traditions": [],
+   "route": "Lantern Ship",
+   "isArrival": true,
+   "scenes": [],
+   "entrances": [
+    {
+     "text": "...and are smuggled into the Drift",
+     "target": "the Drift"
+    },
+    {
+     "text": "...and pledge service to the Palace of the Moon",
+     "target": "Palace of the Moon"
+    },
+    {
+     "text": "...and seek work in Glowtown",
+     "target": "Glowtown"
+    }
+   ],
+   "connects": [
+    "Above a Nomad Village"
+   ]
+  },
+  {
+   "page": 17,
+   "name": "At Last We Reach the City of Winter (by Caravan)",
+   "traditions": [],
+   "route": "Caravan",
+   "isArrival": true,
+   "scenes": [],
+   "entrances": [
+    {
+     "text": "...and seek work in Glowtown",
+     "target": "Glowtown"
+    },
+    {
+     "text": "...and claim asylum at the Lantern Gate",
+     "target": "Lantern Gate"
+    },
+    {
+     "text": "...and find shelter in the Refuge",
+     "target": "the Refuge"
+    }
+   ],
+   "connects": [
+    "We Meet a Nomad Village"
+   ]
+  }
+ ],
+ "city": [
+  {
+   "page": 18,
+   "name": "Lantern Gate",
+   "traditions": [
+    "Brass Ones",
+    "ANY:circle"
+   ],
+   "scenes": [
+    "The Charity Tents",
+    "Immigration Tower",
+    "In Shadows",
+    "In Line",
+    "The Public Fire",
+    "When the Gatelighter Comes"
+   ]
+  },
+  {
+   "page": 19,
+   "name": "the Refuge",
+   "traditions": [
+    "Fox of the Towers",
+    "ANY:circle"
+   ],
+   "scenes": [
+    "Rooftops",
+    "Crooked Street",
+    "Gren’s Clinic",
+    "In a Crowded Tenement",
+    "When the Refuge Grows",
+    "Where Children Play",
+    "The Garden"
+   ]
+  },
+  {
+   "page": 20,
+   "name": "Undertown",
+   "traditions": [
+    "ANY:circle",
+    "ANY:circle"
+   ],
+   "scenes": [
+    "Illegal Work",
+    "Cistern",
+    "When Wardens Come",
+    "Steam Guild",
+    "Market of Lost Things",
+    "The Kitchens"
+   ]
+  },
+  {
+   "page": 21,
+   "name": "Husk",
+   "traditions": [
+    "ANY:sun",
+    "ANY:circle"
+   ],
+   "scenes": [
+    "Ruins",
+    "The Nameless Church",
+    "Toppled Statue",
+    "The Nest",
+    "Tomb Town",
+    "Tourists",
+    "The Guild of Restoration"
+   ]
+  },
+  {
+   "page": 22,
+   "name": "Glowtown",
+   "traditions": [
+    "Glowdog",
+    "ANY:circle"
+   ],
+   "scenes": [
+    "When the Glow Shifts",
+    "Boarding House",
+    "Mine of Colors",
+    "Mine of Voices",
+    "Baths",
+    "Dangerous Work",
+    "In a Brass Elevator",
+    "Warehouse Squat"
+   ]
+  },
+  {
+   "page": 23,
+   "name": "the Dust",
+   "traditions": [
+    "ANY:circle",
+    "ANY:diamond"
+   ],
+   "scenes": [
+    "In Company Housing",
+    "Factory",
+    "The Barber Who Smiles",
+    "Hard Work",
+    "Holiday",
+    "Mess Hall",
+    "Duster’s Pub"
+   ]
+  },
+  {
+   "page": 24,
+   "name": "Spiral Avenue",
+   "traditions": [
+    "ANY:circle",
+    "ANY:circle",
+    "ANY:diamond"
+   ],
+   "scenes": [
+    "Smoke Station",
+    "Heron Theatre",
+    "Street Food",
+    "Spiral Center",
+    "In an Apartment Over a Bakery",
+    "Graffiti",
+    "The Red Tea House"
+   ]
+  },
+  {
+   "page": 25,
+   "name": "Invisible Town",
+   "traditions": [
+    "ANY:circle"
+   ],
+   "scenes": [
+    "Blu’s House",
+    "The Secret Cafe",
+    "Echoes",
+    "Unseen Library",
+    "Where Elders Complain",
+    "The Popular Grocer",
+    "Where the Park Was"
+   ]
+  },
+  {
+   "page": 26,
+   "name": "Arcanium of Brass",
+   "traditions": [
+    "ANY:sun",
+    "ANY:diamond",
+    "ANY:circle"
+   ],
+   "scenes": [
+    "Spark Palace",
+    "Twilight Park",
+    "Observing Tower",
+    "Museum of Magic",
+    "When Smoke Comes",
+    "Children’s School",
+    "Brassworks",
+    "The Renowned Restaurant"
+   ]
+  },
+  {
+   "page": 27,
+   "name": "Moonspire Ward",
+   "traditions": [
+    "ANY:circle",
+    "ANY:circle"
+   ],
+   "scenes": [
+    "Moonspire Station",
+    "Climber’s Guild",
+    "The Silent Florist",
+    "Mender’s Row",
+    "Traveler Alley",
+    "Brass Manor"
+   ]
+  },
+  {
+   "page": 28,
+   "name": "Five Temples",
+   "traditions": [
+    "ANY:circle",
+    "ANY:circle",
+    "ANY:circle"
+   ],
+   "scenes": [
+    "A Crowded Temple",
+    "A Temple in Ceremony",
+    "Souvenir Shop",
+    "A False Temple",
+    "A Forbidden Temple",
+    "A Temple, Defiled"
+   ]
+  },
+  {
+   "page": 29,
+   "name": "Holy Well",
+   "traditions": [
+    "ANY:circle"
+   ],
+   "scenes": [
+    "The Floating Monastery",
+    "When We See the Holy Ones",
+    "Pilgrims’ Hovel",
+    "Chamber of Truths",
+    "The Sunken Reliquary"
+   ]
+  },
+  {
+   "page": 30,
+   "name": "Ascending the Spire",
+   "traditions": [
+    "ANY:diamond",
+    "ANY:circle"
+   ],
+   "scenes": [
+    "Moonbound Merchants",
+    "Sightseer Guild",
+    "On the Scaffold",
+    "Builder’s Camp",
+    "A Well-Run Bodega",
+    "Checkpoint"
+   ]
+  },
+  {
+   "page": 31,
+   "name": "Archipelago",
+   "traditions": [
+    "ANY:diamond",
+    "ANY:circle"
+   ],
+   "scenes": [
+    "Island of Three Kings",
+    "Island of Cats",
+    "Isle of Children",
+    "Smugglers’ Cove",
+    "Twisting Bridges",
+    "The Painted Island"
+   ]
+  },
+  {
+   "page": 32,
+   "name": "the Drift",
+   "traditions": [
+    "Lantern Crow",
+    "ANY:circle"
+   ],
+   "scenes": [
+    "The Mansion",
+    "Redd’s Diner",
+    "Passing Flocks",
+    "Drifting Apart",
+    "Speakeasy",
+    "Caught in the Nets",
+    "In a House Made of Trash"
+   ]
+  },
+  {
+   "page": 33,
+   "name": "High Lake",
+   "traditions": [
+    "ANY:diamond",
+    "ANY:diamond"
+   ],
+   "scenes": [
+    "Balloons",
+    "Winterwine Estate",
+    "Beach House",
+    "Thornrose Estate",
+    "In the Company of Nobles",
+    "Rivertown Bistro",
+    "On the Lake"
+   ]
+  },
+  {
+   "page": 34,
+   "name": "Palace of the Moon",
+   "traditions": [
+    "Moonbee",
+    "ANY:diamond"
+   ],
+   "scenes": [
+    "Before the Throne",
+    "Shard Villa",
+    "Lunar Garden",
+    "Skyport",
+    "The Royal Aviary",
+    "Worker Apartments",
+    "Crystal Ballroom",
+    "Waxworks"
+   ]
+  },
+  {
+   "page": 35,
+   "name": "Forest of the Spire",
+   "traditions": [
+    "ANY:diamond",
+    "ANY:circle"
+   ],
+   "scenes": [
+    "By the Light of the City",
+    "When the Spire Gate Opens",
+    "Migrant Camps",
+    "Fort of Wardens",
+    "Glimmer Shrine",
+    "Outlaw Caravan"
+   ]
+  },
+  {
+   "page": 36,
+   "name": "Glasstown",
+   "traditions": [
+    "ANY:diamond",
+    "ANY:diamond"
+   ],
+   "scenes": [
+    "Outside the Glass",
+    "Riverlands Museum",
+    "Domed Orchard",
+    "The Everystore",
+    "Glassworks Academy",
+    "Vacation Dome",
+    "Pearl Avenue",
+    "Hospital"
+   ]
+  },
+  {
+   "page": 37,
+   "name": "Wintermount",
+   "traditions": [
+    "ANY:diamond",
+    "ANY:circle"
+   ],
+   "scenes": [
+    "Caverns",
+    "Summit",
+    "Temple of Winter",
+    "Climbing",
+    "Mountain Village",
+    "When We See the River"
+   ]
+  }
+ ],
+ "wanderingBorough": {
+  "name": "The Wandering Borough",
+  "cardTitle": "The Wandering Burrough",
+  "traditions": [
+   "Mask Maker",
+   "ANY:sun"
+  ],
+  "scenes": [
+   "An Affordable Eatery",
+   "Palace",
+   "The Giving Bazaar",
+   "The Hotel by the Park",
+   "Tea Market",
+   "Unfinished Library",
+   "Temple of the Engine",
+   "Wanderering"
+  ]
+ },
+ "transitLines": [
+  {
+   "name": "Lantern Wall",
+   "die": 1,
+   "stations": [
+    "Husk",
+    "Lantern Gate",
+    "the Refuge"
+   ]
+  },
+  {
+   "name": "Smoke Street",
+   "die": 2,
+   "stations": [
+    "the Drift",
+    "Holy Well",
+    "the Dust",
+    "Spiral Avenue",
+    "Lantern Gate"
+   ]
+  },
+  {
+   "name": "Ruin Street",
+   "die": 3,
+   "stations": [
+    "Five Temples",
+    "Glowtown",
+    "the Dust",
+    "Undertown",
+    "Husk"
+   ]
+  },
+  {
+   "name": "Spire Road",
+   "die": 4,
+   "stations": [
+    "Moonspire Ward",
+    "Ascending the Spire",
+    "Forest of the Spire"
+   ]
+  },
+  {
+   "name": "In the Pull",
+   "die": 5,
+   "stations": [
+    "Ascending the Spire",
+    "Archipelago",
+    "the Drift",
+    "High Lake"
+   ]
+  },
+  {
+   "name": "Moon Path",
+   "die": 6,
+   "stations": [
+    "Forest of the Spire",
+    "Glasstown",
+    "Palace of the Moon",
+    "Wintermount"
+   ]
+  },
+  {
+   "name": "The Brass Rail",
+   "die": null,
+   "stations": [
+    "Five Temples",
+    "Holy Well",
+    "Arcanium of Brass",
+    "Moonspire Ward"
+   ]
+  },
+  {
+   "name": "Winter Rail",
+   "die": null,
+   "stations": [
+    "Spiral Avenue",
+    "Invisible Town",
+    "Moonspire Ward"
+   ]
+  }
+ ],
+ "transitDistanceOrder": [
+  "Ascending the Spire",
+  "Archipelago",
+  "Arcanium of Brass",
+  "the Dust",
+  "the Drift",
+  "Five Temples",
+  "Forest of the Spire",
+  "Glasstown",
+  "Glowtown",
+  "High Lake",
+  "Holy Well",
+  "Husk",
+  "Invisible Town",
+  "Lantern Gate",
+  "Moonspire Ward",
+  "Palace of the Moon",
+  "the Refuge",
+  "Spiral Avenue",
+  "Undertown"
+ ],
+ "transitDistance": {
+  "Ascending the Spire": [
+   "-",
+   "1",
+   "3",
+   "5",
+   "2",
+   "5",
+   "1",
+   "3",
+   "7+",
+   "3",
+   "4",
+   "7+",
+   "3",
+   "6",
+   "1",
+   "4",
+   "7+",
+   "4",
+   "7+"
+  ],
+  "Archipelago": [
+   "1",
+   "-",
+   "5",
+   "3",
+   "1",
+   "5",
+   "3",
+   "5",
+   "6",
+   "2",
+   "3",
+   "7+",
+   "5",
+   "6",
+   "3",
+   "5",
+   "7+",
+   "5",
+   "7+"
+  ],
+  "Arcanium of Brass": [
+   "3",
+   "5",
+   "-",
+   "3",
+   "3",
+   "2",
+   "4",
+   "6",
+   "4",
+   "5",
+   "1",
+   "6",
+   "3",
+   "5",
+   "1",
+   "7+",
+   "7+",
+   "4",
+   "5"
+  ],
+  "the Dust": [
+   "5",
+   "3",
+   "3",
+   "-",
+   "2",
+   "3",
+   "7+",
+   "7+",
+   "1",
+   "4",
+   "1",
+   "3",
+   "3",
+   "2",
+   "4",
+   "7+",
+   "4",
+   "1",
+   "2"
+  ],
+  "the Drift": [
+   "2",
+   "1",
+   "3",
+   "2",
+   "-",
+   "3",
+   "4",
+   "4",
+   "4",
+   "1",
+   "1",
+   "6",
+   "5",
+   "4",
+   "4",
+   "4",
+   "6",
+   "3",
+   "5"
+  ],
+  "Five Temples": [
+   "5",
+   "5",
+   "2",
+   "3",
+   "3",
+   "-",
+   "6",
+   "7+",
+   "1",
+   "5",
+   "1",
+   "3",
+   "5",
+   "5",
+   "3",
+   "7+",
+   "6",
+   "4",
+   "2"
+  ],
+  "Forest of the Spire": [
+   "1",
+   "3",
+   "4",
+   "7+",
+   "4",
+   "6",
+   "-",
+   "1",
+   "7+",
+   "4",
+   "5",
+   "7+",
+   "4",
+   "7+",
+   "2",
+   "2",
+   "7+",
+   "5",
+   "7+"
+  ],
+  "Glasstown": [
+   "3",
+   "5",
+   "6",
+   "7+",
+   "4",
+   "7+",
+   "1",
+   "-",
+   "7+",
+   "3",
+   "6",
+   "7+",
+   "6",
+   "7+",
+   "4",
+   "1",
+   "7+",
+   "7+",
+   "7+"
+  ],
+  "Glowtown": [
+   "7+",
+   "6",
+   "4",
+   "1",
+   "4",
+   "1",
+   "7+",
+   "7+",
+   "-",
+   "6",
+   "3",
+   "7+",
+   "5",
+   "4",
+   "5",
+   "7+",
+   "5",
+   "3",
+   "1"
+  ],
+  "High Lake": [
+   "3",
+   "2",
+   "5",
+   "4",
+   "1",
+   "5",
+   "4",
+   "3",
+   "6",
+   "-",
+   "3",
+   "7+",
+   "7+",
+   "6",
+   "5",
+   "3",
+   "7+",
+   "5",
+   "7+"
+  ],
+  "Holy Well": [
+   "4",
+   "3",
+   "1",
+   "1",
+   "1",
+   "1",
+   "5",
+   "6",
+   "3",
+   "3",
+   "-",
+   "5",
+   "4",
+   "3",
+   "2",
+   "6",
+   "5",
+   "2",
+   "4"
+  ],
+  "Husk": [
+   "7+",
+   "7+",
+   "6",
+   "3",
+   "6",
+   "3",
+   "7+",
+   "7+",
+   "7+",
+   "7+",
+   "5",
+   "-",
+   "5",
+   "1",
+   "6",
+   "7+",
+   "2",
+   "3",
+   "1"
+  ],
+  "Invisible Town": [
+   "3",
+   "5",
+   "3",
+   "3",
+   "5",
+   "5",
+   "4",
+   "6",
+   "5",
+   "7+",
+   "4",
+   "5",
+   "-",
+   "3",
+   "1",
+   "7+",
+   "5",
+   "1",
+   "6"
+  ],
+  "Lantern Gate": [
+   "6",
+   "6",
+   "5",
+   "2",
+   "4",
+   "5",
+   "7+",
+   "7+",
+   "4",
+   "6",
+   "3",
+   "1",
+   "3",
+   "-",
+   "4",
+   "7+",
+   "1",
+   "1",
+   "3"
+  ],
+  "Moonspire Ward": [
+   "1",
+   "3",
+   "1",
+   "4",
+   "4",
+   "3",
+   "2",
+   "4",
+   "5",
+   "5",
+   "2",
+   "6",
+   "1",
+   "4",
+   "-",
+   "5",
+   "6",
+   "2",
+   "6"
+  ],
+  "Palace of the Moon": [
+   "4",
+   "5",
+   "7+",
+   "7+",
+   "4",
+   "7+",
+   "2",
+   "1",
+   "7+",
+   "3",
+   "6",
+   "7+",
+   "7+",
+   "7+",
+   "5",
+   "-",
+   "7+",
+   "7+",
+   "7+"
+  ],
+  "the Refuge": [
+   "7+",
+   "7+",
+   "7+",
+   "4",
+   "6",
+   "6",
+   "7+",
+   "7+",
+   "5",
+   "7+",
+   "5",
+   "2",
+   "5",
+   "1",
+   "6",
+   "7+",
+   "-",
+   "3",
+   "4"
+  ],
+  "Spiral Avenue": [
+   "4",
+   "5",
+   "4",
+   "1",
+   "3",
+   "4",
+   "5",
+   "7+",
+   "3",
+   "5",
+   "2",
+   "3",
+   "1",
+   "1",
+   "2",
+   "7+",
+   "3",
+   "-",
+   "4"
+  ],
+  "Undertown": [
+   "7+",
+   "7+",
+   "5",
+   "2",
+   "5",
+   "2",
+   "7+",
+   "7+",
+   "1",
+   "7+",
+   "4",
+   "1",
+   "6",
+   "3",
+   "6",
+   "7+",
+   "4",
+   "4",
+   "-"
+  ]
+ },
+ "cityStartingOptions": [
+  {
+   "tradition": "Moonbee",
+   "home": "Palace of the Moon",
+   "text": "Moonbee of the Palace of the Moon"
+  },
+  {
+   "tradition": "Fox of the Towers",
+   "home": "the Refuge",
+   "text": "Fox of the Refuge"
+  },
+  {
+   "tradition": "Brass Ones",
+   "home": "Lantern Gate",
+   "text": "Brass Ones of Lantern Gate"
+  },
+  {
+   "tradition": "Glowdog",
+   "home": "the Dust",
+   "text": "Glowdog of the Dust"
+  },
+  {
+   "tradition": "Lantern Crow",
+   "home": "the Drift",
+   "text": "Crow of the Drift"
+  },
+  {
+   "tradition": "Mask Maker",
+   "home": "The Wandering Borough",
+   "text": "Mask Maker of the Wandering Borough"
+  }
+ ],
+ "askFate": [
+  {
+   "roll": "1-3",
+   "outcome": "The likely outcome",
+   "definition": "A likely outcome is the obvious result of things as they stand."
+  },
+  {
+   "roll": "4-5",
+   "outcome": "The unlikely outcome",
+   "definition": "An unlikely outcome is something that could happen, but is improbable."
+  },
+  {
+   "roll": "6",
+   "outcome": "The fateful outcome",
+   "definition": "A fateful outcome might involve strange fortune, outside intervention, magical transformation, or new perspective."
+  }
+ ],
+ "sourceAnomalies": [
+  "The rules (p.8, Components) state the Tradition Cards are separated into 11 Tradition Decks; the print-and-play card set contains 10 (9 named traditions plus the Umbra). The Design Notes sidebar (p.52) instead says ‘Ten Tradition Decks’.",
+  "The Mask Maker deck contains 24 cards where every other deck contains 25 (249 tradition cards total). Confirmed independently against CoW-TraditionCards.pdf, whose 250 pages are the 249 tradition cards plus the X-Card.",
+  "The Umbra deck prints two copies each of ‘who joins the Umbra’ and ‘a lie of the Umbra’.",
+  "Rules p.52 ‘Starting in the City’ lists ‘Glowdog of the Dust’, but the Atlas prints the Glowdog local-tradition icon at Glowtown (p.22); the Dust (p.23) carries two blank icons.",
+  "Atlas p.9 (Temple Island) cites ‘We Join a Caravan (p.12)’; that location is on p.11 (p.12 is Through a Kingdom of Towers).",
+  "Atlas p.16 cites ‘...and seek work in Glowtown (p.19)’; Glowtown is on p.22 (p.19 is the Refuge).",
+  "The Transit Distance table (Atlas p.40) is symmetric but not internally consistent with the City Transit Map: Glowtown-Undertown is 1 and Undertown-Husk is 1, yet Glowtown-Husk is printed as 7+. The table is reproduced exactly as printed.",
+  "Wintermount appears on the City Transit Map (p.38, Moon Path) and has its own location page (p.37), but is absent from the Transit Distance table (p.40).",
+  "The Wandering Borough location card is titled ‘The Wandering Burrough’ and its eighth scene is printed ‘WANDERERING’; the rules use ‘Wandering Borough’ throughout."
+ ]
+}

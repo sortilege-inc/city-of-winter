@@ -1,0 +1,1496 @@
+[
+ {
+  "slot": "1-0",
+  "prompt": "as long as it takes",
+  "deck": "Temple Heron",
+  "borough": false
+ },
+ {
+  "slot": "1-1",
+  "prompt": "hymn of the temple",
+  "deck": "Temple Heron",
+  "borough": false
+ },
+ {
+  "slot": "1-2",
+  "prompt": "to catch a fish",
+  "deck": "Temple Heron",
+  "borough": false
+ },
+ {
+  "slot": "2-0",
+  "prompt": "who knows the prayer",
+  "deck": "Temple Heron",
+  "borough": false
+ },
+ {
+  "slot": "2-1",
+  "prompt": "with spear and net",
+  "deck": "Temple Heron",
+  "borough": false
+ },
+ {
+  "slot": "2-2",
+  "prompt": "the river dream",
+  "deck": "Temple Heron",
+  "borough": false
+ },
+ {
+  "slot": "3-0",
+  "prompt": "heron eyes",
+  "deck": "Temple Heron",
+  "borough": false
+ },
+ {
+  "slot": "3-1",
+  "prompt": "who guides the flock",
+  "deck": "Temple Heron",
+  "borough": false
+ },
+ {
+  "slot": "3-2",
+  "prompt": "name of the spirit",
+  "deck": "Temple Heron",
+  "borough": false
+ },
+ {
+  "slot": "4-0",
+  "prompt": "stained with dye",
+  "deck": "Temple Heron",
+  "borough": false
+ },
+ {
+  "slot": "4-1",
+  "prompt": "teaching of the river",
+  "deck": "Temple Heron",
+  "borough": false
+ },
+ {
+  "slot": "4-2",
+  "prompt": "with a flute of silver",
+  "deck": "Temple Heron",
+  "borough": false
+ },
+ {
+  "slot": "5-0",
+  "prompt": "in a circle of weavers",
+  "deck": "Temple Heron",
+  "borough": false
+ },
+ {
+  "slot": "5-1",
+  "prompt": "with painted faces",
+  "deck": "Temple Heron",
+  "borough": false
+ },
+ {
+  "slot": "5-2",
+  "prompt": "we ring the dawn bell",
+  "deck": "Temple Heron",
+  "borough": false
+ },
+ {
+  "slot": "6-0",
+  "prompt": "our sacred clothes",
+  "deck": "Temple Heron",
+  "borough": false
+ },
+ {
+  "slot": "6-1",
+  "prompt": "order of the temple",
+  "deck": "Temple Heron",
+  "borough": false
+ },
+ {
+  "slot": "6-2",
+  "prompt": "voice of an ancestor",
+  "deck": "Temple Heron",
+  "borough": false
+ },
+ {
+  "slot": "7-0",
+  "prompt": "wearing a heron mask",
+  "deck": "Temple Heron",
+  "borough": false
+ },
+ {
+  "slot": "7-1",
+  "prompt": "with a team of artisans",
+  "deck": "Temple Heron",
+  "borough": false
+ },
+ {
+  "slot": "7-2",
+  "prompt": "as the tea steeps",
+  "deck": "Temple Heron",
+  "borough": false
+ },
+ {
+  "slot": "8-0",
+  "prompt": "a pot of river stew",
+  "deck": "Temple Heron",
+  "borough": false
+ },
+ {
+  "slot": "8-1",
+  "prompt": "to ride the current",
+  "deck": "Temple Heron",
+  "borough": false
+ },
+ {
+  "slot": "8-2",
+  "prompt": "a dance of reeds",
+  "deck": "Temple Heron",
+  "borough": false
+ },
+ {
+  "slot": "9-0",
+  "prompt": "we tend the shrine",
+  "deck": "Temple Heron",
+  "borough": false
+ },
+ {
+  "slot": "9-1",
+  "prompt": "we bear the burden",
+  "deck": "Ox of Rivertown",
+  "borough": false
+ },
+ {
+  "slot": "9-2",
+  "prompt": "we sow the seeds",
+  "deck": "Ox of Rivertown",
+  "borough": false
+ },
+ {
+  "slot": "10-0",
+  "prompt": "we share the harvest",
+  "deck": "Ox of Rivertown",
+  "borough": false
+ },
+ {
+  "slot": "10-1",
+  "prompt": "made to last",
+  "deck": "Ox of Rivertown",
+  "borough": false
+ },
+ {
+  "slot": "10-2",
+  "prompt": "wearing an ox mask",
+  "deck": "Ox of Rivertown",
+  "borough": false
+ },
+ {
+  "slot": "11-0",
+  "prompt": "with a clay flute",
+  "deck": "Ox of Rivertown",
+  "borough": false
+ },
+ {
+  "slot": "11-1",
+  "prompt": "a pot of river stew",
+  "deck": "Ox of Rivertown",
+  "borough": false
+ },
+ {
+  "slot": "11-2",
+  "prompt": "a dancing game",
+  "deck": "Ox of Rivertown",
+  "borough": false
+ },
+ {
+  "slot": "12-0",
+  "prompt": "a ritual tattoo",
+  "deck": "Ox of Rivertown",
+  "borough": false
+ },
+ {
+  "slot": "12-1",
+  "prompt": "will of the herd",
+  "deck": "Ox of Rivertown",
+  "borough": false
+ },
+ {
+  "slot": "12-2",
+  "prompt": "the oldest ox",
+  "deck": "Ox of Rivertown",
+  "borough": false
+ },
+ {
+  "slot": "13-0",
+  "prompt": "way of the forge",
+  "deck": "Ox of Rivertown",
+  "borough": false
+ },
+ {
+  "slot": "13-1",
+  "prompt": "with a potter\u2019s wheel",
+  "deck": "Ox of Rivertown",
+  "borough": false
+ },
+ {
+  "slot": "13-2",
+  "prompt": "with bitter greens",
+  "deck": "Ox of Rivertown",
+  "borough": false
+ },
+ {
+  "slot": "14-0",
+  "prompt": "we ring the dusk bell",
+  "deck": "Ox of Rivertown",
+  "borough": false
+ },
+ {
+  "slot": "14-1",
+  "prompt": "right of hospitality",
+  "deck": "Ox of Rivertown",
+  "borough": false
+ },
+ {
+  "slot": "14-2",
+  "prompt": "a fair trade",
+  "deck": "Ox of Rivertown",
+  "borough": false
+ },
+ {
+  "slot": "15-0",
+  "prompt": "song of the village",
+  "deck": "Ox of Rivertown",
+  "borough": false
+ },
+ {
+  "slot": "15-1",
+  "prompt": "to harness the river",
+  "deck": "Ox of Rivertown",
+  "borough": false
+ },
+ {
+  "slot": "15-2",
+  "prompt": "our finest attire",
+  "deck": "Ox of Rivertown",
+  "borough": false
+ },
+ {
+  "slot": "16-0",
+  "prompt": "with a team of oxen",
+  "deck": "Ox of Rivertown",
+  "borough": false
+ },
+ {
+  "slot": "16-1",
+  "prompt": "wisdom of the council",
+  "deck": "Ox of Rivertown",
+  "borough": false
+ },
+ {
+  "slot": "16-2",
+  "prompt": "where medicine grows",
+  "deck": "Ox of Rivertown",
+  "borough": false
+ },
+ {
+  "slot": "17-0",
+  "prompt": "a gift of bread",
+  "deck": "Ox of Rivertown",
+  "borough": false
+ },
+ {
+  "slot": "17-1",
+  "prompt": "an oath of stone",
+  "deck": "Ox of Rivertown",
+  "borough": false
+ },
+ {
+  "slot": "17-2",
+  "prompt": "the lion\u2019s share",
+  "deck": "Lion of the Citadel",
+  "borough": false
+ },
+ {
+  "slot": "18-0",
+  "prompt": "ballad of the citadel",
+  "deck": "Lion of the Citadel",
+  "borough": false
+ },
+ {
+  "slot": "18-1",
+  "prompt": "how to start a battle",
+  "deck": "Lion of the Citadel",
+  "borough": false
+ },
+ {
+  "slot": "18-2",
+  "prompt": "loyal to the crown",
+  "deck": "Lion of the Citadel",
+  "borough": false
+ },
+ {
+  "slot": "19-0",
+  "prompt": "we sound the mountain horn",
+  "deck": "Lion of the Citadel",
+  "borough": false
+ },
+ {
+  "slot": "19-1",
+  "prompt": "why we braid our hair",
+  "deck": "Lion of the Citadel",
+  "borough": false
+ },
+ {
+  "slot": "19-2",
+  "prompt": "in courtly dress",
+  "deck": "Lion of the Citadel",
+  "borough": false
+ },
+ {
+  "slot": "20-0",
+  "prompt": "what pride demands",
+  "deck": "Lion of the Citadel",
+  "borough": false
+ },
+ {
+  "slot": "20-1",
+  "prompt": "my mother\u2019s armor",
+  "deck": "Lion of the Citadel",
+  "borough": false
+ },
+ {
+  "slot": "20-2",
+  "prompt": "wearing a lion mask",
+  "deck": "Lion of the Citadel",
+  "borough": false
+ },
+ {
+  "slot": "21-0",
+  "prompt": "the victory fire",
+  "deck": "Lion of the Citadel",
+  "borough": false
+ },
+ {
+  "slot": "21-1",
+  "prompt": "a traitor\u2019s mark",
+  "deck": "Lion of the Citadel",
+  "borough": false
+ },
+ {
+  "slot": "21-2",
+  "prompt": "with a golden harp",
+  "deck": "Lion of the Citadel",
+  "borough": false
+ },
+ {
+  "slot": "22-0",
+  "prompt": "with a lion\u2019s roar",
+  "deck": "Lion of the Citadel",
+  "borough": false
+ },
+ {
+  "slot": "22-1",
+  "prompt": "gossip of the court",
+  "deck": "Lion of the Citadel",
+  "borough": false
+ },
+ {
+  "slot": "22-2",
+  "prompt": "a trial of swords",
+  "deck": "Lion of the Citadel",
+  "borough": false
+ },
+ {
+  "slot": "23-0",
+  "prompt": "who eats first",
+  "deck": "Lion of the Citadel",
+  "borough": false
+ },
+ {
+  "slot": "23-1",
+  "prompt": "how to prepare a feast",
+  "deck": "Lion of the Citadel",
+  "borough": false
+ },
+ {
+  "slot": "23-2",
+  "prompt": "with hired help",
+  "deck": "Lion of the Citadel",
+  "borough": false
+ },
+ {
+  "slot": "24-0",
+  "prompt": "with loyal servants",
+  "deck": "Lion of the Citadel",
+  "borough": false
+ },
+ {
+  "slot": "24-1",
+  "prompt": "a dance of courtship",
+  "deck": "Lion of the Citadel",
+  "borough": false
+ },
+ {
+  "slot": "24-2",
+  "prompt": "two singing birds",
+  "deck": "Lion of the Citadel",
+  "borough": false
+ },
+ {
+  "slot": "25-0",
+  "prompt": "a deed if legend",
+  "deck": "Lion of the Citadel",
+  "borough": false
+ },
+ {
+  "slot": "25-1",
+  "prompt": "a hero\u2019s scar",
+  "deck": "Lion of the Citadel",
+  "borough": false
+ },
+ {
+  "slot": "25-2",
+  "prompt": "never back down",
+  "deck": "Lion of the Citadel",
+  "borough": false
+ },
+ {
+  "slot": "26-0",
+  "prompt": "what the Umbra takes",
+  "deck": "Umbra",
+  "borough": false
+ },
+ {
+  "slot": "26-1",
+  "prompt": "who joins the Umbra",
+  "deck": "Umbra",
+  "borough": false
+ },
+ {
+  "slot": "26-2",
+  "prompt": "who joins the Umbra",
+  "deck": "Umbra",
+  "borough": false
+ },
+ {
+  "slot": "27-0",
+  "prompt": "a lie of the Umbra",
+  "deck": "Umbra",
+  "borough": false
+ },
+ {
+  "slot": "27-1",
+  "prompt": "work of the Umbra",
+  "deck": "Umbra",
+  "borough": false
+ },
+ {
+  "slot": "27-2",
+  "prompt": "a lie of the Umbra",
+  "deck": "Umbra",
+  "borough": false
+ },
+ {
+  "slot": "28-0",
+  "prompt": "marked by the Umbra",
+  "deck": "Umbra",
+  "borough": false
+ },
+ {
+  "slot": "28-1",
+  "prompt": "what draws the Umbra",
+  "deck": "Umbra",
+  "borough": false
+ },
+ {
+  "slot": "28-2",
+  "prompt": "defiled by the Umbra",
+  "deck": "Umbra",
+  "borough": false
+ },
+ {
+  "slot": "29-0",
+  "prompt": "how we deny the Umbra",
+  "deck": "Umbra",
+  "borough": false
+ },
+ {
+  "slot": "29-1",
+  "prompt": "why we serve the Umbra",
+  "deck": "Umbra",
+  "borough": false
+ },
+ {
+  "slot": "29-2",
+  "prompt": "who warns of the Umbra",
+  "deck": "Umbra",
+  "borough": false
+ },
+ {
+  "slot": "30-0",
+  "prompt": "how the Umbra grows",
+  "deck": "Umbra",
+  "borough": false
+ },
+ {
+  "slot": "30-1",
+  "prompt": "the Umbra\u2019s Hunger",
+  "deck": "Umbra",
+  "borough": false
+ },
+ {
+  "slot": "30-2",
+  "prompt": "who fears the Umbra",
+  "deck": "Umbra",
+  "borough": false
+ },
+ {
+  "slot": "31-0",
+  "prompt": "what the Umbra destroys",
+  "deck": "Umbra",
+  "borough": false
+ },
+ {
+  "slot": "31-1",
+  "prompt": "herald of the Umbra",
+  "deck": "Umbra",
+  "borough": false
+ },
+ {
+  "slot": "31-2",
+  "prompt": "vision of the Umbra",
+  "deck": "Umbra",
+  "borough": false
+ },
+ {
+  "slot": "32-0",
+  "prompt": "scar of the Umbra",
+  "deck": "Umbra",
+  "borough": false
+ },
+ {
+  "slot": "32-1",
+  "prompt": "touch of the Umbra",
+  "deck": "Umbra",
+  "borough": false
+ },
+ {
+  "slot": "32-2",
+  "prompt": "song of the Umbra",
+  "deck": "Umbra",
+  "borough": false
+ },
+ {
+  "slot": "33-0",
+  "prompt": "history of the Umbra",
+  "deck": "Umbra",
+  "borough": false
+ },
+ {
+  "slot": "33-1",
+  "prompt": "voice of the Umbra",
+  "deck": "Umbra",
+  "borough": false
+ },
+ {
+  "slot": "33-2",
+  "prompt": "the Umbra in disguise",
+  "deck": "Umbra",
+  "borough": false
+ },
+ {
+  "slot": "34-0",
+  "prompt": "agents of the Umbra",
+  "deck": "Umbra",
+  "borough": false
+ },
+ {
+  "slot": "34-1",
+  "prompt": "song of the towers",
+  "deck": "Fox of the Towers",
+  "borough": false
+ },
+ {
+  "slot": "34-2",
+  "prompt": "how to spring a trap",
+  "deck": "Fox of the Towers",
+  "borough": false
+ },
+ {
+  "slot": "35-0",
+  "prompt": "oath of the towers",
+  "deck": "Fox of the Towers",
+  "borough": false
+ },
+ {
+  "slot": "35-1",
+  "prompt": "bounty of the hunt",
+  "deck": "Fox of the Towers",
+  "borough": false
+ },
+ {
+  "slot": "35-2",
+  "prompt": "why we pierce our ears",
+  "deck": "Fox of the Towers",
+  "borough": false
+ },
+ {
+  "slot": "36-0",
+  "prompt": "with soft fur",
+  "deck": "Fox of the Towers",
+  "borough": false
+ },
+ {
+  "slot": "36-1",
+  "prompt": "what survival demands",
+  "deck": "Fox of the Towers",
+  "borough": false
+ },
+ {
+  "slot": "36-2",
+  "prompt": "what we bury",
+  "deck": "Fox of the Towers",
+  "borough": false
+ },
+ {
+  "slot": "37-0",
+  "prompt": "wearing a fox mask",
+  "deck": "Fox of the Towers",
+  "borough": false
+ },
+ {
+  "slot": "37-1",
+  "prompt": "with an oathbreaker\u2019s brand",
+  "deck": "Fox of the Towers",
+  "borough": false
+ },
+ {
+  "slot": "37-2",
+  "prompt": "with a jawbone blade",
+  "deck": "Fox of the Towers",
+  "borough": false
+ },
+ {
+  "slot": "38-0",
+  "prompt": "mark of the fox",
+  "deck": "Fox of the Towers",
+  "borough": false
+ },
+ {
+  "slot": "38-1",
+  "prompt": "a rite of courtship",
+  "deck": "Fox of the Towers",
+  "borough": false
+ },
+ {
+  "slot": "38-2",
+  "prompt": "we share the cup",
+  "deck": "Fox of the Towers",
+  "borough": false
+ },
+ {
+  "slot": "39-0",
+  "prompt": "a meal of ash cakes",
+  "deck": "Fox of the Towers",
+  "borough": false
+ },
+ {
+  "slot": "39-1",
+  "prompt": "to the bone",
+  "deck": "Fox of the Towers",
+  "borough": false
+ },
+ {
+  "slot": "39-2",
+  "prompt": "with a band of hunters",
+  "deck": "Fox of the Towers",
+  "borough": false
+ },
+ {
+  "slot": "40-0",
+  "prompt": "a cautionary tale",
+  "deck": "Fox of the Towers",
+  "borough": false
+ },
+ {
+  "slot": "40-1",
+  "prompt": "a boasting game",
+  "deck": "Fox of the Towers",
+  "borough": false
+ },
+ {
+  "slot": "40-2",
+  "prompt": "a gift of blood",
+  "deck": "Fox of the Towers",
+  "borough": false
+ },
+ {
+  "slot": "41-0",
+  "prompt": "with bow and arrow",
+  "deck": "Fox of the Towers",
+  "borough": false
+ },
+ {
+  "slot": "41-1",
+  "prompt": "what grows in winter",
+  "deck": "Fox of the Towers",
+  "borough": false
+ },
+ {
+  "slot": "41-2",
+  "prompt": "who lights the fire",
+  "deck": "Fox of the Towers",
+  "borough": false
+ },
+ {
+  "slot": "42-0",
+  "prompt": "right of hospitality",
+  "deck": "Fox of the Towers",
+  "borough": false
+ },
+ {
+  "slot": "42-1",
+  "prompt": "a fair trade",
+  "deck": "Fox of the Towers",
+  "borough": false
+ },
+ {
+  "slot": "42-2",
+  "prompt": "we watch from above",
+  "deck": "Lantern Crow",
+  "borough": false
+ },
+ {
+  "slot": "43-0",
+  "prompt": "funeral",
+  "deck": "Lantern Crow",
+  "borough": false
+ },
+ {
+  "slot": "43-1",
+  "prompt": "how to lose an argument",
+  "deck": "Lantern Crow",
+  "borough": false
+ },
+ {
+  "slot": "43-2",
+  "prompt": "the strength of numbers",
+  "deck": "Lantern Crow",
+  "borough": false
+ },
+ {
+  "slot": "44-0",
+  "prompt": "who lights the lantern",
+  "deck": "Lantern Crow",
+  "borough": false
+ },
+ {
+  "slot": "44-1",
+  "prompt": "a scholar\u2019s question",
+  "deck": "Lantern Crow",
+  "borough": false
+ },
+ {
+  "slot": "44-2",
+  "prompt": "stained with ink",
+  "deck": "Lantern Crow",
+  "borough": false
+ },
+ {
+  "slot": "45-0",
+  "prompt": "dressed in black",
+  "deck": "Lantern Crow",
+  "borough": false
+ },
+ {
+  "slot": "45-1",
+  "prompt": "a profitable trade",
+  "deck": "Lantern Crow",
+  "borough": false
+ },
+ {
+  "slot": "45-2",
+  "prompt": "a token of love",
+  "deck": "Lantern Crow",
+  "borough": false
+ },
+ {
+  "slot": "46-0",
+  "prompt": "wearing a crow mask",
+  "deck": "Lantern Crow",
+  "borough": false
+ },
+ {
+  "slot": "46-1",
+  "prompt": "the greatest value",
+  "deck": "Lantern Crow",
+  "borough": false
+ },
+ {
+  "slot": "46-2",
+  "prompt": "with a merchant\u2019s scale",
+  "deck": "Lantern Crow",
+  "borough": false
+ },
+ {
+  "slot": "47-0",
+  "prompt": "scavenger\u2019s stew",
+  "deck": "Lantern Crow",
+  "borough": false
+ },
+ {
+  "slot": "47-1",
+  "prompt": "a trial of knowledge",
+  "deck": "Lantern Crow",
+  "borough": false
+ },
+ {
+  "slot": "47-2",
+  "prompt": "law of the skies",
+  "deck": "Lantern Crow",
+  "borough": false
+ },
+ {
+  "slot": "48-0",
+  "prompt": "as the coffee brews",
+  "deck": "Lantern Crow",
+  "borough": false
+ },
+ {
+  "slot": "48-1",
+  "prompt": "who is cast out",
+  "deck": "Lantern Crow",
+  "borough": false
+ },
+ {
+  "slot": "48-2",
+  "prompt": "a theory of magic",
+  "deck": "Lantern Crow",
+  "borough": false
+ },
+ {
+  "slot": "49-0",
+  "prompt": "while the candle burns",
+  "deck": "Lantern Crow",
+  "borough": false
+ },
+ {
+  "slot": "49-1",
+  "prompt": "a mocking game",
+  "deck": "Lantern Crow",
+  "borough": false
+ },
+ {
+  "slot": "49-2",
+  "prompt": "a salvaged treasure",
+  "deck": "Lantern Crow",
+  "borough": false
+ },
+ {
+  "slot": "50-0",
+  "prompt": "with silver feathers",
+  "deck": "Lantern Crow",
+  "borough": false
+ },
+ {
+  "slot": "50-1",
+  "prompt": "we remember our enemy",
+  "deck": "Lantern Crow",
+  "borough": false
+ },
+ {
+  "slot": "50-2",
+  "prompt": "how to teach a lesson",
+  "deck": "Lantern Crow",
+  "borough": false
+ },
+ {
+  "slot": "51-0",
+  "prompt": "love without condition",
+  "deck": "Glowdog",
+  "borough": false
+ },
+ {
+  "slot": "51-1",
+  "prompt": "devotion",
+  "deck": "Glowdog",
+  "borough": false
+ },
+ {
+  "slot": "51-2",
+  "prompt": "The Borough Wanders",
+  "deck": "Glowdog",
+  "borough": true
+ },
+ {
+  "slot": "52-0",
+  "prompt": "call of the moon",
+  "deck": "Glowdog",
+  "borough": false
+ },
+ {
+  "slot": "52-1",
+  "prompt": "glowing",
+  "deck": "Glowdog",
+  "borough": false
+ },
+ {
+  "slot": "52-2",
+  "prompt": "a flashy tattoo",
+  "deck": "Glowdog",
+  "borough": false
+ },
+ {
+  "slot": "53-0",
+  "prompt": "how we share the news",
+  "deck": "Glowdog",
+  "borough": false
+ },
+ {
+  "slot": "53-1",
+  "prompt": "how to find a job",
+  "deck": "Glowdog",
+  "borough": false
+ },
+ {
+  "slot": "53-2",
+  "prompt": "with a troupe of performers",
+  "deck": "Glowdog",
+  "borough": false
+ },
+ {
+  "slot": "54-0",
+  "prompt": "wearing a glow mask",
+  "deck": "Glowdog",
+  "borough": false
+ },
+ {
+  "slot": "54-1",
+  "prompt": "on a glimmer loom",
+  "deck": "Glowdog",
+  "borough": false
+ },
+ {
+  "slot": "54-2",
+  "prompt": "how to start trouble",
+  "deck": "Glowdog",
+  "borough": false
+ },
+ {
+  "slot": "55-0",
+  "prompt": "the song we sing",
+  "deck": "Glowdog",
+  "borough": false
+ },
+ {
+  "slot": "55-1",
+  "prompt": "with a crew of workers",
+  "deck": "Glowdog",
+  "borough": false
+ },
+ {
+  "slot": "55-2",
+  "prompt": "territory",
+  "deck": "Glowdog",
+  "borough": false
+ },
+ {
+  "slot": "56-0",
+  "prompt": "with bone broth",
+  "deck": "Glowdog",
+  "borough": false
+ },
+ {
+  "slot": "56-1",
+  "prompt": "honest wages",
+  "deck": "Glowdog",
+  "borough": false
+ },
+ {
+  "slot": "56-2",
+  "prompt": "mealtime",
+  "deck": "Glowdog",
+  "borough": false
+ },
+ {
+  "slot": "57-0",
+  "prompt": "when to throw a party",
+  "deck": "Glowdog",
+  "borough": false
+ },
+ {
+  "slot": "57-1",
+  "prompt": "with a rebel\u2019s mark",
+  "deck": "Glowdog",
+  "borough": false
+ },
+ {
+  "slot": "57-2",
+  "prompt": "my family\u2019s debt",
+  "deck": "Glowdog",
+  "borough": false
+ },
+ {
+  "slot": "58-0",
+  "prompt": "free and wild",
+  "deck": "Glowdog",
+  "borough": false
+ },
+ {
+  "slot": "58-1",
+  "prompt": "three handsome hounds",
+  "deck": "Glowdog",
+  "borough": false
+ },
+ {
+  "slot": "58-2",
+  "prompt": "waste nothing",
+  "deck": "Glowdog",
+  "borough": false
+ },
+ {
+  "slot": "59-0",
+  "prompt": "kind, but not honest.",
+  "deck": "Glowdog",
+  "borough": false
+ },
+ {
+  "slot": "59-1",
+  "prompt": "loyalty without question",
+  "deck": "Brass Ones",
+  "borough": false
+ },
+ {
+  "slot": "59-2",
+  "prompt": "orchestra",
+  "deck": "Brass Ones",
+  "borough": false
+ },
+ {
+  "slot": "60-0",
+  "prompt": "how to keep the peace",
+  "deck": "Brass Ones",
+  "borough": false
+ },
+ {
+  "slot": "60-1",
+  "prompt": "for leisure",
+  "deck": "Brass Ones",
+  "borough": false
+ },
+ {
+  "slot": "60-2",
+  "prompt": "with a horse\u2019s endurance",
+  "deck": "Brass Ones",
+  "borough": false
+ },
+ {
+  "slot": "61-0",
+  "prompt": "in jewels",
+  "deck": "Brass Ones",
+  "borough": false
+ },
+ {
+  "slot": "61-1",
+  "prompt": "with a mask of brass",
+  "deck": "Brass Ones",
+  "borough": false
+ },
+ {
+  "slot": "61-2",
+  "prompt": "without words",
+  "deck": "Brass Ones",
+  "borough": false
+ },
+ {
+  "slot": "62-0",
+  "prompt": "fresh apples",
+  "deck": "Brass Ones",
+  "borough": false
+ },
+ {
+  "slot": "62-1",
+  "prompt": "the price of failure",
+  "deck": "Brass Ones",
+  "borough": false
+ },
+ {
+  "slot": "62-2",
+  "prompt": "on a fire-eyed steed",
+  "deck": "Brass Ones",
+  "borough": false
+ },
+ {
+  "slot": "63-0",
+  "prompt": "with a trainer\u2019s harness",
+  "deck": "Brass Ones",
+  "borough": false
+ },
+ {
+  "slot": "63-1",
+  "prompt": "in fashion",
+  "deck": "Brass Ones",
+  "borough": false
+ },
+ {
+  "slot": "63-2",
+  "prompt": "the rule of law",
+  "deck": "Brass Ones",
+  "borough": false
+ },
+ {
+  "slot": "64-0",
+  "prompt": "flawless",
+  "deck": "Brass Ones",
+  "borough": false
+ },
+ {
+  "slot": "64-1",
+  "prompt": "as the dumplings steam",
+  "deck": "Brass Ones",
+  "borough": false
+ },
+ {
+  "slot": "64-2",
+  "prompt": "unbridled",
+  "deck": "Brass Ones",
+  "borough": false
+ },
+ {
+  "slot": "65-0",
+  "prompt": "The Borough Wanders",
+  "deck": "Brass Ones",
+  "borough": true
+ },
+ {
+  "slot": "65-1",
+  "prompt": "only if we allow",
+  "deck": "Brass Ones",
+  "borough": false
+ },
+ {
+  "slot": "65-2",
+  "prompt": "a criminal\u2019s mark",
+  "deck": "Brass Ones",
+  "borough": false
+ },
+ {
+  "slot": "66-0",
+  "prompt": "honest but not kind",
+  "deck": "Brass Ones",
+  "borough": false
+ },
+ {
+  "slot": "66-1",
+  "prompt": "of brass",
+  "deck": "Brass Ones",
+  "borough": false
+ },
+ {
+  "slot": "66-2",
+  "prompt": "a display of wealth",
+  "deck": "Brass Ones",
+  "borough": false
+ },
+ {
+  "slot": "67-0",
+  "prompt": "to protect the City",
+  "deck": "Brass Ones",
+  "borough": false
+ },
+ {
+  "slot": "67-1",
+  "prompt": "we ring the moon bell",
+  "deck": "Brass Ones",
+  "borough": false
+ },
+ {
+  "slot": "67-2",
+  "prompt": "in our likeness",
+  "deck": "Mask Maker",
+  "borough": false
+ },
+ {
+  "slot": "68-0",
+  "prompt": "a chant for making",
+  "deck": "Mask Maker",
+  "borough": false
+ },
+ {
+  "slot": "68-1",
+  "prompt": "a child\u2019s puzzle",
+  "deck": "Mask Maker",
+  "borough": false
+ },
+ {
+  "slot": "68-2",
+  "prompt": "too good to last",
+  "deck": "Mask Maker",
+  "borough": false
+ },
+ {
+  "slot": "69-0",
+  "prompt": "who drives",
+  "deck": "Mask Maker",
+  "borough": false
+ },
+ {
+  "slot": "69-1",
+  "prompt": "right of the wanderer",
+  "deck": "Mask Maker",
+  "borough": false
+ },
+ {
+  "slot": "69-2",
+  "prompt": "one gilded songbird",
+  "deck": "Mask Maker",
+  "borough": false
+ },
+ {
+  "slot": "70-0",
+  "prompt": "what the mask demands",
+  "deck": "Mask Maker",
+  "borough": false
+ },
+ {
+  "slot": "70-1",
+  "prompt": "my beloved\u2019s face",
+  "deck": "Mask Maker",
+  "borough": false
+ },
+ {
+  "slot": "70-2",
+  "prompt": "without a mask",
+  "deck": "Mask Maker",
+  "borough": false
+ },
+ {
+  "slot": "71-0",
+  "prompt": "with painted eyes",
+  "deck": "Mask Maker",
+  "borough": false
+ },
+ {
+  "slot": "71-1",
+  "prompt": "with a healer\u2019s tools",
+  "deck": "Mask Maker",
+  "borough": false
+ },
+ {
+  "slot": "71-2",
+  "prompt": "who follows the dream",
+  "deck": "Mask Maker",
+  "borough": false
+ },
+ {
+  "slot": "72-0",
+  "prompt": "a flawed design",
+  "deck": "Mask Maker",
+  "borough": false
+ },
+ {
+  "slot": "72-1",
+  "prompt": "the ancient pyre",
+  "deck": "Mask Maker",
+  "borough": false
+ },
+ {
+  "slot": "72-2",
+  "prompt": "with bitter tea",
+  "deck": "Mask Maker",
+  "borough": false
+ },
+ {
+  "slot": "73-0",
+  "prompt": "an ancestor\u2019s mask",
+  "deck": "Mask Maker",
+  "borough": false
+ },
+ {
+  "slot": "73-1",
+  "prompt": "a blend of spices",
+  "deck": "Mask Maker",
+  "borough": false
+ },
+ {
+  "slot": "73-2",
+  "prompt": "dance of the engine",
+  "deck": "Mask Maker",
+  "borough": false
+ },
+ {
+  "slot": "74-0",
+  "prompt": "one old machine",
+  "deck": "Mask Maker",
+  "borough": false
+ },
+ {
+  "slot": "74-1",
+  "prompt": "a teaching game",
+  "deck": "Mask Maker",
+  "borough": false
+ },
+ {
+  "slot": "74-2",
+  "prompt": "we ring the dusk bell",
+  "deck": "Mask Maker",
+  "borough": false
+ },
+ {
+  "slot": "75-0",
+  "prompt": "made beautiful",
+  "deck": "Mask Maker",
+  "borough": false
+ },
+ {
+  "slot": "75-1",
+  "prompt": "unmakeable",
+  "deck": "Mask Maker",
+  "borough": false
+ },
+ {
+  "slot": "75-2",
+  "prompt": "oneness",
+  "deck": "Moonbee",
+  "borough": false
+ },
+ {
+  "slot": "76-0",
+  "prompt": "choir",
+  "deck": "Moonbee",
+  "borough": false
+ },
+ {
+  "slot": "76-1",
+  "prompt": "The Borough Wanders",
+  "deck": "Moonbee",
+  "borough": true
+ },
+ {
+  "slot": "76-2",
+  "prompt": "Queen",
+  "deck": "Moonbee",
+  "borough": false
+ },
+ {
+  "slot": "77-0",
+  "prompt": "hum",
+  "deck": "Moonbee",
+  "borough": false
+ },
+ {
+  "slot": "77-1",
+  "prompt": "wing",
+  "deck": "Moonbee",
+  "borough": false
+ },
+ {
+  "slot": "77-2",
+  "prompt": "fruit",
+  "deck": "Moonbee",
+  "borough": false
+ },
+ {
+  "slot": "78-0",
+  "prompt": "royal",
+  "deck": "Moonbee",
+  "borough": false
+ },
+ {
+  "slot": "78-1",
+  "prompt": "beauty",
+  "deck": "Moonbee",
+  "borough": false
+ },
+ {
+  "slot": "78-2",
+  "prompt": "flower",
+  "deck": "Moonbee",
+  "borough": false
+ },
+ {
+  "slot": "79-0",
+  "prompt": "garden",
+  "deck": "Moonbee",
+  "borough": false
+ },
+ {
+  "slot": "79-1",
+  "prompt": "birthday",
+  "deck": "Moonbee",
+  "borough": false
+ },
+ {
+  "slot": "79-2",
+  "prompt": "moonlight",
+  "deck": "Moonbee",
+  "borough": false
+ },
+ {
+  "slot": "80-0",
+  "prompt": "antenna",
+  "deck": "Moonbee",
+  "borough": false
+ },
+ {
+  "slot": "80-1",
+  "prompt": "thousands",
+  "deck": "Moonbee",
+  "borough": false
+ },
+ {
+  "slot": "80-2",
+  "prompt": "gilded",
+  "deck": "Moonbee",
+  "borough": false
+ },
+ {
+  "slot": "81-0",
+  "prompt": "honey",
+  "deck": "Moonbee",
+  "borough": false
+ },
+ {
+  "slot": "81-1",
+  "prompt": "fragrance",
+  "deck": "Moonbee",
+  "borough": false
+ },
+ {
+  "slot": "81-2",
+  "prompt": "worker",
+  "deck": "Moonbee",
+  "borough": false
+ },
+ {
+  "slot": "82-0",
+  "prompt": "alarm",
+  "deck": "Moonbee",
+  "borough": false
+ },
+ {
+  "slot": "82-1",
+  "prompt": "busy",
+  "deck": "Moonbee",
+  "borough": false
+ },
+ {
+  "slot": "82-2",
+  "prompt": "sting",
+  "deck": "Moonbee",
+  "borough": false
+ },
+ {
+  "slot": "83-0",
+  "prompt": "morning",
+  "deck": "Moonbee",
+  "borough": false
+ },
+ {
+  "slot": "83-1",
+  "prompt": "dessert",
+  "deck": "Moonbee",
+  "borough": false
+ },
+ {
+  "slot": "83-2",
+  "prompt": "assleep",
+  "deck": "Moonbee",
+  "borough": false
+ }
+]

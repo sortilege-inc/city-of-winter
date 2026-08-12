@@ -1,0 +1,202 @@
+EXTENSION "CityOfWinter_Cards_MaskMaker" EXTENDS "CityOfWinter_Core_Base" {
+    NAME "City of Winter — the Mask Maker Tradition Deck"
+    VERSION "0.5"
+    SPEC_VERSION "0.5"
+    RELEASE_DATE "2026-08-12"
+
+    # 24 cards. Prompts are verbatim from the card faces;
+    # deck membership is taken from the icon printed on each card back.
+
+    #COW12dfdf4054cfc175374e8 ^"Mask Maker: in our likeness" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "in our likeness"
+            ^"Deck" ^"Tradition Deck" #COW1dbe2130e389b16018eb3 ^"Mask Maker"
+        }
+    }
+
+    #COWa18cae274108ad168bf92 ^"Mask Maker: a chant for making" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "a chant for making"
+            ^"Deck" ^"Tradition Deck" #COW1dbe2130e389b16018eb3 ^"Mask Maker"
+        }
+    }
+
+    #COWd9af6aea20a8712b67119 ^"Mask Maker: a child’s puzzle" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "a child’s puzzle"
+            ^"Deck" ^"Tradition Deck" #COW1dbe2130e389b16018eb3 ^"Mask Maker"
+        }
+    }
+
+    #COWfd4777d8ea7f488d83f06 ^"Mask Maker: too good to last" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "too good to last"
+            ^"Deck" ^"Tradition Deck" #COW1dbe2130e389b16018eb3 ^"Mask Maker"
+        }
+    }
+
+    #COW713d0155b0bc28906054d ^"Mask Maker: who drives" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "who drives"
+            ^"Deck" ^"Tradition Deck" #COW1dbe2130e389b16018eb3 ^"Mask Maker"
+        }
+    }
+
+    #COWda9974442184a9134085f ^"Mask Maker: right of the wanderer" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "right of the wanderer"
+            ^"Deck" ^"Tradition Deck" #COW1dbe2130e389b16018eb3 ^"Mask Maker"
+        }
+    }
+
+    #COWbb1ab01400b8ba7ccb14c ^"Mask Maker: one gilded songbird" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "one gilded songbird"
+            ^"Deck" ^"Tradition Deck" #COW1dbe2130e389b16018eb3 ^"Mask Maker"
+        }
+    }
+
+    #COWd456ae191d0fb9bf2848f ^"Mask Maker: what the mask demands" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "what the mask demands"
+            ^"Deck" ^"Tradition Deck" #COW1dbe2130e389b16018eb3 ^"Mask Maker"
+        }
+    }
+
+    #COWcf28959be8c2c197f8e18 ^"Mask Maker: my beloved’s face" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "my beloved’s face"
+            ^"Deck" ^"Tradition Deck" #COW1dbe2130e389b16018eb3 ^"Mask Maker"
+        }
+    }
+
+    #COWcd1937c51f0fc2eb758e2 ^"Mask Maker: without a mask" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "without a mask"
+            ^"Deck" ^"Tradition Deck" #COW1dbe2130e389b16018eb3 ^"Mask Maker"
+        }
+    }
+
+    #COWfafbf231ed7e34dae5c6b ^"Mask Maker: with painted eyes" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "with painted eyes"
+            ^"Deck" ^"Tradition Deck" #COW1dbe2130e389b16018eb3 ^"Mask Maker"
+        }
+    }
+
+    #COW30666807fb3e8c63d71e8 ^"Mask Maker: with a healer’s tools" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "with a healer’s tools"
+            ^"Deck" ^"Tradition Deck" #COW1dbe2130e389b16018eb3 ^"Mask Maker"
+        }
+    }
+
+    #COWd2055fcff29f8d4b55104 ^"Mask Maker: who follows the dream" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "who follows the dream"
+            ^"Deck" ^"Tradition Deck" #COW1dbe2130e389b16018eb3 ^"Mask Maker"
+        }
+    }
+
+    #COW45631c8ecec0dd63f725f ^"Mask Maker: a flawed design" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "a flawed design"
+            ^"Deck" ^"Tradition Deck" #COW1dbe2130e389b16018eb3 ^"Mask Maker"
+        }
+    }
+
+    #COW07002c72564ce3c050ac2 ^"Mask Maker: the ancient pyre" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "the ancient pyre"
+            ^"Deck" ^"Tradition Deck" #COW1dbe2130e389b16018eb3 ^"Mask Maker"
+        }
+    }
+
+    #COWd291d5cd1f4935e03c1ce ^"Mask Maker: with bitter tea" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "with bitter tea"
+            ^"Deck" ^"Tradition Deck" #COW1dbe2130e389b16018eb3 ^"Mask Maker"
+        }
+    }
+
+    #COW04fde7b22077590f87745 ^"Mask Maker: an ancestor’s mask" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "an ancestor’s mask"
+            ^"Deck" ^"Tradition Deck" #COW1dbe2130e389b16018eb3 ^"Mask Maker"
+        }
+    }
+
+    #COW6bd2255758a7beba92245 ^"Mask Maker: a blend of spices" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "a blend of spices"
+            ^"Deck" ^"Tradition Deck" #COW1dbe2130e389b16018eb3 ^"Mask Maker"
+        }
+    }
+
+    #COW201721fcd84dc0c82dfc9 ^"Mask Maker: dance of the engine" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "dance of the engine"
+            ^"Deck" ^"Tradition Deck" #COW1dbe2130e389b16018eb3 ^"Mask Maker"
+        }
+    }
+
+    #COW613c2931321213663db9a ^"Mask Maker: one old machine" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "one old machine"
+            ^"Deck" ^"Tradition Deck" #COW1dbe2130e389b16018eb3 ^"Mask Maker"
+        }
+    }
+
+    #COWa74792d376e97458ac7fa ^"Mask Maker: a teaching game" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "a teaching game"
+            ^"Deck" ^"Tradition Deck" #COW1dbe2130e389b16018eb3 ^"Mask Maker"
+        }
+    }
+
+    #COW1ff7818ddc190f1e3e4f2 ^"Mask Maker: we ring the dusk bell" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "we ring the dusk bell"
+            ^"Deck" ^"Tradition Deck" #COW1dbe2130e389b16018eb3 ^"Mask Maker"
+        }
+    }
+
+    #COWa393be0fb58e5d3d75aa6 ^"Mask Maker: made beautiful" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "made beautiful"
+            ^"Deck" ^"Tradition Deck" #COW1dbe2130e389b16018eb3 ^"Mask Maker"
+        }
+    }
+
+    #COW83331239e018bdff48a41 ^"Mask Maker: unmakeable" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "unmakeable"
+            ^"Deck" ^"Tradition Deck" #COW1dbe2130e389b16018eb3 ^"Mask Maker"
+        }
+    }
+
+}

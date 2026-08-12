@@ -1,0 +1,210 @@
+EXTENSION "CityOfWinter_Cards_LionoftheCitadel" EXTENDS "CityOfWinter_Core_Base" {
+    NAME "City of Winter — the Lion of the Citadel Tradition Deck"
+    VERSION "0.5"
+    SPEC_VERSION "0.5"
+    RELEASE_DATE "2026-08-12"
+
+    # 25 cards. Prompts are verbatim from the card faces;
+    # deck membership is taken from the icon printed on each card back.
+
+    #COWa4dc12b0a6e8c90211863 ^"Lion of the Citadel: the lion’s share" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "the lion’s share"
+            ^"Deck" ^"Tradition Deck" #COW61ede29d5478b4480aaf6 ^"Lion of the Citadel"
+        }
+    }
+
+    #COWf7b3eb4577686a44552d1 ^"Lion of the Citadel: ballad of the citadel" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "ballad of the citadel"
+            ^"Deck" ^"Tradition Deck" #COW61ede29d5478b4480aaf6 ^"Lion of the Citadel"
+        }
+    }
+
+    #COW3ae3d2306508db3d70930 ^"Lion of the Citadel: how to start a battle" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "how to start a battle"
+            ^"Deck" ^"Tradition Deck" #COW61ede29d5478b4480aaf6 ^"Lion of the Citadel"
+        }
+    }
+
+    #COW8312d093f1772725a47fa ^"Lion of the Citadel: loyal to the crown" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "loyal to the crown"
+            ^"Deck" ^"Tradition Deck" #COW61ede29d5478b4480aaf6 ^"Lion of the Citadel"
+        }
+    }
+
+    #COWee690dc0d6e0f49557119 ^"Lion of the Citadel: we sound the mountain horn" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "we sound the mountain horn"
+            ^"Deck" ^"Tradition Deck" #COW61ede29d5478b4480aaf6 ^"Lion of the Citadel"
+        }
+    }
+
+    #COW263d01229f5d7cefca91f ^"Lion of the Citadel: why we braid our hair" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "why we braid our hair"
+            ^"Deck" ^"Tradition Deck" #COW61ede29d5478b4480aaf6 ^"Lion of the Citadel"
+        }
+    }
+
+    #COW61d58ea51180c5ac41fce ^"Lion of the Citadel: in courtly dress" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "in courtly dress"
+            ^"Deck" ^"Tradition Deck" #COW61ede29d5478b4480aaf6 ^"Lion of the Citadel"
+        }
+    }
+
+    #COW9865c586766d5171e3e06 ^"Lion of the Citadel: what pride demands" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "what pride demands"
+            ^"Deck" ^"Tradition Deck" #COW61ede29d5478b4480aaf6 ^"Lion of the Citadel"
+        }
+    }
+
+    #COW76b3214ec6a42db0a338d ^"Lion of the Citadel: my mother’s armor" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "my mother’s armor"
+            ^"Deck" ^"Tradition Deck" #COW61ede29d5478b4480aaf6 ^"Lion of the Citadel"
+        }
+    }
+
+    #COWa3e3b36b20054ff4df9c7 ^"Lion of the Citadel: wearing a lion mask" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "wearing a lion mask"
+            ^"Deck" ^"Tradition Deck" #COW61ede29d5478b4480aaf6 ^"Lion of the Citadel"
+        }
+    }
+
+    #COWc08ee596cf8bb62a9e587 ^"Lion of the Citadel: the victory fire" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "the victory fire"
+            ^"Deck" ^"Tradition Deck" #COW61ede29d5478b4480aaf6 ^"Lion of the Citadel"
+        }
+    }
+
+    #COWd7564bce8f76cbbb87057 ^"Lion of the Citadel: a traitor’s mark" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "a traitor’s mark"
+            ^"Deck" ^"Tradition Deck" #COW61ede29d5478b4480aaf6 ^"Lion of the Citadel"
+        }
+    }
+
+    #COW97795a5d418d0b7169b16 ^"Lion of the Citadel: with a golden harp" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "with a golden harp"
+            ^"Deck" ^"Tradition Deck" #COW61ede29d5478b4480aaf6 ^"Lion of the Citadel"
+        }
+    }
+
+    #COWbc09ca9e34f0537f214ee ^"Lion of the Citadel: with a lion’s roar" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "with a lion’s roar"
+            ^"Deck" ^"Tradition Deck" #COW61ede29d5478b4480aaf6 ^"Lion of the Citadel"
+        }
+    }
+
+    #COWa80cfd5ecaef4e88d8840 ^"Lion of the Citadel: gossip of the court" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "gossip of the court"
+            ^"Deck" ^"Tradition Deck" #COW61ede29d5478b4480aaf6 ^"Lion of the Citadel"
+        }
+    }
+
+    #COW6881a7934f6dd0be08d50 ^"Lion of the Citadel: a trial of swords" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "a trial of swords"
+            ^"Deck" ^"Tradition Deck" #COW61ede29d5478b4480aaf6 ^"Lion of the Citadel"
+        }
+    }
+
+    #COW79ebcb31f7734bd971c58 ^"Lion of the Citadel: who eats first" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "who eats first"
+            ^"Deck" ^"Tradition Deck" #COW61ede29d5478b4480aaf6 ^"Lion of the Citadel"
+        }
+    }
+
+    #COW7710c05a77eb4f58dc79d ^"Lion of the Citadel: how to prepare a feast" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "how to prepare a feast"
+            ^"Deck" ^"Tradition Deck" #COW61ede29d5478b4480aaf6 ^"Lion of the Citadel"
+        }
+    }
+
+    #COWa94acda560a722c24db90 ^"Lion of the Citadel: with hired help" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "with hired help"
+            ^"Deck" ^"Tradition Deck" #COW61ede29d5478b4480aaf6 ^"Lion of the Citadel"
+        }
+    }
+
+    #COWd1dabab0ce679e83d4323 ^"Lion of the Citadel: with loyal servants" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "with loyal servants"
+            ^"Deck" ^"Tradition Deck" #COW61ede29d5478b4480aaf6 ^"Lion of the Citadel"
+        }
+    }
+
+    #COW46c0731538475ea807640 ^"Lion of the Citadel: a dance of courtship" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "a dance of courtship"
+            ^"Deck" ^"Tradition Deck" #COW61ede29d5478b4480aaf6 ^"Lion of the Citadel"
+        }
+    }
+
+    #COW73d66b7acf2aeb9762f94 ^"Lion of the Citadel: two singing birds" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "two singing birds"
+            ^"Deck" ^"Tradition Deck" #COW61ede29d5478b4480aaf6 ^"Lion of the Citadel"
+        }
+    }
+
+    #COW70f4eb232bc75ae181cd2 ^"Lion of the Citadel: a deed if legend" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "a deed if legend"
+            ^"Deck" ^"Tradition Deck" #COW61ede29d5478b4480aaf6 ^"Lion of the Citadel"
+        }
+    }
+
+    #COW8fb0baf59eda865ba4d94 ^"Lion of the Citadel: a hero’s scar" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "a hero’s scar"
+            ^"Deck" ^"Tradition Deck" #COW61ede29d5478b4480aaf6 ^"Lion of the Citadel"
+        }
+    }
+
+    #COW3bc0032193afeff854149 ^"Lion of the Citadel: never back down" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "never back down"
+            ^"Deck" ^"Tradition Deck" #COW61ede29d5478b4480aaf6 ^"Lion of the Citadel"
+        }
+    }
+
+}

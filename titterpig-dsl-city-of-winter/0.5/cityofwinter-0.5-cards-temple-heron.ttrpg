@@ -1,0 +1,210 @@
+EXTENSION "CityOfWinter_Cards_TempleHeron" EXTENDS "CityOfWinter_Core_Base" {
+    NAME "City of Winter — the Temple Heron Tradition Deck"
+    VERSION "0.5"
+    SPEC_VERSION "0.5"
+    RELEASE_DATE "2026-08-12"
+
+    # 25 cards. Prompts are verbatim from the card faces;
+    # deck membership is taken from the icon printed on each card back.
+
+    #COW7f385e216446e26c8fe92 ^"Temple Heron: as long as it takes" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "as long as it takes"
+            ^"Deck" ^"Tradition Deck" #COW734276ea584a893c4fea1 ^"Temple Heron"
+        }
+    }
+
+    #COWe9895aea3ff17195aaf38 ^"Temple Heron: hymn of the temple" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "hymn of the temple"
+            ^"Deck" ^"Tradition Deck" #COW734276ea584a893c4fea1 ^"Temple Heron"
+        }
+    }
+
+    #COW8a31bae04107d522ca8cb ^"Temple Heron: to catch a fish" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "to catch a fish"
+            ^"Deck" ^"Tradition Deck" #COW734276ea584a893c4fea1 ^"Temple Heron"
+        }
+    }
+
+    #COW1ef35e65bc280f7f6eac6 ^"Temple Heron: who knows the prayer" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "who knows the prayer"
+            ^"Deck" ^"Tradition Deck" #COW734276ea584a893c4fea1 ^"Temple Heron"
+        }
+    }
+
+    #COW8ccbb1ebe08272b8a340c ^"Temple Heron: with spear and net" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "with spear and net"
+            ^"Deck" ^"Tradition Deck" #COW734276ea584a893c4fea1 ^"Temple Heron"
+        }
+    }
+
+    #COWba73ba62a175a0a2e9ec2 ^"Temple Heron: the river dream" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "the river dream"
+            ^"Deck" ^"Tradition Deck" #COW734276ea584a893c4fea1 ^"Temple Heron"
+        }
+    }
+
+    #COWe0178d3e340642b67a132 ^"Temple Heron: heron eyes" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "heron eyes"
+            ^"Deck" ^"Tradition Deck" #COW734276ea584a893c4fea1 ^"Temple Heron"
+        }
+    }
+
+    #COW4d2e7f6d7b7e6726cc4fe ^"Temple Heron: who guides the flock" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "who guides the flock"
+            ^"Deck" ^"Tradition Deck" #COW734276ea584a893c4fea1 ^"Temple Heron"
+        }
+    }
+
+    #COW6465389a450f0e781fb2d ^"Temple Heron: name of the spirit" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "name of the spirit"
+            ^"Deck" ^"Tradition Deck" #COW734276ea584a893c4fea1 ^"Temple Heron"
+        }
+    }
+
+    #COW11733dc26ac26c2a08185 ^"Temple Heron: stained with dye" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "stained with dye"
+            ^"Deck" ^"Tradition Deck" #COW734276ea584a893c4fea1 ^"Temple Heron"
+        }
+    }
+
+    #COW84fded34df5d93a70e08d ^"Temple Heron: teaching of the river" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "teaching of the river"
+            ^"Deck" ^"Tradition Deck" #COW734276ea584a893c4fea1 ^"Temple Heron"
+        }
+    }
+
+    #COWe6e0605939e99695b94e2 ^"Temple Heron: with a flute of silver" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "with a flute of silver"
+            ^"Deck" ^"Tradition Deck" #COW734276ea584a893c4fea1 ^"Temple Heron"
+        }
+    }
+
+    #COW48b5fa5ba19e1c96c37af ^"Temple Heron: in a circle of weavers" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "in a circle of weavers"
+            ^"Deck" ^"Tradition Deck" #COW734276ea584a893c4fea1 ^"Temple Heron"
+        }
+    }
+
+    #COWb11d5bc3153c6024afdad ^"Temple Heron: with painted faces" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "with painted faces"
+            ^"Deck" ^"Tradition Deck" #COW734276ea584a893c4fea1 ^"Temple Heron"
+        }
+    }
+
+    #COW296de2c7feb61700df2ef ^"Temple Heron: we ring the dawn bell" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "we ring the dawn bell"
+            ^"Deck" ^"Tradition Deck" #COW734276ea584a893c4fea1 ^"Temple Heron"
+        }
+    }
+
+    #COW7dfd87c19842c8ca63175 ^"Temple Heron: our sacred clothes" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "our sacred clothes"
+            ^"Deck" ^"Tradition Deck" #COW734276ea584a893c4fea1 ^"Temple Heron"
+        }
+    }
+
+    #COWc61d3fcf767a8f97bcbba ^"Temple Heron: order of the temple" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "order of the temple"
+            ^"Deck" ^"Tradition Deck" #COW734276ea584a893c4fea1 ^"Temple Heron"
+        }
+    }
+
+    #COW8b1eb592337918fb60616 ^"Temple Heron: voice of an ancestor" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "voice of an ancestor"
+            ^"Deck" ^"Tradition Deck" #COW734276ea584a893c4fea1 ^"Temple Heron"
+        }
+    }
+
+    #COWbaa0c7fb4d44aeb61aa1f ^"Temple Heron: wearing a heron mask" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "wearing a heron mask"
+            ^"Deck" ^"Tradition Deck" #COW734276ea584a893c4fea1 ^"Temple Heron"
+        }
+    }
+
+    #COWa2abc075e8844efd506f2 ^"Temple Heron: with a team of artisans" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "with a team of artisans"
+            ^"Deck" ^"Tradition Deck" #COW734276ea584a893c4fea1 ^"Temple Heron"
+        }
+    }
+
+    #COWf69a4caa198ef31d2c915 ^"Temple Heron: as the tea steeps" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "as the tea steeps"
+            ^"Deck" ^"Tradition Deck" #COW734276ea584a893c4fea1 ^"Temple Heron"
+        }
+    }
+
+    #COWce11b9ceae6365f4e3813 ^"Temple Heron: a pot of river stew" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "a pot of river stew"
+            ^"Deck" ^"Tradition Deck" #COW734276ea584a893c4fea1 ^"Temple Heron"
+        }
+    }
+
+    #COWbcacbd67770fd2984afb5 ^"Temple Heron: to ride the current" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "to ride the current"
+            ^"Deck" ^"Tradition Deck" #COW734276ea584a893c4fea1 ^"Temple Heron"
+        }
+    }
+
+    #COW59846ebd5a0e67eb9677b ^"Temple Heron: a dance of reeds" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "a dance of reeds"
+            ^"Deck" ^"Tradition Deck" #COW734276ea584a893c4fea1 ^"Temple Heron"
+        }
+    }
+
+    #COW3130f71961e027a5d1489 ^"Temple Heron: we tend the shrine" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "we tend the shrine"
+            ^"Deck" ^"Tradition Deck" #COW734276ea584a893c4fea1 ^"Temple Heron"
+        }
+    }
+
+}

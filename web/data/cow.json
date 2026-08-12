@@ -1,0 +1,4602 @@
+{
+ "meta": {
+  "title": "City of Winter",
+  "publisher": "Heart of the Deernicorn",
+  "designer": "Ross Cowman",
+  "year": 2022,
+  "contentVersion": "0.5",
+  "specVersion": "0.5",
+  "generatedFrom": "titterpig-dsl-city-of-winter/0.5"
+ },
+ "decks": [
+  {
+   "name": "Temple Heron",
+   "shape": "circle",
+   "region": "Riverlands",
+   "banner": "Temple Heron",
+   "cardCount": 25,
+   "namePrompt": "or another weather name",
+   "names": [
+    "Zephyr",
+    "Rainbow",
+    "Blaze",
+    "Cloud",
+    "Frost",
+    "Snow",
+    "Breezy",
+    "Flood",
+    "Tranquil",
+    "Squall",
+    "Misty",
+    "Rain",
+    "Thunder"
+   ]
+  },
+  {
+   "name": "Ox of Rivertown",
+   "shape": "circle",
+   "region": "Riverlands",
+   "banner": "Ox of Rivertown",
+   "cardCount": 25,
+   "namePrompt": "or another pastoral name",
+   "names": [
+    "Olive",
+    "Fern",
+    "Chayote",
+    "Rye",
+    "Saffron",
+    "Quince",
+    "Blossom",
+    "Haven",
+    "Apple",
+    "Stone",
+    "Tater",
+    "Sweetgrass",
+    "Thistle"
+   ]
+  },
+  {
+   "name": "Lion of the Citadel",
+   "shape": "circle",
+   "region": "Riverlands",
+   "banner": "Lion of the Citadel",
+   "cardCount": 25,
+   "namePrompt": "or another virtuous name",
+   "names": [
+    "Glory",
+    "Zeal",
+    "Pride",
+    "Brave",
+    "Harmony",
+    "Grace",
+    "Destiny",
+    "Guile",
+    "Courage",
+    "Majesty",
+    "Valor",
+    "Wisdom",
+    "Able"
+   ]
+  },
+  {
+   "name": "Umbra",
+   "shape": "umbra",
+   "region": "Riverlands",
+   "banner": "Umbra",
+   "cardCount": 25,
+   "namePrompt": null,
+   "names": []
+  },
+  {
+   "name": "Fox of the Towers",
+   "shape": "circle",
+   "region": "City",
+   "banner": "Fox of the Towers",
+   "cardCount": 25,
+   "namePrompt": "or another wilderness name",
+   "names": [
+    "Glade",
+    "Lichen",
+    "Meadow",
+    "Ivy",
+    "Gulley",
+    "Willow",
+    "Thicket",
+    "Oakley",
+    "Vale",
+    "Juniper",
+    "Briar",
+    "Lake",
+    "Acorn",
+    "Huckleberry"
+   ]
+  },
+  {
+   "name": "Lantern Crow",
+   "shape": "sun",
+   "region": "City",
+   "banner": "Lantern Crow",
+   "cardCount": 25,
+   "namePrompt": "or another crow sound",
+   "names": [
+    "Hraa",
+    "Kraa",
+    "Graak",
+    "Awkaw",
+    "Akac",
+    "Aaa",
+    "Rakaka",
+    "Raah",
+    "Kahw",
+    "Kew",
+    "Keow",
+    "Maow"
+   ]
+  },
+  {
+   "name": "Mask Maker",
+   "shape": "sun",
+   "region": "City",
+   "banner": "Mask Maker",
+   "cardCount": 24,
+   "namePrompt": "or another kind of mask",
+   "names": [
+    "Cat",
+    "Owl",
+    "Raven",
+    "Leopard",
+    "Snake",
+    "Panda",
+    "Monkey",
+    "Beetle",
+    "Moth",
+    "Deer",
+    "Ibis",
+    "Frog",
+    "Snake",
+    "Wolf",
+    "Goat"
+   ]
+  },
+  {
+   "name": "Glowdog",
+   "shape": "diamond",
+   "region": "City",
+   "banner": "Glowdog",
+   "cardCount": 25,
+   "namePrompt": "or another earned name",
+   "names": [
+    "Truthful",
+    "Swift",
+    "Dreamer",
+    "Baron",
+    "Vandal",
+    "Mender",
+    "Graves",
+    "Happy",
+    "Whisper",
+    "Prophet",
+    "Howl"
+   ]
+  },
+  {
+   "name": "Brass Ones",
+   "shape": "diamond",
+   "region": "City",
+   "banner": "Brass Ones",
+   "cardCount": 25,
+   "namePrompt": "or another precious name",
+   "names": [
+    "Amethyst",
+    "Opal",
+    "Lapis",
+    "Ruby",
+    "Sapphire",
+    "Obsidian",
+    "Gold",
+    "Silver",
+    "Jade",
+    "Copper",
+    "Onyx",
+    "Diamond",
+    "Amber"
+   ]
+  },
+  {
+   "name": "Moonbee",
+   "shape": "diamond",
+   "region": "City",
+   "banner": "Moonbee",
+   "cardCount": 25,
+   "namePrompt": "or another artful name",
+   "names": [
+    "Dazzle",
+    "Braid",
+    "Joy",
+    "Wonder",
+    "Glaze",
+    "Lyric",
+    "Crystal",
+    "Vivid",
+    "Artifice",
+    "Dye",
+    "Bard",
+    "Forge",
+    "Painter",
+    "Weave",
+    "Dancer"
+   ]
+  }
+ ],
+ "shapeFamilies": {
+  "circle": [
+   "Temple Heron",
+   "Ox of Rivertown",
+   "Lion of the Citadel",
+   "Fox of the Towers"
+  ],
+  "sun": [
+   "Lantern Crow",
+   "Mask Maker"
+  ],
+  "diamond": [
+   "Glowdog",
+   "Brass Ones",
+   "Moonbee"
+  ]
+ },
+ "cards": [
+  {
+   "id": "COW7f385e216446e26c8fe92",
+   "name": "Temple Heron: as long as it takes",
+   "prompt": "as long as it takes",
+   "deck": "Temple Heron",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COWe9895aea3ff17195aaf38",
+   "name": "Temple Heron: hymn of the temple",
+   "prompt": "hymn of the temple",
+   "deck": "Temple Heron",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW8a31bae04107d522ca8cb",
+   "name": "Temple Heron: to catch a fish",
+   "prompt": "to catch a fish",
+   "deck": "Temple Heron",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW1ef35e65bc280f7f6eac6",
+   "name": "Temple Heron: who knows the prayer",
+   "prompt": "who knows the prayer",
+   "deck": "Temple Heron",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW8ccbb1ebe08272b8a340c",
+   "name": "Temple Heron: with spear and net",
+   "prompt": "with spear and net",
+   "deck": "Temple Heron",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COWba73ba62a175a0a2e9ec2",
+   "name": "Temple Heron: the river dream",
+   "prompt": "the river dream",
+   "deck": "Temple Heron",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COWe0178d3e340642b67a132",
+   "name": "Temple Heron: heron eyes",
+   "prompt": "heron eyes",
+   "deck": "Temple Heron",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW4d2e7f6d7b7e6726cc4fe",
+   "name": "Temple Heron: who guides the flock",
+   "prompt": "who guides the flock",
+   "deck": "Temple Heron",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW6465389a450f0e781fb2d",
+   "name": "Temple Heron: name of the spirit",
+   "prompt": "name of the spirit",
+   "deck": "Temple Heron",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW11733dc26ac26c2a08185",
+   "name": "Temple Heron: stained with dye",
+   "prompt": "stained with dye",
+   "deck": "Temple Heron",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW84fded34df5d93a70e08d",
+   "name": "Temple Heron: teaching of the river",
+   "prompt": "teaching of the river",
+   "deck": "Temple Heron",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COWe6e0605939e99695b94e2",
+   "name": "Temple Heron: with a flute of silver",
+   "prompt": "with a flute of silver",
+   "deck": "Temple Heron",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW48b5fa5ba19e1c96c37af",
+   "name": "Temple Heron: in a circle of weavers",
+   "prompt": "in a circle of weavers",
+   "deck": "Temple Heron",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COWb11d5bc3153c6024afdad",
+   "name": "Temple Heron: with painted faces",
+   "prompt": "with painted faces",
+   "deck": "Temple Heron",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW296de2c7feb61700df2ef",
+   "name": "Temple Heron: we ring the dawn bell",
+   "prompt": "we ring the dawn bell",
+   "deck": "Temple Heron",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW7dfd87c19842c8ca63175",
+   "name": "Temple Heron: our sacred clothes",
+   "prompt": "our sacred clothes",
+   "deck": "Temple Heron",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COWc61d3fcf767a8f97bcbba",
+   "name": "Temple Heron: order of the temple",
+   "prompt": "order of the temple",
+   "deck": "Temple Heron",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW8b1eb592337918fb60616",
+   "name": "Temple Heron: voice of an ancestor",
+   "prompt": "voice of an ancestor",
+   "deck": "Temple Heron",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COWbaa0c7fb4d44aeb61aa1f",
+   "name": "Temple Heron: wearing a heron mask",
+   "prompt": "wearing a heron mask",
+   "deck": "Temple Heron",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COWa2abc075e8844efd506f2",
+   "name": "Temple Heron: with a team of artisans",
+   "prompt": "with a team of artisans",
+   "deck": "Temple Heron",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COWf69a4caa198ef31d2c915",
+   "name": "Temple Heron: as the tea steeps",
+   "prompt": "as the tea steeps",
+   "deck": "Temple Heron",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COWce11b9ceae6365f4e3813",
+   "name": "Temple Heron: a pot of river stew",
+   "prompt": "a pot of river stew",
+   "deck": "Temple Heron",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COWbcacbd67770fd2984afb5",
+   "name": "Temple Heron: to ride the current",
+   "prompt": "to ride the current",
+   "deck": "Temple Heron",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW59846ebd5a0e67eb9677b",
+   "name": "Temple Heron: a dance of reeds",
+   "prompt": "a dance of reeds",
+   "deck": "Temple Heron",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW3130f71961e027a5d1489",
+   "name": "Temple Heron: we tend the shrine",
+   "prompt": "we tend the shrine",
+   "deck": "Temple Heron",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW256aee2ffccc35d71c424",
+   "name": "Ox of Rivertown: we bear the burden",
+   "prompt": "we bear the burden",
+   "deck": "Ox of Rivertown",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW91764136d01a5d8b596db",
+   "name": "Ox of Rivertown: we sow the seeds",
+   "prompt": "we sow the seeds",
+   "deck": "Ox of Rivertown",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW86dd462043b4f30dd4927",
+   "name": "Ox of Rivertown: we share the harvest",
+   "prompt": "we share the harvest",
+   "deck": "Ox of Rivertown",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COWf6eecc40de6ac9b4ee268",
+   "name": "Ox of Rivertown: made to last",
+   "prompt": "made to last",
+   "deck": "Ox of Rivertown",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW791e67004309d46c0e6f5",
+   "name": "Ox of Rivertown: wearing an ox mask",
+   "prompt": "wearing an ox mask",
+   "deck": "Ox of Rivertown",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW69a3d379b646234e84e71",
+   "name": "Ox of Rivertown: with a clay flute",
+   "prompt": "with a clay flute",
+   "deck": "Ox of Rivertown",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW233e616dac60423361b5f",
+   "name": "Ox of Rivertown: a pot of river stew",
+   "prompt": "a pot of river stew",
+   "deck": "Ox of Rivertown",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COWb468ca6694b779d9cf293",
+   "name": "Ox of Rivertown: a dancing game",
+   "prompt": "a dancing game",
+   "deck": "Ox of Rivertown",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COWe9d0fdb2b9911f6415093",
+   "name": "Ox of Rivertown: a ritual tattoo",
+   "prompt": "a ritual tattoo",
+   "deck": "Ox of Rivertown",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW606e8c57272ac24a42744",
+   "name": "Ox of Rivertown: will of the herd",
+   "prompt": "will of the herd",
+   "deck": "Ox of Rivertown",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW83df9eda46ff06b2be159",
+   "name": "Ox of Rivertown: the oldest ox",
+   "prompt": "the oldest ox",
+   "deck": "Ox of Rivertown",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW8bfcfa69b5e36d61f199c",
+   "name": "Ox of Rivertown: way of the forge",
+   "prompt": "way of the forge",
+   "deck": "Ox of Rivertown",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COWf574667257867c58bb34f",
+   "name": "Ox of Rivertown: with a potter’s wheel",
+   "prompt": "with a potter’s wheel",
+   "deck": "Ox of Rivertown",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW8111eb9cfe636c210aabd",
+   "name": "Ox of Rivertown: with bitter greens",
+   "prompt": "with bitter greens",
+   "deck": "Ox of Rivertown",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW7c76c5b5be87381fb0737",
+   "name": "Ox of Rivertown: we ring the dusk bell",
+   "prompt": "we ring the dusk bell",
+   "deck": "Ox of Rivertown",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COWa09d504a144f7026e33d0",
+   "name": "Ox of Rivertown: right of hospitality",
+   "prompt": "right of hospitality",
+   "deck": "Ox of Rivertown",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW0e1dfd1b3264e7e4e821a",
+   "name": "Ox of Rivertown: a fair trade",
+   "prompt": "a fair trade",
+   "deck": "Ox of Rivertown",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW937a5852c4bfd2316cfa7",
+   "name": "Ox of Rivertown: song of the village",
+   "prompt": "song of the village",
+   "deck": "Ox of Rivertown",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW84bcb99b68702a7063fee",
+   "name": "Ox of Rivertown: to harness the river",
+   "prompt": "to harness the river",
+   "deck": "Ox of Rivertown",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COWa9c13a7333ba65498d831",
+   "name": "Ox of Rivertown: our finest attire",
+   "prompt": "our finest attire",
+   "deck": "Ox of Rivertown",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COWf8bec9218af24f2101b51",
+   "name": "Ox of Rivertown: with a team of oxen",
+   "prompt": "with a team of oxen",
+   "deck": "Ox of Rivertown",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COWf3babbdc1d66258d380c0",
+   "name": "Ox of Rivertown: wisdom of the council",
+   "prompt": "wisdom of the council",
+   "deck": "Ox of Rivertown",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW5b49f965451a776b036aa",
+   "name": "Ox of Rivertown: where medicine grows",
+   "prompt": "where medicine grows",
+   "deck": "Ox of Rivertown",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COWeb72b089d41a1a0218a96",
+   "name": "Ox of Rivertown: a gift of bread",
+   "prompt": "a gift of bread",
+   "deck": "Ox of Rivertown",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW964cc95db03060cedb522",
+   "name": "Ox of Rivertown: an oath of stone",
+   "prompt": "an oath of stone",
+   "deck": "Ox of Rivertown",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COWa4dc12b0a6e8c90211863",
+   "name": "Lion of the Citadel: the lion’s share",
+   "prompt": "the lion’s share",
+   "deck": "Lion of the Citadel",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COWf7b3eb4577686a44552d1",
+   "name": "Lion of the Citadel: ballad of the citadel",
+   "prompt": "ballad of the citadel",
+   "deck": "Lion of the Citadel",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW3ae3d2306508db3d70930",
+   "name": "Lion of the Citadel: how to start a battle",
+   "prompt": "how to start a battle",
+   "deck": "Lion of the Citadel",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW8312d093f1772725a47fa",
+   "name": "Lion of the Citadel: loyal to the crown",
+   "prompt": "loyal to the crown",
+   "deck": "Lion of the Citadel",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COWee690dc0d6e0f49557119",
+   "name": "Lion of the Citadel: we sound the mountain horn",
+   "prompt": "we sound the mountain horn",
+   "deck": "Lion of the Citadel",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW263d01229f5d7cefca91f",
+   "name": "Lion of the Citadel: why we braid our hair",
+   "prompt": "why we braid our hair",
+   "deck": "Lion of the Citadel",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW61d58ea51180c5ac41fce",
+   "name": "Lion of the Citadel: in courtly dress",
+   "prompt": "in courtly dress",
+   "deck": "Lion of the Citadel",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW9865c586766d5171e3e06",
+   "name": "Lion of the Citadel: what pride demands",
+   "prompt": "what pride demands",
+   "deck": "Lion of the Citadel",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW76b3214ec6a42db0a338d",
+   "name": "Lion of the Citadel: my mother’s armor",
+   "prompt": "my mother’s armor",
+   "deck": "Lion of the Citadel",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COWa3e3b36b20054ff4df9c7",
+   "name": "Lion of the Citadel: wearing a lion mask",
+   "prompt": "wearing a lion mask",
+   "deck": "Lion of the Citadel",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COWc08ee596cf8bb62a9e587",
+   "name": "Lion of the Citadel: the victory fire",
+   "prompt": "the victory fire",
+   "deck": "Lion of the Citadel",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COWd7564bce8f76cbbb87057",
+   "name": "Lion of the Citadel: a traitor’s mark",
+   "prompt": "a traitor’s mark",
+   "deck": "Lion of the Citadel",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW97795a5d418d0b7169b16",
+   "name": "Lion of the Citadel: with a golden harp",
+   "prompt": "with a golden harp",
+   "deck": "Lion of the Citadel",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COWbc09ca9e34f0537f214ee",
+   "name": "Lion of the Citadel: with a lion’s roar",
+   "prompt": "with a lion’s roar",
+   "deck": "Lion of the Citadel",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COWa80cfd5ecaef4e88d8840",
+   "name": "Lion of the Citadel: gossip of the court",
+   "prompt": "gossip of the court",
+   "deck": "Lion of the Citadel",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW6881a7934f6dd0be08d50",
+   "name": "Lion of the Citadel: a trial of swords",
+   "prompt": "a trial of swords",
+   "deck": "Lion of the Citadel",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW79ebcb31f7734bd971c58",
+   "name": "Lion of the Citadel: who eats first",
+   "prompt": "who eats first",
+   "deck": "Lion of the Citadel",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW7710c05a77eb4f58dc79d",
+   "name": "Lion of the Citadel: how to prepare a feast",
+   "prompt": "how to prepare a feast",
+   "deck": "Lion of the Citadel",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COWa94acda560a722c24db90",
+   "name": "Lion of the Citadel: with hired help",
+   "prompt": "with hired help",
+   "deck": "Lion of the Citadel",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COWd1dabab0ce679e83d4323",
+   "name": "Lion of the Citadel: with loyal servants",
+   "prompt": "with loyal servants",
+   "deck": "Lion of the Citadel",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW46c0731538475ea807640",
+   "name": "Lion of the Citadel: a dance of courtship",
+   "prompt": "a dance of courtship",
+   "deck": "Lion of the Citadel",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW73d66b7acf2aeb9762f94",
+   "name": "Lion of the Citadel: two singing birds",
+   "prompt": "two singing birds",
+   "deck": "Lion of the Citadel",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW70f4eb232bc75ae181cd2",
+   "name": "Lion of the Citadel: a deed if legend",
+   "prompt": "a deed if legend",
+   "deck": "Lion of the Citadel",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW8fb0baf59eda865ba4d94",
+   "name": "Lion of the Citadel: a hero’s scar",
+   "prompt": "a hero’s scar",
+   "deck": "Lion of the Citadel",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW3bc0032193afeff854149",
+   "name": "Lion of the Citadel: never back down",
+   "prompt": "never back down",
+   "deck": "Lion of the Citadel",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW31418b75aa8585aadecad",
+   "name": "Umbra: what the Umbra takes",
+   "prompt": "what the Umbra takes",
+   "deck": "Umbra",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COWc47811b2273c853aa9864",
+   "name": "Umbra: who joins the Umbra",
+   "prompt": "who joins the Umbra",
+   "deck": "Umbra",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COWfb27683e596ee596437a1",
+   "name": "Umbra: who joins the Umbra (copy 2)",
+   "prompt": "who joins the Umbra",
+   "deck": "Umbra",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW38b021f7771053c702992",
+   "name": "Umbra: a lie of the Umbra",
+   "prompt": "a lie of the Umbra",
+   "deck": "Umbra",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW87a9d7c9cb8d4535b710e",
+   "name": "Umbra: work of the Umbra",
+   "prompt": "work of the Umbra",
+   "deck": "Umbra",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW1baa6efdd4f860f860b40",
+   "name": "Umbra: a lie of the Umbra (copy 2)",
+   "prompt": "a lie of the Umbra",
+   "deck": "Umbra",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW15affe92f9e2f6ef2bb3f",
+   "name": "Umbra: marked by the Umbra",
+   "prompt": "marked by the Umbra",
+   "deck": "Umbra",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW95735352621158a81882b",
+   "name": "Umbra: what draws the Umbra",
+   "prompt": "what draws the Umbra",
+   "deck": "Umbra",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW00ac55e6c06fe16322e95",
+   "name": "Umbra: defiled by the Umbra",
+   "prompt": "defiled by the Umbra",
+   "deck": "Umbra",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COWfb92270e48de736faf39e",
+   "name": "Umbra: how we deny the Umbra",
+   "prompt": "how we deny the Umbra",
+   "deck": "Umbra",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COWf1f5038490e42fb30def4",
+   "name": "Umbra: why we serve the Umbra",
+   "prompt": "why we serve the Umbra",
+   "deck": "Umbra",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COWb6bd765ff63a48e8d0ac0",
+   "name": "Umbra: who warns of the Umbra",
+   "prompt": "who warns of the Umbra",
+   "deck": "Umbra",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW835705628e7a38e3e741c",
+   "name": "Umbra: how the Umbra grows",
+   "prompt": "how the Umbra grows",
+   "deck": "Umbra",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW4a2adae3e64c6bd4d4566",
+   "name": "Umbra: the Umbra’s Hunger",
+   "prompt": "the Umbra’s Hunger",
+   "deck": "Umbra",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW6663e429a845ad412039a",
+   "name": "Umbra: who fears the Umbra",
+   "prompt": "who fears the Umbra",
+   "deck": "Umbra",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW27f70b84858be6759cc94",
+   "name": "Umbra: what the Umbra destroys",
+   "prompt": "what the Umbra destroys",
+   "deck": "Umbra",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COWe731f5eae9254c47b0054",
+   "name": "Umbra: herald of the Umbra",
+   "prompt": "herald of the Umbra",
+   "deck": "Umbra",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW3802bf50dd3773495ccc7",
+   "name": "Umbra: vision of the Umbra",
+   "prompt": "vision of the Umbra",
+   "deck": "Umbra",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COWf2a93697ae52cc2321512",
+   "name": "Umbra: scar of the Umbra",
+   "prompt": "scar of the Umbra",
+   "deck": "Umbra",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW1a8e38a199e225b9fe968",
+   "name": "Umbra: touch of the Umbra",
+   "prompt": "touch of the Umbra",
+   "deck": "Umbra",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COWa93be49351e9ab235f84f",
+   "name": "Umbra: song of the Umbra",
+   "prompt": "song of the Umbra",
+   "deck": "Umbra",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COWb63d5d07602b1db12c99e",
+   "name": "Umbra: history of the Umbra",
+   "prompt": "history of the Umbra",
+   "deck": "Umbra",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW9ed01675139177004900e",
+   "name": "Umbra: voice of the Umbra",
+   "prompt": "voice of the Umbra",
+   "deck": "Umbra",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COWce679345240b6575e5385",
+   "name": "Umbra: the Umbra in disguise",
+   "prompt": "the Umbra in disguise",
+   "deck": "Umbra",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW7c28e9f32333490b74f90",
+   "name": "Umbra: agents of the Umbra",
+   "prompt": "agents of the Umbra",
+   "deck": "Umbra",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COWb8216a5aa49ad30c692ee",
+   "name": "Fox of the Towers: song of the towers",
+   "prompt": "song of the towers",
+   "deck": "Fox of the Towers",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW890d9ebe0937f24a64915",
+   "name": "Fox of the Towers: how to spring a trap",
+   "prompt": "how to spring a trap",
+   "deck": "Fox of the Towers",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COWb43ec9a481cbb4a273d02",
+   "name": "Fox of the Towers: oath of the towers",
+   "prompt": "oath of the towers",
+   "deck": "Fox of the Towers",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW5ab394fec5bd73ecc3598",
+   "name": "Fox of the Towers: bounty of the hunt",
+   "prompt": "bounty of the hunt",
+   "deck": "Fox of the Towers",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COWd9a8d96d101eeebdea2cf",
+   "name": "Fox of the Towers: why we pierce our ears",
+   "prompt": "why we pierce our ears",
+   "deck": "Fox of the Towers",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW901ca2c98daef543b87d9",
+   "name": "Fox of the Towers: with soft fur",
+   "prompt": "with soft fur",
+   "deck": "Fox of the Towers",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW172f838d233f901c75430",
+   "name": "Fox of the Towers: what survival demands",
+   "prompt": "what survival demands",
+   "deck": "Fox of the Towers",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW453f3bc764a0a21e10752",
+   "name": "Fox of the Towers: what we bury",
+   "prompt": "what we bury",
+   "deck": "Fox of the Towers",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW0ff4dd75f089af6e6194d",
+   "name": "Fox of the Towers: wearing a fox mask",
+   "prompt": "wearing a fox mask",
+   "deck": "Fox of the Towers",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW38c5b89415dc77bd09200",
+   "name": "Fox of the Towers: with an oathbreaker’s brand",
+   "prompt": "with an oathbreaker’s brand",
+   "deck": "Fox of the Towers",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW7b1357d71cc3c6f7606f7",
+   "name": "Fox of the Towers: with a jawbone blade",
+   "prompt": "with a jawbone blade",
+   "deck": "Fox of the Towers",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW92c3d496cb3742c4e710e",
+   "name": "Fox of the Towers: mark of the fox",
+   "prompt": "mark of the fox",
+   "deck": "Fox of the Towers",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW388e92d1e8959c4ee2060",
+   "name": "Fox of the Towers: a rite of courtship",
+   "prompt": "a rite of courtship",
+   "deck": "Fox of the Towers",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COWbc8f7053ab616496e53f5",
+   "name": "Fox of the Towers: we share the cup",
+   "prompt": "we share the cup",
+   "deck": "Fox of the Towers",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COWd0e16794a8978ad04f37e",
+   "name": "Fox of the Towers: a meal of ash cakes",
+   "prompt": "a meal of ash cakes",
+   "deck": "Fox of the Towers",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW0307c89d463a599d27e9f",
+   "name": "Fox of the Towers: to the bone",
+   "prompt": "to the bone",
+   "deck": "Fox of the Towers",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW7bbae9db803a7188d1de9",
+   "name": "Fox of the Towers: with a band of hunters",
+   "prompt": "with a band of hunters",
+   "deck": "Fox of the Towers",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COWe9d03379b1d3788111e69",
+   "name": "Fox of the Towers: a cautionary tale",
+   "prompt": "a cautionary tale",
+   "deck": "Fox of the Towers",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW4a981a0f5d5a05430b550",
+   "name": "Fox of the Towers: a boasting game",
+   "prompt": "a boasting game",
+   "deck": "Fox of the Towers",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COWca92b5b81a42cae536eaf",
+   "name": "Fox of the Towers: a gift of blood",
+   "prompt": "a gift of blood",
+   "deck": "Fox of the Towers",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COWbf28318092bdcc52c5ef9",
+   "name": "Fox of the Towers: with bow and arrow",
+   "prompt": "with bow and arrow",
+   "deck": "Fox of the Towers",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COWb3997f43536466176a3d7",
+   "name": "Fox of the Towers: what grows in winter",
+   "prompt": "what grows in winter",
+   "deck": "Fox of the Towers",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW4c84cfb1cc22691f68224",
+   "name": "Fox of the Towers: who lights the fire",
+   "prompt": "who lights the fire",
+   "deck": "Fox of the Towers",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW607d2200c45131ca05639",
+   "name": "Fox of the Towers: right of hospitality",
+   "prompt": "right of hospitality",
+   "deck": "Fox of the Towers",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COWd44fe83a4558200c3223c",
+   "name": "Fox of the Towers: a fair trade",
+   "prompt": "a fair trade",
+   "deck": "Fox of the Towers",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COWd063e2403c0cbd9f9ad03",
+   "name": "Lantern Crow: we watch from above",
+   "prompt": "we watch from above",
+   "deck": "Lantern Crow",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COWe521a99e6543a7f9449b5",
+   "name": "Lantern Crow: funeral",
+   "prompt": "funeral",
+   "deck": "Lantern Crow",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COWf20caa3c3e40e75e368a5",
+   "name": "Lantern Crow: how to lose an argument",
+   "prompt": "how to lose an argument",
+   "deck": "Lantern Crow",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COWe2e2c0b81525057050acf",
+   "name": "Lantern Crow: the strength of numbers",
+   "prompt": "the strength of numbers",
+   "deck": "Lantern Crow",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COWfbff9c58f3be625466cf9",
+   "name": "Lantern Crow: who lights the lantern",
+   "prompt": "who lights the lantern",
+   "deck": "Lantern Crow",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW61086938d265b01d56be0",
+   "name": "Lantern Crow: a scholar’s question",
+   "prompt": "a scholar’s question",
+   "deck": "Lantern Crow",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW6799933f0314d36cf15ce",
+   "name": "Lantern Crow: stained with ink",
+   "prompt": "stained with ink",
+   "deck": "Lantern Crow",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COWb066be2ce555ded7395cd",
+   "name": "Lantern Crow: dressed in black",
+   "prompt": "dressed in black",
+   "deck": "Lantern Crow",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW1fbf60d7caebdbea3cbe1",
+   "name": "Lantern Crow: a profitable trade",
+   "prompt": "a profitable trade",
+   "deck": "Lantern Crow",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW702ef60bc772fd9689e9e",
+   "name": "Lantern Crow: a token of love",
+   "prompt": "a token of love",
+   "deck": "Lantern Crow",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COWd326a8bb1138d044929c9",
+   "name": "Lantern Crow: wearing a crow mask",
+   "prompt": "wearing a crow mask",
+   "deck": "Lantern Crow",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW3c201b0c3b4d389a90e3e",
+   "name": "Lantern Crow: the greatest value",
+   "prompt": "the greatest value",
+   "deck": "Lantern Crow",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW87b479d6827860951f26e",
+   "name": "Lantern Crow: with a merchant’s scale",
+   "prompt": "with a merchant’s scale",
+   "deck": "Lantern Crow",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COWc6e26065ac5dfc5e429c1",
+   "name": "Lantern Crow: scavenger’s stew",
+   "prompt": "scavenger’s stew",
+   "deck": "Lantern Crow",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW7c4041a3f8f3c5c350ec6",
+   "name": "Lantern Crow: a trial of knowledge",
+   "prompt": "a trial of knowledge",
+   "deck": "Lantern Crow",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COWd69f27114f3aa49a1fe3f",
+   "name": "Lantern Crow: law of the skies",
+   "prompt": "law of the skies",
+   "deck": "Lantern Crow",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COWb3e00b616ff18c288dbf9",
+   "name": "Lantern Crow: as the coffee brews",
+   "prompt": "as the coffee brews",
+   "deck": "Lantern Crow",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COWa53b7cb359765ba29d7c9",
+   "name": "Lantern Crow: who is cast out",
+   "prompt": "who is cast out",
+   "deck": "Lantern Crow",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COWe7a10a9a0745cbc67898d",
+   "name": "Lantern Crow: a theory of magic",
+   "prompt": "a theory of magic",
+   "deck": "Lantern Crow",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW935f1bd022174001458cd",
+   "name": "Lantern Crow: while the candle burns",
+   "prompt": "while the candle burns",
+   "deck": "Lantern Crow",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW9a9b842702c7c4a13ab23",
+   "name": "Lantern Crow: a mocking game",
+   "prompt": "a mocking game",
+   "deck": "Lantern Crow",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW5b0dc2df87c4cd8e23887",
+   "name": "Lantern Crow: a salvaged treasure",
+   "prompt": "a salvaged treasure",
+   "deck": "Lantern Crow",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COWc6c7fc8afdaa2dd6b4d51",
+   "name": "Lantern Crow: with silver feathers",
+   "prompt": "with silver feathers",
+   "deck": "Lantern Crow",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW74d1275a5c016f49d2be8",
+   "name": "Lantern Crow: we remember our enemy",
+   "prompt": "we remember our enemy",
+   "deck": "Lantern Crow",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW78eb6ae0b1d947dfafd1e",
+   "name": "Lantern Crow: how to teach a lesson",
+   "prompt": "how to teach a lesson",
+   "deck": "Lantern Crow",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW12dfdf4054cfc175374e8",
+   "name": "Mask Maker: in our likeness",
+   "prompt": "in our likeness",
+   "deck": "Mask Maker",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COWa18cae274108ad168bf92",
+   "name": "Mask Maker: a chant for making",
+   "prompt": "a chant for making",
+   "deck": "Mask Maker",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COWd9af6aea20a8712b67119",
+   "name": "Mask Maker: a child’s puzzle",
+   "prompt": "a child’s puzzle",
+   "deck": "Mask Maker",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COWfd4777d8ea7f488d83f06",
+   "name": "Mask Maker: too good to last",
+   "prompt": "too good to last",
+   "deck": "Mask Maker",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW713d0155b0bc28906054d",
+   "name": "Mask Maker: who drives",
+   "prompt": "who drives",
+   "deck": "Mask Maker",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COWda9974442184a9134085f",
+   "name": "Mask Maker: right of the wanderer",
+   "prompt": "right of the wanderer",
+   "deck": "Mask Maker",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COWbb1ab01400b8ba7ccb14c",
+   "name": "Mask Maker: one gilded songbird",
+   "prompt": "one gilded songbird",
+   "deck": "Mask Maker",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COWd456ae191d0fb9bf2848f",
+   "name": "Mask Maker: what the mask demands",
+   "prompt": "what the mask demands",
+   "deck": "Mask Maker",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COWcf28959be8c2c197f8e18",
+   "name": "Mask Maker: my beloved’s face",
+   "prompt": "my beloved’s face",
+   "deck": "Mask Maker",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COWcd1937c51f0fc2eb758e2",
+   "name": "Mask Maker: without a mask",
+   "prompt": "without a mask",
+   "deck": "Mask Maker",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COWfafbf231ed7e34dae5c6b",
+   "name": "Mask Maker: with painted eyes",
+   "prompt": "with painted eyes",
+   "deck": "Mask Maker",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW30666807fb3e8c63d71e8",
+   "name": "Mask Maker: with a healer’s tools",
+   "prompt": "with a healer’s tools",
+   "deck": "Mask Maker",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COWd2055fcff29f8d4b55104",
+   "name": "Mask Maker: who follows the dream",
+   "prompt": "who follows the dream",
+   "deck": "Mask Maker",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW45631c8ecec0dd63f725f",
+   "name": "Mask Maker: a flawed design",
+   "prompt": "a flawed design",
+   "deck": "Mask Maker",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW07002c72564ce3c050ac2",
+   "name": "Mask Maker: the ancient pyre",
+   "prompt": "the ancient pyre",
+   "deck": "Mask Maker",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COWd291d5cd1f4935e03c1ce",
+   "name": "Mask Maker: with bitter tea",
+   "prompt": "with bitter tea",
+   "deck": "Mask Maker",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW04fde7b22077590f87745",
+   "name": "Mask Maker: an ancestor’s mask",
+   "prompt": "an ancestor’s mask",
+   "deck": "Mask Maker",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW6bd2255758a7beba92245",
+   "name": "Mask Maker: a blend of spices",
+   "prompt": "a blend of spices",
+   "deck": "Mask Maker",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW201721fcd84dc0c82dfc9",
+   "name": "Mask Maker: dance of the engine",
+   "prompt": "dance of the engine",
+   "deck": "Mask Maker",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW613c2931321213663db9a",
+   "name": "Mask Maker: one old machine",
+   "prompt": "one old machine",
+   "deck": "Mask Maker",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COWa74792d376e97458ac7fa",
+   "name": "Mask Maker: a teaching game",
+   "prompt": "a teaching game",
+   "deck": "Mask Maker",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW1ff7818ddc190f1e3e4f2",
+   "name": "Mask Maker: we ring the dusk bell",
+   "prompt": "we ring the dusk bell",
+   "deck": "Mask Maker",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COWa393be0fb58e5d3d75aa6",
+   "name": "Mask Maker: made beautiful",
+   "prompt": "made beautiful",
+   "deck": "Mask Maker",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW83331239e018bdff48a41",
+   "name": "Mask Maker: unmakeable",
+   "prompt": "unmakeable",
+   "deck": "Mask Maker",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COWc2daf48102e958006ae0c",
+   "name": "Glowdog: love without condition",
+   "prompt": "love without condition",
+   "deck": "Glowdog",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW450fdc5dbded4383fdd92",
+   "name": "Glowdog: devotion",
+   "prompt": "devotion",
+   "deck": "Glowdog",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW5d7561a8b86ac9735800d",
+   "name": "Glowdog: The Borough Wanders",
+   "prompt": "The Borough Wanders",
+   "deck": "Glowdog",
+   "isBoroughWanders": true
+  },
+  {
+   "id": "COWa3a4944217d98650c8e9b",
+   "name": "Glowdog: call of the moon",
+   "prompt": "call of the moon",
+   "deck": "Glowdog",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COWe875caa3aaed4f0173956",
+   "name": "Glowdog: glowing",
+   "prompt": "glowing",
+   "deck": "Glowdog",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW39e4598d0abf27f0f694d",
+   "name": "Glowdog: a flashy tattoo",
+   "prompt": "a flashy tattoo",
+   "deck": "Glowdog",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW3a136df7a2df782400382",
+   "name": "Glowdog: how we share the news",
+   "prompt": "how we share the news",
+   "deck": "Glowdog",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COWf72edeb0582b027ddc711",
+   "name": "Glowdog: how to find a job",
+   "prompt": "how to find a job",
+   "deck": "Glowdog",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COWa90b7bec64bb9cc2738cf",
+   "name": "Glowdog: with a troupe of performers",
+   "prompt": "with a troupe of performers",
+   "deck": "Glowdog",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW55c877efe3bb292a73833",
+   "name": "Glowdog: wearing a glow mask",
+   "prompt": "wearing a glow mask",
+   "deck": "Glowdog",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW0d9797ef43c19ca34a3ce",
+   "name": "Glowdog: on a glimmer loom",
+   "prompt": "on a glimmer loom",
+   "deck": "Glowdog",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW1d49c2aa795d73ca30956",
+   "name": "Glowdog: how to start trouble",
+   "prompt": "how to start trouble",
+   "deck": "Glowdog",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW1d2b11813dc6163439bad",
+   "name": "Glowdog: the song we sing",
+   "prompt": "the song we sing",
+   "deck": "Glowdog",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COWc541f4ecc1fe12da462bb",
+   "name": "Glowdog: with a crew of workers",
+   "prompt": "with a crew of workers",
+   "deck": "Glowdog",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW1cbddc1ac165b6b8e7421",
+   "name": "Glowdog: territory",
+   "prompt": "territory",
+   "deck": "Glowdog",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COWadbf4356fe1fbbd5ada28",
+   "name": "Glowdog: with bone broth",
+   "prompt": "with bone broth",
+   "deck": "Glowdog",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COWd8a117e343483fdc3a6df",
+   "name": "Glowdog: honest wages",
+   "prompt": "honest wages",
+   "deck": "Glowdog",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW3f01b634b5c3552aac031",
+   "name": "Glowdog: mealtime",
+   "prompt": "mealtime",
+   "deck": "Glowdog",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW3d5187a393ad0b96b32c6",
+   "name": "Glowdog: when to throw a party",
+   "prompt": "when to throw a party",
+   "deck": "Glowdog",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW06e4a4e76d38d0580a2ca",
+   "name": "Glowdog: with a rebel’s mark",
+   "prompt": "with a rebel’s mark",
+   "deck": "Glowdog",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW8f99e8319c55171e98b99",
+   "name": "Glowdog: my family’s debt",
+   "prompt": "my family’s debt",
+   "deck": "Glowdog",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW84496a966f63511332097",
+   "name": "Glowdog: free and wild",
+   "prompt": "free and wild",
+   "deck": "Glowdog",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW83dae7c518245116461a8",
+   "name": "Glowdog: three handsome hounds",
+   "prompt": "three handsome hounds",
+   "deck": "Glowdog",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW4b9a67a1bd1823deb59e1",
+   "name": "Glowdog: waste nothing",
+   "prompt": "waste nothing",
+   "deck": "Glowdog",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW407b55202a33c40f96dcd",
+   "name": "Glowdog: kind, but not honest.",
+   "prompt": "kind, but not honest.",
+   "deck": "Glowdog",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW6af0543facb8bd8d5a3e4",
+   "name": "Brass Ones: loyalty without question",
+   "prompt": "loyalty without question",
+   "deck": "Brass Ones",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW7122c53f10b046a742a94",
+   "name": "Brass Ones: orchestra",
+   "prompt": "orchestra",
+   "deck": "Brass Ones",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW14eef6301169c2ad06dd5",
+   "name": "Brass Ones: how to keep the peace",
+   "prompt": "how to keep the peace",
+   "deck": "Brass Ones",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW7c667faa0c4760c11053a",
+   "name": "Brass Ones: for leisure",
+   "prompt": "for leisure",
+   "deck": "Brass Ones",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COWe3b8dadda291ee493f7e7",
+   "name": "Brass Ones: with a horse’s endurance",
+   "prompt": "with a horse’s endurance",
+   "deck": "Brass Ones",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW8ed07b61eff1ed5a4228f",
+   "name": "Brass Ones: in jewels",
+   "prompt": "in jewels",
+   "deck": "Brass Ones",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COWb5b9bce0c48b2e37abe03",
+   "name": "Brass Ones: with a mask of brass",
+   "prompt": "with a mask of brass",
+   "deck": "Brass Ones",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW3a5f2ee9cd13a99e36464",
+   "name": "Brass Ones: without words",
+   "prompt": "without words",
+   "deck": "Brass Ones",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COWc2c514cc6b79cc1d230d8",
+   "name": "Brass Ones: fresh apples",
+   "prompt": "fresh apples",
+   "deck": "Brass Ones",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COWaa0733adaf268cba57335",
+   "name": "Brass Ones: the price of failure",
+   "prompt": "the price of failure",
+   "deck": "Brass Ones",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COWda70c9881a30f356f58e8",
+   "name": "Brass Ones: on a fire-eyed steed",
+   "prompt": "on a fire-eyed steed",
+   "deck": "Brass Ones",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COWca7754341459b89cad5cf",
+   "name": "Brass Ones: with a trainer’s harness",
+   "prompt": "with a trainer’s harness",
+   "deck": "Brass Ones",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW3c213da830b65327a9799",
+   "name": "Brass Ones: in fashion",
+   "prompt": "in fashion",
+   "deck": "Brass Ones",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW85e12ac4352b12b737e8f",
+   "name": "Brass Ones: the rule of law",
+   "prompt": "the rule of law",
+   "deck": "Brass Ones",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW1b0c6b81a290f19230633",
+   "name": "Brass Ones: flawless",
+   "prompt": "flawless",
+   "deck": "Brass Ones",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW42f411ea7507b4b1e80c8",
+   "name": "Brass Ones: as the dumplings steam",
+   "prompt": "as the dumplings steam",
+   "deck": "Brass Ones",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COWc9a16d66924cbbd93dd4b",
+   "name": "Brass Ones: unbridled",
+   "prompt": "unbridled",
+   "deck": "Brass Ones",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW0efa6a4e8f3b3db75bb67",
+   "name": "Brass Ones: The Borough Wanders",
+   "prompt": "The Borough Wanders",
+   "deck": "Brass Ones",
+   "isBoroughWanders": true
+  },
+  {
+   "id": "COWfb54a22abe7f9a65bdb94",
+   "name": "Brass Ones: only if we allow",
+   "prompt": "only if we allow",
+   "deck": "Brass Ones",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COWef66fafbbb60855ffaafe",
+   "name": "Brass Ones: a criminal’s mark",
+   "prompt": "a criminal’s mark",
+   "deck": "Brass Ones",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COWd19de179f0ab513756c4e",
+   "name": "Brass Ones: honest but not kind",
+   "prompt": "honest but not kind",
+   "deck": "Brass Ones",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COWb5238158e4444d159a588",
+   "name": "Brass Ones: of brass",
+   "prompt": "of brass",
+   "deck": "Brass Ones",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW12c3d78c15f905a2939a8",
+   "name": "Brass Ones: a display of wealth",
+   "prompt": "a display of wealth",
+   "deck": "Brass Ones",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW77629988dbb24c07c1cbb",
+   "name": "Brass Ones: to protect the City",
+   "prompt": "to protect the City",
+   "deck": "Brass Ones",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW834973bae347ff11f6795",
+   "name": "Brass Ones: we ring the moon bell",
+   "prompt": "we ring the moon bell",
+   "deck": "Brass Ones",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW9c772e44d2386b0337fe8",
+   "name": "Moonbee: oneness",
+   "prompt": "oneness",
+   "deck": "Moonbee",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW1240310eb30786cfc1a2f",
+   "name": "Moonbee: choir",
+   "prompt": "choir",
+   "deck": "Moonbee",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW937e5d1106861794914dc",
+   "name": "Moonbee: The Borough Wanders",
+   "prompt": "The Borough Wanders",
+   "deck": "Moonbee",
+   "isBoroughWanders": true
+  },
+  {
+   "id": "COW9f662be09ef48e4d2ef3f",
+   "name": "Moonbee: Queen",
+   "prompt": "Queen",
+   "deck": "Moonbee",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW4426d6b372735e4c79922",
+   "name": "Moonbee: hum",
+   "prompt": "hum",
+   "deck": "Moonbee",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW1f2fb79aa153cad0914d5",
+   "name": "Moonbee: wing",
+   "prompt": "wing",
+   "deck": "Moonbee",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW39bed055b9e5de185eef0",
+   "name": "Moonbee: fruit",
+   "prompt": "fruit",
+   "deck": "Moonbee",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COWc89a81ed285d0ca59e7bf",
+   "name": "Moonbee: royal",
+   "prompt": "royal",
+   "deck": "Moonbee",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW48d12e3164338f130de9f",
+   "name": "Moonbee: beauty",
+   "prompt": "beauty",
+   "deck": "Moonbee",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW34c1f96357785340434b1",
+   "name": "Moonbee: flower",
+   "prompt": "flower",
+   "deck": "Moonbee",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW77e74f2f7f70dea05a87b",
+   "name": "Moonbee: garden",
+   "prompt": "garden",
+   "deck": "Moonbee",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW4b9779fd2efb7032183aa",
+   "name": "Moonbee: birthday",
+   "prompt": "birthday",
+   "deck": "Moonbee",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW2c3ea9cbd5b83ba1df100",
+   "name": "Moonbee: moonlight",
+   "prompt": "moonlight",
+   "deck": "Moonbee",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COWe3513ab31a471e7eafac1",
+   "name": "Moonbee: antenna",
+   "prompt": "antenna",
+   "deck": "Moonbee",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW0a3217b1fa7cc4e182474",
+   "name": "Moonbee: thousands",
+   "prompt": "thousands",
+   "deck": "Moonbee",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW2e84a3275ab6cd12e5056",
+   "name": "Moonbee: gilded",
+   "prompt": "gilded",
+   "deck": "Moonbee",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COWfe89f98b4d740f9adae0b",
+   "name": "Moonbee: honey",
+   "prompt": "honey",
+   "deck": "Moonbee",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW7de70411beb17096c4362",
+   "name": "Moonbee: fragrance",
+   "prompt": "fragrance",
+   "deck": "Moonbee",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW770efe5da6ee83b93ed0f",
+   "name": "Moonbee: worker",
+   "prompt": "worker",
+   "deck": "Moonbee",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW8bf8a3ebf869e000c9918",
+   "name": "Moonbee: alarm",
+   "prompt": "alarm",
+   "deck": "Moonbee",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW18225b76f61dc15fea2b3",
+   "name": "Moonbee: busy",
+   "prompt": "busy",
+   "deck": "Moonbee",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COWb2d25ec08b6d714e20ca0",
+   "name": "Moonbee: sting",
+   "prompt": "sting",
+   "deck": "Moonbee",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW14501c8dfe25f45d61370",
+   "name": "Moonbee: morning",
+   "prompt": "morning",
+   "deck": "Moonbee",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COW3d79934f5c95f98d4cb64",
+   "name": "Moonbee: dessert",
+   "prompt": "dessert",
+   "deck": "Moonbee",
+   "isBoroughWanders": false
+  },
+  {
+   "id": "COWb65a0334665fc4164bd39",
+   "name": "Moonbee: assleep",
+   "prompt": "assleep",
+   "deck": "Moonbee",
+   "isBoroughWanders": false
+  }
+ ],
+ "ageTiers": [
+  {
+   "name": "Child",
+   "marks": [
+    0
+   ],
+   "marksText": "no Marks"
+  },
+  {
+   "name": "Youth",
+   "marks": [
+    1,
+    2
+   ],
+   "marksText": "one or two Marks"
+  },
+  {
+   "name": "Parent",
+   "marks": [
+    3,
+    4,
+    5
+   ],
+   "marksText": "three, four, or five Marks"
+  },
+  {
+   "name": "Elder",
+   "marks": [
+    6
+   ],
+   "marksText": "six Marks"
+  }
+ ],
+ "bondLists": [
+  {
+   "tier": "Child",
+   "kind": "Bonds",
+   "prompts": [
+    "Ward",
+    "Heir",
+    "Foundling",
+    "Sibling",
+    "Cousin",
+    "Orphan"
+   ],
+   "openPrompt": "or Child of..."
+  },
+  {
+   "tier": "Youth",
+   "kind": "Bonds",
+   "prompts": [
+    "Follower",
+    "Admirer",
+    "Bully",
+    "Rival",
+    "Defender",
+    "Apprentice",
+    "Favorite",
+    "Squire",
+    "Jealous",
+    "Idol"
+   ],
+   "openPrompt": "or Likeness of..."
+  },
+  {
+   "tier": "Parent",
+   "kind": "Bonds",
+   "prompts": [
+    "Disciple",
+    "Caretaker",
+    "Guardian",
+    "Suitor",
+    "Beloved",
+    "Spouse",
+    "Champion",
+    "Ally",
+    "Widow(er)"
+   ],
+   "openPrompt": "or Parent of..."
+  },
+  {
+   "tier": "Elder",
+   "kind": "Bonds",
+   "prompts": [
+    "Grandparent",
+    "Teacher",
+    "Mentor",
+    "Council",
+    "Spoiler",
+    "Burden",
+    "Ashamed"
+   ],
+   "openPrompt": "or Proud of..."
+  },
+  {
+   "tier": "Memory",
+   "kind": "Memory Bonds",
+   "prompts": [
+    "Grieved",
+    "Honored",
+    "Remembered",
+    "Reviled",
+    "Forgotten",
+    "Disavowed"
+   ],
+   "openPrompt": "or Succeeded by..."
+  },
+  {
+   "tier": "City 0",
+   "kind": "City Bonds",
+   "prompts": [
+    "Befriended",
+    "Watched",
+    "Betrayed",
+    "Trusted",
+    "Favored",
+    "Feared",
+    "Taught",
+    "Protected",
+    "Funded",
+    "Adored"
+   ],
+   "openPrompt": "or Shadowed by..."
+  },
+  {
+   "tier": "City 1",
+   "kind": "City Bonds",
+   "prompts": [
+    "Driftmate",
+    "Shard",
+    "Whisper",
+    "Hauler",
+    "Servant",
+    "Dustie",
+    "Adept",
+    "Glimmer",
+    "Boarder",
+    "Echo",
+    "Client"
+   ],
+   "openPrompt": "or Eyes of..."
+  },
+  {
+   "tier": "City 2",
+   "kind": "City Bonds",
+   "prompts": [
+    "Glowtender",
+    "Moonsworn",
+    "Flame",
+    "Discordant",
+    "Patron",
+    "Harmony",
+    "Brassbound",
+    "Giftgiver"
+   ],
+   "openPrompt": "or Lost to..."
+  }
+ ],
+ "riverlands": [
+  {
+   "name": "Cloud Citadel",
+   "region": "Riverlands",
+   "page": 7,
+   "traditions": [
+    "Lion of the Citadel"
+   ],
+   "scenes": [
+    "Above the Clouds",
+    "Hall of Lions",
+    "Heart of the Citadel",
+    "Children’s Garden",
+    "Waterfall",
+    "In the Kitchen",
+    "Singing Chamber",
+    "The Wild River"
+   ],
+   "connects": [
+    "Rivertown",
+    "We Board a Lantern Ship"
+   ],
+   "entrances": [],
+   "startingHome": true,
+   "isArrival": false,
+   "route": null
+  },
+  {
+   "name": "Rivertown",
+   "region": "Riverlands",
+   "page": 8,
+   "traditions": [
+    "Ox of Rivertown"
+   ],
+   "scenes": [
+    "When It Rains",
+    "Hills",
+    "Ox Bridge",
+    "The Old Orchard",
+    "Elders’ Cottage",
+    "Fairgrounds",
+    "The Strong River"
+   ],
+   "connects": [
+    "Cloud Citadel",
+    "Temple Island"
+   ],
+   "entrances": [],
+   "startingHome": true,
+   "isArrival": false,
+   "route": null
+  },
+  {
+   "name": "Temple Island",
+   "region": "Riverlands",
+   "page": 9,
+   "traditions": [
+    "Temple Heron"
+   ],
+   "scenes": [
+    "The Calm River",
+    "Palace of the Riverlands",
+    "Floating Market",
+    "Heron Villa",
+    "Temple",
+    "Stilt Road"
+   ],
+   "connects": [
+    "Rivertown",
+    "We Board a Lantern Ship",
+    "We Join a Caravan"
+   ],
+   "entrances": [],
+   "startingHome": true,
+   "isArrival": false,
+   "route": null
+  },
+  {
+   "name": "We Board a Lantern Ship",
+   "region": "Riverlands",
+   "page": 10,
+   "traditions": [
+    "Lantern Crow"
+   ],
+   "scenes": [
+    "Lantern Deck",
+    "On Crowded Decks",
+    "When Passengers Board",
+    "Gossamer Room",
+    "In Our Quarters",
+    "The Distant River"
+   ],
+   "connects": [
+    "Cloud Citadel",
+    "Temple Island",
+    "Above a Kingdom of Towers"
+   ],
+   "entrances": [],
+   "startingHome": false,
+   "isArrival": false,
+   "route": "Lantern Ship"
+  },
+  {
+   "name": "We Join a Caravan",
+   "region": "Riverlands",
+   "page": 11,
+   "traditions": [
+    "Ox of Rivertown"
+   ],
+   "scenes": [
+    "The Lantern Road",
+    "When the Caravan Stops",
+    "Passing Travelers",
+    "Snowfall",
+    "A Border Crossing",
+    "The Cold River"
+   ],
+   "connects": [
+    "Temple Island",
+    "Through a Kingdom of Towers"
+   ],
+   "entrances": [],
+   "startingHome": false,
+   "isArrival": false,
+   "route": "Caravan"
+  },
+  {
+   "name": "Through a Kingdom of Towers",
+   "region": "Riverlands",
+   "page": 12,
+   "traditions": [
+    "Fox of the Towers"
+   ],
+   "scenes": [
+    "A Tower in Ruins",
+    "The Frozen River",
+    "A Tower of Foxes",
+    "A Tower in Celebration",
+    "A Tower of Bells"
+   ],
+   "connects": [
+    "We Join a Caravan",
+    "We Meet a Nomad Village"
+   ],
+   "entrances": [],
+   "startingHome": false,
+   "isArrival": false,
+   "route": "Caravan"
+  },
+  {
+   "name": "We Meet a Nomad Village",
+   "region": "Riverlands",
+   "page": 13,
+   "traditions": [
+    "Mask Maker"
+   ],
+   "scenes": [
+    "When the Village Rests",
+    "The Boiler",
+    "Artisan Market",
+    "The Brass Teahouse",
+    "River’s End"
+   ],
+   "connects": [
+    "Through a Kingdom of Towers",
+    "At Last We Reach the City of Winter (by Caravan)"
+   ],
+   "entrances": [],
+   "startingHome": false,
+   "isArrival": false,
+   "route": "Caravan"
+  },
+  {
+   "name": "Above a Kingdom of Towers",
+   "region": "Riverlands",
+   "page": 14,
+   "traditions": [
+    "Lantern Crow"
+   ],
+   "scenes": [
+    "A Tower of Crows",
+    "A Tower, Still Burning",
+    "A Tower Besieged",
+    "When We Find the Stowaway",
+    "A Tower of Colors"
+   ],
+   "connects": [
+    "We Board a Lantern Ship",
+    "Above a Nomad Village"
+   ],
+   "entrances": [],
+   "startingHome": false,
+   "isArrival": false,
+   "route": "Lantern Ship"
+  },
+  {
+   "name": "Above a Nomad Village",
+   "region": "Riverlands",
+   "page": 15,
+   "traditions": [
+    "Mask Maker"
+   ],
+   "scenes": [
+    "When Merchants Board",
+    "Smuggler’s Hold",
+    "By Rope and Ladder",
+    "Over Rooftops",
+    "When the Village Runs"
+   ],
+   "connects": [
+    "Above a Kingdom of Towers",
+    "At Last We Reach the City of Winter (by Lantern Ship)"
+   ],
+   "entrances": [],
+   "startingHome": false,
+   "isArrival": false,
+   "route": "Lantern Ship"
+  },
+  {
+   "name": "At Last We Reach the City of Winter (by Lantern Ship)",
+   "region": "Riverlands",
+   "page": 16,
+   "traditions": [],
+   "scenes": [],
+   "connects": [
+    "Above a Nomad Village"
+   ],
+   "entrances": [
+    {
+     "text": "...and are smuggled into the Drift",
+     "target": "the Drift"
+    },
+    {
+     "text": "...and pledge service to the Palace of the Moon",
+     "target": "Palace of the Moon"
+    },
+    {
+     "text": "...and seek work in Glowtown",
+     "target": "Glowtown"
+    }
+   ],
+   "startingHome": false,
+   "isArrival": true,
+   "route": "Lantern Ship"
+  },
+  {
+   "name": "At Last We Reach the City of Winter (by Caravan)",
+   "region": "Riverlands",
+   "page": 17,
+   "traditions": [],
+   "scenes": [],
+   "connects": [
+    "We Meet a Nomad Village"
+   ],
+   "entrances": [
+    {
+     "text": "...and seek work in Glowtown",
+     "target": "Glowtown"
+    },
+    {
+     "text": "...and claim asylum at the Lantern Gate",
+     "target": "Lantern Gate"
+    },
+    {
+     "text": "...and find shelter in the Refuge",
+     "target": "the Refuge"
+    }
+   ],
+   "startingHome": false,
+   "isArrival": true,
+   "route": "Caravan"
+  }
+ ],
+ "city": [
+  {
+   "name": "Lantern Gate",
+   "region": "City",
+   "page": 18,
+   "traditions": [
+    "Brass Ones",
+    "ANY:circle"
+   ],
+   "scenes": [
+    "The Charity Tents",
+    "Immigration Tower",
+    "In Shadows",
+    "In Line",
+    "The Public Fire",
+    "When the Gatelighter Comes"
+   ],
+   "connects": [],
+   "entrances": [],
+   "startingHome": false,
+   "isArrival": false,
+   "route": null
+  },
+  {
+   "name": "the Refuge",
+   "region": "City",
+   "page": 19,
+   "traditions": [
+    "Fox of the Towers",
+    "ANY:circle"
+   ],
+   "scenes": [
+    "Rooftops",
+    "Crooked Street",
+    "Gren’s Clinic",
+    "In a Crowded Tenement",
+    "When the Refuge Grows",
+    "Where Children Play",
+    "The Garden"
+   ],
+   "connects": [],
+   "entrances": [],
+   "startingHome": false,
+   "isArrival": false,
+   "route": null
+  },
+  {
+   "name": "Undertown",
+   "region": "City",
+   "page": 20,
+   "traditions": [
+    "ANY:circle",
+    "ANY:circle"
+   ],
+   "scenes": [
+    "Illegal Work",
+    "Cistern",
+    "When Wardens Come",
+    "Steam Guild",
+    "Market of Lost Things",
+    "The Kitchens"
+   ],
+   "connects": [],
+   "entrances": [],
+   "startingHome": false,
+   "isArrival": false,
+   "route": null
+  },
+  {
+   "name": "Husk",
+   "region": "City",
+   "page": 21,
+   "traditions": [
+    "ANY:sun",
+    "ANY:circle"
+   ],
+   "scenes": [
+    "Ruins",
+    "The Nameless Church",
+    "Toppled Statue",
+    "The Nest",
+    "Tomb Town",
+    "Tourists",
+    "The Guild of Restoration"
+   ],
+   "connects": [],
+   "entrances": [],
+   "startingHome": false,
+   "isArrival": false,
+   "route": null
+  },
+  {
+   "name": "Glowtown",
+   "region": "City",
+   "page": 22,
+   "traditions": [
+    "Glowdog",
+    "ANY:circle"
+   ],
+   "scenes": [
+    "When the Glow Shifts",
+    "Boarding House",
+    "Mine of Colors",
+    "Mine of Voices",
+    "Baths",
+    "Dangerous Work",
+    "In a Brass Elevator",
+    "Warehouse Squat"
+   ],
+   "connects": [],
+   "entrances": [],
+   "startingHome": false,
+   "isArrival": false,
+   "route": null
+  },
+  {
+   "name": "the Dust",
+   "region": "City",
+   "page": 23,
+   "traditions": [
+    "ANY:circle",
+    "ANY:diamond"
+   ],
+   "scenes": [
+    "In Company Housing",
+    "Factory",
+    "The Barber Who Smiles",
+    "Hard Work",
+    "Holiday",
+    "Mess Hall",
+    "Duster’s Pub"
+   ],
+   "connects": [],
+   "entrances": [],
+   "startingHome": false,
+   "isArrival": false,
+   "route": null
+  },
+  {
+   "name": "Spiral Avenue",
+   "region": "City",
+   "page": 24,
+   "traditions": [
+    "ANY:circle",
+    "ANY:circle",
+    "ANY:diamond"
+   ],
+   "scenes": [
+    "Smoke Station",
+    "Heron Theatre",
+    "Street Food",
+    "Spiral Center",
+    "In an Apartment Over a Bakery",
+    "Graffiti",
+    "The Red Tea House"
+   ],
+   "connects": [],
+   "entrances": [],
+   "startingHome": false,
+   "isArrival": false,
+   "route": null
+  },
+  {
+   "name": "Invisible Town",
+   "region": "City",
+   "page": 25,
+   "traditions": [
+    "ANY:circle"
+   ],
+   "scenes": [
+    "Blu’s House",
+    "The Secret Cafe",
+    "Echoes",
+    "Unseen Library",
+    "Where Elders Complain",
+    "The Popular Grocer",
+    "Where the Park Was"
+   ],
+   "connects": [],
+   "entrances": [],
+   "startingHome": false,
+   "isArrival": false,
+   "route": null
+  },
+  {
+   "name": "Arcanium of Brass",
+   "region": "City",
+   "page": 26,
+   "traditions": [
+    "ANY:sun",
+    "ANY:diamond",
+    "ANY:circle"
+   ],
+   "scenes": [
+    "Spark Palace",
+    "Twilight Park",
+    "Observing Tower",
+    "Museum of Magic",
+    "When Smoke Comes",
+    "Children’s School",
+    "Brassworks",
+    "The Renowned Restaurant"
+   ],
+   "connects": [],
+   "entrances": [],
+   "startingHome": false,
+   "isArrival": false,
+   "route": null
+  },
+  {
+   "name": "Moonspire Ward",
+   "region": "City",
+   "page": 27,
+   "traditions": [
+    "ANY:circle",
+    "ANY:circle"
+   ],
+   "scenes": [
+    "Moonspire Station",
+    "Climber’s Guild",
+    "The Silent Florist",
+    "Mender’s Row",
+    "Traveler Alley",
+    "Brass Manor"
+   ],
+   "connects": [],
+   "entrances": [],
+   "startingHome": false,
+   "isArrival": false,
+   "route": null
+  },
+  {
+   "name": "Five Temples",
+   "region": "City",
+   "page": 28,
+   "traditions": [
+    "ANY:circle",
+    "ANY:circle",
+    "ANY:circle"
+   ],
+   "scenes": [
+    "A Crowded Temple",
+    "A Temple in Ceremony",
+    "Souvenir Shop",
+    "A False Temple",
+    "A Forbidden Temple",
+    "A Temple, Defiled"
+   ],
+   "connects": [],
+   "entrances": [],
+   "startingHome": false,
+   "isArrival": false,
+   "route": null
+  },
+  {
+   "name": "Holy Well",
+   "region": "City",
+   "page": 29,
+   "traditions": [
+    "ANY:circle"
+   ],
+   "scenes": [
+    "The Floating Monastery",
+    "When We See the Holy Ones",
+    "Pilgrims’ Hovel",
+    "Chamber of Truths",
+    "The Sunken Reliquary"
+   ],
+   "connects": [],
+   "entrances": [],
+   "startingHome": false,
+   "isArrival": false,
+   "route": null
+  },
+  {
+   "name": "Ascending the Spire",
+   "region": "City",
+   "page": 30,
+   "traditions": [
+    "ANY:diamond",
+    "ANY:circle"
+   ],
+   "scenes": [
+    "Moonbound Merchants",
+    "Sightseer Guild",
+    "On the Scaffold",
+    "Builder’s Camp",
+    "A Well-Run Bodega",
+    "Checkpoint"
+   ],
+   "connects": [],
+   "entrances": [],
+   "startingHome": false,
+   "isArrival": false,
+   "route": null
+  },
+  {
+   "name": "Archipelago",
+   "region": "City",
+   "page": 31,
+   "traditions": [
+    "ANY:diamond",
+    "ANY:circle"
+   ],
+   "scenes": [
+    "Island of Three Kings",
+    "Island of Cats",
+    "Isle of Children",
+    "Smugglers’ Cove",
+    "Twisting Bridges",
+    "The Painted Island"
+   ],
+   "connects": [],
+   "entrances": [],
+   "startingHome": false,
+   "isArrival": false,
+   "route": null
+  },
+  {
+   "name": "the Drift",
+   "region": "City",
+   "page": 32,
+   "traditions": [
+    "Lantern Crow",
+    "ANY:circle"
+   ],
+   "scenes": [
+    "The Mansion",
+    "Redd’s Diner",
+    "Passing Flocks",
+    "Drifting Apart",
+    "Speakeasy",
+    "Caught in the Nets",
+    "In a House Made of Trash"
+   ],
+   "connects": [],
+   "entrances": [],
+   "startingHome": false,
+   "isArrival": false,
+   "route": null
+  },
+  {
+   "name": "High Lake",
+   "region": "City",
+   "page": 33,
+   "traditions": [
+    "ANY:diamond",
+    "ANY:diamond"
+   ],
+   "scenes": [
+    "Balloons",
+    "Winterwine Estate",
+    "Beach House",
+    "Thornrose Estate",
+    "In the Company of Nobles",
+    "Rivertown Bistro",
+    "On the Lake"
+   ],
+   "connects": [],
+   "entrances": [],
+   "startingHome": false,
+   "isArrival": false,
+   "route": null
+  },
+  {
+   "name": "Palace of the Moon",
+   "region": "City",
+   "page": 34,
+   "traditions": [
+    "Moonbee",
+    "ANY:diamond"
+   ],
+   "scenes": [
+    "Before the Throne",
+    "Shard Villa",
+    "Lunar Garden",
+    "Skyport",
+    "The Royal Aviary",
+    "Worker Apartments",
+    "Crystal Ballroom",
+    "Waxworks"
+   ],
+   "connects": [],
+   "entrances": [],
+   "startingHome": false,
+   "isArrival": false,
+   "route": null
+  },
+  {
+   "name": "Forest of the Spire",
+   "region": "City",
+   "page": 35,
+   "traditions": [
+    "ANY:diamond",
+    "ANY:circle"
+   ],
+   "scenes": [
+    "By the Light of the City",
+    "When the Spire Gate Opens",
+    "Migrant Camps",
+    "Fort of Wardens",
+    "Glimmer Shrine",
+    "Outlaw Caravan"
+   ],
+   "connects": [],
+   "entrances": [],
+   "startingHome": false,
+   "isArrival": false,
+   "route": null
+  },
+  {
+   "name": "Glasstown",
+   "region": "City",
+   "page": 36,
+   "traditions": [
+    "ANY:diamond",
+    "ANY:diamond"
+   ],
+   "scenes": [
+    "Outside the Glass",
+    "Riverlands Museum",
+    "Domed Orchard",
+    "The Everystore",
+    "Glassworks Academy",
+    "Vacation Dome",
+    "Pearl Avenue",
+    "Hospital"
+   ],
+   "connects": [],
+   "entrances": [],
+   "startingHome": false,
+   "isArrival": false,
+   "route": null
+  },
+  {
+   "name": "Wintermount",
+   "region": "City",
+   "page": 37,
+   "traditions": [
+    "ANY:diamond",
+    "ANY:circle"
+   ],
+   "scenes": [
+    "Caverns",
+    "Summit",
+    "Temple of Winter",
+    "Climbing",
+    "Mountain Village",
+    "When We See the River"
+   ],
+   "connects": [],
+   "entrances": [],
+   "startingHome": false,
+   "isArrival": false,
+   "route": null
+  }
+ ],
+ "wanderingBorough": {
+  "name": "The Wandering Borough",
+  "printedTitle": "The Wandering Burrough",
+  "region": "City",
+  "traditions": [
+   "Mask Maker",
+   "ANY:sun"
+  ],
+  "scenes": [
+   "An Affordable Eatery",
+   "Palace",
+   "The Giving Bazaar",
+   "The Hotel by the Park",
+   "Tea Market",
+   "Unfinished Library",
+   "Temple of the Engine",
+   "Wanderering"
+  ]
+ },
+ "transitLines": [
+  {
+   "name": "Lantern Wall",
+   "die": 1,
+   "stations": [
+    "Husk",
+    "Lantern Gate",
+    "the Refuge"
+   ]
+  },
+  {
+   "name": "Smoke Street",
+   "die": 2,
+   "stations": [
+    "the Drift",
+    "Holy Well",
+    "the Dust",
+    "Spiral Avenue",
+    "Lantern Gate"
+   ]
+  },
+  {
+   "name": "Ruin Street",
+   "die": 3,
+   "stations": [
+    "Five Temples",
+    "Glowtown",
+    "the Dust",
+    "Undertown",
+    "Husk"
+   ]
+  },
+  {
+   "name": "Spire Road",
+   "die": 4,
+   "stations": [
+    "Moonspire Ward",
+    "Ascending the Spire",
+    "Forest of the Spire"
+   ]
+  },
+  {
+   "name": "In the Pull",
+   "die": 5,
+   "stations": [
+    "Ascending the Spire",
+    "Archipelago",
+    "the Drift",
+    "High Lake"
+   ]
+  },
+  {
+   "name": "Moon Path",
+   "die": 6,
+   "stations": [
+    "Forest of the Spire",
+    "Glasstown",
+    "Palace of the Moon",
+    "Wintermount"
+   ]
+  },
+  {
+   "name": "The Brass Rail",
+   "die": null,
+   "stations": [
+    "Five Temples",
+    "Holy Well",
+    "Arcanium of Brass",
+    "Moonspire Ward"
+   ]
+  },
+  {
+   "name": "Winter Rail",
+   "die": null,
+   "stations": [
+    "Spiral Avenue",
+    "Invisible Town",
+    "Moonspire Ward"
+   ]
+  }
+ ],
+ "transitDistance": {
+  "order": [
+   "Ascending the Spire",
+   "Archipelago",
+   "Arcanium of Brass",
+   "the Dust",
+   "the Drift",
+   "Five Temples",
+   "Forest of the Spire",
+   "Glasstown",
+   "Glowtown",
+   "High Lake",
+   "Holy Well",
+   "Husk",
+   "Invisible Town",
+   "Lantern Gate",
+   "Moonspire Ward",
+   "Palace of the Moon",
+   "the Refuge",
+   "Spiral Avenue",
+   "Undertown"
+  ],
+  "rows": {
+   "Ascending the Spire": [
+    "-",
+    "1",
+    "3",
+    "5",
+    "2",
+    "5",
+    "1",
+    "3",
+    "7+",
+    "3",
+    "4",
+    "7+",
+    "3",
+    "6",
+    "1",
+    "4",
+    "7+",
+    "4",
+    "7+"
+   ],
+   "Archipelago": [
+    "1",
+    "-",
+    "5",
+    "3",
+    "1",
+    "5",
+    "3",
+    "5",
+    "6",
+    "2",
+    "3",
+    "7+",
+    "5",
+    "6",
+    "3",
+    "5",
+    "7+",
+    "5",
+    "7+"
+   ],
+   "Arcanium of Brass": [
+    "3",
+    "5",
+    "-",
+    "3",
+    "3",
+    "2",
+    "4",
+    "6",
+    "4",
+    "5",
+    "1",
+    "6",
+    "3",
+    "5",
+    "1",
+    "7+",
+    "7+",
+    "4",
+    "5"
+   ],
+   "the Dust": [
+    "5",
+    "3",
+    "3",
+    "-",
+    "2",
+    "3",
+    "7+",
+    "7+",
+    "1",
+    "4",
+    "1",
+    "3",
+    "3",
+    "2",
+    "4",
+    "7+",
+    "4",
+    "1",
+    "2"
+   ],
+   "the Drift": [
+    "2",
+    "1",
+    "3",
+    "2",
+    "-",
+    "3",
+    "4",
+    "4",
+    "4",
+    "1",
+    "1",
+    "6",
+    "5",
+    "4",
+    "4",
+    "4",
+    "6",
+    "3",
+    "5"
+   ],
+   "Five Temples": [
+    "5",
+    "5",
+    "2",
+    "3",
+    "3",
+    "-",
+    "6",
+    "7+",
+    "1",
+    "5",
+    "1",
+    "3",
+    "5",
+    "5",
+    "3",
+    "7+",
+    "6",
+    "4",
+    "2"
+   ],
+   "Forest of the Spire": [
+    "1",
+    "3",
+    "4",
+    "7+",
+    "4",
+    "6",
+    "-",
+    "1",
+    "7+",
+    "4",
+    "5",
+    "7+",
+    "4",
+    "7+",
+    "2",
+    "2",
+    "7+",
+    "5",
+    "7+"
+   ],
+   "Glasstown": [
+    "3",
+    "5",
+    "6",
+    "7+",
+    "4",
+    "7+",
+    "1",
+    "-",
+    "7+",
+    "3",
+    "6",
+    "7+",
+    "6",
+    "7+",
+    "4",
+    "1",
+    "7+",
+    "7+",
+    "7+"
+   ],
+   "Glowtown": [
+    "7+",
+    "6",
+    "4",
+    "1",
+    "4",
+    "1",
+    "7+",
+    "7+",
+    "-",
+    "6",
+    "3",
+    "7+",
+    "5",
+    "4",
+    "5",
+    "7+",
+    "5",
+    "3",
+    "1"
+   ],
+   "High Lake": [
+    "3",
+    "2",
+    "5",
+    "4",
+    "1",
+    "5",
+    "4",
+    "3",
+    "6",
+    "-",
+    "3",
+    "7+",
+    "7+",
+    "6",
+    "5",
+    "3",
+    "7+",
+    "5",
+    "7+"
+   ],
+   "Holy Well": [
+    "4",
+    "3",
+    "1",
+    "1",
+    "1",
+    "1",
+    "5",
+    "6",
+    "3",
+    "3",
+    "-",
+    "5",
+    "4",
+    "3",
+    "2",
+    "6",
+    "5",
+    "2",
+    "4"
+   ],
+   "Husk": [
+    "7+",
+    "7+",
+    "6",
+    "3",
+    "6",
+    "3",
+    "7+",
+    "7+",
+    "7+",
+    "7+",
+    "5",
+    "-",
+    "5",
+    "1",
+    "6",
+    "7+",
+    "2",
+    "3",
+    "1"
+   ],
+   "Invisible Town": [
+    "3",
+    "5",
+    "3",
+    "3",
+    "5",
+    "5",
+    "4",
+    "6",
+    "5",
+    "7+",
+    "4",
+    "5",
+    "-",
+    "3",
+    "1",
+    "7+",
+    "5",
+    "1",
+    "6"
+   ],
+   "Lantern Gate": [
+    "6",
+    "6",
+    "5",
+    "2",
+    "4",
+    "5",
+    "7+",
+    "7+",
+    "4",
+    "6",
+    "3",
+    "1",
+    "3",
+    "-",
+    "4",
+    "7+",
+    "1",
+    "1",
+    "3"
+   ],
+   "Moonspire Ward": [
+    "1",
+    "3",
+    "1",
+    "4",
+    "4",
+    "3",
+    "2",
+    "4",
+    "5",
+    "5",
+    "2",
+    "6",
+    "1",
+    "4",
+    "-",
+    "5",
+    "6",
+    "2",
+    "6"
+   ],
+   "Palace of the Moon": [
+    "4",
+    "5",
+    "7+",
+    "7+",
+    "4",
+    "7+",
+    "2",
+    "1",
+    "7+",
+    "3",
+    "6",
+    "7+",
+    "7+",
+    "7+",
+    "5",
+    "-",
+    "7+",
+    "7+",
+    "7+"
+   ],
+   "the Refuge": [
+    "7+",
+    "7+",
+    "7+",
+    "4",
+    "6",
+    "6",
+    "7+",
+    "7+",
+    "5",
+    "7+",
+    "5",
+    "2",
+    "5",
+    "1",
+    "6",
+    "7+",
+    "-",
+    "3",
+    "4"
+   ],
+   "Spiral Avenue": [
+    "4",
+    "5",
+    "4",
+    "1",
+    "3",
+    "4",
+    "5",
+    "7+",
+    "3",
+    "5",
+    "2",
+    "3",
+    "1",
+    "1",
+    "2",
+    "7+",
+    "3",
+    "-",
+    "4"
+   ],
+   "Undertown": [
+    "7+",
+    "7+",
+    "5",
+    "2",
+    "5",
+    "2",
+    "7+",
+    "7+",
+    "1",
+    "7+",
+    "4",
+    "1",
+    "6",
+    "3",
+    "6",
+    "7+",
+    "4",
+    "4",
+    "-"
+   ]
+  }
+ },
+ "cityStartingOptions": [
+  {
+   "tradition": "Moonbee",
+   "home": "Palace of the Moon",
+   "text": "Moonbee of the Palace of the Moon"
+  },
+  {
+   "tradition": "Fox of the Towers",
+   "home": "the Refuge",
+   "text": "Fox of the Refuge"
+  },
+  {
+   "tradition": "Brass Ones",
+   "home": "Lantern Gate",
+   "text": "Brass Ones of Lantern Gate"
+  },
+  {
+   "tradition": "Glowdog",
+   "home": "the Dust",
+   "text": "Glowdog of the Dust"
+  },
+  {
+   "tradition": "Lantern Crow",
+   "home": "the Drift",
+   "text": "Crow of the Drift"
+  },
+  {
+   "tradition": "Mask Maker",
+   "home": "The Wandering Borough",
+   "text": "Mask Maker of the Wandering Borough"
+  }
+ ],
+ "askFate": [
+  {
+   "roll": "1-3",
+   "outcome": "The likely outcome",
+   "definition": "A likely outcome is the obvious result of things as they stand."
+  },
+  {
+   "roll": "4-5",
+   "outcome": "The unlikely outcome",
+   "definition": "An unlikely outcome is something that could happen, but is improbable."
+  },
+  {
+   "roll": "6",
+   "outcome": "The fateful outcome",
+   "definition": "A fateful outcome might involve strange fortune, outside intervention, magical transformation, or new perspective."
+  }
+ ],
+ "procedures": [
+  {
+   "name": "First Session Setup",
+   "page": 10,
+   "phase": "First Session Setup",
+   "steps": [
+    {
+     "n": 1,
+     "name": "Introduction",
+     "page": 11,
+     "instruction": "Take turns reading these paragraphs out loud:",
+     "substeps": [
+      {
+       "n": 1,
+       "name": "Roleplaying",
+       "teaching": "In City of Winter, we each take on the role of a different member of a family. There are many ways to roleplay. We might talk casually, like in a conversation, narrate as authors, perform as actors, or mix several styles all at once. Do whatever feels natural, or challenge yourself to try something new."
+      },
+      {
+       "n": 2,
+       "name": "Group Storytelling",
+       "teaching": "As we tell the story, we sometimes step outside of our own characters to describe the world around them, what is going on, or roleplay side-characters that emerge in a scene.\n\nWe are both writers in the writing room, and fans in the audience. Feel free to converse, share ideas, or just wonder aloud about anything that interests you as we play."
+      },
+      {
+       "n": 3,
+       "name": "Think small",
+       "teaching": "When it is time to make something up, think small and don’t plan too far ahead. Let the story be a wondrous beast we chase but never capture. Ask questions with no clear answer, raise conflicts with no ready solution. By letting go, the story we find together will be more profound than anything we might have planned alone."
+      },
+      {
+       "n": 4,
+       "name": "Safety and the X-Card",
+       "teaching": "The X-Card is a safety tool. It reminds us that we all have the power to remove anything from the story that is making us feel uncomfortable, or spoiling our fun. To do so, simply tap this card, or say ‘I’d like to X card that,’ and we’ll find another way to tell our story. No questions asked."
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "name": "Choose Home & Tradition",
+     "page": 12,
+     "instruction": "Unroll the River Scroll so that the Cloud Citadel, Rivertown, and Temple Island Locations are visible.",
+     "teaching": "We begin by choosing our family’s home from these three locations. Each location has a Local Tradition indicated by the icon next to its name. This Local Tradition will be our Family Tradition.\n\nOur options are: Lion of the Citadel, Ox of Rivertown, or Temple Heron."
+    },
+    {
+     "n": 3,
+     "name": "Choose Names",
+     "page": 13,
+     "instruction": "For this next step, everyone will need a Notecard and something to write with.\n\nPlace the Banner for our chosen Family Tradition where everyone can see it.",
+     "teaching": "This is our Tradition Banner. Choose a name for your main character from this list and write it down on your Notecard.\n\nThe names list ends with a prompt you can use to make up additional names.\n\nIf you know what pronouns you’d like for your character, add those to your Notecard as well."
+    },
+    {
+     "n": 4,
+     "name": "Mark Age",
+     "page": 14,
+     "teaching": "We track our character’s age by drawing circles called Marks of Age. There is no direct correlation between the number of Marks and the exact age of a character in years. We can decide for ourselves what they mean as we play.\n\nChoose how old you would like your character to be: Child, Youth, Parent, or Elder. Add Marks to your Notecard as follows:\n\nChild- no Marks\n\nYouth- one or two Marks\n\nParent- three, four, or five Marks\n\nElder- six Marks."
+    },
+    {
+     "n": 5,
+     "name": "Make Bonds",
+     "page": 15,
+     "teaching": "Our characters begin with two Bonds. A Bond represents an important relationship that helps to define your character’s role in our family.\n\nTo create a Bond, combine a prompt from the Bonds List with the name of another character and write it on your Notecard.\n\nThe prompts are organized by age, and you may only choose prompts at your age or younger.\n\nAt least one of your two Bonds must be with another main character. Your other Bond may be with a Side-Character if you wish. To create a Side-Character, choose any unused name from our Banner."
+    },
+    {
+     "n": 6,
+     "name": "Hold Traditions",
+     "page": 16,
+     "substeps": [
+      {
+       "n": 1,
+       "name": "Choose Tradition Cards",
+       "instruction": "Spread the cards from our family’s Tradition Deck (the Tradition we chose earlier) face-up on the table.",
+       "teaching": "Each main character begins with a Hand of Tradition Cards equal to their Marks of Age (Children begin with no Tradition Cards).\n\nHolding a Tradition might mean that this tradition is important to your character, that they exemplify this tradition, or that they are somehow obligated to uphold this tradition.\n\nEveryone can choose at once. Pick Tradition Cards that you feel drawn to. Don’t worry if you do not know what a card means when you choose it. The meaning of our traditions will naturally grow and change as we play."
+      },
+      {
+       "n": 2,
+       "name": "Gather the Tradition Deck",
+       "instruction": "After we have chosen Tradition Cards, gather the remaining cards back into a deck and put it next to the River Scroll by our home.\n\nIt is not necessary to shuffle cards in City of Winter. Instead, let the order of cards naturally shift from session to session."
+      }
+     ]
+    },
+    {
+     "n": 7,
+     "name": "Choose Tokens",
+     "page": 18,
+     "instruction": "Place the Tokens on the table.",
+     "teaching": "Take a token to represent your character and place it on the picture of our home. The tokens have different images on each side. You can choose either side to represent your character, and even change sides during play if you like."
+    },
+    {
+     "n": 8,
+     "name": "Introduce the Umbra",
+     "page": 19,
+     "instruction": "Have yourself or another player read the prelude from the beginning of the River Scroll.",
+     "teaching": "The Umbra is coming, and the Riverlands are no longer safe. Our family must flee to the City of Winter, to find another home.",
+     "followUp": "After the prelude is read, place the Umbra Deck next to the scroll and read the following:",
+     "teachingTwo": "The Umbra represents the force that drives us from our home, and the Umbra Deck is a tool we can reach for when we want to introduce pressure or adversity into our story.\n\nIt is up to us to decide exactly what the Umbra is, and how big of a role the Umbra takes in our story as we play."
+    }
+   ]
+  },
+  {
+   "name": "Tradition Scene",
+   "page": 21,
+   "phase": "Playing the Game",
+   "instruction": "On your turn do the following:",
+   "steps": [
+    {
+     "n": 1,
+     "name": "Choose a Scene",
+     "instruction": "Each location has several prompts called Scenes. On your turn, move your token to a scene at our family’s current location. You may choose any scene, even if another player’s token is already there."
+    },
+    {
+     "n": 2,
+     "name": "Share or witness?",
+     "instruction": "During this scene, your character will either share or witness a Tradition. Choose one of the following two options and follow the instructions:",
+     "options": [
+      {
+       "name": "Share a Tradition",
+       "instruction": "Play a card from your hand, face down onto the table. (You must have at least one card in hand to choose this option.)"
+      },
+      {
+       "name": "Witness a Tradition",
+       "instruction": "Draw a card from either the Umbra Deck or the Local Tradition Deck (indicated by the icon next to our current location) and without looking at it, give it to another player who privately reads the prompt on the card."
+      }
+     ]
+    },
+    {
+     "n": 3,
+     "name": "Lead the scene",
+     "instruction": "Describe where we are, who is there, and what is going on right now. As the scene continues, the rest of us may listen, ask questions, offer suggestions, and act out other characters."
+    },
+    {
+     "n": 4,
+     "name": "Pass on the Tradition",
+     "instruction": "Before the end of the scene, we use the chosen Tradition Card to describe how a tradition is either shared or witnessed by your character.",
+     "options": [
+      {
+       "name": "Share the Tradition",
+       "instruction": "If you chose to Share a Tradition, use the prompt on your card to describe how you share a tradition with another player’s character and pass them the Card to add to their Hand."
+      },
+      {
+       "name": "Witness the Tradition",
+       "instruction": "If you are the player who has been given the Tradition Card, it is your job to look for opportunities to introduce this tradition into the scene.\n\nInstead of roleplaying your character, roleplay as the the locals who practice this tradition. You can just describe what the people around us are doing, or, if you like, use a Banner to make up a new Side-Character.\n\nDon’t be in a hurry. Let the scene unfold on its own, and when you’re ready, jump in and describe how the tradition is witnessed in the scene. When you are done, pass the Card to the player whose turn it is. They add it to their hand."
+      }
+     ]
+    },
+    {
+     "n": 5,
+     "name": "End the Scene",
+     "instruction": "When you (the player who’s turn it is) are ready for your scene to end, let the group know. It’s now the next player’s turn."
+    }
+   ]
+  },
+  {
+   "name": "Migration Scene",
+   "page": 24,
+   "phase": "Playing the Game",
+   "instruction": "Migration is when our family moves to another Location, which becomes our new Home.\n\nAt the start of your turn, if your token is already on a Scene, you may choose to play a Migration Scene. After each player has had a Migration Scene, we Migrate the Family as a group.\n\nTo play a Migration Scene, do the following:",
+   "steps": [
+    {
+     "n": 1,
+     "name": "Why You Must Leave",
+     "instruction": "Place your Token on your Notecard and describe why your character knows it is time to leave."
+    },
+    {
+     "n": 2,
+     "name": "What You Carry",
+     "instruction": "If you hold more Tradition Cards than Marks of Age, decide which you will carry on the journey, and place the extras face-up on the table in front of you. These cards will remain here for now."
+    },
+    {
+     "n": 3,
+     "name": "Pass the turn",
+     "instruction": "When you are done, pass the turn. You are removed from the turn order until the rest of the players have also had their Migration Scenes. While you wait, you may still participate in other players’ turns as your main character or side-characters."
+    }
+   ]
+  },
+  {
+   "name": "Migrate the Family",
+   "page": 25,
+   "phase": "Playing the Game",
+   "instruction": "After each player has had a Migration Scene, we Migrate the Family as a group.",
+   "steps": [
+    {
+     "n": 1,
+     "name": "Choose a destination",
+     "instruction": "We decide our destination together. We may travel to any location that is connected by a river or other path to our current location."
+    },
+    {
+     "n": 2,
+     "name": "What is saved",
+     "instruction": "If any players hold fewer cards than their character’s Marks of Age, they should look through the face-up cards that have been left behind by other players. Select cards until they hold an equivalent number to their Marks of Age. Describe how they save or preserve these traditions."
+    },
+    {
+     "n": 3,
+     "name": "What is Left",
+     "instruction": "If unclaimed cards remain, for each remaining card, one of us must describe how this Tradition is left behind, forgotten, or practiced for the last time and discard that card.\n\n(Discarded Tradition Cards go to the bottom of their respective Tradition Decks.)"
+    },
+    {
+     "n": 4,
+     "name": "Migrate the family",
+     "instruction": "Everyone now places their token on our destination. This becomes our new Home. There are icons next to the location names that tell us the Local Tradition. Bring this Tradition Deck and Banner into play (if it is not in play already).\n\nAny player may resume play by taking the first turn in our new location."
+    }
+   ]
+  },
+  {
+   "name": "Ending a Chapter",
+   "page": 26,
+   "phase": "Playing the Game",
+   "instruction": "At the end of each Chapter, time passes and our characters grow older.\n\nWe might end a Chapter when we near the end of our planned session, or when we reach a point in our story where we want to skip ahead in time.\n\nWhen we’ve agreed to bring our current Chapter to a close, do the following:",
+   "steps": [
+    {
+     "n": 1,
+     "name": "Mark Age",
+     "instruction": "Each player adds a Mark to their character’s Notecard.\n\nIf your character is an Elder, (six Marks of Age) cross off a Mark rather than adding a Mark."
+    },
+    {
+     "n": 2,
+     "name": "New Bonds",
+     "instruction": "When your character gains a Mark, make a Bond. You may use names from our Family Tradition Banners, or any other Banner matching a Tradition Card that you hold."
+    },
+    {
+     "n": 3,
+     "name": "Hold Traditions",
+     "instruction": "If you hold more cards than Marks of Age, choose which you would like to carry, and place the extras face-up at the center of the table.\n\nIf you hold fewer cards than Marks of Age, you may fill up your hand with any of the face-up cards.\n\nRemaining cards are discarded."
+    },
+    {
+     "n": 4,
+     "name": "New Chapter or End the session?",
+     "instruction": "After closing a Chapter, we may begin a new Chapter if we wish. Otherwise, we end the session with a closing reflection.",
+     "options": [
+      {
+       "name": "Start a New Chapter",
+       "instruction": "To start a new Chapter, everyone places their Token on our Home. Any player may take the first turn, then play continues clockwise as usual."
+      },
+      {
+       "name": "Closing Reflection",
+       "instruction": "Go around the circle and give each player space to reflect on their experience.\n\nSome things to consider sharing:\n\n- A moment you enjoyed\n\n- How you are feeling right now\n\n- An appreciation of another player\n\n- Something you found challenging or difficult\n\n- A moment of silence"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "New Session Setup",
+   "page": 31,
+   "phase": "Campaign Rules",
+   "instruction": "To start a new session in an ongoing Campaign, do the following:",
+   "steps": [
+    {
+     "n": 1,
+     "name": "Distribute Materials",
+     "instruction": "Distribute the Character Notecards and Tradition Cards saved from the previous Session."
+    },
+    {
+     "n": 2,
+     "name": "Place Tokens",
+     "instruction": "Place the Tokens on the Location that was our Home in the previous Chapter."
+    },
+    {
+     "n": 3,
+     "name": "Start a New Chapter",
+     "instruction": "Any player may take the first turn, then play continues clockwise as usual. (See Death & Memory and Birth for additional, beginning-of-Chapter steps.)"
+    }
+   ]
+  },
+  {
+   "name": "When You Die",
+   "page": 32,
+   "phase": "Campaign Rules",
+   "instruction": "If your character is an Elder (has 6 Marks), roll the Die at the start of each new Chapter.\n\nIf your roll is equal to or less than the crossed-off Marks, your character has died of old age and becomes a Memory.\n\nWhen your character dies, do the following:",
+   "steps": [
+    {
+     "n": 1,
+     "name": "Remove your Token from play",
+     "instruction": "Remove your token and return it to the box."
+    },
+    {
+     "n": 2,
+     "name": "Make a Memory Bond",
+     "instruction": "Make a final bond using this list:"
+    }
+   ]
+  },
+  {
+   "name": "Memory Scene",
+   "page": 32,
+   "phase": "Campaign Rules",
+   "instruction": "For the rest of the Chapter you will play as our family’s memory of your character.\n\nA character who is a Memory does not participate in the Migration Scene procedure or in another character’s Share a Tradition Scene.\n\nOtherwise, continue to participate fully in other players’ turns, offering suggestions and playing side characters, or roleplaying a tradition in a Witness a Tradition Scene, as normal.\n\nOn your turn, follow the Memory Scene procedure.",
+   "steps": [
+    {
+     "n": 1,
+     "name": "Move another Player’s Token",
+     "instruction": "Move another character’s Token to any scene they would normally have access to."
+    },
+    {
+     "n": 2,
+     "name": "Share a Tradition",
+     "instruction": "Choose a Tradition Card to share with this player’s character, and play it face down on the table."
+    },
+    {
+     "n": 3,
+     "name": "Lead the Scene",
+     "instruction": "Lead the scene as you would a normal Tradition Scene, roleplaying as our memory of your character.\n\nRoleplaying a memory could include describing something that happened long ago, how things in the scene remind us of you, or perhaps cutting away from the present moment to describe something you told us in the past."
+    },
+    {
+     "n": 4,
+     "name": "Share the Tradition",
+     "instruction": "Before the end of the scene, describe how you share your tradition and give your Tradition Card to the other player."
+    },
+    {
+     "n": 5,
+     "name": "Pass the Turn",
+     "instruction": "When you are ready for the scene to end. Let the group know, and pass the turn."
+    }
+   ]
+  },
+  {
+   "name": "Birth",
+   "page": 34,
+   "phase": "Campaign Rules",
+   "instruction": "At the start of a new Chapter, if your character is a Memory or if you are a new player joining an existing campaign, follow these rules to make a new character:",
+   "steps": [
+    {
+     "n": 1,
+     "name": "Choose another player",
+     "instruction": "Choose another player."
+    },
+    {
+     "n": 2,
+     "name": "Receive a name",
+     "instruction": "That player gives you a name. Write the name they give you on your Notecard."
+    },
+    {
+     "n": 3,
+     "name": "Receive a Bond",
+     "instruction": "The player you chose gives you a Child Bond with their character. Write down the bond they give you on your Notecard."
+    },
+    {
+     "n": 4,
+     "name": "Choose a Token",
+     "instruction": "Choose from any of the remaining Tokens to represent your character, and place it on our family’s Home."
+    }
+   ]
+  },
+  {
+   "name": "Migrating to the City",
+   "page": 37,
+   "phase": "City Rules",
+   "instruction": "Migrating to the City introduces new rules, Traditions, and an entirely different map.\n\nThere are five entrances to the City of Winter. When we Migrate The Family to one of those entrances, we do the following:",
+   "steps": [
+    {
+     "n": 1,
+     "name": "Remove the River Scroll",
+     "instruction": "Roll up the River Scroll and return it to the box."
+    },
+    {
+     "n": 2,
+     "name": "Remove the Umbra Deck",
+     "instruction": "Return the Umbra Deck to the box. If a player is holding an Umbra Tradition they may continue to do so."
+    },
+    {
+     "n": 3,
+     "name": "Open the City Map",
+     "instruction": "Unfold the City Map, and place our tokens on the location that corresponds to our Entrance. This becomes our new Home."
+    }
+   ]
+  },
+  {
+   "name": "Ask Fate",
+   "page": 47,
+   "phase": "Design Notes",
+   "instruction": "When a question arises that no one wants to answer, ask Fate.",
+   "steps": [
+    {
+     "n": 1,
+     "name": "Ask Fate",
+     "instruction": "Pick up the die and ask the question you want Fate to answer."
+    },
+    {
+     "n": 2,
+     "name": "Set Outcomes",
+     "instruction": "As a group, agree to a likely, an unlikely, and a fateful outcome.\n\nA likely outcome is the obvious result of things as they stand.\n\nAn unlikely outcome is something that could happen, but is improbable.\n\nA fateful outcome might involve strange fortune, outside intervention, magical transformation, or new perspective."
+    },
+    {
+     "n": 3,
+     "name": "Fate Answers",
+     "instruction": "Roll the die and describe the result:\n\n1-3 The likely outcome\n\n4-5 The unlikely outcome\n\n6 The fateful outcome"
+    }
+   ]
+  }
+ ],
+ "rules": [
+  {
+   "name": "Witnessing in the City",
+   "page": 38,
+   "phase": "City Rules",
+   "text": "Most Locations in the City have multiple Local Traditions.\n\nWhen you Witness a Tradition in the City, draw one Tradition Card for each Local Tradition icon, and give all of the cards you have drawn to one other player."
+  },
+  {
+   "name": "Blank Tradition Icons",
+   "page": 38,
+   "phase": "City Rules",
+   "text": "In the City, some Local Tradition icons are just blank shapes with no image. A blank icon means that each time you would draw a Tradition Card, you may choose from any of the Tradition Decks with the matching shape."
+  },
+  {
+   "name": "During a scene",
+   "page": 39,
+   "phase": "City Rules",
+   "text": "During a Witness Scene, If you are the player who received the Tradition Cards, you may now do any of the following:\n\n- Play one Tradition Card and ignore the rest.\n\n- Play one card first, and then later in the scene decide to play more.\n\n- Play multiple cards together, combining prompts to describe how these Traditions have combined to create something new.\n\nRegardless of how many Traditions you play, only pass one Tradition Card to the player whose turn it is. The rest are discarded to the bottom of their respective decks."
+  },
+  {
+   "name": "City Bonds",
+   "page": 41,
+   "phase": "City Rules",
+   "text": "If your character has at least one City Mark, you may alternately choose a prompt from the City Bonds list when making a Bond.\n\nA City Bond represents a relationship that defines who you are and what your role is in the City.\n\nJust like the regular Bonds List, the prompts are organized by number of Marks, and you may only choose from a list that has the same or fewer number of City Marks as your character."
+  },
+  {
+   "name": "Transit Lines & Stations",
+   "page": 42,
+   "phase": "City Rules",
+   "text": "Every Location has a Transit Station that is connected to one or more Transit Lines. On your turn, whenever you Choose a Scene, you have the option to Travel to another Location."
+  },
+  {
+   "name": "Travel",
+   "page": 42,
+   "phase": "City Rules",
+   "text": "To Travel, pick up your token and describe your character’s journey. Then place your token on any Scene at your destination, and continue your turn as normal.\n\nThe total number of Stations a character can travel from Home is equal to that character’s City Marks. You may change from one Line to another mid-journey, but each change adds one to the total City Marks required for the journey.\n\nTraveling distance is always measured from Home, even if a character’s Token is on another Location at the start of the turn.\n\nYou may include other family members in scenes at a visited location, even if they couldn’t make it there on their own."
+  },
+  {
+   "name": "Migration in the City",
+   "page": 43,
+   "phase": "City Rules",
+   "text": "When we Migrate The Family, we may always choose an adjacent Location as our destination. In addition, we may Migrate to any Location that one of the migrating family members could reach through Travel with their City Marks."
+  },
+  {
+   "name": "Migrate apart",
+   "page": 43,
+   "phase": "City Rules",
+   "text": "After you’ve had your Migration Scene, you may choose to Migrate Apart instead of skipping a future turn. Characters who have also had their Migration Scene may join you if they wish. Follow the rest of the Migrate the Family procedure with the characters who chose to Migrate Apart.\n\nCharacters who are staying may Save Traditions left by characters who are leaving."
+  },
+  {
+   "name": "The Wandering Borough",
+   "page": 44,
+   "phase": "City Rules",
+   "text": "The Wandering Borough is a special location that appears during a session when “The Borough Wanders” card is drawn and revealed from a Tradition Deck."
+  },
+  {
+   "name": "The Borough Wanders",
+   "page": 44,
+   "phase": "City Rules",
+   "text": "There is one copy of “The Borough Wanders” card in each of the City (diamond-bordered) Tradition Decks.\n\nDuring a scene, we treat this card like a normal Tradition prompt, using it to inspire a description of the arrival of the Borough.\n\nAt the end of the scene, instead of passing the card to another player, discard it to the bottom of its deck. Place the Wandering Borough Location Card next to the edge of the map near where the scene took place. (You can put it on the map if you like, but you might have to move it if it gets in the way.)"
+  },
+  {
+   "name": "The Borough Leaves",
+   "page": 44,
+   "phase": "City Rules",
+   "text": "If “The Borough Wanders” card is drawn while the Borough is already in play, the Borough now leaves. The player must describe the Borough departing at some point during the scene and then remove it from play. Any visiting character tokens are returned to their home.\n\nRemove the Wandering Borough from play at the end of a Chapter (unless a character has made it their Home)."
+  },
+  {
+   "name": "Transit and The Borough",
+   "page": 45,
+   "phase": "City Rules",
+   "text": "The Borough occupies the same Station in the Transit Line as the Location where it appeared. Any character who could interact with that Location, may interact in the same way with the Wandering Borough and its Scenes."
+  },
+  {
+   "name": "Living on the Borough",
+   "page": 45,
+   "phase": "City Rules",
+   "text": "If The Wandering Borough is home to one of our characters, it remains in play from Chapter to Chapter.\n\nAt the start of each Chapter, and whenever “The Borough Wanders” card is drawn, roll the Die and consult the table below:\n\n1. Lantern Wall\n\n2. Smoke Street\n\n3. Ruin Street\n\n4. Spire Road\n\n5. In the Pull\n\n6. Moon Path\n\nChoose any location along the rolled Transit Line to be the Wandering Borough’s new Location, and place it near that Location."
+  },
+  {
+   "name": "Starting a New Chapter",
+   "page": 21,
+   "phase": "Playing the Game",
+   "text": "City of Winter is played in Chapters. During a Chapter, we take turns leading the group in a Tradition Scene. To start a new Chapter, decide who will go first then continue taking turns, clockwise."
+  },
+  {
+   "name": "Starting a Campaign",
+   "page": 31,
+   "phase": "Campaign Rules",
+   "text": "A Campaign is the fullest way to experience City of Winter. You can start a Campaign by planning in advance, or evolve a one-shot into a Campaign by simply playing more Sessions.\n\nEight or more Sessions will give you a very full experience of City of Winter, though you can go much longer. Decide the number of sessions in advance, or play an open-ended campaign with no set limit.\n\nYou can also play a mini campaign with a group of friends over one long play session, or maybe over a weekend. If you fit in two or three chapters each day you should, be able to make it to the City and see a fair amount of the game."
+  },
+  {
+   "name": "Storing the Game",
+   "page": 31,
+   "phase": "Campaign Rules",
+   "text": "Between sessions of play, store each character’s Tradition Cards next to that character’s Notecard in the box between sessions of play.\n\nTo store the City Map, fold it in half twice (hamburger-style), then fold it into thirds.\n\nTo store the River Scroll, let it hang down verticaly as you roll it up by twisting the ends of the dowel. Then, wrap the cord twice and tuck the end into the wrapping."
+  },
+  {
+   "name": "Becoming forgotten",
+   "page": 33,
+   "phase": "Campaign Rules",
+   "text": "When you have shared your last Tradition Card, remove your Notecard from play. You may no longer take turns.\n\nAt the start of the next Chapter, follow the Birth rules to create a new character."
+  },
+  {
+   "name": "Starting in the City",
+   "page": 52,
+   "phase": "Design Notes",
+   "text": "Choose your Home & Tradition from of the following options:\n\nMoonbee of the Palace of the Moon\n\nFox of the Refuge\n\nBrass Ones of Lantern Gate\n\nGlowdog of the Dust\n\nCrow of the Drift\n\nMask Maker of the Wandering Borough"
+  }
+ ],
+ "optionalRules": [
+  {
+   "name": "The Umbra Follows",
+   "page": 53,
+   "phase": "Design Notes",
+   "default": "off",
+   "scope": "GLOBAL",
+   "optionalText": "By default the Umbra Deck is no longer in play when we reach the City. But your group could decide that you would like it to remain.",
+   "text": "Include the Umbra Deck in play with the rest of the Tradition Cards. Whenever you would draw from a Tradition Deck, you may draw an Umbra card instead.\n\nBe aware that if you do this, the game will likely become more about the struggle against Umbra and less about the immigration experience."
+  },
+  {
+   "name": "Fleeing the City",
+   "page": 53,
+   "phase": "Design Notes",
+   "default": "off",
+   "scope": "GLOBAL",
+   "optionalText": "In this variation, we reverse the migration pattern and tell the story of a family fleeing the City to escape the Umbra.",
+   "text": "New Prelude\n\n“The Umbra is coming, and the City of Winter is no longer safe. Our family must flee, to the Riverlands, to find another home.”\n\nEscaping the Umbra\n\nRemove the Umbra Deck from play when we reach Temple Island or Cloud Citadel.\n\nLeaving the city\n\nWe can Migrate from the City Map to the River Scroll through any of the points of entry listed on the Riverscroll.\n\nSome of the River Scroll prompts like “We board a lantern ship” imply a Riverlands to City journey, but I imagine your group can make that work through some slight narrative changes."
+  },
+  {
+   "name": "Solo Play",
+   "page": 48,
+   "phase": "Design Notes",
+   "default": "off",
+   "scope": "GLOBAL",
+   "optionalText": "These are rules for playing City of Winter solo. Instead of roleplaying scenes as a group, you will write scenes in a physical journal.",
+   "text": "Follow the normal rules of play, only instead of roleplaying scenes with a group of people, you will be writing scenes in your journal.\n\nFor each scene, choose to act as any of the main characters, moving their token and picking Tradition Cards according to the normal rules of play.\n\nBegin every scene journal entry with the name of the main character, the name of the scene you chose, and what kind of scene it is (Tradition, Migration, Memory, etc...)\n\nWhen you would Witness a Tradition, play the card onto the table and reveal it when you are ready to integrate the witnessed tradition into your scene."
+  },
+  {
+   "name": "Ask Fate (optional)",
+   "page": 47,
+   "phase": "Design Notes",
+   "default": "off",
+   "scope": "GLOBAL",
+   "optionalText": "Over the last four years, I’ve explored many ways to play City of Winter. In this section, I’ve included some ideas that I think are interesting enough to share but don’t recommend as part of the first-time experience. Try them as-is, or use them to inspire your own explorations.",
+   "text": "When a question arises that no one wants to answer, ask Fate."
+  }
+ ],
+ "soloModules": [
+  {
+   "name": "Index Module",
+   "page": 48,
+   "text": "The index is where you will track the information in your journal. To create your index, write index on the top left of the first page and first full spread of your journal."
+  },
+  {
+   "name": "Main Character Module",
+   "page": 49,
+   "text": "A Main Character Module is for tracking all of the information about a single main character.\n\nTo create a new main character, turn to the first available blank spread, add that character’s name as the title of the spread, and add it to your index.\n\nUse this space to record Marks of Age, Bonds, assigned token, character sketches, and any thoughts or reflections you have about the character."
+  },
+  {
+   "name": "Side Character Module",
+   "page": 50,
+   "text": "The Side Character Module is for information about ALL of the side characters.\n\nWhen you create a new side character, add their name to the Side Character Module. Decide how old they are, and add Marks of Age next to their name."
+  },
+  {
+   "name": "Chapter Module",
+   "page": 51,
+   "text": "The Chapter module is where you will record your scenes along with notes, marginalia, sketches, or anything else you wish to add.\n\nEach Chapter gets a fresh module with the Chapter number as the title. As always, number and index as you go!"
+  }
+ ],
+ "guidance": [
+  {
+   "label": "campaign-vs-one-shot",
+   "page": 6,
+   "concerns": [
+    "Session"
+   ],
+   "topics": [
+    "campaign structure"
+   ],
+   "text": "A game can last just one session. This is called a one-shot and is a great way to experience City of Winter for the first time.\n\nDuring a one-shot, our group will create a family, explore their traditions of their homeland, and possibly begin our migration journey.\n\nCity of Winter may also be played as an ongoing campaign lasting many sessions.\n\nDuring a campaign, we follow a family as they migrate from their home to the City of Winter, and explore how their Traditions change as generations pass."
+  },
+  {
+   "label": "learning-city-of-winter",
+   "page": 7,
+   "concerns": [
+    "Facilitator"
+   ],
+   "topics": [
+    "teaching the game"
+   ],
+   "text": "If you are facilitating, familiarize yourself with these rules in advance. It’s ok to not have everything memorized, just make sure you know where to look things up when there are questions."
+  },
+  {
+   "label": "tradition-banners-in-play",
+   "page": 12,
+   "concerns": [
+    "Tradition Banner"
+   ],
+   "topics": [
+    "side characters"
+   ],
+   "text": "As we travel, we will encounter different traditions. Each of the traditions we encounter has a Banner with a list of name prompts. Use these prompts to inspire other characters we meet in our story. You can keep Cards and Banners in the box when not in use."
+  },
+  {
+   "label": "keep-cards-face-down",
+   "page": 16,
+   "concerns": [
+    "Tradition Card"
+   ],
+   "topics": [
+    "table procedure"
+   ],
+   "text": "Our Hands of Tradition Cards are not secret, but should be kept in hand or face-down on the table when not in use."
+  },
+  {
+   "label": "placing-a-token-on-a-location",
+   "page": 18,
+   "concerns": [
+    "Token"
+   ],
+   "topics": [
+    "table procedure"
+   ],
+   "text": "When the game asks us to place a token on our Home (or any other location), we place the token on the illustration beneath the name of that Location.\n\nThis is different from placing a Token on a Scene, which refers to written scene prompts that surround each Location.\n\nStarting with the Tokens on the illustration, and not on the Scenes, helps us keep track of who has already taken a turn."
+  },
+  {
+   "label": "side-characters",
+   "page": 21,
+   "concerns": [
+    "Side Character"
+   ],
+   "topics": [
+    "roleplaying"
+   ],
+   "text": "While the focus of our story will be on our main characters, Side-Characters will naturally emerge through play. Everyone is welcome to describe or roleplay a side-character in a scene."
+  },
+  {
+   "label": "chapters-and-pacing",
+   "page": 26,
+   "concerns": [
+    "Chapter"
+   ],
+   "topics": [
+    "pacing"
+   ],
+   "text": "We can control the pace of our story by how many Chapters we play in a session. The recommendation is to play a minimum of one Chapter per Session, but you might want to let a Chapter stretch out a couple of Sessions, depending on what is happening in your story.\n\nIf we are in the middle of the Migration Scene procedure, we must complete it before ending the Chapter."
+  },
+  {
+   "label": "side-characters-and-age",
+   "page": 35,
+   "concerns": [
+    "Side Character"
+   ],
+   "topics": [
+    "campaign advice"
+   ],
+   "text": "If you are planning to play many Chapters, track the age of Side-Characters you’ve Bonded with on your Notecard. When you start a new Chapter, you can roll for Side-Characters who are Elders, the same as you would for your main character."
+  },
+  {
+   "label": "widows-and-orphans",
+   "page": 35,
+   "concerns": [
+    "Bond"
+   ],
+   "topics": [
+    "campaign advice"
+   ],
+   "text": "Some of the Bonds imply that the other character is dead. You can make these Bonds with other main characters if the other player is willing. Likewise, it is okay to decide during the First-Session setup that a character is dead, and play them as a Memory for the first chapter.\n\nWhen this happens, they still receive Traditions during the Hold Tradition step, as normal."
+  },
+  {
+   "label": "other-ways-to-die",
+   "page": 35,
+   "concerns": [
+    "Memory"
+   ],
+   "topics": [
+    "campaign advice"
+   ],
+   "text": "Sometimes it makes sense in the story for your character to die. Perhaps something comes up in a scene, or you just feel like it is time.\n\nWhatever the case, you always decide what happens to your main character; this includes death."
+  },
+  {
+   "label": "leaving-mid-game",
+   "page": 35,
+   "concerns": [
+    "Main Character"
+   ],
+   "topics": [
+    "campaign advice"
+   ],
+   "text": "If a player ever needs to leave a campaign or session in-progress, transition their character to a side character and add their Tradition Cards to the pool next time we Migrate the Family or end a Chapter."
+  },
+  {
+   "label": "ending-a-campaign",
+   "page": 35,
+   "concerns": [
+    "Campaign"
+   ],
+   "topics": [
+    "campaign advice"
+   ],
+   "text": "City of Winter does not have a pre-planned end goal. The stories of our characters end when they die, but the story of our family can continue for as long as we wish to explore it.\n\nWhen the group is ready for the Campaign to end, open up the river scroll and remember our family’s journey as part of the Closing Reflection after the last Session."
+  },
+  {
+   "label": "rejoining-as-children",
+   "page": 34,
+   "concerns": [
+    "Birth"
+   ],
+   "topics": [
+    "campaign advice"
+   ],
+   "text": "As we play City of Winter, we create a world that is unique to our game. By joining our campaign as a Child, the new player experience aligns with the experience of their character who is also new to our world."
+  },
+  {
+   "label": "role-juggling",
+   "page": 39,
+   "concerns": [
+    "Witness a Tradition"
+   ],
+   "topics": [
+    "table procedure"
+   ],
+   "text": "Juggling lots of roles in one scene can be a challenge. If possible, it is best not to ask a player to roleplay both the local traditions and their own character in the same scene."
+  },
+  {
+   "label": "different-homes",
+   "page": 43,
+   "concerns": [
+    "Migrate apart"
+   ],
+   "topics": [
+    "city rules"
+   ],
+   "text": "While living apart, Migration mechanics affect each group separately. For example, you can Save Traditions left by a family member only if they currently share a Home."
+  },
+  {
+   "label": "fate-advice",
+   "page": 47,
+   "concerns": [
+    "Ask Fate"
+   ],
+   "topics": [
+    "design notes"
+   ],
+   "text": "- If someone has a good idea for what should happen, just go with that, no need to roll.\n\n- Outcomes should drive the story forward.\n\n- If you’re not interested in something happening in the story, don’t set it as an outcome.\n\n- Go a little deeper than just failure or success to drive the story forward. What are the consequences of that failure or success?\n\n- When setting a Fateful Outcome, don’t be afraid to think big!"
+  },
+  {
+   "label": "plan-for-a-longer-setup",
+   "page": 52,
+   "concerns": [
+    "Starting in the City"
+   ],
+   "topics": [
+    "design notes"
+   ],
+   "text": "The City is a lot to take in all at once. Ten Tradition Decks, transit mechanics, and prompts that are more weird and abstract. The River Scroll gives us a chance to slowly ease into the world with more familiar fantasy themes and mechanics that build bit by bit. If you are running a City game for new players, expect to spend more time explaining the city mechanics."
+  },
+  {
+   "label": "bullet-journaling",
+   "page": 49,
+   "concerns": [
+    "Solo Play"
+   ],
+   "topics": [
+    "design notes"
+   ],
+   "text": "The method of journaling presented here is adapted from Ryder Carroll’s “Bullet Journal” method."
+  },
+  {
+   "label": "adding-a-module",
+   "page": 48,
+   "concerns": [
+    "Solo Play"
+   ],
+   "topics": [
+    "solo play"
+   ],
+   "text": "Whenever you add more modules to your journal, turn to the next available blank spread and add the title of that module to the top left corner, number the pages, and enter it into your index.\n\nAlways give yourself a minimum of 1 full spread (2 pages)for each new module."
+  },
+  {
+   "label": "extending-a-module",
+   "page": 48,
+   "concerns": [
+    "Solo Play"
+   ],
+   "topics": [
+    "solo play"
+   ],
+   "text": "If you run out of space in a module, turn to the next blank spread in your journal and continue the module there, indexing as you go."
+  },
+  {
+   "label": "promoting-a-side-character",
+   "page": 50,
+   "concerns": [
+    "Side Character"
+   ],
+   "topics": [
+    "solo play"
+   ],
+   "text": "At the end of a Chapter, you may promote a side character to a main character. To do this, create a new Main Character Module and transfer your Side-Character’s information to the module."
+  },
+  {
+   "label": "combined-play",
+   "page": 51,
+   "concerns": [
+    "Solo Play"
+   ],
+   "topics": [
+    "solo play"
+   ],
+   "text": "You can mix solo and group play.\n\nInviting a guest\n\nInvite another player as a guest for a session of your solo game.\n\nDuring scenes, assign them the role of side characters, or ask them to take on the role of the locals during your Witness scenes.\n\nAssign them characters and roles for parts of the story that you don’t know much about so they have space to create without worrying about conflicting with your backstory.\n\nBreaking off of a group Campaign\n\nYou could break off a part of an existing group campaign as a solo campaign. Perhaps use this as a way to develop the story of a side character who was left behind, or explore what happened in the years between Chapters of your campaign."
+  },
+  {
+   "label": "journal-setup",
+   "page": 48,
+   "concerns": [
+    "Solo Play"
+   ],
+   "topics": [
+    "solo play"
+   ],
+   "text": "I recommend choosing a journal with an elastic band and a couple of bookmarks."
+  },
+  {
+   "label": "solo-first-session",
+   "page": 49,
+   "concerns": [
+    "Main Character Module"
+   ],
+   "topics": [
+    "solo play"
+   ],
+   "text": "I recommend just creating one main character for the first session and letting things grow organically from there. This character, and the two side characters they are Bonded with, will be your starting characters in the story."
+  },
+  {
+   "label": "solo-holding-traditions",
+   "page": 49,
+   "concerns": [
+    "Main Character Module"
+   ],
+   "topics": [
+    "solo play"
+   ],
+   "text": "Between sessions of play, tuck Traditions held by this character into the pages of their Main Character Module."
+  },
+  {
+   "label": "by-ship-or-by-caravan",
+   "page": 4,
+   "concerns": [
+    "River Scroll",
+    "Migrate the Family"
+   ],
+   "topics": [
+    "atlas"
+   ],
+   "text": "Some Locations have two versions depending if we are traveling by Caravan or by Lantern Ship.\n\nThe Lantern Ship route is indicated by a dashed line and a Lantern Ship icon. The Caravan route is indicated by a Caravan icon and a blue line.\n\nMake sure you are on the page for the correct version when you Migrate to these Locations."
+  },
+  {
+   "label": "moving-character-tokens-in-the-city",
+   "page": 5,
+   "concerns": [
+    "Token"
+   ],
+   "topics": [
+    "atlas"
+   ],
+   "text": "In the City, you will find it necessary to flip through the Atlas frequently as we explore different Locations on our turns.\n\nWhen your campaign gets to this point, it is better to place your Token next to the Atlas rather than on the Atlas when choosing a Scene. This allows us to pick up the Atlas and change Locations without having to disturb the other player’s tokens."
+  }
+ ],
+ "hooks": [
+  {
+   "formality": "CONDITIONAL",
+   "when": "an Elder character (six Marks of Age) begins a new Chapter",
+   "trigger": [
+    "elder at start of chapter"
+   ],
+   "then": [
+    "When You Die"
+   ]
+  },
+  {
+   "formality": "CONDITIONAL",
+   "when": "your character gains a Mark at the end of a Chapter",
+   "trigger": [
+    "mark gained at end of chapter"
+   ],
+   "then": [
+    "Bond"
+   ]
+  },
+  {
+   "formality": "CONDITIONAL",
+   "when": "“The Borough Wanders” card is drawn and revealed from a Tradition Deck",
+   "trigger": [
+    "the borough wanders drawn"
+   ],
+   "then": [
+    "The Wandering Borough"
+   ]
+  },
+  {
+   "formality": "CONDITIONAL",
+   "when": "The Wandering Borough is home to one of our characters, at the start of each Chapter and whenever “The Borough Wanders” card is drawn",
+   "trigger": [
+    "borough is a home",
+    "the borough wanders drawn"
+   ],
+   "then": [
+    "Living on the Borough"
+   ]
+  },
+  {
+   "formality": "CONDITIONAL",
+   "when": "a Memory character has shared their last Tradition Card",
+   "trigger": [
+    "memory hand empty"
+   ],
+   "then": [
+    "Becoming forgotten",
+    "Birth"
+   ]
+  },
+  {
+   "formality": "TAGGED",
+   "when": "the family Migrates to one of the five entrances to the City of Winter",
+   "then": [
+    "Migrating to the City"
+   ]
+  },
+  {
+   "formality": "TAGGED",
+   "when": "our family’s Home is in the City of Winter and we Mark Age",
+   "then": [
+    "City Marks"
+   ]
+  },
+  {
+   "formality": "PROSE",
+   "when": "a question arises that no one wants to answer",
+   "then": [
+    "Ask Fate"
+   ]
+  }
+ ],
+ "sections": [
+  {
+   "title": "Introduction",
+   "page": 6
+  },
+  {
+   "title": "What This Is",
+   "page": 6
+  },
+  {
+   "title": "Learning City of Winter",
+   "page": 7
+  },
+  {
+   "title": "Components",
+   "page": 8
+  },
+  {
+   "title": "First Session Setup",
+   "page": 10
+  },
+  {
+   "title": "1. Introduction",
+   "page": 11
+  },
+  {
+   "title": "2. Choose Home & Tradition",
+   "page": 12
+  },
+  {
+   "title": "3. Choose Names",
+   "page": 13
+  },
+  {
+   "title": "4. Mark Age",
+   "page": 14
+  },
+  {
+   "title": "5. Make Bonds",
+   "page": 15
+  },
+  {
+   "title": "6. Hold Traditions",
+   "page": 16
+  },
+  {
+   "title": "7. Choose Tokens",
+   "page": 18
+  },
+  {
+   "title": "8. Introduce the Umbra",
+   "page": 19
+  },
+  {
+   "title": "Playing the Game",
+   "page": 20
+  },
+  {
+   "title": "Starting a New Chapter",
+   "page": 21
+  },
+  {
+   "title": "Tradition Scene",
+   "page": 21
+  },
+  {
+   "title": "Migration Scene",
+   "page": 24
+  },
+  {
+   "title": "Migrate the Family",
+   "page": 24
+  },
+  {
+   "title": "Ending a Chapter",
+   "page": 26
+  },
+  {
+   "title": "Scene Advice",
+   "page": 28
+  },
+  {
+   "title": "Campaign Rules",
+   "page": 30
+  },
+  {
+   "title": "Starting a Campaign",
+   "page": 31
+  },
+  {
+   "title": "New Session Setup",
+   "page": 31
+  },
+  {
+   "title": "Death & Memory",
+   "page": 32
+  },
+  {
+   "title": "Birth",
+   "page": 34
+  },
+  {
+   "title": "Campaign Advice",
+   "page": 35
+  },
+  {
+   "title": "City Rules",
+   "page": 36
+  },
+  {
+   "title": "Migrating to the City",
+   "page": 37
+  },
+  {
+   "title": "Witnessing in the City",
+   "page": 38
+  },
+  {
+   "title": "City Marks",
+   "page": 40
+  },
+  {
+   "title": "City Bonds",
+   "page": 41
+  },
+  {
+   "title": "Transit Lines & Stations",
+   "page": 42
+  },
+  {
+   "title": "Migration in the City",
+   "page": 43
+  },
+  {
+   "title": "The Wandering Borough",
+   "page": 44
+  },
+  {
+   "title": "Design Notes",
+   "page": 46
+  },
+  {
+   "title": "Ask Fate",
+   "page": 47
+  },
+  {
+   "title": "Solo Play",
+   "page": 48
+  },
+  {
+   "title": "Starting in the City",
+   "page": 52
+  },
+  {
+   "title": "Umbra Variations",
+   "page": 53
+  },
+  {
+   "title": "Credits",
+   "page": 54
+  },
+  {
+   "title": "Reference",
+   "page": 56
+  },
+  {
+   "title": "Banners",
+   "page": 56
+  },
+  {
+   "title": "Play Summary",
+   "page": 58
+  },
+  {
+   "title": "Bonds",
+   "page": 59
+  }
+ ],
+ "lore": [
+  {
+   "file": "cityofwinter-0.5-what-this-is.lore",
+   "title": "What This Is",
+   "markdown": "# What This Is\n\nCity of Winter is a story game where we follow the journey of a family as they migrate from\ntheir home in the Riverlands to live in the City of Winter.\n\n## This is a Story Game\n\nCity of Winter gives us elegant rules, evocative prompts, and inspiring images to help us create\na story as we play to explore a world of our shared imagination. It is infinitely replayable, and\nno two games will ever be the same.\n\n## A family saga\n\nIn City of Winter, we tell a story that spans generations. Over chapters of play, our characters\nwill grow old and pass into memory as new generations are born.\n\n## Of Tradition & migration\n\nPlay centers around the exploration of tradition. As we journey through the world of City of\nWinter, we will encounter varied traditions of the City, represented by Tradition Cards. As our\ncharacters change and grow, the traditions they hold for our family change as well.\n\n## In a world of fantasy\n\nCity of Winter takes place in a world of fantasy. Use this space to imagine, explore, and discover\nnew possibilities without the restrictions we find in our day-to-day lives.\n"
+  },
+  {
+   "file": "cityofwinter-0.5-scene-advice.lore",
+   "title": "Scene Advice",
+   "markdown": "# Scene Advice\n\nHere are some best practices and different things to try out:\n\n## Starting a scene\n\n- Start with a physical description of the place, and build from there. “Gran’s House is one of\n  the oldest in River Town. It is built of stone that she quarried with her father long ago from\n  the nearby mountains.”\n- Use taste, touch, or smell in your description. “The smell of fresh-ploughed earth hangs in\n  the air.”\n- Ask other players to take on the role of a character or element of the environment. “We hear\n  the crack of thunder as rain starts to fall. Could someone be in charge of describing the storm\n  in this scene?”\n\n## Leading a scene\n\n- Ask another player what their character is doing “What is Apple up to this morning?”\n- Start a conversation. “Clover finds Apple out tending the oxen and says, ‘Hey Gran, can I skip\n  my chores today and go to the river festival?’”\n- Skip ahead to the interesting part. “Ok, after hours of brushing, we finally finish grooming\n  the herd.”\n- Revisit something interesting that we skipped. “Wait, how exactly did you convince Gran to let\n  you come to the festival? I want to see that conversation!”\n- Start a go-around. “Lets go around the table and have everyone share one thing they see at the\n  river festival.”\n- Scenes can be as long or as short as we like.\n- Steal ideas from books, movies, or your life.\n- When you feel stuck, ask for ideas. “My card says, ‘what pride demands.’ Does anyone have an\n  idea what that could be?”\n\n## Roleplaying a Character\n\n- Describe your appearance. “Stone is a young woman with tangled black hair and black eyes.”\n- Describe your thoughts. “Zephyr is really excited for the harvest festival.”\n- Tell us what you want. “Zeal is wanting to cut a deal to get the Umbra to leave our family\n  alone.”\n- Say what you do. “I climb up the side of the tower, and let myself in through a balcony.”\n- Keep secrets from characters, not from players. “That night, when everyone is sleeping, Zeal\n  sneaks off to go meet with the Shadow Men.”\n- Voice different characters by varying the pitch, pace, and/or weight of your speech. Or just\n  describe what a character’s voice sounds like and use your normal speaking voice.\n- Be respectful and don’t mimic marginalized cultures.\n\n## Roleplaying a local Tradition\n\n- Reveal the Tradition directly through a Side-Character. “You see Old Grandma Juniper butchering\n  an animal with what looks like a knife made from the jaw of an Ox.” (Reveals: with a jawbone\n  blade)\n- Reveal the Tradition directly through a group of people. “When the soldiers return from battle,\n  they organize laborers and begin the construction of a huge pyre in the town square. (Reveals:\n  the victory pyre)\n- Reveal the Tradition indirectly through the environment. ”You see ashy remains of many\n  cook-fires and trampled grass in the meadow surrounding a shrine of bones and flowers.“\n  (Reveals: the ritual of the field)\n\n## Handling Story Conflict\n\n- Play to lose. ”Stone says, ‘What do you mean Grandma? I’m not hiding anything!’ Buuut it’s\n  super obvious that I’m lying!“\n- Play to win. ”Zeal brings his quarterstaff to bear, and soon the bullies are all either running\n  away or on the ground crying!“\n- Ask the group to decide. ”So who do we think catches more fish, me or Zephyr?“\n"
+  },
+  {
+   "file": "cityofwinter-0.5-credits.lore",
+   "title": "Credits",
+   "markdown": "# Credits\n\n**Ross Cowman** — Game Design, Graphic Design, Layout, Writing, Textile Design\n\n**Doug Keith** — Illustrations, Token Designs\n\n## Deernicorn Staff\n\n- Mads Bradley-Kurttila — Shipping Clerk, Press Operator\n- Terri Cohlene — Game Designer, Editor\n- Thistle Grey — Press Operator\n- Miranda Holmes — Press Operator\n- Amelia Miller — Press Operator, Crafter\n- KC Monster — Manufacturing Manager, Textile Designer\n- Jasper Pease — Press Manager, Graphic Designer, Product Designer\n- Jude Wasserman — Game Developer, Editor, Marketing Director\n\n## Design Consultants\n\nWhitney Strix Beltrán, Campaign Coins, Ajit George, Mo Golden, Drew Henderson, Kira Magrann,\nHakan Seyalioglu, Robert Bruce\n\n## Main Playtesters & Reviewers\n\nRobert Bruce, Orion Canning, Tyrone Cawston, Alex Cooley, Stephanie Cheung, Annamyriah de Jong,\nRob Dean, Matthew Gagan, Clayton Grey, Liz Gorinsky, Christian Griffin, Yeonsoo Julian Kim,\nThe Lab - Toronto (Mutiny, Shaz, Marcie, and Richard), Harry Lee, Kira Magrann,\nStephanie Nudleman, Jessica Price, Jessie Rainbow, Kurt Refling, Hakan Seyalioglu,\nJohn Stavropoulos, Nick Wedig, Katie Wright.\n\n## Acknowledgments\n\n**Land Acknowledgment.** The Heart of the Deernicorn workshop is located on the shores of\nSteh-Chass named after the Steh-Chass Band of Indigenous people of the Squaxin Island Tribe who\nhave stewarded this land since time immemorial and who still inhabit the area today.\n(https://squaxinisland.org)\n\n**X-Card.** The X-Card was created by John Stavropoulos. For more information about the X-Card,\nvisit tinyurl.com/x-card-rpg.\n\n**Bullet Journaling.** The method of journaling presented in the Solo Play section is adapted from\nRyder Carroll’s “Bullet Journal” method.\n\n---\n\nCity of Winter - Rules V2\nCopyright 2022 Heart of the Deernicorn\nAll Rights Reserved\n"
+  },
+  {
+   "file": "cityofwinter-0.5-formatting-conventions.lore",
+   "title": "Formatting Conventions",
+   "markdown": "# Formatting Conventions\n\nThere are a couple of formatting conventions to be aware of:\n\n**Normal Text.** Basic formatting, like this paragraph, contains general rules and instructions\nneeded to facilitate the game.\n\n**Game terms.** Game terms and component names are capitalized. For example: Tradition Card,\nRiver Scroll etc....\n\n**Teaching Text.** “Teaching text in quotes is specifically for reading out loud at the table when\nteaching the game. You’ll mostly find this in the parts of the rules that are used for your\nfirst-time playing City of Winter, and not so much later in the text.”\n\n**Procedures.** When the game asks you follow a procedure with multiple steps, those steps will be\nnumbered.\n\n**Examples of play.** Examples of play are in italics. In scene examples, token icons and character\nnames are used to show who is acting. For simplicity’s sake, character names are used for both the\ncharacter and for the player who is controlling that character. (Parenthesis signify player actions\nlike picking up a token, or rolling a die.)\n\n**Side Notes.** Additional rules, clarifications, and tips are presented as boxed text.\n"
+  },
+  {
+   "file": "cityofwinter-0.5-design-notes.lore",
+   "title": "Design Notes",
+   "markdown": "# Design Notes\n\n> Over the last four years, I’ve explored many ways to play City of Winter.\n>\n> In this section, I’ve included some ideas that I think are interesting enough to share but don’t\n> recommend as part of the first-time experience. Try them as-is, or use them to inspire your own\n> explorations.\n\nThe Design Notes section holds *Ask Fate*, *Solo Play*, *Starting in the City* and the *Umbra\nVariations*. Their mechanical content is carried in the corpus as rules and `OPTIONAL` variants\n(see `cityofwinter-0.5-procedures.ttrpg`); this file keeps the section’s framing voice.\n\n## Using the Atlas\n\nThis Atlas replaces the River Scroll and City Map components for City of Winter.\n\n**Location Pages.** Each Location has a dedicated page in the Atlas. The Location page shows the\nillustration, name, local tradition and scene prompts. Riverlands Locations also include the page\nnumber of connected Locations.\n\n**Riverlands Map.** This map shows how the Locations in the Riverlands are connected. Use it to\npick a destination during Family Migration.\n\n**City Transit Map.** The City Transit Map shows how the City Locations are connected by Transit\nLines. When your Family Migrates, or when your wishes to Visit another Location, turn to this map\nto see which Locations are availible.\n\n**Travel Distance Table.** The Travel Distance Table is a quick reference guide to the shortest\nDistance between any two City Locations. As a reminder, each Station and and Line transfer adds 1\nto the total distance.\n"
+  }
+ ],
+ "sourceAnomalies": [
+  "The rules (p.8, Components) state the Tradition Cards are separated into 11 Tradition Decks; the print-and-play card set contains 10 (9 named traditions plus the Umbra). The Design Notes sidebar (p.52) instead says ‘Ten Tradition Decks’.",
+  "The Mask Maker deck contains 24 cards where every other deck contains 25 (249 tradition cards total). Confirmed independently against CoW-TraditionCards.pdf, whose 250 pages are the 249 tradition cards plus the X-Card.",
+  "The Umbra deck prints two copies each of ‘who joins the Umbra’ and ‘a lie of the Umbra’.",
+  "Rules p.52 ‘Starting in the City’ lists ‘Glowdog of the Dust’, but the Atlas prints the Glowdog local-tradition icon at Glowtown (p.22); the Dust (p.23) carries two blank icons.",
+  "Atlas p.9 (Temple Island) cites ‘We Join a Caravan (p.12)’; that location is on p.11 (p.12 is Through a Kingdom of Towers).",
+  "Atlas p.16 cites ‘...and seek work in Glowtown (p.19)’; Glowtown is on p.22 (p.19 is the Refuge).",
+  "The Transit Distance table (Atlas p.40) is symmetric but not internally consistent with the City Transit Map: Glowtown-Undertown is 1 and Undertown-Husk is 1, yet Glowtown-Husk is printed as 7+. The table is reproduced exactly as printed.",
+  "Wintermount appears on the City Transit Map (p.38, Moon Path) and has its own location page (p.37), but is absent from the Transit Distance table (p.40).",
+  "The Wandering Borough location card is titled ‘The Wandering Burrough’ and its eighth scene is printed ‘WANDERERING’; the rules use ‘Wandering Borough’ throughout."
+ ]
+}

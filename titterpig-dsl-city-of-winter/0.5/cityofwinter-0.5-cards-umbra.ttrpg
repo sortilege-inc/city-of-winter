@@ -1,0 +1,210 @@
+EXTENSION "CityOfWinter_Cards_Umbra" EXTENDS "CityOfWinter_Core_Base" {
+    NAME "City of Winter — the Umbra Tradition Deck"
+    VERSION "0.5"
+    SPEC_VERSION "0.5"
+    RELEASE_DATE "2026-08-12"
+
+    # 25 cards. Prompts are verbatim from the card faces;
+    # deck membership is taken from the icon printed on each card back.
+
+    #COW31418b75aa8585aadecad ^"Umbra: what the Umbra takes" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "what the Umbra takes"
+            ^"Deck" ^"Tradition Deck" #COW11cf4a1aa4614b97d6cf7 ^"Umbra"
+        }
+    }
+
+    #COWc47811b2273c853aa9864 ^"Umbra: who joins the Umbra" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "who joins the Umbra"
+            ^"Deck" ^"Tradition Deck" #COW11cf4a1aa4614b97d6cf7 ^"Umbra"
+        }
+    }
+
+    #COWfb27683e596ee596437a1 ^"Umbra: who joins the Umbra (copy 2)" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "who joins the Umbra"
+            ^"Deck" ^"Tradition Deck" #COW11cf4a1aa4614b97d6cf7 ^"Umbra"
+        }
+    }
+
+    #COW38b021f7771053c702992 ^"Umbra: a lie of the Umbra" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "a lie of the Umbra"
+            ^"Deck" ^"Tradition Deck" #COW11cf4a1aa4614b97d6cf7 ^"Umbra"
+        }
+    }
+
+    #COW87a9d7c9cb8d4535b710e ^"Umbra: work of the Umbra" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "work of the Umbra"
+            ^"Deck" ^"Tradition Deck" #COW11cf4a1aa4614b97d6cf7 ^"Umbra"
+        }
+    }
+
+    #COW1baa6efdd4f860f860b40 ^"Umbra: a lie of the Umbra (copy 2)" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "a lie of the Umbra"
+            ^"Deck" ^"Tradition Deck" #COW11cf4a1aa4614b97d6cf7 ^"Umbra"
+        }
+    }
+
+    #COW15affe92f9e2f6ef2bb3f ^"Umbra: marked by the Umbra" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "marked by the Umbra"
+            ^"Deck" ^"Tradition Deck" #COW11cf4a1aa4614b97d6cf7 ^"Umbra"
+        }
+    }
+
+    #COW95735352621158a81882b ^"Umbra: what draws the Umbra" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "what draws the Umbra"
+            ^"Deck" ^"Tradition Deck" #COW11cf4a1aa4614b97d6cf7 ^"Umbra"
+        }
+    }
+
+    #COW00ac55e6c06fe16322e95 ^"Umbra: defiled by the Umbra" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "defiled by the Umbra"
+            ^"Deck" ^"Tradition Deck" #COW11cf4a1aa4614b97d6cf7 ^"Umbra"
+        }
+    }
+
+    #COWfb92270e48de736faf39e ^"Umbra: how we deny the Umbra" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "how we deny the Umbra"
+            ^"Deck" ^"Tradition Deck" #COW11cf4a1aa4614b97d6cf7 ^"Umbra"
+        }
+    }
+
+    #COWf1f5038490e42fb30def4 ^"Umbra: why we serve the Umbra" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "why we serve the Umbra"
+            ^"Deck" ^"Tradition Deck" #COW11cf4a1aa4614b97d6cf7 ^"Umbra"
+        }
+    }
+
+    #COWb6bd765ff63a48e8d0ac0 ^"Umbra: who warns of the Umbra" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "who warns of the Umbra"
+            ^"Deck" ^"Tradition Deck" #COW11cf4a1aa4614b97d6cf7 ^"Umbra"
+        }
+    }
+
+    #COW835705628e7a38e3e741c ^"Umbra: how the Umbra grows" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "how the Umbra grows"
+            ^"Deck" ^"Tradition Deck" #COW11cf4a1aa4614b97d6cf7 ^"Umbra"
+        }
+    }
+
+    #COW4a2adae3e64c6bd4d4566 ^"Umbra: the Umbra’s Hunger" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "the Umbra’s Hunger"
+            ^"Deck" ^"Tradition Deck" #COW11cf4a1aa4614b97d6cf7 ^"Umbra"
+        }
+    }
+
+    #COW6663e429a845ad412039a ^"Umbra: who fears the Umbra" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "who fears the Umbra"
+            ^"Deck" ^"Tradition Deck" #COW11cf4a1aa4614b97d6cf7 ^"Umbra"
+        }
+    }
+
+    #COW27f70b84858be6759cc94 ^"Umbra: what the Umbra destroys" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "what the Umbra destroys"
+            ^"Deck" ^"Tradition Deck" #COW11cf4a1aa4614b97d6cf7 ^"Umbra"
+        }
+    }
+
+    #COWe731f5eae9254c47b0054 ^"Umbra: herald of the Umbra" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "herald of the Umbra"
+            ^"Deck" ^"Tradition Deck" #COW11cf4a1aa4614b97d6cf7 ^"Umbra"
+        }
+    }
+
+    #COW3802bf50dd3773495ccc7 ^"Umbra: vision of the Umbra" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "vision of the Umbra"
+            ^"Deck" ^"Tradition Deck" #COW11cf4a1aa4614b97d6cf7 ^"Umbra"
+        }
+    }
+
+    #COWf2a93697ae52cc2321512 ^"Umbra: scar of the Umbra" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "scar of the Umbra"
+            ^"Deck" ^"Tradition Deck" #COW11cf4a1aa4614b97d6cf7 ^"Umbra"
+        }
+    }
+
+    #COW1a8e38a199e225b9fe968 ^"Umbra: touch of the Umbra" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "touch of the Umbra"
+            ^"Deck" ^"Tradition Deck" #COW11cf4a1aa4614b97d6cf7 ^"Umbra"
+        }
+    }
+
+    #COWa93be49351e9ab235f84f ^"Umbra: song of the Umbra" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "song of the Umbra"
+            ^"Deck" ^"Tradition Deck" #COW11cf4a1aa4614b97d6cf7 ^"Umbra"
+        }
+    }
+
+    #COWb63d5d07602b1db12c99e ^"Umbra: history of the Umbra" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "history of the Umbra"
+            ^"Deck" ^"Tradition Deck" #COW11cf4a1aa4614b97d6cf7 ^"Umbra"
+        }
+    }
+
+    #COW9ed01675139177004900e ^"Umbra: voice of the Umbra" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "voice of the Umbra"
+            ^"Deck" ^"Tradition Deck" #COW11cf4a1aa4614b97d6cf7 ^"Umbra"
+        }
+    }
+
+    #COWce679345240b6575e5385 ^"Umbra: the Umbra in disguise" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "the Umbra in disguise"
+            ^"Deck" ^"Tradition Deck" #COW11cf4a1aa4614b97d6cf7 ^"Umbra"
+        }
+    }
+
+    #COW7c28e9f32333490b74f90 ^"Umbra: agents of the Umbra" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "agents of the Umbra"
+            ^"Deck" ^"Tradition Deck" #COW11cf4a1aa4614b97d6cf7 ^"Umbra"
+        }
+    }
+
+}

@@ -1,0 +1,210 @@
+EXTENSION "CityOfWinter_Cards_FoxoftheTowers" EXTENDS "CityOfWinter_Core_Base" {
+    NAME "City of Winter — the Fox of the Towers Tradition Deck"
+    VERSION "0.5"
+    SPEC_VERSION "0.5"
+    RELEASE_DATE "2026-08-12"
+
+    # 25 cards. Prompts are verbatim from the card faces;
+    # deck membership is taken from the icon printed on each card back.
+
+    #COWb8216a5aa49ad30c692ee ^"Fox of the Towers: song of the towers" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "song of the towers"
+            ^"Deck" ^"Tradition Deck" #COW47f20f9fdbcb99f684e39 ^"Fox of the Towers"
+        }
+    }
+
+    #COW890d9ebe0937f24a64915 ^"Fox of the Towers: how to spring a trap" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "how to spring a trap"
+            ^"Deck" ^"Tradition Deck" #COW47f20f9fdbcb99f684e39 ^"Fox of the Towers"
+        }
+    }
+
+    #COWb43ec9a481cbb4a273d02 ^"Fox of the Towers: oath of the towers" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "oath of the towers"
+            ^"Deck" ^"Tradition Deck" #COW47f20f9fdbcb99f684e39 ^"Fox of the Towers"
+        }
+    }
+
+    #COW5ab394fec5bd73ecc3598 ^"Fox of the Towers: bounty of the hunt" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "bounty of the hunt"
+            ^"Deck" ^"Tradition Deck" #COW47f20f9fdbcb99f684e39 ^"Fox of the Towers"
+        }
+    }
+
+    #COWd9a8d96d101eeebdea2cf ^"Fox of the Towers: why we pierce our ears" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "why we pierce our ears"
+            ^"Deck" ^"Tradition Deck" #COW47f20f9fdbcb99f684e39 ^"Fox of the Towers"
+        }
+    }
+
+    #COW901ca2c98daef543b87d9 ^"Fox of the Towers: with soft fur" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "with soft fur"
+            ^"Deck" ^"Tradition Deck" #COW47f20f9fdbcb99f684e39 ^"Fox of the Towers"
+        }
+    }
+
+    #COW172f838d233f901c75430 ^"Fox of the Towers: what survival demands" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "what survival demands"
+            ^"Deck" ^"Tradition Deck" #COW47f20f9fdbcb99f684e39 ^"Fox of the Towers"
+        }
+    }
+
+    #COW453f3bc764a0a21e10752 ^"Fox of the Towers: what we bury" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "what we bury"
+            ^"Deck" ^"Tradition Deck" #COW47f20f9fdbcb99f684e39 ^"Fox of the Towers"
+        }
+    }
+
+    #COW0ff4dd75f089af6e6194d ^"Fox of the Towers: wearing a fox mask" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "wearing a fox mask"
+            ^"Deck" ^"Tradition Deck" #COW47f20f9fdbcb99f684e39 ^"Fox of the Towers"
+        }
+    }
+
+    #COW38c5b89415dc77bd09200 ^"Fox of the Towers: with an oathbreaker’s brand" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "with an oathbreaker’s brand"
+            ^"Deck" ^"Tradition Deck" #COW47f20f9fdbcb99f684e39 ^"Fox of the Towers"
+        }
+    }
+
+    #COW7b1357d71cc3c6f7606f7 ^"Fox of the Towers: with a jawbone blade" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "with a jawbone blade"
+            ^"Deck" ^"Tradition Deck" #COW47f20f9fdbcb99f684e39 ^"Fox of the Towers"
+        }
+    }
+
+    #COW92c3d496cb3742c4e710e ^"Fox of the Towers: mark of the fox" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "mark of the fox"
+            ^"Deck" ^"Tradition Deck" #COW47f20f9fdbcb99f684e39 ^"Fox of the Towers"
+        }
+    }
+
+    #COW388e92d1e8959c4ee2060 ^"Fox of the Towers: a rite of courtship" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "a rite of courtship"
+            ^"Deck" ^"Tradition Deck" #COW47f20f9fdbcb99f684e39 ^"Fox of the Towers"
+        }
+    }
+
+    #COWbc8f7053ab616496e53f5 ^"Fox of the Towers: we share the cup" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "we share the cup"
+            ^"Deck" ^"Tradition Deck" #COW47f20f9fdbcb99f684e39 ^"Fox of the Towers"
+        }
+    }
+
+    #COWd0e16794a8978ad04f37e ^"Fox of the Towers: a meal of ash cakes" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "a meal of ash cakes"
+            ^"Deck" ^"Tradition Deck" #COW47f20f9fdbcb99f684e39 ^"Fox of the Towers"
+        }
+    }
+
+    #COW0307c89d463a599d27e9f ^"Fox of the Towers: to the bone" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "to the bone"
+            ^"Deck" ^"Tradition Deck" #COW47f20f9fdbcb99f684e39 ^"Fox of the Towers"
+        }
+    }
+
+    #COW7bbae9db803a7188d1de9 ^"Fox of the Towers: with a band of hunters" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "with a band of hunters"
+            ^"Deck" ^"Tradition Deck" #COW47f20f9fdbcb99f684e39 ^"Fox of the Towers"
+        }
+    }
+
+    #COWe9d03379b1d3788111e69 ^"Fox of the Towers: a cautionary tale" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "a cautionary tale"
+            ^"Deck" ^"Tradition Deck" #COW47f20f9fdbcb99f684e39 ^"Fox of the Towers"
+        }
+    }
+
+    #COW4a981a0f5d5a05430b550 ^"Fox of the Towers: a boasting game" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "a boasting game"
+            ^"Deck" ^"Tradition Deck" #COW47f20f9fdbcb99f684e39 ^"Fox of the Towers"
+        }
+    }
+
+    #COWca92b5b81a42cae536eaf ^"Fox of the Towers: a gift of blood" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "a gift of blood"
+            ^"Deck" ^"Tradition Deck" #COW47f20f9fdbcb99f684e39 ^"Fox of the Towers"
+        }
+    }
+
+    #COWbf28318092bdcc52c5ef9 ^"Fox of the Towers: with bow and arrow" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "with bow and arrow"
+            ^"Deck" ^"Tradition Deck" #COW47f20f9fdbcb99f684e39 ^"Fox of the Towers"
+        }
+    }
+
+    #COWb3997f43536466176a3d7 ^"Fox of the Towers: what grows in winter" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "what grows in winter"
+            ^"Deck" ^"Tradition Deck" #COW47f20f9fdbcb99f684e39 ^"Fox of the Towers"
+        }
+    }
+
+    #COW4c84cfb1cc22691f68224 ^"Fox of the Towers: who lights the fire" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "who lights the fire"
+            ^"Deck" ^"Tradition Deck" #COW47f20f9fdbcb99f684e39 ^"Fox of the Towers"
+        }
+    }
+
+    #COW607d2200c45131ca05639 ^"Fox of the Towers: right of hospitality" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "right of hospitality"
+            ^"Deck" ^"Tradition Deck" #COW47f20f9fdbcb99f684e39 ^"Fox of the Towers"
+        }
+    }
+
+    #COWd44fe83a4558200c3223c ^"Fox of the Towers: a fair trade" DEF {
+        EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
+        PROPERTIES {
+            ^"Prompt" STRING "a fair trade"
+            ^"Deck" ^"Tradition Deck" #COW47f20f9fdbcb99f684e39 ^"Fox of the Towers"
+        }
+    }
+
+}

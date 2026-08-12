@@ -1,0 +1,339 @@
+/* ==========================================================================
+   CITY OF WINTER — winter.css
+   The game's own look: scratchboard white on a night ground, uncial display
+   type, and the two palettes the book uses — the cold blue-white of the
+   Riverlands and the sand/rust/maroon of the City, going magenta and gold as
+   you climb toward the Spire.
+   ========================================================================== */
+
+:root{
+  /* --- night ground --- */
+  --night:      #0a0a0c;
+  --night-2:    #12121a;   /* raised panels */
+  --night-3:    #1b1b26;   /* sunken wells */
+  --night-4:    #262633;   /* borders / chrome */
+
+  /* --- scratchboard white --- */
+  --chalk:      #f4f1e8;
+  --chalk-2:    #d9d5c8;
+  --chalk-dim:  #9d9a90;
+  --chalk-faint:#6a6862;
+
+  /* --- the Riverlands: ice and steel --- */
+  --ice:        #bcd8e6;
+  --ice-deep:   #7fa9c2;
+  --steel:      #4c6a80;
+  --slate:      #2c3f4e;
+
+  /* --- the City: sand, rust, maroon --- */
+  --sand:       #e8cb9e;
+  --rust:       #c1703c;
+  --amber:      #e8912e;
+  --maroon:     #6f1512;
+  --maroon-2:   #4a0e0c;
+
+  /* --- the upper City: the Spire --- */
+  --magenta:    #e8489b;
+  --pink:       #f48cbe;
+  --gold:       #d1a13c;
+  --gold-lit:   #edc76a;
+
+  /* --- the Umbra --- */
+  --umbra:      #2a2a2e;
+  --umbra-lit:  #b9b7b4;
+
+  --edge:       rgba(244,241,232,0.16);
+  --edge-soft:  rgba(244,241,232,0.09);
+  --edge-hair:  rgba(244,241,232,0.28);
+
+  --shadow:      0 20px 48px rgba(0,0,0,0.60);
+  --shadow-soft: 0 8px 22px rgba(0,0,0,0.42);
+
+  --disp:  "Uncial Antiqua", "Luminari", Papyrus, serif;
+  --serif: "EB Garamond", Georgia, "Times New Roman", serif;
+  --caps:  "Cormorant SC", "EB Garamond", Georgia, serif;
+  --mono:  ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+
+*{ box-sizing:border-box; }
+html{ scroll-behavior:smooth; }
+
+body{
+  margin:0;
+  font-family:var(--serif);
+  font-size:18px;
+  line-height:1.62;
+  color:var(--chalk);
+  background-color:var(--night);
+  background-image:
+    radial-gradient(1100px 620px at 82% -8%, rgba(188,216,230,0.10), transparent 62%),
+    radial-gradient(900px 800px at 4% 8%, rgba(232,145,46,0.07), transparent 58%),
+    radial-gradient(1500px 1100px at 50% 124%, rgba(232,72,155,0.06), transparent 64%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.045'/%3E%3C/svg%3E");
+  background-attachment:fixed,fixed,fixed,scroll;
+  min-height:100vh;
+}
+
+/* falling snow, very sparse — the City of Winter is always snowing */
+body::before{
+  content:""; position:fixed; inset:0; pointer-events:none; z-index:0; opacity:0.5;
+  background-image:
+    radial-gradient(1.4px 1.4px at 12% 18%, rgba(244,241,232,0.55), transparent 60%),
+    radial-gradient(1.2px 1.2px at 68% 8%,  rgba(244,241,232,0.40), transparent 60%),
+    radial-gradient(1.6px 1.6px at 34% 62%, rgba(244,241,232,0.35), transparent 60%),
+    radial-gradient(1.2px 1.2px at 88% 46%, rgba(244,241,232,0.45), transparent 60%),
+    radial-gradient(1.3px 1.3px at 52% 88%, rgba(244,241,232,0.30), transparent 60%);
+  background-size:520px 520px,700px 700px,600px 600px,760px 760px,640px 640px;
+  animation:snow 90s linear infinite;
+}
+@keyframes snow{ to{ background-position:0 520px,0 700px,0 600px,0 760px,0 640px; } }
+@media (prefers-reduced-motion: reduce){ body::before{ animation:none; } }
+
+/* ------------------------------------------------------------------- chrome */
+.topnav{
+  position:sticky; top:0; z-index:40;
+  display:flex; flex-wrap:wrap; align-items:baseline; gap:0.15rem;
+  padding:0.55rem 1.1rem;
+  background:rgba(10,10,12,0.88);
+  backdrop-filter:blur(9px);
+  border-bottom:1px solid var(--edge);
+}
+.topnav .brand{
+  font-family:var(--disp); font-size:1.12rem; color:var(--chalk);
+  margin-right:1.1rem; letter-spacing:0.02em; white-space:nowrap;
+}
+.topnav a{
+  font-family:var(--caps); font-variant:small-caps; letter-spacing:0.08em;
+  font-size:0.98rem; color:var(--chalk-dim); text-decoration:none;
+  padding:0.28rem 0.62rem; border-radius:3px;
+}
+.topnav a:hover{ color:var(--chalk); background:rgba(244,241,232,0.07); }
+.topnav a.active{ color:var(--ice); box-shadow:inset 0 -2px 0 var(--ice-deep); }
+.topnav .spacer{ flex:1 1 auto; }
+.topnav .xcard{ color:var(--magenta); border:1px solid rgba(232,72,155,0.4); }
+.topnav .xcard:hover{ background:rgba(232,72,155,0.14); color:var(--pink); }
+
+.wrap{ position:relative; z-index:1; max-width:1180px; margin:0 auto; padding:2rem 1.15rem 4rem; }
+.wrap.wide{ max-width:1480px; }
+
+/* ---------------------------------------------------------------- masthead */
+.masthead{ text-align:center; padding:2.2rem 0 1rem; }
+.masthead .eyebrow{
+  font-family:var(--caps); font-variant:small-caps; letter-spacing:0.24em;
+  color:var(--ice-deep); font-size:0.92rem;
+}
+.masthead h1{
+  font-family:var(--disp); font-weight:400;
+  font-size:clamp(2.4rem,6vw,4.2rem); line-height:1.04;
+  margin:0.35rem 0 0.5rem; color:var(--chalk);
+  text-shadow:0 0 44px rgba(188,216,230,0.22);
+}
+.masthead .sub{
+  font-size:1.14rem; color:var(--chalk-2); font-style:italic;
+  max-width:44ch; margin:0.2rem auto 0;
+}
+.masthead .kicker{
+  font-family:var(--caps); font-variant:small-caps; letter-spacing:0.16em;
+  color:var(--chalk-faint); margin-top:0.7rem;
+}
+
+.flourish{
+  height:1px; margin:2rem auto; max-width:560px;
+  background:linear-gradient(90deg,transparent,var(--edge-hair) 22%,var(--edge-hair) 78%,transparent);
+  position:relative;
+}
+.flourish::after{
+  content:"❋"; position:absolute; left:50%; top:-0.78em; transform:translateX(-50%);
+  background:var(--night); padding:0 0.6rem; color:var(--ice-deep); font-size:0.9rem;
+}
+
+h2{
+  font-family:var(--disp); font-weight:400; font-size:1.72rem;
+  margin:2rem 0 0.7rem; color:var(--chalk);
+}
+h3{
+  font-family:var(--caps); font-variant:small-caps; letter-spacing:0.09em;
+  font-size:1.24rem; margin:1.5rem 0 0.5rem; color:var(--ice);
+}
+h4{
+  font-family:var(--caps); font-variant:small-caps; letter-spacing:0.1em;
+  font-size:1.04rem; margin:1.1rem 0 0.35rem; color:var(--chalk-2);
+}
+a{ color:var(--ice); }
+a:hover{ color:var(--chalk); }
+.lede{ font-size:1.16rem; color:var(--chalk-2); }
+.col{ max-width:72ch; margin:0 auto; }
+.muted{ color:var(--chalk-dim); }
+.small{ font-size:0.9rem; }
+.center{ text-align:center; }
+
+/* ------------------------------------------------------------------- cards */
+.grid{ display:grid; gap:1rem; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); }
+.card{
+  display:block; text-decoration:none; color:inherit;
+  background:var(--night-2); border:1px solid var(--edge);
+  border-radius:5px; padding:1.05rem 1.15rem;
+  box-shadow:var(--shadow-soft);
+  transition:transform .16s ease, border-color .16s ease, background .16s ease;
+}
+.card:hover{ transform:translateY(-2px); border-color:var(--edge-hair); background:var(--night-3); }
+.card .cat{
+  font-family:var(--caps); font-variant:small-caps; letter-spacing:0.16em;
+  font-size:0.84rem; color:var(--ice-deep);
+}
+.card h3{ margin:0.25rem 0 0.4rem; color:var(--chalk); }
+.card p{ margin:0; color:var(--chalk-dim); font-size:0.97rem; }
+
+.panel{
+  background:var(--night-2); border:1px solid var(--edge);
+  border-radius:5px; padding:1.1rem 1.2rem; margin:1rem 0;
+}
+.panel.sunken{ background:var(--night-3); }
+.well{
+  background:var(--night-3); border:1px solid var(--edge-soft);
+  border-radius:4px; padding:0.7rem 0.9rem;
+}
+
+/* ------------------------------------------------------------ tradition card */
+.tcard{
+  position:relative; display:flex; flex-direction:column; justify-content:flex-start;
+  align-items:center; text-align:center;
+  min-height:132px; padding:0.85rem 0.7rem 0.7rem;
+  border-radius:4px; border:1px solid rgba(0,0,0,0.5);
+  font-family:var(--serif); font-size:0.98rem; line-height:1.22;
+  box-shadow:0 4px 14px rgba(0,0,0,0.5);
+  cursor:default; user-select:none;
+}
+.tcard .prompt{ font-size:1.02rem; }
+.tcard .deck{
+  margin-top:auto; padding-top:0.5rem;
+  font-family:var(--caps); font-variant:small-caps; letter-spacing:0.1em;
+  font-size:0.76rem; opacity:0.72;
+}
+/* Riverlands decks: pale ice face, steel ink */
+.tcard[data-palette="river"]{ background:linear-gradient(#cfe3ec,#b3cfdd); color:#26404f; }
+/* City decks: sand face, rust ink */
+.tcard[data-palette="city"]{ background:linear-gradient(#efd7ae,#e2c391); color:#7c3d18; }
+/* the Umbra: ash face, charcoal ink */
+.tcard[data-palette="umbra"]{ background:linear-gradient(#e6e5e2,#cfcecb); color:#2a2a2e; }
+.tcard.facedown{ background:repeating-linear-gradient(45deg,#1d2a33,#1d2a33 6px,#22313b 6px,#22313b 12px); color:transparent; }
+.tcard.selectable{ cursor:pointer; }
+.tcard.selectable:hover{ transform:translateY(-3px); box-shadow:0 8px 22px rgba(0,0,0,0.6); }
+.tcard.chosen{ outline:2px solid var(--amber); outline-offset:2px; }
+.tcard .borough{
+  position:absolute; top:0.3rem; right:0.4rem; font-size:0.7rem;
+  font-family:var(--caps); font-variant:small-caps; letter-spacing:0.08em; opacity:0.8;
+}
+.cardrow{ display:grid; gap:0.6rem; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); }
+
+/* -------------------------------------------------------------- shape icons */
+.shape{ display:inline-block; width:0.86em; height:0.86em; vertical-align:-0.08em; margin-right:0.18em; }
+.shape.circle{ border-radius:50%; border:2px solid currentColor; }
+.shape.diamond{ border:2px solid currentColor; transform:rotate(45deg) scale(0.86); }
+.shape.sun{ border-radius:50%; border:2px solid currentColor; box-shadow:0 0 0 1px currentColor inset; position:relative; }
+.shape.umbra{ border-radius:50%; background:currentColor; }
+
+/* -------------------------------------------------------------------- marks */
+.marks{ display:inline-flex; gap:3px; align-items:center; flex-wrap:wrap; }
+.mark{ width:13px; height:13px; border:1.6px solid var(--ice); border-radius:50%; }
+.mark.off{ border-color:var(--chalk-faint); position:relative; }
+.mark.off::after{
+  content:""; position:absolute; inset:-3px auto -3px 50%;
+  width:1.6px; background:var(--chalk-faint); transform:rotate(45deg);
+}
+.mark.city{ border-radius:2px; transform:rotate(45deg) scale(0.9); border-color:var(--magenta); }
+.mark.city.off{ border-color:var(--chalk-faint); }
+
+/* ------------------------------------------------------------------ buttons */
+button, .btn{
+  font-family:var(--caps); font-variant:small-caps; letter-spacing:0.09em;
+  font-size:0.98rem; color:var(--chalk);
+  background:var(--night-3); border:1px solid var(--edge);
+  border-radius:4px; padding:0.4rem 0.9rem; cursor:pointer;
+  text-decoration:none; display:inline-block;
+  transition:background .14s ease, border-color .14s ease, color .14s ease;
+}
+button:hover, .btn:hover{ background:#2b2b3a; border-color:var(--edge-hair); }
+button:disabled{ opacity:0.4; cursor:not-allowed; }
+button.primary{ background:linear-gradient(var(--steel),var(--slate)); border-color:var(--ice-deep); color:var(--chalk); }
+button.primary:hover{ background:linear-gradient(#5b7d96,#354c5e); }
+button.warm{ background:linear-gradient(var(--rust),#8d4a24); border-color:var(--amber); }
+button.danger{ background:linear-gradient(var(--maroon),var(--maroon-2)); border-color:#8d2320; }
+button.ghost{ background:transparent; }
+button.tiny{ font-size:0.84rem; padding:0.2rem 0.5rem; }
+.btnrow{ display:flex; flex-wrap:wrap; gap:0.5rem; align-items:center; margin:0.6rem 0; }
+
+input, select, textarea{
+  font-family:var(--serif); font-size:1rem; color:var(--chalk);
+  background:var(--night-3); border:1px solid var(--edge);
+  border-radius:4px; padding:0.36rem 0.55rem;
+}
+input:focus, select:focus, textarea:focus{ outline:1px solid var(--ice-deep); }
+label{ font-family:var(--caps); font-variant:small-caps; letter-spacing:0.07em; color:var(--chalk-dim); }
+
+/* --------------------------------------------------------------------- tags */
+.tag{
+  display:inline-block; font-family:var(--caps); font-variant:small-caps;
+  letter-spacing:0.09em; font-size:0.82rem; padding:0.08rem 0.5rem;
+  border:1px solid var(--edge); border-radius:99px; color:var(--chalk-dim);
+  margin:0 0.2rem 0.2rem 0;
+}
+.tag.river{ color:var(--ice); border-color:rgba(188,216,230,0.4); }
+.tag.city{ color:var(--sand); border-color:rgba(232,203,158,0.4); }
+.tag.spire{ color:var(--pink); border-color:rgba(232,72,155,0.4); }
+.tag.umbra{ color:var(--umbra-lit); border-color:rgba(185,183,180,0.35); }
+.tag.on{ color:var(--amber); border-color:var(--amber); }
+
+/* -------------------------------------------------------------------- table */
+table{ width:100%; border-collapse:collapse; font-size:0.94rem; }
+th, td{ padding:0.3rem 0.5rem; border-bottom:1px solid var(--edge-soft); text-align:left; }
+th{
+  font-family:var(--caps); font-variant:small-caps; letter-spacing:0.08em;
+  color:var(--ice-deep); font-weight:400;
+}
+.scroller{ overflow-x:auto; }
+
+/* ------------------------------------------------------------------- footer */
+.foot{
+  position:relative; z-index:1; text-align:center; padding:2.4rem 1rem 3rem;
+  color:var(--chalk-faint); font-family:var(--caps); font-variant:small-caps;
+  letter-spacing:0.12em; font-size:0.9rem; border-top:1px solid var(--edge-soft);
+}
+.foot .mark{ color:var(--ice-deep); margin-right:0.5rem; }
+.foot a{ color:var(--chalk-dim); }
+
+/* ------------------------------------------------------------------- dialog */
+dialog{
+  background:var(--night-2); color:var(--chalk);
+  border:1px solid var(--edge-hair); border-radius:6px;
+  box-shadow:var(--shadow); max-width:min(720px,94vw); padding:1.3rem 1.4rem;
+}
+dialog::backdrop{ background:rgba(5,5,8,0.76); backdrop-filter:blur(3px); }
+dialog h2{ margin-top:0; }
+dialog .close{ float:right; }
+
+/* --------------------------------------------------------------- scene list */
+.scenes{ display:grid; gap:0.45rem; grid-template-columns:repeat(auto-fill,minmax(190px,1fr)); }
+.scene{
+  font-family:var(--caps); font-variant:small-caps; letter-spacing:0.1em;
+  text-align:center; padding:0.5rem 0.6rem;
+  border:1px solid var(--edge); border-radius:4px; background:var(--night-3);
+  cursor:pointer; color:var(--chalk-2);
+}
+.scene:hover{ border-color:var(--ice-deep); color:var(--chalk); }
+.scene.taken{ border-style:dashed; }
+.scene .who{ display:block; font-size:0.78rem; color:var(--amber); letter-spacing:0.06em; }
+
+/* ----------------------------------------------------------------- the log */
+.log{ max-height:340px; overflow-y:auto; font-size:0.92rem; }
+.log li{ margin-bottom:0.35rem; color:var(--chalk-dim); list-style:none; }
+.log li b{ color:var(--chalk); font-weight:600; }
+.log .when{ font-family:var(--mono); font-size:0.78rem; color:var(--chalk-faint); margin-right:0.4rem; }
+
+/* --------------------------------------------------------------- responsive */
+@media (max-width:820px){
+  body{ font-size:17px; }
+  .wrap{ padding:1.4rem 0.9rem 3rem; }
+  .topnav{ padding:0.5rem 0.7rem; }
+  .topnav .brand{ width:100%; margin-bottom:0.2rem; }
+}

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>City of Winter</title>
+<meta name="description" content="A play surface for City of Winter — the story game of a family migrating from the Riverlands to the City of Winter, by Ross Cowman for Heart of the Deernicorn.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Cormorant+SC:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="winter.css">
+</head>
+<body>
+<script type="module">
+import { mountNav, mountFooter } from './app/ui.js';
+mountNav('');
+</script>
+
+<div class="wrap">
+  <header class="masthead">
+    <div class="eyebrow">Heart of the Deernicorn · Ross Cowman</div>
+    <h1>City of Winter</h1>
+    <p class="sub">The Umbra is coming, and the Riverlands are no longer safe. Our family must flee to the City of Winter, to find another home.</p>
+    <p class="kicker">A story game of tradition, migration, and what a family carries</p>
+  </header>
+
+  <div class="flourish"></div>
+
+  <div class="col">
+    <p class="lede">This is a play surface for <em>City of Winter</em>: the River Scroll and the City Map,
+    every Tradition Deck, the Banners, and the procedures of play — set out so a family can be played
+    at a table, across a call, or alone in a journal.</p>
+    <p class="muted small">Everything here is read from a structured transcription of the published game
+    (<code>titterpig-dsl-city-of-winter</code>). Card prompts, scene names, bond lists and rules text are
+    the book's own words; nothing is invented. You still need the game to play — this holds the state, not the rights.</p>
+  </div>
+
+  <div class="flourish"></div>
+
+  <div class="grid">
+    <a class="card" href="table/index.html">
+      <span class="cat">Play</span>
+      <h3>The Table</h3>
+      <p>The living game: the family, their Marks and Bonds, hands of Tradition Cards, the decks, the scene you are in, and every procedure from First Session Setup through Death &amp; Memory.</p>
+    </a>
+    <a class="card" href="atlas/index.html">
+      <span class="cat">The World</span>
+      <h3>Atlas</h3>
+      <p>Eleven Riverlands locations and twenty-one in the City — their scene prompts, local traditions and connections — with the Transit Lines and the printed distance table.</p>
+    </a>
+    <a class="card" href="traditions/index.html">
+      <span class="cat">The Decks</span>
+      <h3>Traditions</h3>
+      <p>All 249 Tradition Cards across ten decks, the shape families a blank icon may draw from, and the Banners with their name-lists.</p>
+    </a>
+    <a class="card" href="rules/index.html">
+      <span class="cat">Reference</span>
+      <h3>Rules</h3>
+      <p>Every procedure step by step, the City rules, the sidebars, the optional variants, and Ask Fate — quoted from the book.</p>
+    </a>
+  </div>
+
+  <div class="flourish"></div>
+
+  <div class="panel">
+    <h3 style="margin-top:0">Playing together</h3>
+    <p class="small muted" style="margin-bottom:0.4rem">The table currently saves to <b>this browser only</b>. Several people on
+    several devices need a shared data source, which a static host cannot provide on its own; the app is
+    already built against a storage adapter so that backend can be dropped in without touching the rules
+    engine. Until then, one person can drive the table and share their screen.</p>
+    <p class="small muted" style="margin:0">Use <code>?room=name</code> to keep more than one family in a browser.</p>
+  </div>
+</div>
+
+<script type="module">
+import { mountFooter } from './app/ui.js';
+mountFooter('City of Winter is © 2022 Heart of the Deernicorn. This is an unofficial play aid.');
+</script>
+</body>
+</html>
