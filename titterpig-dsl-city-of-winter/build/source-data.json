@@ -1022,8 +1022,10 @@
     "Ascending the Spire",
     "Archipelago",
     "the Drift",
-    "High Lake"
-   ]
+    "High Lake",
+    "Wintermount"
+   ],
+   "note": "Wintermount added at the High Lake end: the owner states Wintermount is one step from High Lake with a change off the Moon Path, so the two must share this line. Not drawn unambiguously on the p.38 map."
   },
   {
    "name": "Moon Path",
@@ -1529,11 +1531,44 @@
  "sourceAnomalies": [
   "The Mask Maker deck contains 24 cards where every other deck contains 25 (249 tradition cards total). Confirmed independently against CoW-TraditionCards.pdf, whose 250 pages are the 249 tradition cards plus the X-Card. Owner-confirmed 2026-08-12.",
   "The gutterfold print-and-play sheets differ from the printed cards on 13 of the 249 faces. Owner ruling 2026-08-12: the PRINTED CARDS are authoritative, and the corpus follows them; the print-and-play wording is kept on each affected card as ^“PnP Prompt”. See build/card-errata.json. Four are genuinely different prompts — the PnP duplicates ‘who joins the Umbra’ and ‘a lie of the Umbra’, and so omits ‘how we fight the Umbra’ and ‘why we fear the Umbra’ entirely.",
-  "Wintermount appears on the City Transit Map (p.38, Moon Path) and has its own location page (p.37), but is absent from the Transit Distance table (p.40). Open — owner following up.",
   "The Transit Distance table (Atlas p.40) is not consistent with the City Transit Map (Glowtown-Undertown 1, Undertown-Husk 1, Glowtown-Husk 7+). Owner ruling 2026-08-12: THE TABLE IS AUTHORITATIVE; travel and migration reach are computed from it, not from the line topology.",
   "The rules give the deck count as 11 (p.8) and as ten (p.52). Not a contradiction: it depends what is counted. The box holds the X-Card, an initial deck naming each tradition, and the 10 tradition decks (9 traditions + the Umbra). Owner ruling 2026-08-12.",
   "‘Glowdog of the Dust’ (p.52) names a starting Home whose Atlas page carries no Glowdog icon. Not an anomaly: the Dust’s icons are a blank circle and a blank diamond, Glowdog is a diamond deck, and the Blank Tradition Icons rule (p.38) permits it. Owner ruling 2026-08-12.",
   "The location is spelled ‘The Wandering Burrough’ on its card and ‘Wandering Borough’ in the rules text. Owner ruling 2026-08-12: BURROUGH is correct; the corpus names the location that way and leaves the rules quotations verbatim.",
-  "Atlas page cross-references on p.9 (‘We Join a Caravan (p.12)’, actually p.11) and p.16 (‘Glowtown (p.19)’, actually p.22) are wrong. Tracked here only; page numbers are carried per location as ATLAS_PAGE and are not surfaced to players."
- ]
+  "Atlas page cross-references on p.9 (‘We Join a Caravan (p.12)’, actually p.11) and p.16 (‘Glowtown (p.19)’, actually p.22) are wrong. Tracked here only; page numbers are carried per location as ATLAS_PAGE and are not surfaced to players.",
+  "Wintermount has a location page (p.37) and a Moon Path station (p.38) but is absent from the printed Transit Distance table (p.40). Resolved 2026-08-12: the owner supplied its adjacencies (1 to Glasstown, 1 to the Palace of the Moon, 2 to High Lake with a line change) and the remainder of the row is derived from them over the printed table. Carried as a clearly-marked supplement, never merged into the printed table."
+ ],
+ "transitDistanceDerived": {
+  "_note": "Wintermount has a location page (Atlas p.37) and a station on the Moon Path (p.38) but is absent from the printed Transit Distance table (p.40). Owner supplied its adjacencies 2026-08-12: one step from Glasstown and from the Palace of the Moon along the Moon Path, and one step from High Lake with a line change. The rest of the row is DERIVED from those three anchors over the printed table, taking the shortest of (1 + Glasstown), (1 + Palace of the Moon) and (2 + High Lake). It is a supplement, not part of the printed table, and 7+ means 7 or more exactly as the book uses it.",
+  "given": {
+   "Glasstown": 1,
+   "Palace of the Moon": 1,
+   "High Lake": 2
+  },
+  "check": "The owner’s own consistency check holds: High Lake to Wintermount 2, plus Wintermount to Glasstown 1, equals the printed High Lake to Glasstown of 3.",
+  "caveat": "Derived values are lower bounds: joining two printed paths at an anchor cannot see a line change that would be needed at the join. Spot-checked against the Moon Path, where no such change arises.",
+  "rows": {
+   "Wintermount": [
+    "4",
+    "4",
+    "7+",
+    "6",
+    "3",
+    "7+",
+    "2",
+    "1",
+    "7+",
+    "2",
+    "5",
+    "7+",
+    "7+",
+    "7+",
+    "5",
+    "1",
+    "7+",
+    "7+",
+    "7+"
+   ]
+  }
+ }
 }

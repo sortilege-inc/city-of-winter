@@ -683,8 +683,12 @@ function migrateStage(st, stage) {
 function travelDialog(ch, reach) {
   return modal('Travel', (close) => el('div', {},
     el('p', { class: 'small muted', text: 'To Travel, pick up your token and describe your character’s journey. Then place your token on any Scene at your destination, and continue your turn as normal. Traveling distance is always measured from Home.' }),
+    reach.some((r) => r.derived)
+      ? el('p', { class: 'small muted', text: '* Wintermount is absent from the printed distance table; that distance is derived from its Moon Path adjacencies.' })
+      : null,
     el('div', { class: 'btnrow' }, reach.map((r) => el('button', {
-      class: 'tiny', text: `${r.to} (${r.cost})`,
+      class: 'tiny', text: `${r.to} (${r.cost})${r.derived ? ' *' : ''}`,
+      title: r.derived ? 'distance derived — Wintermount is absent from the printed table' : '',
       onclick: async () => {
         await up((s) => {
           const c = s.characters.find((x) => x.id === ch.id);

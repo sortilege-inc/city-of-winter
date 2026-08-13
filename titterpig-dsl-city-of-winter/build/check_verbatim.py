@@ -30,6 +30,13 @@ AUTHORED = {
     "The Umbra Banner carries no name-list; the Umbra is not a people.",
     "A storage divider printed with the Banners; it carries no name-list and belongs to no Tradition Deck.",
     "A Riverlands location on the River Scroll.",
+    # the derived Wintermount supplement documents itself; it is not a quotation
+    "Wintermount has a location page (Atlas p.37) and a station on the Moon Path (p.38) but is absent "
+    "from the printed Transit Distance table (p.40). Owner supplied its adjacencies 2026-08-12: one step "
+    "from Glasstown and from the Palace of the Moon along the Moon Path, and one step from High Lake with "
+    "a line change. The rest of the row is DERIVED from those three anchors over the printed table, taking "
+    "the shortest of (1 + Glasstown), (1 + Palace of the Moon) and (2 + High Lake). It is a supplement, not "
+    "part of the printed table, and 7+ means 7 or more exactly as the book uses it.",
 }
 
 

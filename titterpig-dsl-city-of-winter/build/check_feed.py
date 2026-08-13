@@ -73,8 +73,14 @@ dsl_lines = re.findall(r'^\s*#\S+ \^"([^"]+)" DEF \{\n\s*EXTENDS #\S+ \^"Transit
                        corpus["cityofwinter-0.5-city.frame"], re.M)
 check("transit lines", [t["name"] for t in feed["transitLines"]], dsl_lines)
 
-dsl_rows = re.findall(r'^\s*ROW "([^"]+)"', corpus["cityofwinter-0.5-city.frame"], re.M)
-check("transit distance rows", list(feed["transitDistance"]["rows"].keys()), dsl_rows)
+# the city frame carries the printed table and, after it, the derived supplement
+city = corpus["cityofwinter-0.5-city.frame"]
+split = city.index('TRANSIT DISTANCE — WINTERMOUNT') if 'TRANSIT DISTANCE — WINTERMOUNT' in city else len(city)
+printed_rows = re.findall(r'^\s*ROW "([^"]+)"', city[:split], re.M)
+derived_rows = re.findall(r'^\s*ROW "([^"]+)"', city[split:], re.M)
+check("transit distance rows", list(feed["transitDistance"]["rows"].keys()), printed_rows)
+check("derived distance rows",
+      list((feed["transitDistance"].get("derived") or {}).get("rows", {}).keys()), derived_rows)
 
 # --- decks, banners, bonds, tiers, sections -----------------------------------
 base = corpus["cityofwinter-0.5-core-base.ttrpg"]

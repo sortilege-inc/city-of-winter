@@ -59,22 +59,46 @@ function index(raw) {
         : { blank: false, shape: d.byDeck.get(t)?.shape, decks: [t] });
   };
 
-  // transit distance lookup, exactly as printed (values may be "7+" or "-")
+  /**
+   * Transit distance, exactly as printed (values may be "7+" or "-").
+   *
+   * Wintermount is on the map but absent from the printed table, so it falls
+   * back to the derived supplement — flagged, so the UI can say so. Without
+   * this a family living at Wintermount could not Travel at all.
+   */
+  const DIST = raw.transitDistance;
   d.distance = (from, to) => {
-    const order = raw.transitDistance.order;
-    const row = raw.transitDistance.rows[from];
-    if (!row) return null;
-    const i = order.indexOf(to);
-    return i < 0 ? null : row[i];
+    const i = DIST.order.indexOf(to);
+    if (from === to) return '-';
+    if (DIST.rows[from] && i >= 0) return DIST.rows[from][i];
+    // derived: either endpoint may be the off-table location
+    const der = DIST.derived && DIST.derived.rows;
+    if (der && der[from] && i >= 0) return der[from][i];
+    if (der && der[to]) {
+      const j = DIST.order.indexOf(from);
+      if (j >= 0) return der[to][j];
+    }
+    return null;
   };
+
+  d.isDerivedDistance = (from, to) => {
+    const der = (DIST.derived && DIST.derived.rows) || {};
+    return !!(der[from] || der[to]);
+  };
+
+  /** Every location that has a distance at all — printed rows plus derived. */
+  d.distanceLocations = () =>
+    [...DIST.order, ...Object.keys((DIST.derived && DIST.derived.rows) || {})];
 
   // every City location a character could Travel to from Home with n City Marks
   d.travelReach = (home, cityMarks) => {
     const out = [];
-    for (const to of raw.transitDistance.order) {
+    for (const to of d.distanceLocations()) {
       if (to === home) continue;
       const v = d.distance(home, to);
-      if (v && v !== '-' && v !== '7+' && Number(v) <= cityMarks) out.push({ to, cost: Number(v) });
+      if (v && v !== '-' && v !== '7+' && Number(v) <= cityMarks) {
+        out.push({ to, cost: Number(v), derived: d.isDerivedDistance(home, to) });
+      }
     }
     return out.sort((a, b) => a.cost - b.cost || a.to.localeCompare(b.to));
   };

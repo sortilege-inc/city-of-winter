@@ -789,6 +789,25 @@ w.close()
 w.close()
 w.line()
 
+sep(w, "TRANSIT DISTANCE — WINTERMOUNT (DERIVED, NOT PRINTED)")
+der = data["transitDistanceDerived"]
+w.open(f'#{decl("table", "Transit Distance — Wintermount")} {caret("Transit Distance — Wintermount")} DEF {{')
+w.line(f'DESCRIPTION {q(der["_note"])}')
+w.line(f'DERIVATION_CHECK {q(der["check"])}')
+w.line(f'DERIVATION_CAVEAT {q(der["caveat"])}')
+w.line("PRINTED false")
+w.open("GIVEN {")
+for k, v in der["given"].items():
+    w.line(f'{caret(k)} INTEGER {v}')
+w.close()
+w.line("COLUMNS [ " + ", ".join(q(c) for c in data["transitDistanceOrder"]) + " ]")
+w.open("ROWS {")
+for rname, rvals in der["rows"].items():
+    w.line(f'ROW {q(rname)} [ ' + ", ".join(q(v) for v in rvals) + " ]")
+w.close()
+w.close()
+w.line()
+
 w.close()
 emit("cityofwinter-0.5-city.frame", w.text())
 
@@ -1077,7 +1096,8 @@ feed = {
     },
     "transitLines": data["transitLines"],
     "transitDistance": {"order": data["transitDistanceOrder"],
-                        "rows": data["transitDistance"]},
+                        "rows": data["transitDistance"],
+                        "derived": data["transitDistanceDerived"]},
     "cityStartingOptions": data["cityStartingOptions"],
     "askFate": data["askFate"],
     "procedures": proc["procedures"],

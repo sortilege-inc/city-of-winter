@@ -26,6 +26,9 @@
   .dist td.near{ color:var(--amber); }
   .dist th{ font-size:0.72rem; writing-mode:vertical-rl; transform:rotate(200grad); height:8.5em; padding:0; }
   .dist td, .dist th{ border:1px solid var(--edge-soft); text-align:center; }
+  .dist tr.derivedrow{ border-top:2px solid var(--magenta); }
+  .dist tr.derivedrow td:first-child{ color:var(--pink); }
+  .dist td.derived{ background:rgba(232,72,155,0.10); font-style:italic; }
 </style>
 </head>
 <body>
@@ -102,20 +105,31 @@ root.append(
 
 // --- the printed transit distance table -------------------------------------
 const order = data.transitDistance.order;
+const derived = data.transitDistance.derived || { rows: {} };
+const cell = (v, extra = '') => el('td', {
+  class: `${v === '7+' ? 'far' : v === '1' ? 'near' : ''} ${extra}`.trim(),
+  text: v === '-' ? '' : v,
+});
 const tbl = el('table', { class: 'dist' },
   el('thead', {}, el('tr', {}, el('th', {}), order.map((c) => el('th', { text: c })))),
-  el('tbody', {}, order.map((r) => el('tr', {},
-    el('td', { text: r }),
-    data.transitDistance.rows[r].map((v) => el('td', {
-      class: v === '7+' ? 'far' : v === '1' ? 'near' : '',
-      text: v === '-' ? '' : v,
-    }))))));
+  el('tbody', {},
+    order.map((r) => el('tr', {},
+      el('td', { text: r }),
+      data.transitDistance.rows[r].map((v) => cell(v)))),
+    // the derived supplement, visibly separated from the printed table
+    Object.entries(derived.rows).map(([r, vals]) => el('tr', { class: 'derivedrow' },
+      el('td', {}, r, el('span', { class: 'tag', style: 'margin-left:0.4rem', text: 'derived' })),
+      vals.map((v) => cell(v, 'derived'))))));
 
 root.append(
   el('div', { class: 'flourish' }),
   el('h2', { text: 'Transit Distance' }),
-  el('p', { class: 'small muted', text: '(# of Stations + Line Transfers between Locations.) Reproduced exactly as printed on Atlas p.40 — including the places where it disagrees with the Transit Map, and the absence of Wintermount.' }),
-  el('div', { class: 'scroller panel' }, tbl));
+  el('p', { class: 'small muted', text: '(# of Stations + Line Transfers between Locations.) Reproduced exactly as printed on Atlas p.40 — including the places where it disagrees with the Transit Map. The table is authoritative where the two differ.' }),
+  el('div', { class: 'scroller panel' }, tbl),
+  Object.keys(derived.rows).length
+    ? el('p', { class: 'small muted' },
+        el('b', { text: 'The last row is not printed. ' }), derived._note)
+    : null);
 
 mountFooter();
 </script>

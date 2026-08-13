@@ -1072,7 +1072,7 @@ FRAME "CityOfWinter_City" {
     #COW4f79c274f36ce44143b66 ^"In the Pull" DEF {
         EXTENDS #COWcb9176c4eab418b78cf29 ^"Transit Line"
         PROPERTIES {
-            ^"Stations" LIST OF STRING [ "Ascending the Spire", "Archipelago", "the Drift", "High Lake" ]
+            ^"Stations" LIST OF STRING [ "Ascending the Spire", "Archipelago", "the Drift", "High Lake", "Wintermount" ]
             ^"Borough Die Result" INTEGER 5
         }
     }
@@ -1127,6 +1127,27 @@ FRAME "CityOfWinter_City" {
             ROW "the Refuge" [ "7+", "7+", "7+", "4", "6", "6", "7+", "7+", "5", "7+", "5", "2", "5", "1", "6", "7+", "-", "3", "4" ]
             ROW "Spiral Avenue" [ "4", "5", "4", "1", "3", "4", "5", "7+", "3", "5", "2", "3", "1", "1", "2", "7+", "3", "-", "4" ]
             ROW "Undertown" [ "7+", "7+", "5", "2", "5", "2", "7+", "7+", "1", "7+", "4", "1", "6", "3", "6", "7+", "4", "4", "-" ]
+        }
+    }
+
+
+    # ====================================================================
+    # TRANSIT DISTANCE — WINTERMOUNT (DERIVED, NOT PRINTED)
+    # ====================================================================
+
+    #COW27d4cf0751c1319b69580 ^"Transit Distance — Wintermount" DEF {
+        DESCRIPTION "Wintermount has a location page (Atlas p.37) and a station on the Moon Path (p.38) but is absent from the printed Transit Distance table (p.40). Owner supplied its adjacencies 2026-08-12: one step from Glasstown and from the Palace of the Moon along the Moon Path, and one step from High Lake with a line change. The rest of the row is DERIVED from those three anchors over the printed table, taking the shortest of (1 + Glasstown), (1 + Palace of the Moon) and (2 + High Lake). It is a supplement, not part of the printed table, and 7+ means 7 or more exactly as the book uses it."
+        DERIVATION_CHECK "The owner’s own consistency check holds: High Lake to Wintermount 2, plus Wintermount to Glasstown 1, equals the printed High Lake to Glasstown of 3."
+        DERIVATION_CAVEAT "Derived values are lower bounds: joining two printed paths at an anchor cannot see a line change that would be needed at the join. Spot-checked against the Moon Path, where no such change arises."
+        PRINTED false
+        GIVEN {
+            ^"Glasstown" INTEGER 1
+            ^"Palace of the Moon" INTEGER 1
+            ^"High Lake" INTEGER 2
+        }
+        COLUMNS [ "Ascending the Spire", "Archipelago", "Arcanium of Brass", "the Dust", "the Drift", "Five Temples", "Forest of the Spire", "Glasstown", "Glowtown", "High Lake", "Holy Well", "Husk", "Invisible Town", "Lantern Gate", "Moonspire Ward", "Palace of the Moon", "the Refuge", "Spiral Avenue", "Undertown" ]
+        ROWS {
+            ROW "Wintermount" [ "4", "4", "7+", "6", "3", "7+", "2", "1", "7+", "2", "5", "7+", "7+", "7+", "5", "1", "7+", "7+", "7+" ]
         }
     }
 
