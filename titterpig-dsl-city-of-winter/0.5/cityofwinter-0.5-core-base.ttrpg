@@ -163,6 +163,7 @@ BASE "CityOfWinter_Core_Base" {
         PROPERTIES {
             ^"Prompt" STRING REQUIRED
             ^"Deck" ^"Tradition Deck" REQUIRED
+            ^"PnP Prompt" STRING
         }
     }
 

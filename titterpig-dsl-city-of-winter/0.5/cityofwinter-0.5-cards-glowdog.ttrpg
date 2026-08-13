@@ -199,11 +199,12 @@ EXTENSION "CityOfWinter_Cards_Glowdog" EXTENDS "CityOfWinter_Core_Base" {
         }
     }
 
-    #COW407b55202a33c40f96dcd ^"Glowdog: kind, but not honest." DEF {
+    #COW96859dfe38504e78c5464 ^"Glowdog: kind, but not honest" DEF {
         EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
         PROPERTIES {
-            ^"Prompt" STRING "kind, but not honest."
+            ^"Prompt" STRING "kind, but not honest"
             ^"Deck" ^"Tradition Deck" #COWff9e2875b73d4008351eb ^"Glowdog"
+            ^"PnP Prompt" STRING "kind, but not honest."
         }
     }
 

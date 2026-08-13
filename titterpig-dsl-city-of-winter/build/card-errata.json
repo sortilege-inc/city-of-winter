@@ -1,0 +1,97 @@
+{
+  "_note": "Where the gutterfold print-and-play sheets and the printed cards (photographed in CoW-VTT-Photos/CoW-TraditionCards.pdf) disagree. Owner ruling 2026-08-12: the PRINTED CARDS are authoritative — they are the physical component. Each entry maps the gutterfold reading to the printed one; `occurrence` disambiguates where the gutterfold prints the same prompt twice. Nothing is discarded: the gutterfold reading is kept on each affected card as ^\"PnP Prompt\".",
+  "authoritative": "printed cards",
+  "corrections": [
+    {
+      "deck": "Umbra",
+      "occurrence": 1,
+      "pnp": "what the Umbra takes",
+      "printed": "who the Umbra takes",
+      "kind": "different prompt"
+    },
+    {
+      "deck": "Umbra",
+      "occurrence": 2,
+      "pnp": "who joins the Umbra",
+      "printed": "how we fight the Umbra",
+      "kind": "different prompt — the PnP duplicates 'who joins the Umbra' and so omits this card"
+    },
+    {
+      "deck": "Umbra",
+      "occurrence": 1,
+      "pnp": "a lie of the Umbra",
+      "printed": "lie of the Umbra",
+      "kind": "wording"
+    },
+    {
+      "deck": "Umbra",
+      "occurrence": 2,
+      "pnp": "a lie of the Umbra",
+      "printed": "why we fear the Umbra",
+      "kind": "different prompt — the PnP duplicates 'a lie of the Umbra' and so omits this card"
+    },
+    {
+      "deck": "Umbra",
+      "occurrence": 1,
+      "pnp": "why we serve the Umbra",
+      "printed": "how we serve the Umbra",
+      "kind": "different prompt"
+    },
+    {
+      "deck": "Umbra",
+      "occurrence": 1,
+      "pnp": "the Umbra’s Hunger",
+      "printed": "the Umbra’s hunger",
+      "kind": "capitalisation"
+    },
+    {
+      "deck": "Umbra",
+      "occurrence": 1,
+      "pnp": "vision of the Umbra",
+      "printed": "vison of the Umbra",
+      "kind": "spelling — the typo is on the printed card"
+    },
+    {
+      "deck": "Lion of the Citadel",
+      "occurrence": 1,
+      "pnp": "a deed if legend",
+      "printed": "a deed of legend",
+      "kind": "spelling — the typo is in the PnP"
+    },
+    {
+      "deck": "Lion of the Citadel",
+      "occurrence": 1,
+      "pnp": "with loyal servants",
+      "printed": "with loyal servents",
+      "kind": "spelling — the typo is on the printed card"
+    },
+    {
+      "deck": "Moonbee",
+      "occurrence": 1,
+      "pnp": "assleep",
+      "printed": "asleep",
+      "kind": "spelling — the typo is in the PnP"
+    },
+    {
+      "deck": "Brass Ones",
+      "occurrence": 1,
+      "pnp": "in fashion",
+      "printed": "in fashon",
+      "kind": "spelling — the typo is on the printed card"
+    },
+    {
+      "deck": "Glowdog",
+      "occurrence": 1,
+      "pnp": "kind, but not honest.",
+      "printed": "kind, but not honest",
+      "kind": "trailing full stop"
+    },
+    {
+      "deck": "Mask Maker",
+      "occurrence": 1,
+      "pnp": "with a healer’s tools",
+      "printed": "with an healer’s tools",
+      "kind": "wording"
+    }
+  ]
+}

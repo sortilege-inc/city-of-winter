@@ -159,11 +159,12 @@ EXTENSION "CityOfWinter_Cards_LionoftheCitadel" EXTENDS "CityOfWinter_Core_Base"
         }
     }
 
-    #COWd1dabab0ce679e83d4323 ^"Lion of the Citadel: with loyal servants" DEF {
+    #COW46413852504dad60e2388 ^"Lion of the Citadel: with loyal servents" DEF {
         EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
         PROPERTIES {
-            ^"Prompt" STRING "with loyal servants"
+            ^"Prompt" STRING "with loyal servents"
             ^"Deck" ^"Tradition Deck" #COW61ede29d5478b4480aaf6 ^"Lion of the Citadel"
+            ^"PnP Prompt" STRING "with loyal servants"
         }
     }
 
@@ -183,11 +184,12 @@ EXTENSION "CityOfWinter_Cards_LionoftheCitadel" EXTENDS "CityOfWinter_Core_Base"
         }
     }
 
-    #COW70f4eb232bc75ae181cd2 ^"Lion of the Citadel: a deed if legend" DEF {
+    #COWe9390fe53060f5a499f25 ^"Lion of the Citadel: a deed of legend" DEF {
         EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
         PROPERTIES {
-            ^"Prompt" STRING "a deed if legend"
+            ^"Prompt" STRING "a deed of legend"
             ^"Deck" ^"Tradition Deck" #COW61ede29d5478b4480aaf6 ^"Lion of the Citadel"
+            ^"PnP Prompt" STRING "a deed if legend"
         }
     }
 

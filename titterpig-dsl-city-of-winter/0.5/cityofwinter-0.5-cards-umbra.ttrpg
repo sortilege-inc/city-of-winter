@@ -7,11 +7,12 @@ EXTENSION "CityOfWinter_Cards_Umbra" EXTENDS "CityOfWinter_Core_Base" {
     # 25 cards. Prompts are verbatim from the card faces;
     # deck membership is taken from the icon printed on each card back.
 
-    #COW31418b75aa8585aadecad ^"Umbra: what the Umbra takes" DEF {
+    #COW5988932176487663ced80 ^"Umbra: who the Umbra takes" DEF {
         EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
         PROPERTIES {
-            ^"Prompt" STRING "what the Umbra takes"
+            ^"Prompt" STRING "who the Umbra takes"
             ^"Deck" ^"Tradition Deck" #COW11cf4a1aa4614b97d6cf7 ^"Umbra"
+            ^"PnP Prompt" STRING "what the Umbra takes"
         }
     }
 
@@ -23,19 +24,21 @@ EXTENSION "CityOfWinter_Cards_Umbra" EXTENDS "CityOfWinter_Core_Base" {
         }
     }
 
-    #COWfb27683e596ee596437a1 ^"Umbra: who joins the Umbra (copy 2)" DEF {
+    #COW973e1a2f58f4f75ccafde ^"Umbra: how we fight the Umbra" DEF {
         EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
         PROPERTIES {
-            ^"Prompt" STRING "who joins the Umbra"
+            ^"Prompt" STRING "how we fight the Umbra"
             ^"Deck" ^"Tradition Deck" #COW11cf4a1aa4614b97d6cf7 ^"Umbra"
+            ^"PnP Prompt" STRING "who joins the Umbra"
         }
     }
 
-    #COW38b021f7771053c702992 ^"Umbra: a lie of the Umbra" DEF {
+    #COW32e6f0f87d3c1a51dd7aa ^"Umbra: lie of the Umbra" DEF {
         EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
         PROPERTIES {
-            ^"Prompt" STRING "a lie of the Umbra"
+            ^"Prompt" STRING "lie of the Umbra"
             ^"Deck" ^"Tradition Deck" #COW11cf4a1aa4614b97d6cf7 ^"Umbra"
+            ^"PnP Prompt" STRING "a lie of the Umbra"
         }
     }
 
@@ -47,11 +50,12 @@ EXTENSION "CityOfWinter_Cards_Umbra" EXTENDS "CityOfWinter_Core_Base" {
         }
     }
 
-    #COW1baa6efdd4f860f860b40 ^"Umbra: a lie of the Umbra (copy 2)" DEF {
+    #COWb4cc09eb7a2b9050260c5 ^"Umbra: why we fear the Umbra" DEF {
         EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
         PROPERTIES {
-            ^"Prompt" STRING "a lie of the Umbra"
+            ^"Prompt" STRING "why we fear the Umbra"
             ^"Deck" ^"Tradition Deck" #COW11cf4a1aa4614b97d6cf7 ^"Umbra"
+            ^"PnP Prompt" STRING "a lie of the Umbra"
         }
     }
 
@@ -87,11 +91,12 @@ EXTENSION "CityOfWinter_Cards_Umbra" EXTENDS "CityOfWinter_Core_Base" {
         }
     }
 
-    #COWf1f5038490e42fb30def4 ^"Umbra: why we serve the Umbra" DEF {
+    #COWdfdf9350d9d420261502a ^"Umbra: how we serve the Umbra" DEF {
         EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
         PROPERTIES {
-            ^"Prompt" STRING "why we serve the Umbra"
+            ^"Prompt" STRING "how we serve the Umbra"
             ^"Deck" ^"Tradition Deck" #COW11cf4a1aa4614b97d6cf7 ^"Umbra"
+            ^"PnP Prompt" STRING "why we serve the Umbra"
         }
     }
 
@@ -111,11 +116,12 @@ EXTENSION "CityOfWinter_Cards_Umbra" EXTENDS "CityOfWinter_Core_Base" {
         }
     }
 
-    #COW4a2adae3e64c6bd4d4566 ^"Umbra: the Umbra’s Hunger" DEF {
+    #COWf906fc31295d794dd7969 ^"Umbra: the Umbra’s hunger" DEF {
         EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
         PROPERTIES {
-            ^"Prompt" STRING "the Umbra’s Hunger"
+            ^"Prompt" STRING "the Umbra’s hunger"
             ^"Deck" ^"Tradition Deck" #COW11cf4a1aa4614b97d6cf7 ^"Umbra"
+            ^"PnP Prompt" STRING "the Umbra’s Hunger"
         }
     }
 
@@ -143,11 +149,12 @@ EXTENSION "CityOfWinter_Cards_Umbra" EXTENDS "CityOfWinter_Core_Base" {
         }
     }
 
-    #COW3802bf50dd3773495ccc7 ^"Umbra: vision of the Umbra" DEF {
+    #COWdad12c438a153f1bc1a91 ^"Umbra: vison of the Umbra" DEF {
         EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
         PROPERTIES {
-            ^"Prompt" STRING "vision of the Umbra"
+            ^"Prompt" STRING "vison of the Umbra"
             ^"Deck" ^"Tradition Deck" #COW11cf4a1aa4614b97d6cf7 ^"Umbra"
+            ^"PnP Prompt" STRING "vision of the Umbra"
         }
     }
 

@@ -95,11 +95,12 @@ EXTENSION "CityOfWinter_Cards_MaskMaker" EXTENDS "CityOfWinter_Core_Base" {
         }
     }
 
-    #COW30666807fb3e8c63d71e8 ^"Mask Maker: with a healer’s tools" DEF {
+    #COW748fc1351bd352d59136d ^"Mask Maker: with an healer’s tools" DEF {
         EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
         PROPERTIES {
-            ^"Prompt" STRING "with a healer’s tools"
+            ^"Prompt" STRING "with an healer’s tools"
             ^"Deck" ^"Tradition Deck" #COW1dbe2130e389b16018eb3 ^"Mask Maker"
+            ^"PnP Prompt" STRING "with a healer’s tools"
         }
     }
 

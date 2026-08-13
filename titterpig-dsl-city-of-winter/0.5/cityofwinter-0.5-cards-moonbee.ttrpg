@@ -199,11 +199,12 @@ EXTENSION "CityOfWinter_Cards_Moonbee" EXTENDS "CityOfWinter_Core_Base" {
         }
     }
 
-    #COWb65a0334665fc4164bd39 ^"Moonbee: assleep" DEF {
+    #COWaca2d4a75dadfe4ce220a ^"Moonbee: asleep" DEF {
         EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
         PROPERTIES {
-            ^"Prompt" STRING "assleep"
+            ^"Prompt" STRING "asleep"
             ^"Deck" ^"Tradition Deck" #COWb6415ac566c9c446d6cdf ^"Moonbee"
+            ^"PnP Prompt" STRING "assleep"
         }
     }
 

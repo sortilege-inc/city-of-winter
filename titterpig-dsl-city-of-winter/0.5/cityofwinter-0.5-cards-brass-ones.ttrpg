@@ -103,11 +103,12 @@ EXTENSION "CityOfWinter_Cards_BrassOnes" EXTENDS "CityOfWinter_Core_Base" {
         }
     }
 
-    #COW3c213da830b65327a9799 ^"Brass Ones: in fashion" DEF {
+    #COWdc97fd2bbdc0741e573a1 ^"Brass Ones: in fashon" DEF {
         EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
         PROPERTIES {
-            ^"Prompt" STRING "in fashion"
+            ^"Prompt" STRING "in fashon"
             ^"Deck" ^"Tradition Deck" #COW36a2ab23469a974948854 ^"Brass Ones"
+            ^"PnP Prompt" STRING "in fashion"
         }
     }
 

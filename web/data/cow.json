@@ -730,11 +730,12 @@
    "isBoroughWanders": false
   },
   {
-   "id": "COWd1dabab0ce679e83d4323",
-   "name": "Lion of the Citadel: with loyal servants",
-   "prompt": "with loyal servants",
+   "id": "COW46413852504dad60e2388",
+   "name": "Lion of the Citadel: with loyal servents",
+   "prompt": "with loyal servents",
    "deck": "Lion of the Citadel",
-   "isBoroughWanders": false
+   "isBoroughWanders": false,
+   "pnpPrompt": "with loyal servants"
   },
   {
    "id": "COW46c0731538475ea807640",
@@ -751,11 +752,12 @@
    "isBoroughWanders": false
   },
   {
-   "id": "COW70f4eb232bc75ae181cd2",
-   "name": "Lion of the Citadel: a deed if legend",
-   "prompt": "a deed if legend",
+   "id": "COWe9390fe53060f5a499f25",
+   "name": "Lion of the Citadel: a deed of legend",
+   "prompt": "a deed of legend",
    "deck": "Lion of the Citadel",
-   "isBoroughWanders": false
+   "isBoroughWanders": false,
+   "pnpPrompt": "a deed if legend"
   },
   {
    "id": "COW8fb0baf59eda865ba4d94",
@@ -772,11 +774,12 @@
    "isBoroughWanders": false
   },
   {
-   "id": "COW31418b75aa8585aadecad",
-   "name": "Umbra: what the Umbra takes",
-   "prompt": "what the Umbra takes",
+   "id": "COW5988932176487663ced80",
+   "name": "Umbra: who the Umbra takes",
+   "prompt": "who the Umbra takes",
    "deck": "Umbra",
-   "isBoroughWanders": false
+   "isBoroughWanders": false,
+   "pnpPrompt": "what the Umbra takes"
   },
   {
    "id": "COWc47811b2273c853aa9864",
@@ -786,18 +789,20 @@
    "isBoroughWanders": false
   },
   {
-   "id": "COWfb27683e596ee596437a1",
-   "name": "Umbra: who joins the Umbra (copy 2)",
-   "prompt": "who joins the Umbra",
+   "id": "COW973e1a2f58f4f75ccafde",
+   "name": "Umbra: how we fight the Umbra",
+   "prompt": "how we fight the Umbra",
    "deck": "Umbra",
-   "isBoroughWanders": false
+   "isBoroughWanders": false,
+   "pnpPrompt": "who joins the Umbra"
   },
   {
-   "id": "COW38b021f7771053c702992",
-   "name": "Umbra: a lie of the Umbra",
-   "prompt": "a lie of the Umbra",
+   "id": "COW32e6f0f87d3c1a51dd7aa",
+   "name": "Umbra: lie of the Umbra",
+   "prompt": "lie of the Umbra",
    "deck": "Umbra",
-   "isBoroughWanders": false
+   "isBoroughWanders": false,
+   "pnpPrompt": "a lie of the Umbra"
   },
   {
    "id": "COW87a9d7c9cb8d4535b710e",
@@ -807,11 +812,12 @@
    "isBoroughWanders": false
   },
   {
-   "id": "COW1baa6efdd4f860f860b40",
-   "name": "Umbra: a lie of the Umbra (copy 2)",
-   "prompt": "a lie of the Umbra",
+   "id": "COWb4cc09eb7a2b9050260c5",
+   "name": "Umbra: why we fear the Umbra",
+   "prompt": "why we fear the Umbra",
    "deck": "Umbra",
-   "isBoroughWanders": false
+   "isBoroughWanders": false,
+   "pnpPrompt": "a lie of the Umbra"
   },
   {
    "id": "COW15affe92f9e2f6ef2bb3f",
@@ -842,11 +848,12 @@
    "isBoroughWanders": false
   },
   {
-   "id": "COWf1f5038490e42fb30def4",
-   "name": "Umbra: why we serve the Umbra",
-   "prompt": "why we serve the Umbra",
+   "id": "COWdfdf9350d9d420261502a",
+   "name": "Umbra: how we serve the Umbra",
+   "prompt": "how we serve the Umbra",
    "deck": "Umbra",
-   "isBoroughWanders": false
+   "isBoroughWanders": false,
+   "pnpPrompt": "why we serve the Umbra"
   },
   {
    "id": "COWb6bd765ff63a48e8d0ac0",
@@ -863,11 +870,12 @@
    "isBoroughWanders": false
   },
   {
-   "id": "COW4a2adae3e64c6bd4d4566",
-   "name": "Umbra: the Umbra’s Hunger",
-   "prompt": "the Umbra’s Hunger",
+   "id": "COWf906fc31295d794dd7969",
+   "name": "Umbra: the Umbra’s hunger",
+   "prompt": "the Umbra’s hunger",
    "deck": "Umbra",
-   "isBoroughWanders": false
+   "isBoroughWanders": false,
+   "pnpPrompt": "the Umbra’s Hunger"
   },
   {
    "id": "COW6663e429a845ad412039a",
@@ -891,11 +899,12 @@
    "isBoroughWanders": false
   },
   {
-   "id": "COW3802bf50dd3773495ccc7",
-   "name": "Umbra: vision of the Umbra",
-   "prompt": "vision of the Umbra",
+   "id": "COWdad12c438a153f1bc1a91",
+   "name": "Umbra: vison of the Umbra",
+   "prompt": "vison of the Umbra",
    "deck": "Umbra",
-   "isBoroughWanders": false
+   "isBoroughWanders": false,
+   "pnpPrompt": "vision of the Umbra"
   },
   {
    "id": "COWf2a93697ae52cc2321512",
@@ -1010,9 +1019,9 @@
    "isBoroughWanders": false
   },
   {
-   "id": "COW38c5b89415dc77bd09200",
-   "name": "Fox of the Towers: with an oathbreaker’s brand",
-   "prompt": "with an oathbreaker’s brand",
+   "id": "COW5a219104b731bb78cef9a",
+   "name": "Fox of the Towers: with an oath-breaker’s brand",
+   "prompt": "with an oath-breaker’s brand",
    "deck": "Fox of the Towers",
    "isBoroughWanders": false
   },
@@ -1374,11 +1383,12 @@
    "isBoroughWanders": false
   },
   {
-   "id": "COW30666807fb3e8c63d71e8",
-   "name": "Mask Maker: with a healer’s tools",
-   "prompt": "with a healer’s tools",
+   "id": "COW748fc1351bd352d59136d",
+   "name": "Mask Maker: with an healer’s tools",
+   "prompt": "with an healer’s tools",
    "deck": "Mask Maker",
-   "isBoroughWanders": false
+   "isBoroughWanders": false,
+   "pnpPrompt": "with a healer’s tools"
   },
   {
    "id": "COWd2055fcff29f8d4b55104",
@@ -1633,11 +1643,12 @@
    "isBoroughWanders": false
   },
   {
-   "id": "COW407b55202a33c40f96dcd",
-   "name": "Glowdog: kind, but not honest.",
-   "prompt": "kind, but not honest.",
+   "id": "COW96859dfe38504e78c5464",
+   "name": "Glowdog: kind, but not honest",
+   "prompt": "kind, but not honest",
    "deck": "Glowdog",
-   "isBoroughWanders": false
+   "isBoroughWanders": false,
+   "pnpPrompt": "kind, but not honest."
   },
   {
    "id": "COW6af0543facb8bd8d5a3e4",
@@ -1724,11 +1735,12 @@
    "isBoroughWanders": false
   },
   {
-   "id": "COW3c213da830b65327a9799",
-   "name": "Brass Ones: in fashion",
-   "prompt": "in fashion",
+   "id": "COWdc97fd2bbdc0741e573a1",
+   "name": "Brass Ones: in fashon",
+   "prompt": "in fashon",
    "deck": "Brass Ones",
-   "isBoroughWanders": false
+   "isBoroughWanders": false,
+   "pnpPrompt": "in fashion"
   },
   {
    "id": "COW85e12ac4352b12b737e8f",
@@ -1983,11 +1995,12 @@
    "isBoroughWanders": false
   },
   {
-   "id": "COWb65a0334665fc4164bd39",
-   "name": "Moonbee: assleep",
-   "prompt": "assleep",
+   "id": "COWaca2d4a75dadfe4ce220a",
+   "name": "Moonbee: asleep",
+   "prompt": "asleep",
    "deck": "Moonbee",
-   "isBoroughWanders": false
+   "isBoroughWanders": false,
+   "pnpPrompt": "assleep"
   }
  ],
  "ageTiers": [
@@ -4590,7 +4603,7 @@
  ],
  "sourceAnomalies": [
   "The Mask Maker deck contains 24 cards where every other deck contains 25 (249 tradition cards total). Confirmed independently against CoW-TraditionCards.pdf, whose 250 pages are the 249 tradition cards plus the X-Card. Owner-confirmed 2026-08-12.",
-  "The gutterfold print-and-play sheets and the printed cards photographed in CoW-TraditionCards.pdf disagree on 14 of the 249 card faces — see build/card-errata.json. Five are different prompts, nine are spelling. The printed cards are authoritative.",
+  "The gutterfold print-and-play sheets differ from the printed cards on 13 of the 249 faces. Owner ruling 2026-08-12: the PRINTED CARDS are authoritative, and the corpus follows them; the print-and-play wording is kept on each affected card as ^“PnP Prompt”. See build/card-errata.json. Four are genuinely different prompts — the PnP duplicates ‘who joins the Umbra’ and ‘a lie of the Umbra’, and so omits ‘how we fight the Umbra’ and ‘why we fear the Umbra’ entirely.",
   "Wintermount appears on the City Transit Map (p.38, Moon Path) and has its own location page (p.37), but is absent from the Transit Distance table (p.40). Open — owner following up.",
   "The Transit Distance table (Atlas p.40) is not consistent with the City Transit Map (Glowtown-Undertown 1, Undertown-Husk 1, Glowtown-Husk 7+). Owner ruling 2026-08-12: THE TABLE IS AUTHORITATIVE; travel and migration reach are computed from it, not from the line topology.",
   "The rules give the deck count as 11 (p.8) and as ten (p.52). Not a contradiction: it depends what is counted. The box holds the X-Card, an initial deck naming each tradition, and the 10 tradition decks (9 traditions + the Umbra). Owner ruling 2026-08-12.",

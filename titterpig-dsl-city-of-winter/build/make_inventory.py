@@ -5,9 +5,10 @@ The inventory is the ground truth the coverage gate audits the corpus against, s
 it is re-derived from the source documents on every run and is never read back
 out of the DSL corpus.
 
-  Tradition Card : every card face in CoW-Cards-Gutterfold.pdf (3 per page, read
-                   by cropping each card's column — the PDF has a real text
-                   layer, so this is exact, not OCR).
+  Tradition Card : the 249 PRINTED card faces (authoritative), transcribed in
+                   build/cards-printed.txt, cross-checked against the gutterfold
+                   PDF's text layer — every difference must be a recorded
+                   correction in build/card-errata.json.
   Scene          : every ALL-CAPS scene label on the Atlas location pages (7-37)
                    plus the Wandering Borough card. Labels wrap over two or three
                    lines on the page, so words are clustered by bounding box
@@ -87,19 +88,55 @@ def add(category, name):
     units.append({"category": category, "name": name})
 
 
-# --- Tradition Cards: 3 columns per landscape letter page (792pt / 3 = 264pt) --
-# The gutterfold sheets print crop marks as the words "cut lines" and
-# "fold line" beside every card; they are printer furniture, not prompt text.
+# --- Tradition Cards ----------------------------------------------------------
+# The PRINTED cards are authoritative (owner ruling 2026-08-12), and they are
+# photographs with no text layer, so the inventory reads them from the
+# transcription in build/cards-printed.txt. That transcription is not taken on
+# trust: the gutterfold print-and-play sheets ARE machine-readable, so their 249
+# faces are extracted here too and the two are diffed. Every difference must be
+# a recorded correction in build/card-errata.json — a NEW divergence fails the
+# build, which is what stops either reading drifting unnoticed.
 FURNITURE = re.compile(r"\b(cut|lines|fold\s+line)\b", re.I)
 n_pages = int(re.search(r"Pages:\s+(\d+)", run(["pdfinfo", CARDS_PDF])).group(1))
-card_faces = 0
+pnp_faces = []
 for page in range(1, n_pages + 1):
     for col in range(3):
         raw = pdftext(CARDS_PDF, page, page, col * 264, 264)
         txt = " ".join(FURNITURE.sub(" ", l).strip() for l in raw.splitlines())
+        txt = re.sub(r"\s+", " ", txt).strip()
+        # the sheet hyphenates across line breaks ("oath-\nbreaker's"); joining
+        # lines with a space would otherwise read that as "oath- breaker's".
+        txt = re.sub(r"-\s+(?=\w)", "-", txt)
         if txt:
-            card_faces += 1
-            add("Tradition Card", txt)
+            pnp_faces.append(txt)
+
+printed_faces = []
+with open(os.path.join(ROOT, "cards-printed.txt")) as fh:
+    for line in fh:
+        for c in line.strip().split("|"):
+            c = c.strip()
+            if c and c != "__XCARD__":
+                printed_faces.append(c.replace("'", "\u2019"))
+
+if len(pnp_faces) != len(printed_faces):
+    sys.exit(f"card count mismatch: gutterfold {len(pnp_faces)}, printed {len(printed_faces)}")
+
+errata = json.load(open(os.path.join(ROOT, "card-errata.json")))["corrections"]
+allowed_pnp = Counter(e["pnp"].replace("'", "\u2019") for e in errata)
+allowed_printed = Counter(e["printed"].replace("'", "\u2019") for e in errata)
+dp = Counter(pnp_faces) - Counter(printed_faces)
+dq = Counter(printed_faces) - Counter(pnp_faces)
+if dp != allowed_pnp or dq != allowed_printed:
+    print("UNRECORDED difference between the gutterfold and the printed cards:")
+    for k, v in sorted((dp - allowed_pnp).items()):
+        print(f"   gutterfold only: {v}x {k}")
+    for k, v in sorted((dq - allowed_printed).items()):
+        print(f"   printed    only: {v}x {k}")
+    sys.exit("every difference must be listed in build/card-errata.json")
+
+card_faces = len(printed_faces)
+for txt in printed_faces:
+    add("Tradition Card", txt)
 
 # --- Scenes: ALL-CAPS labels on the Atlas location pages ----------------------
 CAPS = re.compile(r"^[A-Z][A-Z’',\.\- ]{2,}$")

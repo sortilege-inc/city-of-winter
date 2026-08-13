@@ -30,7 +30,8 @@ source content:
 
 | file | what it holds | how it was produced |
 |---|---|---|
-| `build/cards.json` | 249 card prompts + deck | gutterfold PDF **text layer** (exact, no OCR); deck identity from each card's PDF image XObject id, confirmed visually one page per deck |
+| `build/cards.json` | 249 card prompts + deck | prompts from the **printed cards** (`cards-printed.txt`, transcribed from the card photographs — these are authoritative); deck identity from each card's PDF image XObject id in the gutterfold PDF, where it is exact |
+| `build/card-errata.json` | the 13 faces where the gutterfold print-and-play sheets differ from the printed cards | diffed mechanically; the build fails on any *unrecorded* difference |
 | `build/source-data.json` | decks, banners, bonds, age tiers, locations, scenes, transit, distance table | Atlas + banner PDFs; the local-tradition icons are vector art and were read visually from rendered pages |
 | `build/procedures.json` | every procedure, rule, sidebar and variant, verbatim | transcribed from the rules PDF |
 
@@ -68,28 +69,31 @@ source, coverage 523/523 units covered, 0 deferred, 0 excluded.
 
 ## Source anomalies
 
-Recorded in `sources.json` under `sourceAnomalies` and reproduced as printed rather than corrected.
-The ones worth knowing before building on this corpus:
+Recorded in `sources.json` under `sourceAnomalies`. Owner rulings of 2026-08-12 are applied.
 
-1. The rules say **11** Tradition Decks (p.8); the card set contains **10** (9 traditions + Umbra),
-   and the Design Notes sidebar (p.52) says "Ten Tradition Decks".
-2. The **Mask Maker deck has 24 cards**; every other deck has 25 (249 total). Confirmed against both
-   the gutterfold set and the 250-page VTT card photos (= 249 cards + the X-Card).
-3. The **Umbra deck prints two copies** each of "who joins the Umbra" and "a lie of the Umbra".
-4. The **Transit Distance table** (Atlas p.40) is symmetric but not consistent with the Transit Map:
-   Glowtown–Undertown is 1 and Undertown–Husk is 1, yet Glowtown–Husk is printed 7+.
-5. **Wintermount** is on the Transit Map and has a location page but is **absent from the distance
-   table**.
-6. Two page cross-references in the Atlas are wrong (p.9 → "We Join a Caravan (p.12)", actually
-   p.11; p.16 → "Glowtown (p.19)", actually p.22).
-7. The Wandering Borough card is titled "The Wandering **Burrough**" and its eighth scene is printed
-   "**WANDERERING**".
+1. **The gutterfold print-and-play sheets differ from the printed cards on 13 of the 249 faces.**
+   The **printed cards are authoritative**; the corpus follows them, and the print-and-play wording
+   is kept on each affected card as `^"PnP Prompt"` (`build/card-errata.json`). Four are genuinely
+   different prompts: the PnP duplicates *who joins the Umbra* and *a lie of the Umbra*, and so omits
+   **how we fight the Umbra** and **why we fear the Umbra** entirely. The rest are spelling, and the
+   typos fall on both sides (`a deed if legend` in the PnP; `in fashon`, `vison`, `servents` on the
+   cards).
+2. The **Mask Maker deck has 24 cards**; every other deck has 25 (249 total). Owner-confirmed.
+3. **The Transit Distance table (p.40) is authoritative** where it disagrees with the Transit Map
+   (Glowtown–Undertown 1, Undertown–Husk 1, yet Glowtown–Husk 7+). Travel and migration reach are
+   computed from the table, never from the line topology.
+4. **Wintermount** is on the Transit Map and has a location page but is absent from the distance
+   table. Open — owner following up.
+5. The location is **"The Wandering Burrough"** (its card), spelled "Wandering Borough" in the rules
+   text. The corpus names it Burrough and records the rules spelling as `RULES_SPELLING`; rules
+   quotations stay verbatim.
+6. Atlas page cross-references on p.9 and p.16 are wrong. Tracked here only — page numbers are
+   carried per location as `ATLAS_PAGE` and never surfaced to players.
 
-*Not* an anomaly, though it reads like one: "Glowdog of the Dust" (p.52) names a starting Home whose
-Atlas page carries no Glowdog icon. The Dust's icons are a blank circle and a **blank diamond**, and
-Glowdog is a diamond deck — so the Blank Tradition Icons rule (p.38) already permits Glowdog there.
-Five of the six City starting options name a printed icon; this one goes through the blank-shape rule
-instead.
+Two things that read like anomalies but are not: the **deck count** (11 on p.8, "ten" on p.52) simply
+depends what is counted — the box holds the X-Card, an initial deck naming each tradition, and the 10
+tradition decks; and **"Glowdog of the Dust"** is permitted by the Blank Tradition Icons rule (p.38),
+since the Dust carries a blank diamond and Glowdog is a diamond deck.
 
 ## Licence / rights
 

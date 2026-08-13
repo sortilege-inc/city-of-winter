@@ -1,6 +1,202 @@
 [
  {
   "category": "Tradition Card",
+  "name": "love without condition"
+ },
+ {
+  "category": "Tradition Card",
+  "name": "devotion"
+ },
+ {
+  "category": "Tradition Card",
+  "name": "The Borough Wanders"
+ },
+ {
+  "category": "Tradition Card",
+  "name": "call of the moon"
+ },
+ {
+  "category": "Tradition Card",
+  "name": "glowing"
+ },
+ {
+  "category": "Tradition Card",
+  "name": "a flashy tattoo"
+ },
+ {
+  "category": "Tradition Card",
+  "name": "how we share the news"
+ },
+ {
+  "category": "Tradition Card",
+  "name": "how to find a job"
+ },
+ {
+  "category": "Tradition Card",
+  "name": "with a troupe of performers"
+ },
+ {
+  "category": "Tradition Card",
+  "name": "wearing a glow mask"
+ },
+ {
+  "category": "Tradition Card",
+  "name": "on a glimmer loom"
+ },
+ {
+  "category": "Tradition Card",
+  "name": "how to start trouble"
+ },
+ {
+  "category": "Tradition Card",
+  "name": "the song we sing"
+ },
+ {
+  "category": "Tradition Card",
+  "name": "with a crew of workers"
+ },
+ {
+  "category": "Tradition Card",
+  "name": "territory"
+ },
+ {
+  "category": "Tradition Card",
+  "name": "with bone broth"
+ },
+ {
+  "category": "Tradition Card",
+  "name": "honest wages"
+ },
+ {
+  "category": "Tradition Card",
+  "name": "mealtime"
+ },
+ {
+  "category": "Tradition Card",
+  "name": "when to throw a party"
+ },
+ {
+  "category": "Tradition Card",
+  "name": "with a rebel\u2019s mark"
+ },
+ {
+  "category": "Tradition Card",
+  "name": "in our likeness"
+ },
+ {
+  "category": "Tradition Card",
+  "name": "a chant for making"
+ },
+ {
+  "category": "Tradition Card",
+  "name": "a child\u2019s puzzle"
+ },
+ {
+  "category": "Tradition Card",
+  "name": "too good to last"
+ },
+ {
+  "category": "Tradition Card",
+  "name": "who drives"
+ },
+ {
+  "category": "Tradition Card",
+  "name": "my family\u2019s debt"
+ },
+ {
+  "category": "Tradition Card",
+  "name": "free and wild"
+ },
+ {
+  "category": "Tradition Card",
+  "name": "three handsome hounds"
+ },
+ {
+  "category": "Tradition Card",
+  "name": "waste nothing"
+ },
+ {
+  "category": "Tradition Card",
+  "name": "kind, but not honest"
+ },
+ {
+  "category": "Tradition Card",
+  "name": "right of the wanderer"
+ },
+ {
+  "category": "Tradition Card",
+  "name": "one gilded songbird"
+ },
+ {
+  "category": "Tradition Card",
+  "name": "what the mask demands"
+ },
+ {
+  "category": "Tradition Card",
+  "name": "my beloved\u2019s face"
+ },
+ {
+  "category": "Tradition Card",
+  "name": "without a mask"
+ },
+ {
+  "category": "Tradition Card",
+  "name": "with painted eyes"
+ },
+ {
+  "category": "Tradition Card",
+  "name": "with an healer\u2019s tools"
+ },
+ {
+  "category": "Tradition Card",
+  "name": "who follows the dream"
+ },
+ {
+  "category": "Tradition Card",
+  "name": "a flawed design"
+ },
+ {
+  "category": "Tradition Card",
+  "name": "the ancient pyre"
+ },
+ {
+  "category": "Tradition Card",
+  "name": "with bitter tea"
+ },
+ {
+  "category": "Tradition Card",
+  "name": "an ancestor\u2019s mask"
+ },
+ {
+  "category": "Tradition Card",
+  "name": "a blend of spices"
+ },
+ {
+  "category": "Tradition Card",
+  "name": "dance of the engine"
+ },
+ {
+  "category": "Tradition Card",
+  "name": "one old machine"
+ },
+ {
+  "category": "Tradition Card",
+  "name": "a teaching game"
+ },
+ {
+  "category": "Tradition Card",
+  "name": "we ring the dusk bell"
+ },
+ {
+  "category": "Tradition Card",
+  "name": "made beautiful"
+ },
+ {
+  "category": "Tradition Card",
+  "name": "unmakeable"
+ },
+ {
+  "category": "Tradition Card",
   "name": "as long as it takes"
  },
  {
@@ -33,95 +229,11 @@
  },
  {
   "category": "Tradition Card",
-  "name": "name of the spirit"
- },
- {
-  "category": "Tradition Card",
-  "name": "stained with dye"
- },
- {
-  "category": "Tradition Card",
-  "name": "teaching of the river"
- },
- {
-  "category": "Tradition Card",
-  "name": "with a flute of silver"
- },
- {
-  "category": "Tradition Card",
-  "name": "in a circle of weavers"
- },
- {
-  "category": "Tradition Card",
-  "name": "with painted faces"
- },
- {
-  "category": "Tradition Card",
-  "name": "we ring the dawn bell"
- },
- {
-  "category": "Tradition Card",
-  "name": "our sacred clothes"
- },
- {
-  "category": "Tradition Card",
-  "name": "order of the temple"
- },
- {
-  "category": "Tradition Card",
-  "name": "voice of an ancestor"
- },
- {
-  "category": "Tradition Card",
-  "name": "wearing a heron mask"
- },
- {
-  "category": "Tradition Card",
-  "name": "with a team of artisans"
- },
- {
-  "category": "Tradition Card",
-  "name": "as the tea steeps"
+  "name": "with a clay flute"
  },
  {
   "category": "Tradition Card",
   "name": "a pot of river stew"
- },
- {
-  "category": "Tradition Card",
-  "name": "to ride the current"
- },
- {
-  "category": "Tradition Card",
-  "name": "a dance of reeds"
- },
- {
-  "category": "Tradition Card",
-  "name": "we tend the shrine"
- },
- {
-  "category": "Tradition Card",
-  "name": "we bear the burden"
- },
- {
-  "category": "Tradition Card",
-  "name": "we sow the seeds"
- },
- {
-  "category": "Tradition Card",
-  "name": "we share the harvest"
- },
- {
-  "category": "Tradition Card",
-  "name": "made to last"
- },
- {
-  "category": "Tradition Card",
-  "name": "wearing an ox mask"
- },
- {
-  "category": "Tradition Card",
-  "name": "with a clay flute"
  },
  {
   "category": "Tradition Card",
@@ -153,15 +265,51 @@
  },
  {
   "category": "Tradition Card",
-  "name": "we ring the dusk bell"
- },
- {
-  "category": "Tradition Card",
   "name": "right of hospitality"
  },
  {
   "category": "Tradition Card",
   "name": "a fair trade"
+ },
+ {
+  "category": "Tradition Card",
+  "name": "we bear the burden"
+ },
+ {
+  "category": "Tradition Card",
+  "name": "we sow the seeds"
+ },
+ {
+  "category": "Tradition Card",
+  "name": "we share the harvest"
+ },
+ {
+  "category": "Tradition Card",
+  "name": "made to last"
+ },
+ {
+  "category": "Tradition Card",
+  "name": "wearing an ox mask"
+ },
+ {
+  "category": "Tradition Card",
+  "name": "name of the spirit"
+ },
+ {
+  "category": "Tradition Card",
+  "name": "stained with dye"
+ },
+ {
+  "category": "Tradition Card",
+  "name": "teaching of the river"
+ },
+ {
+  "category": "Tradition Card",
+  "name": "with a flute of silver"
+ },
+ {
+  "category": "Tradition Card",
+  "name": "in a circle of weavers"
  },
  {
   "category": "Tradition Card",
@@ -181,6 +329,30 @@
  },
  {
   "category": "Tradition Card",
+  "name": "we ring the dawn bell"
+ },
+ {
+  "category": "Tradition Card",
+  "name": "with painted faces"
+ },
+ {
+  "category": "Tradition Card",
+  "name": "our sacred clothes"
+ },
+ {
+  "category": "Tradition Card",
+  "name": "order of the temple"
+ },
+ {
+  "category": "Tradition Card",
+  "name": "voice of an ancestor"
+ },
+ {
+  "category": "Tradition Card",
+  "name": "wearing a heron mask"
+ },
+ {
+  "category": "Tradition Card",
   "name": "wisdom of the council"
  },
  {
@@ -197,287 +369,215 @@
  },
  {
   "category": "Tradition Card",
-  "name": "the lion\u2019s share"
+  "name": "with a team of artisans"
  },
  {
   "category": "Tradition Card",
-  "name": "ballad of the citadel"
+  "name": "as the tea steeps"
  },
  {
   "category": "Tradition Card",
-  "name": "how to start a battle"
+  "name": "to ride the current"
  },
  {
   "category": "Tradition Card",
-  "name": "loyal to the crown"
+  "name": "a dance of reeds"
  },
  {
   "category": "Tradition Card",
-  "name": "we sound the mountain horn"
+  "name": "we tend the shrine"
  },
  {
   "category": "Tradition Card",
-  "name": "why we braid our hair"
+  "name": "oneness"
  },
  {
   "category": "Tradition Card",
-  "name": "in courtly dress"
+  "name": "choir"
  },
  {
   "category": "Tradition Card",
-  "name": "what pride demands"
+  "name": "Queen"
  },
  {
   "category": "Tradition Card",
-  "name": "my mother\u2019s armor"
+  "name": "hum"
  },
  {
   "category": "Tradition Card",
-  "name": "wearing a lion mask"
+  "name": "wing"
  },
  {
   "category": "Tradition Card",
-  "name": "the victory fire"
+  "name": "fruit"
  },
  {
   "category": "Tradition Card",
-  "name": "a traitor\u2019s mark"
+  "name": "royal"
  },
  {
   "category": "Tradition Card",
-  "name": "with a golden harp"
+  "name": "beauty"
  },
  {
   "category": "Tradition Card",
-  "name": "with a lion\u2019s roar"
+  "name": "flower"
  },
  {
   "category": "Tradition Card",
-  "name": "gossip of the court"
+  "name": "garden"
  },
  {
   "category": "Tradition Card",
-  "name": "a trial of swords"
+  "name": "birthday"
  },
  {
   "category": "Tradition Card",
-  "name": "who eats first"
+  "name": "moonlight"
  },
  {
   "category": "Tradition Card",
-  "name": "how to prepare a feast"
+  "name": "antenna"
  },
  {
   "category": "Tradition Card",
-  "name": "with hired help"
+  "name": "thousands"
  },
  {
   "category": "Tradition Card",
-  "name": "with loyal servants"
+  "name": "gilded"
  },
  {
   "category": "Tradition Card",
-  "name": "a dance of courtship"
+  "name": "honey"
  },
  {
   "category": "Tradition Card",
-  "name": "two singing birds"
+  "name": "worker"
  },
  {
   "category": "Tradition Card",
-  "name": "a deed if legend"
+  "name": "fragrance"
  },
  {
   "category": "Tradition Card",
-  "name": "a hero\u2019s scar"
+  "name": "alarm"
  },
  {
   "category": "Tradition Card",
-  "name": "never back down"
+  "name": "loyalty without question"
  },
  {
   "category": "Tradition Card",
-  "name": "what the Umbra takes"
+  "name": "orchestra"
  },
  {
   "category": "Tradition Card",
-  "name": "who joins the Umbra"
+  "name": "how to keep the peace"
  },
  {
   "category": "Tradition Card",
-  "name": "a lie of the Umbra"
+  "name": "for leisure"
  },
  {
   "category": "Tradition Card",
-  "name": "work of the Umbra"
+  "name": "with a horse\u2019s endurance"
  },
  {
   "category": "Tradition Card",
-  "name": "marked by the Umbra"
+  "name": "busy"
  },
  {
   "category": "Tradition Card",
-  "name": "what draws the Umbra"
+  "name": "sting"
  },
  {
   "category": "Tradition Card",
-  "name": "defiled by the Umbra"
+  "name": "morning"
  },
  {
   "category": "Tradition Card",
-  "name": "how we deny the Umbra"
+  "name": "dessert"
  },
  {
   "category": "Tradition Card",
-  "name": "why we serve the Umbra"
+  "name": "asleep"
  },
  {
   "category": "Tradition Card",
-  "name": "who warns of the Umbra"
+  "name": "in jewels"
  },
  {
   "category": "Tradition Card",
-  "name": "how the Umbra grows"
+  "name": "with a mask of brass"
  },
  {
   "category": "Tradition Card",
-  "name": "the Umbra\u2019s Hunger"
+  "name": "without words"
  },
  {
   "category": "Tradition Card",
-  "name": "who fears the Umbra"
+  "name": "fresh apples"
  },
  {
   "category": "Tradition Card",
-  "name": "what the Umbra destroys"
+  "name": "the price of failure"
  },
  {
   "category": "Tradition Card",
-  "name": "herald of the Umbra"
+  "name": "on a fire-eyed steed"
  },
  {
   "category": "Tradition Card",
-  "name": "vision of the Umbra"
+  "name": "with a trainer\u2019s harness"
  },
  {
   "category": "Tradition Card",
-  "name": "scar of the Umbra"
+  "name": "in fashon"
  },
  {
   "category": "Tradition Card",
-  "name": "touch of the Umbra"
+  "name": "the rule of law"
  },
  {
   "category": "Tradition Card",
-  "name": "song of the Umbra"
+  "name": "flawless"
  },
  {
   "category": "Tradition Card",
-  "name": "history of the Umbra"
+  "name": "as the dumplings steam"
  },
  {
   "category": "Tradition Card",
-  "name": "voice of the Umbra"
+  "name": "unbridled"
  },
  {
   "category": "Tradition Card",
-  "name": "the Umbra in disguise"
+  "name": "only if we allow"
  },
  {
   "category": "Tradition Card",
-  "name": "agents of the Umbra"
+  "name": "a criminal\u2019s mark"
  },
  {
   "category": "Tradition Card",
-  "name": "song of the towers"
+  "name": "honest but not kind"
  },
  {
   "category": "Tradition Card",
-  "name": "how to spring a trap"
+  "name": "of brass"
  },
  {
   "category": "Tradition Card",
-  "name": "oath of the towers"
+  "name": "a display of wealth"
  },
  {
   "category": "Tradition Card",
-  "name": "bounty of the hunt"
+  "name": "to protect the City"
  },
  {
   "category": "Tradition Card",
-  "name": "why we pierce our ears"
- },
- {
-  "category": "Tradition Card",
-  "name": "with soft fur"
- },
- {
-  "category": "Tradition Card",
-  "name": "what survival demands"
- },
- {
-  "category": "Tradition Card",
-  "name": "what we bury"
- },
- {
-  "category": "Tradition Card",
-  "name": "wearing a fox mask"
- },
- {
-  "category": "Tradition Card",
-  "name": "with an oath- breaker\u2019s brand"
- },
- {
-  "category": "Tradition Card",
-  "name": "with a jawbone blade"
- },
- {
-  "category": "Tradition Card",
-  "name": "mark of the fox"
- },
- {
-  "category": "Tradition Card",
-  "name": "a rite of courtship"
- },
- {
-  "category": "Tradition Card",
-  "name": "we share the cup"
- },
- {
-  "category": "Tradition Card",
-  "name": "a meal of ash cakes"
- },
- {
-  "category": "Tradition Card",
-  "name": "to the bone"
- },
- {
-  "category": "Tradition Card",
-  "name": "with a band of hunters"
- },
- {
-  "category": "Tradition Card",
-  "name": "a cautionary tale"
- },
- {
-  "category": "Tradition Card",
-  "name": "a boasting game"
- },
- {
-  "category": "Tradition Card",
-  "name": "a gift of blood"
- },
- {
-  "category": "Tradition Card",
-  "name": "with bow and arrow"
- },
- {
-  "category": "Tradition Card",
-  "name": "what grows in winter"
- },
- {
-  "category": "Tradition Card",
-  "name": "who lights the fire"
+  "name": "we ring the moon bell"
  },
  {
   "category": "Tradition Card",
@@ -561,6 +661,26 @@
  },
  {
   "category": "Tradition Card",
+  "name": "who the Umbra takes"
+ },
+ {
+  "category": "Tradition Card",
+  "name": "who joins the Umbra"
+ },
+ {
+  "category": "Tradition Card",
+  "name": "how we fight the Umbra"
+ },
+ {
+  "category": "Tradition Card",
+  "name": "lie of the Umbra"
+ },
+ {
+  "category": "Tradition Card",
+  "name": "work of the Umbra"
+ },
+ {
+  "category": "Tradition Card",
   "name": "a mocking game"
  },
  {
@@ -581,387 +701,275 @@
  },
  {
   "category": "Tradition Card",
-  "name": "love without condition"
+  "name": "why we fear the Umbra"
  },
  {
   "category": "Tradition Card",
-  "name": "devotion"
+  "name": "marked by the Umbra"
  },
  {
   "category": "Tradition Card",
-  "name": "The Borough Wanders"
+  "name": "what draws the Umbra"
  },
  {
   "category": "Tradition Card",
-  "name": "call of the moon"
+  "name": "defiled by the Umbra"
  },
  {
   "category": "Tradition Card",
-  "name": "glowing"
+  "name": "how we deny the Umbra"
  },
  {
   "category": "Tradition Card",
-  "name": "a flashy tattoo"
+  "name": "how we serve the Umbra"
  },
  {
   "category": "Tradition Card",
-  "name": "how we share the news"
+  "name": "who warns of the Umbra"
  },
  {
   "category": "Tradition Card",
-  "name": "how to find a job"
+  "name": "how the Umbra grows"
  },
  {
   "category": "Tradition Card",
-  "name": "with a troupe of performers"
+  "name": "the Umbra\u2019s hunger"
  },
  {
   "category": "Tradition Card",
-  "name": "wearing a glow mask"
+  "name": "who fears the Umbra"
  },
  {
   "category": "Tradition Card",
-  "name": "on a glimmer loom"
+  "name": "what the Umbra destroys"
  },
  {
   "category": "Tradition Card",
-  "name": "how to start trouble"
+  "name": "herald of the Umbra"
  },
  {
   "category": "Tradition Card",
-  "name": "the song we sing"
+  "name": "vison of the Umbra"
  },
  {
   "category": "Tradition Card",
-  "name": "with a crew of workers"
+  "name": "scar of the Umbra"
  },
  {
   "category": "Tradition Card",
-  "name": "territory"
+  "name": "touch of the Umbra"
  },
  {
   "category": "Tradition Card",
-  "name": "with bone broth"
+  "name": "song of the Umbra"
  },
  {
   "category": "Tradition Card",
-  "name": "honest wages"
+  "name": "history of the Umbra"
  },
  {
   "category": "Tradition Card",
-  "name": "mealtime"
+  "name": "voice of the Umbra"
  },
  {
   "category": "Tradition Card",
-  "name": "when to throw a party"
+  "name": "the Umbra in disguise"
  },
  {
   "category": "Tradition Card",
-  "name": "with a rebel\u2019s mark"
+  "name": "agents of the Umbra"
  },
  {
   "category": "Tradition Card",
-  "name": "my family\u2019s debt"
+  "name": "the lion\u2019s share"
  },
  {
   "category": "Tradition Card",
-  "name": "free and wild"
+  "name": "ballad of the citadel"
  },
  {
   "category": "Tradition Card",
-  "name": "three handsome hounds"
+  "name": "how to start a battle"
  },
  {
   "category": "Tradition Card",
-  "name": "waste nothing"
+  "name": "loyal to the crown"
  },
  {
   "category": "Tradition Card",
-  "name": "kind, but not honest."
+  "name": "we sound the mountain horn"
  },
  {
   "category": "Tradition Card",
-  "name": "loyalty without question"
+  "name": "why we braid our hair"
  },
  {
   "category": "Tradition Card",
-  "name": "orchestra"
+  "name": "in courtly dress"
  },
  {
   "category": "Tradition Card",
-  "name": "how to keep the peace"
+  "name": "what pride demands"
  },
  {
   "category": "Tradition Card",
-  "name": "for leisure"
+  "name": "my mother\u2019s armor"
  },
  {
   "category": "Tradition Card",
-  "name": "with a horse\u2019s endurance"
+  "name": "wearing a lion mask"
  },
  {
   "category": "Tradition Card",
-  "name": "in jewels"
+  "name": "the victory fire"
  },
  {
   "category": "Tradition Card",
-  "name": "with a mask of brass"
+  "name": "a traitor\u2019s mark"
  },
  {
   "category": "Tradition Card",
-  "name": "without words"
+  "name": "with a golden harp"
  },
  {
   "category": "Tradition Card",
-  "name": "fresh apples"
+  "name": "with a lion\u2019s roar"
  },
  {
   "category": "Tradition Card",
-  "name": "the price of failure"
+  "name": "gossip of the court"
  },
  {
   "category": "Tradition Card",
-  "name": "on a fire-eyed steed"
+  "name": "a trial of swords"
  },
  {
   "category": "Tradition Card",
-  "name": "with a trainer\u2019s harness"
+  "name": "who eats first"
  },
  {
   "category": "Tradition Card",
-  "name": "in fashion"
+  "name": "how to prepare a feast"
  },
  {
   "category": "Tradition Card",
-  "name": "the rule of law"
+  "name": "with hired help"
  },
  {
   "category": "Tradition Card",
-  "name": "flawless"
+  "name": "with loyal servents"
  },
  {
   "category": "Tradition Card",
-  "name": "as the dumplings steam"
+  "name": "song of the towers"
  },
  {
   "category": "Tradition Card",
-  "name": "unbridled"
+  "name": "how to spring a trap"
  },
  {
   "category": "Tradition Card",
-  "name": "only if we allow"
+  "name": "oath of the towers"
  },
  {
   "category": "Tradition Card",
-  "name": "a criminal\u2019s mark"
+  "name": "bounty of the hunt"
  },
  {
   "category": "Tradition Card",
-  "name": "honest but not kind"
+  "name": "why we pierce our ears"
  },
  {
   "category": "Tradition Card",
-  "name": "of brass"
+  "name": "a dance of courtship"
  },
  {
   "category": "Tradition Card",
-  "name": "a display of wealth"
+  "name": "two singing birds"
  },
  {
   "category": "Tradition Card",
-  "name": "to protect the City"
+  "name": "a deed of legend"
  },
  {
   "category": "Tradition Card",
-  "name": "we ring the moon bell"
+  "name": "a hero\u2019s scar"
  },
  {
   "category": "Tradition Card",
-  "name": "in our likeness"
+  "name": "never back down"
  },
  {
   "category": "Tradition Card",
-  "name": "a chant for making"
+  "name": "with soft fur"
  },
  {
   "category": "Tradition Card",
-  "name": "a child\u2019s puzzle"
+  "name": "what survival demands"
  },
  {
   "category": "Tradition Card",
-  "name": "too good to last"
+  "name": "what we bury"
  },
  {
   "category": "Tradition Card",
-  "name": "who drives"
+  "name": "wearing a fox mask"
  },
  {
   "category": "Tradition Card",
-  "name": "right of the wanderer"
+  "name": "with an oath-breaker\u2019s brand"
  },
  {
   "category": "Tradition Card",
-  "name": "one gilded songbird"
+  "name": "with a jawbone blade"
  },
  {
   "category": "Tradition Card",
-  "name": "what the mask demands"
+  "name": "mark of the fox"
  },
  {
   "category": "Tradition Card",
-  "name": "my beloved\u2019s face"
+  "name": "a rite of courtship"
  },
  {
   "category": "Tradition Card",
-  "name": "without a mask"
+  "name": "we share the cup"
  },
  {
   "category": "Tradition Card",
-  "name": "with painted eyes"
+  "name": "a meal of ash cakes"
  },
  {
   "category": "Tradition Card",
-  "name": "with a healer\u2019s tools"
+  "name": "to the bone"
  },
  {
   "category": "Tradition Card",
-  "name": "who follows the dream"
+  "name": "with a band of hunters"
  },
  {
   "category": "Tradition Card",
-  "name": "a flawed design"
+  "name": "a cautionary tale"
  },
  {
   "category": "Tradition Card",
-  "name": "the ancient pyre"
+  "name": "a boasting game"
  },
  {
   "category": "Tradition Card",
-  "name": "with bitter tea"
+  "name": "a gift of blood"
  },
  {
   "category": "Tradition Card",
-  "name": "an ancestor\u2019s mask"
+  "name": "with bow and arrow"
  },
  {
   "category": "Tradition Card",
-  "name": "a blend of spices"
+  "name": "what grows in winter"
  },
  {
   "category": "Tradition Card",
-  "name": "dance of the engine"
- },
- {
-  "category": "Tradition Card",
-  "name": "one old machine"
- },
- {
-  "category": "Tradition Card",
-  "name": "a teaching game"
- },
- {
-  "category": "Tradition Card",
-  "name": "made beautiful"
- },
- {
-  "category": "Tradition Card",
-  "name": "unmakeable"
- },
- {
-  "category": "Tradition Card",
-  "name": "oneness"
- },
- {
-  "category": "Tradition Card",
-  "name": "choir"
- },
- {
-  "category": "Tradition Card",
-  "name": "Queen"
- },
- {
-  "category": "Tradition Card",
-  "name": "hum"
- },
- {
-  "category": "Tradition Card",
-  "name": "wing"
- },
- {
-  "category": "Tradition Card",
-  "name": "fruit"
- },
- {
-  "category": "Tradition Card",
-  "name": "royal"
- },
- {
-  "category": "Tradition Card",
-  "name": "beauty"
- },
- {
-  "category": "Tradition Card",
-  "name": "flower"
- },
- {
-  "category": "Tradition Card",
-  "name": "garden"
- },
- {
-  "category": "Tradition Card",
-  "name": "birthday"
- },
- {
-  "category": "Tradition Card",
-  "name": "moonlight"
- },
- {
-  "category": "Tradition Card",
-  "name": "antenna"
- },
- {
-  "category": "Tradition Card",
-  "name": "thousands"
- },
- {
-  "category": "Tradition Card",
-  "name": "gilded"
- },
- {
-  "category": "Tradition Card",
-  "name": "honey"
- },
- {
-  "category": "Tradition Card",
-  "name": "fragrance"
- },
- {
-  "category": "Tradition Card",
-  "name": "worker"
- },
- {
-  "category": "Tradition Card",
-  "name": "alarm"
- },
- {
-  "category": "Tradition Card",
-  "name": "busy"
- },
- {
-  "category": "Tradition Card",
-  "name": "sting"
- },
- {
-  "category": "Tradition Card",
-  "name": "morning"
- },
- {
-  "category": "Tradition Card",
-  "name": "dessert"
- },
- {
-  "category": "Tradition Card",
-  "name": "assleep"
+  "name": "who lights the fire"
  },
  {
   "category": "Scene",

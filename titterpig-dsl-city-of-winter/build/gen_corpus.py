@@ -266,6 +266,7 @@ w.line('# The prompt printed on the card face, verbatim, plus the deck it belong
 w.open("PROPERTIES {")
 w.line(f'{caret("Prompt")} STRING REQUIRED')
 w.line(f'{caret("Deck")} {caret("Tradition Deck")} REQUIRED')
+w.line(f'{caret("PnP Prompt")} STRING')
 w.close()
 w.close()
 w.line()
@@ -484,6 +485,10 @@ for d in data["decks"]:
         w.open("PROPERTIES {")
         w.line(f'{caret("Prompt")} STRING {q(c["prompt"])}')
         w.line(f'{caret("Deck")} {caret("Tradition Deck")} {ref("deck", dn)}')
+        if c.get("pnpPrompt"):
+            # The gutterfold print-and-play sheet reads differently here; the
+            # printed card wins, but its wording is kept (build/card-errata.json).
+            w.line(f'{caret("PnP Prompt")} STRING {q(c["pnpPrompt"])}')
         w.close()
         w.close()
         w.line()
@@ -1055,7 +1060,8 @@ feed = {
     "shapeFamilies": data["shapeFamilies"],
     "cards": [
         {"id": h("card", nm), "name": nm, "prompt": c["prompt"], "deck": c["deck"],
-         "isBoroughWanders": c["borough"]}
+         "isBoroughWanders": c["borough"],
+         **({"pnpPrompt": c["pnpPrompt"]} if c.get("pnpPrompt") else {})}
         for d in data["decks"] for nm, c in deck_cards[d["name"]]
     ],
     "ageTiers": data["ageTiers"],

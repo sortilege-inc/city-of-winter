@@ -79,10 +79,10 @@ EXTENSION "CityOfWinter_Cards_FoxoftheTowers" EXTENDS "CityOfWinter_Core_Base" {
         }
     }
 
-    #COW38c5b89415dc77bd09200 ^"Fox of the Towers: with an oathbreaker’s brand" DEF {
+    #COW5a219104b731bb78cef9a ^"Fox of the Towers: with an oath-breaker’s brand" DEF {
         EXTENDS #COW340430629a9c9ddf85b8f ^"Tradition Card"
         PROPERTIES {
-            ^"Prompt" STRING "with an oathbreaker’s brand"
+            ^"Prompt" STRING "with an oath-breaker’s brand"
             ^"Deck" ^"Tradition Deck" #COW47f20f9fdbcb99f684e39 ^"Fox of the Towers"
         }
     }
