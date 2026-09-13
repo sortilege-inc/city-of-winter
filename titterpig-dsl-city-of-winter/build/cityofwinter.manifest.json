@@ -1,9 +1,9 @@
 {
   "system": "cityofwinter",
   "source": "City of Winter (Heart of the Deernicorn, 2022) — Rules V2, Atlas Edition, and the print-and-play card and banner sets",
-  "unitsPath": "/home/hewhocutsdown/Working/2026 City of Winter/city-of-winter/titterpig-dsl-city-of-winter/build/inventory.json",
+  "unitsPath": "/home/hewhocutsdown/Sortilege/Campaigns/2026 Journey to the Winter City/city-of-winter/titterpig-dsl-city-of-winter/build/inventory.json",
   "corpusDirs": [
-    "/home/hewhocutsdown/Working/2026 City of Winter/city-of-winter/titterpig-dsl-city-of-winter/0.5"
+    "/home/hewhocutsdown/Sortilege/Campaigns/2026 Journey to the Winter City/city-of-winter/titterpig-dsl-city-of-winter/0.5"
   ],
   "dispositions": {},
   "dispositionRules": []

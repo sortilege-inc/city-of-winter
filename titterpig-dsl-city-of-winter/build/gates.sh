@@ -4,8 +4,9 @@
 set -uo pipefail
 
 REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-DSL="/home/hewhocutsdown/Working/Titterpig DSL/titterpig-dsl"
-MASTRA="/home/hewhocutsdown/Working/Titterpig Utilities/titterpig-mastra"
+TITTERPIG="${TITTERPIG_ROOT:-$HOME/Sortilege/Titterpig}"
+DSL="$TITTERPIG/DSL/titterpig-dsl"
+MASTRA="$TITTERPIG/Utilities/titterpig-mastra"
 fail=0
 
 run() {  # run <label> <cmd...>
