@@ -16,6 +16,7 @@ atlas/                locations, scenes, transit lines, printed distance table
 traditions/           all 249 cards, shape families, banners
 rules/                every procedure, rule, sidebar and variant
 check_js.py           syntax gate for every module and inline page script
+serve.py              local dev server that never lets the browser cache a module
 ```
 
 ## Where the content comes from
@@ -29,8 +30,11 @@ the corpus and regenerate.
 ## Running it
 
 ```bash
-python3 -m http.server 8731 --directory web
+python3 web/serve.py
 ```
+
+`serve.py` is `http.server` with `Cache-Control: no-store`. Plain `python3 -m http.server` works, but
+the browser then keeps old ES modules and an edited page can silently fail to load.
 
 It must be served over HTTP, not opened as a `file://` page — ES modules and `fetch` both require an
 origin.
@@ -47,27 +51,62 @@ reason two such errors were caught rather than shipped.
 
 ## The table
 
-`table/table.js` drives the rulebook procedures through `app/game.js`. Implemented and exercised:
+`table/table.js` drives the rulebook procedures through `app/game.js`. The page is laid out like the
+table itself:
 
-- **First Session Setup** — choose Home & Tradition from the three Riverlands homes, name characters
-  from the Family Tradition Banner, Mark Age by tier, Make Bonds, Hold Traditions (hand = Marks of
-  Age), Choose Tokens, Introduce the Umbra.
-- **Tradition Scene** — choose a Scene, Share (play face down, name a recipient) or Witness (draw one
-  card per Local Tradition icon, blank icons offering every deck of that shape, the Umbra Deck
-  offered while it is in play), pass on the Tradition, end the scene, pass the turn.
-- **Migration Scene / Migrate the Family** — lay down what you cannot carry, save from the face-up
-  pool, leave the rest behind (discards go to the *bottom* of their decks), choose a destination from
-  the Atlas connections, and bring the new Local Tradition Deck into play.
-- **Ending a Chapter** — Mark Age (Elders cross off instead; in the City an Elder may cross off
-  either kind), New Bonds, Hold Traditions, New Chapter or Closing Reflection.
-- **Campaign** — New Session Setup; Elders roll the Die at the start of each Chapter; Death & Memory,
-  Memory Scenes, Becoming forgotten, and Birth.
-- **The City** — City Marks, City Bonds, Travel by the printed distance table, Migration in the City,
-  and the Wandering Borough (arrives, leaves, and the die table for where it wanders).
-- **Ask Fate** and the **X-Card**, on every page.
+- the **chronicle bar** — Chapter, Session, Home, what is in play; Ask Fate, End the Chapter, End the
+  session, and **Undo** (every change can be stepped back);
+- the **Stage** — whose turn it is, which procedure and which numbered step we are on, the book's words
+  for that step, and the choices it offers, laid out inline rather than in stacked dialogs;
+- the **Location** — the Home (or where a character is visiting) with its Local Traditions, Transit
+  Lines and Scenes, and every token where it stands; Scenes are chosen by clicking them here;
+- the family's **Notecards** — token, Marks (circles, and diamonds for City Marks), Bonds, and the
+  hand, which stays face down until someone chooses to look, as the book advises;
+- the **rail** — turn order, the decks in play, face-up cards, and the record, grouped by Chapter.
+
+**Every rule shown on the table is the book's own text,** looked up by name in the feed
+(`data.proc`, `data.step`, `data.rule`, `data.concept`, `data.guidanceText`, `data.optional`). The page
+only decides which words appear at which moment; nothing is reworded. Interface text (button labels,
+status lines) is the app's own and never restates a rule.
+
+Procedures, in play order:
+
+- **First Session Setup** — all eight of the book's steps, navigable back and forth: Introduction
+  (read aloud, with the X-Card), Choose Home & Tradition (or *Starting in the City*, and the variants),
+  Choose Names from the Banner, Mark Age, Make Bonds (two each, one with a main character), Hold
+  Traditions (the spread, dealt character by character), Choose Tokens, Introduce the Umbra.
+- **The start of a Chapter** — tokens Home, every Elder rolls the Die (a death leads straight into
+  *When You Die* and the Memory Bond), *Living on the Borough* when the Borough is Home, Birth, and who
+  takes the first turn.
+- **Tradition Scene** — the five steps; Share (a card from your hand, face down, then a recipient) or
+  Witness (one draw per Local Tradition icon, blank icons offering every deck of that shape, the Umbra
+  Deck while it is in play; the holder reads privately by pressing and holding; in the City they play
+  one or more and pass one). *The Borough Wanders* arrives, leaves, or wanders when revealed, and is
+  discarded rather than passed.
+- **Travel** (City) — destinations and costs from the printed distance table, Wintermount's derived row
+  marked; the Wandering Borough reachable through its Station.
+- **Migration Scene** — only once your token is on a Scene; choose what you carry.
+  **Migrate the Family** — the four steps in the book's order: destination (the River Scroll's
+  arrival pages lead to a choice of Entrance), what is saved, what is left, migrate.
+  **Migrating to the City** follows an Entrance.
+- **Memory Scene** — choose whose token to move and where, play a card face down, give it; sharing the
+  last card means *Becoming forgotten*.
+- **Ending a Chapter** — one Mark Age per character (City Marks in the City; an Elder crosses off, and
+  may choose which kind), New Bonds for those who gained a Mark (names from the Banners the rule
+  allows), Hold Traditions, then a new Chapter or the Closing Reflection. It cannot begin while a
+  Migration is under way.
+- **Sessions** — the Closing Reflection ends a session; New Session Setup begins the next, opening a
+  new Chapter or continuing one left open.
+- At any time: **Ask Fate** (question, three outcomes, the Die), dying by choice (*Other ways to die*),
+  a player leaving mid-game (their character becomes a side-character and their cards join the pool at
+  the next Migration or Chapter's end), side-characters, and the variants — *The Umbra Follows*,
+  *Fleeing the City*, *Solo Play*.
 
 Bond prompts carry their own joining word — the lists are not all "of": *Ward **of** Rye*,
 *Befriended **by** Dim*, *Lost **to** Cornflower* — taken from each list's own open prompt.
+
+A saved table from the previous version (state v3) is carried forward — family, decks, the scene in
+progress and the record — rather than reset.
 
 ## Playing together — the part that is not done
 

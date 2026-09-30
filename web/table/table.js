@@ -1,17 +1,22 @@
 /* ==========================================================================
    table.js — the play surface.
 
-   Renders the family, the decks and the current scene, and drives the rulebook
-   procedures through app/game.js. Every prompt shown to players is the book's
-   own text, taken from the generated feed.
+   The page is laid out like the table itself: the Location we are at (the
+   map), the Stage (whose turn it is and which step of which procedure we are
+   on), the family's Notecards, and — to the side — the turn order, the decks,
+   the face-up cards and the record of play.
+
+   Every rule shown to players is the book's own text, looked up by name in the
+   generated feed (data.proc / data.step / data.rule ...). Nothing here rewords
+   a rule: the page only decides which words to show at which moment.
    ========================================================================== */
 
 import { loadData } from '../app/data.js';
-import { Store, makeAdapter } from '../app/store.js';
+import { Store, makeAdapter, TOKENS } from '../app/store.js';
 import * as G from '../app/game.js';
 import {
-  $, el, clear, mountNav, mountFooter, cardEl, shapeIcon, marksRow,
-  choose, modal, uid, fmtTime, rollDie,
+  $, el, add, clear, mountNav, mountFooter, cardEl, shapeIcon, marksRow,
+  choose, modal, fmtTime, tokenEl, ruleText, details, dieFace, miniMarkdown, xcard,
 } from '../app/ui.js';
 
 const data = await loadData();
@@ -20,245 +25,547 @@ await store.init();
 
 mountNav('table');
 const root = $('#root');
-store.subscribe(render);
-render(store.state);
+
+/** Things only this screen needs to remember — never saved, never shared. */
+const ui = {
+  look: new Set(),        // notecards whose hand is turned face up
+  holdFor: null,          // setup step 6: whose hand the spread is filling
+  witness: null,          // { picks:[], to }
+  memTarget: null,        // Memory Scene: whose token is being moved
+  carry: null,            // Migration Scene: Set of card ids carried
+  keep: {},               // Ending a Chapter: chId -> Set of card ids carried
+  passPick: null,         // City witness: which card is passed on
+  travel: false,          // the Travel list is open
+  migrateScene: false,    // the Migration Scene is being played
+  peek: null,             // a witnessed card being read privately
+};
 
 /* ----------------------------------------------------------------- helpers */
 
 const S = () => store.state;
 const card = (id) => data.byCard.get(id);
 const chById = (id) => S().characters.find((c) => c.id === id);
-const others = (ch) => G.activeCharacters(S()).filter((c) => c.id !== ch.id && !c.forgotten);
-const homeLoc = () => data.byLocation.get(S().family.home);
+/** A character's token — or, for a Memory, the quiet ☾ that replaces it. */
+const tok = (ch, opts = {}) => (ch && ch.isMemory
+  ? el('span', { class: `token ${opts.size || ''} memorytok`.trim(), title: `${ch.name} · a Memory`, 'aria-hidden': 'true', text: '☾' })
+  : tokenEl(ch, TOKENS, opts));
+const up = (fn, log) => store.update(fn, log);
+const find = (s, id) => s.characters.find((x) => x.id === id);
+const BOROUGH = data.wanderingBorough.name;
 
-function up(fn, log) { return store.update(fn, log); }
+const instr = (text) => ruleText(text, { cls: 'instr' });
+const teach = (text) => ruleText(text, { cls: 'teach aloud' });
 
-function say(text) { return el('p', { class: 'prompt', text }); }
+/** The one sentence of a rule that contains `needle` — quoted whole, never trimmed. */
+function sentence(text, needle) {
+  const all = String(text).split(/\n+/).flatMap((p) => p.match(/[^.!?]+[.!?]+[”’)]*/g) || [p]);
+  return (all.find((s) => s.includes(needle)) || '').trim();
+}
 
-/* ================================================================= SETUP === */
+/** The Location a character is at right now: where they travelled, or Home. */
+function whereIs(st, ch) {
+  const name = (ch && ch.visiting) || st.family.home;
+  return data.byLocation.get(name) || null;
+}
+
+function locName(name) { return name === BOROUGH ? data.wanderingBorough.printedTitle || name : name; }
+
+/** A small "who" label: token and name. */
+function who(ch, extra) {
+  return el('span', { class: 'who' }, tok(ch, { size: 'sm' }), el('span', { text: ch.name }), extra || null);
+}
+
+/** Buttons for choosing a character, each wearing their token. */
+function pickChars(chars, selectedId, onPick, { disabled = () => false, note = () => '' } = {}) {
+  return el('div', { class: 'pickrow' }, chars.map((c) => el('button', {
+    type: 'button', class: `pick ${c.id === selectedId ? 'on' : ''}`.trim(),
+    'aria-pressed': String(c.id === selectedId), disabled: disabled(c),
+    onclick: () => onPick(c),
+  }, tok(c, { size: 'sm' }), el('span', { text: c.name }), note(c) ? el('span', { class: 'note', text: note(c) }) : null)));
+}
+
+/** The steps of a procedure, as the book numbers them, with where we are. */
+function stepper(procName, active, { names } = {}) {
+  const steps = names || data.proc(procName).steps.map((s) => s.name);
+  const act = [].concat(active);
+  const first = Math.min(...act);
+  return el('ol', { class: 'stepper', 'aria-label': procName }, steps.map((nm, i) => {
+    const n = i + 1;
+    const cls = act.includes(n) ? 'on' : n < first ? 'done' : '';
+    return el('li', { class: cls, 'aria-current': act.includes(n) ? 'step' : null },
+      el('span', { class: 'n', text: n }), el('span', { class: 'nm', text: nm }));
+  }));
+}
+
+/** A numbered section of a procedure laid out on the Stage. */
+function stepBlock(n, name, state, ...kids) {
+  return el('section', { class: `stepblock ${state || ''}`.trim() },
+    el('h4', {}, el('span', { class: 'n', text: n }), name, state === 'done' ? el('span', { class: 'tick', text: '✓' }) : null),
+    ...kids);
+}
+
+function stageHead(eyebrow, title, ch) {
+  return el('header', { class: 'stagehead' },
+    ch ? tok(ch, { size: 'lg' }) : null,
+    el('div', {},
+      el('div', { class: 'eyebrow', text: eyebrow }),
+      el('h2', { text: title })));
+}
+
+/* ================================================================== RENDER == */
+
+let lastView = null;
+/** Which screen we are on: a change of step or turn scrolls it into view. */
+function viewKey(st) {
+  if (!st.setupComplete) return `setup:${st.setup?.stage}`;
+  return `${st.turn.phase}:${st.turn.current}:${st.family.chapter}:${ui.migrateScene}`;
+}
+
+function render(st) {
+  const y = window.scrollY;
+  const key = viewKey(st);
+  const moved = lastView !== null && key !== lastView;
+  lastView = key;
+  clear(root);
+  add(root, el('datalist', { id: 'allnames' },
+    [...st.characters.map((c) => c.name), ...st.sideCharacters.map((c) => c.name),
+      ...data.decks.flatMap((k) => k.names || [])]
+      .filter((v, i, a) => v && a.indexOf(v) === i)
+      .map((n) => el('option', { value: n }))));
+
+  add(root, st.setupComplete ? renderTable(st) : renderSetup(st));
+  add(root, el('div', { class: 'tablefoot' },
+    el('span', { class: 'small muted', text: `Room “${st.room}” · saved in this browser` }),
+    el('button', { class: 'tiny ghost', text: 'Table settings…', onclick: settingsDialog })));
+  requestAnimationFrame(() => {
+    const target = root.querySelector('.setupstep, .stage');
+    if (moved && target && (target.getBoundingClientRect().top < 60 || target.getBoundingClientRect().top > innerHeight * 0.5)) {
+      window.scrollTo({ top: Math.max(0, target.getBoundingClientRect().top + window.scrollY - 70), behavior: 'smooth' });
+    } else if (!moved) {
+      window.scrollTo(0, y);
+    }
+  });
+}
+
+/* ================================================================== SETUP === */
+
+const SETUP = 'First Session Setup';
 
 function renderSetup(st) {
-  const w = el('div', { class: 'panel wizard' });
-  const steps = ['Home & Tradition', 'The family', 'Traditions in hand', 'The Umbra'];
-  const stage = st.setupStage || 0;
-  w.append(el('div', { class: 'stepnav' }, steps.map((s, i) =>
-    el('span', { class: i === stage ? 'on' : i < stage ? 'done' : '', text: `${i + 1}. ${s}` }))));
+  const steps = data.proc(SETUP).steps;
+  const stage = st.setup?.stage ?? 0;
+  const wrap = el('div', { class: 'setup' });
+  add(wrap, el('div', { class: 'setuphead' },
+    el('div', { class: 'eyebrow', text: 'Before we play' }),
+    el('h1', { text: SETUP })));
 
-  if (stage === 0) {
-    const proc = data.procedures.find((p) => p.name === 'First Session Setup');
-    const step = proc.steps.find((s) => s.name === 'Choose Home & Tradition');
-    w.append(el('h2', { text: 'Choose Home & Tradition' }),
-      el('div', { class: 'teaching', style: 'font-style:italic;color:var(--chalk-2)', text: step.teaching }),
-      el('div', { class: 'grid' }, data.startingHomes.map((loc) => {
-        const deck = loc.traditions[0];
-        return el('a', {
-          class: 'card', href: '#',
-          onclick: async (e) => {
-            e.preventDefault();
-            await up((s) => {
-              s.family.home = loc.name;
-              s.family.region = 'Riverlands';
-              G.bringDeckIntoPlay(s, data, deck);
-              s.setupStage = 1;
-            }, `Our family's home is ${loc.name}. Our Family Tradition is ${deck}.`);
-          },
-        },
-          el('span', { class: 'cat' }, shapeIcon(data.byDeck.get(deck).shape), deck),
-          el('h3', { text: loc.name }),
-          el('p', { text: loc.scenes.join(' · ') }));
-      })));
-    return w;
-  }
+  const reachable = (i) => i <= stage || i <= maxSetupStage(st);
+  add(wrap, el('ol', { class: 'stepper big' }, steps.map((s, i) => el('li', {
+    class: i === stage ? 'on' : i < stage ? 'done' : '',
+  }, el('button', {
+    type: 'button', disabled: !reachable(i) || i === stage,
+    onclick: () => up((x) => { x.setup.stage = i; }),
+  }, el('span', { class: 'n', text: s.n }), el('span', { class: 'nm', text: s.name }))))));
 
-  if (stage === 1) {
-    const deck = homeLoc()?.traditions[0];
-    const banner = data.byDeck.get(deck);
-    w.append(el('h2', { text: 'Choose Names, Mark Age, Make Bonds' }),
-      el('p', { class: 'small muted', text: 'Choose a name for your main character from this list and write it down on your Notecard. The names list ends with a prompt you can use to make up additional names.' }),
-      el('div', { class: 'well namelist' },
-        el('div', { class: 'small muted', style: 'margin-bottom:0.3rem' }, shapeIcon(banner.shape), banner.banner + ' Banner'),
-        banner.names.map((n) => el('button', {
-          class: 'tiny', text: n,
-          onclick: () => { $('#newname').value = n; },
-        })),
-        el('div', { class: 'small muted', style: 'margin-top:0.3rem', text: banner.namePrompt })));
-
-    const form = el('div', { class: 'charform', style: 'margin-top:0.8rem' },
-      el('div', {}, el('label', { for: 'newname', text: 'Name' }), el('br'),
-        el('input', { id: 'newname', placeholder: 'name' })),
-      el('div', {}, el('label', { for: 'newpron', text: 'Pronouns' }), el('br'),
-        el('input', { id: 'newpron', placeholder: 'they/them' })),
-      el('div', {}, el('label', { for: 'newtier', text: 'Age' }), el('br'),
-        el('select', { id: 'newtier' }, data.ageTiers.map((t) =>
-          el('option', { value: t.name, text: `${t.name} — ${t.marksText}` })))),
-      el('div', {}, el('label', { for: 'newmarks', text: 'Marks' }), el('br'),
-        el('select', { id: 'newmarks' })),
-      el('div', {}, el('button', {
-        class: 'primary', text: 'Add character',
-        onclick: async () => {
-          const name = $('#newname').value.trim();
-          if (!name) return;
-          const marks = Number($('#newmarks').value);
-          await up((s) => {
-            s.characters.push(G.newCharacter({
-              name, pronouns: $('#newpron').value.trim(), marks,
-              token: '',
-            }));
-            s.turn.order = s.characters.map((c) => c.id);
-          }, `${name} joins the family — ${data.tierForMarks(marks)}, ${marks} Marks of Age.`);
-          $('#newname').value = ''; $('#newpron').value = '';
-        },
-      })));
-    w.append(form);
-
-    // marks select follows the chosen tier
-    queueMicrotask(() => {
-      const tier = $('#newtier'), marks = $('#newmarks');
-      const sync = () => {
-        const t = data.ageTiers.find((x) => x.name === tier.value);
-        clear(marks);
-        for (const m of t.marks) marks.append(el('option', { value: m, text: `${m} Mark${m === 1 ? '' : 's'}` }));
-      };
-      tier.addEventListener('change', sync); sync();
-    });
-
-    w.append(el('div', { style: 'margin-top:0.9rem' }, st.characters.map((ch) =>
-      el('div', { class: 'well', style: 'margin-bottom:0.5rem' },
-        el('b', { text: ch.name }), el('span', { class: 'pronouns', text: ch.pronouns }),
-        ' ', marksRow(ch.marks, 0),
-        el('span', { class: 'tierlabel', style: 'margin-left:0.5rem', text: data.tierForMarks(ch.marks) }),
-        el('button', { class: 'tiny ghost', style: 'float:right', text: 'remove',
-          onclick: () => up((s) => {
-            s.characters = s.characters.filter((c) => c.id !== ch.id);
-            s.turn.order = s.characters.map((c) => c.id);
-          }, `${ch.name} is removed from the family.`) }),
-        bondEditor(ch)))));
-
-    w.append(el('div', { class: 'btnrow' },
-      el('button', {
-        class: 'primary', text: 'Everyone is named and bonded →',
-        disabled: st.characters.length === 0,
-        onclick: () => up((s) => { s.setupStage = 2; }),
-      })));
-    return w;
-  }
-
-  if (stage === 2) {
-    const deck = homeLoc()?.traditions[0];
-    const pool = st.decks[deck] || [];
-    w.append(el('h2', { text: 'Hold Traditions' }),
-      el('p', { class: 'small muted', text: 'Each main character begins with a Hand of Tradition Cards equal to their Marks of Age (Children begin with no Tradition Cards). Everyone can choose at once. Pick Tradition Cards that you feel drawn to.' }));
-    for (const ch of st.characters) {
-      const need = G.handLimit(ch) - ch.hand.length;
-      w.append(el('h4', {}, `${ch.name} — `,
-        el('span', { class: need > 0 ? 'handcount under' : 'handcount', text: `${ch.hand.length}/${G.handLimit(ch)}` })));
-      w.append(el('div', { class: 'cardrow' }, ch.hand.map((id) => cardEl(card(id), data, {
-        selectable: true,
-        onclick: () => up((s) => {
-          const c = s.characters.find((x) => x.id === ch.id);
-          c.hand = c.hand.filter((x) => x !== id);
-          s.decks[deck].push(id);
-        }, `${ch.name} puts back “${card(id).prompt}”.`),
-      }))));
-    }
-    const shortest = st.characters.find((c) => c.hand.length < G.handLimit(c));
-    w.append(el('h4', { text: shortest ? `Spread face-up — choosing for ${shortest.name}` : 'Spread face-up' }),
-      el('div', { class: 'cardrow' }, pool.map((id) => cardEl(card(id), data, {
-        selectable: !!shortest,
-        onclick: shortest ? () => up((s) => {
-          const c = s.characters.find((x) => x.id === shortest.id);
-          if (c.hand.length >= G.handLimit(c)) return;
-          c.hand.push(id);
-          s.decks[deck] = s.decks[deck].filter((x) => x !== id);
-        }, `${shortest.name} takes “${card(id).prompt}”.`) : undefined,
-      }))));
-    w.append(el('div', { class: 'btnrow' },
-      el('button', {
-        class: 'primary', text: 'Gather the deck →',
-        disabled: !!shortest,
-        onclick: () => up((s) => { s.setupStage = 3; }),
-      }),
-      shortest ? el('span', { class: 'small muted', text: `${shortest.name} still needs cards.` }) : null));
-    return w;
-  }
-
-  // stage 3 — Choose Tokens & Introduce the Umbra
-  const proc = data.procedures.find((p) => p.name === 'First Session Setup');
-  const umbra = proc.steps.find((s) => s.name === 'Introduce the Umbra');
-  w.append(el('h2', { text: 'Introduce the Umbra' }),
-    el('p', { class: 'small muted', text: umbra.instruction }),
-    el('div', { class: 'teaching', style: 'font-style:italic;color:var(--ice)', text: umbra.teaching }),
-    el('p', { class: 'small muted', text: umbra.followUp }),
-    el('div', { class: 'teaching', style: 'font-style:italic;color:var(--chalk-2)', text: umbra.teachingTwo }),
-    el('div', { class: 'btnrow' },
-      el('button', {
-        class: 'primary', text: 'We are ready to play',
-        onclick: () => up((s) => {
-          G.bringDeckIntoPlay(s, data, 'Umbra');
-          s.umbraInPlay = true;
-          s.setupComplete = true;
-          s.setupStage = undefined;
-          s.turn.order = s.characters.map((c) => c.id);
-          s.turn.current = 0;
-          s.turn.phase = 'choose-scene';
-        }, `The Umbra Deck is placed beside the scroll. Chapter 1 begins at ${S().family.home}.`),
-      })));
-  return w;
+  const step = steps[stage];
+  const panel = el('div', { class: 'panel setupstep' });
+  add(panel, el('div', { class: 'eyebrow', text: `Step ${step.n} of ${steps.length}` }), el('h2', { text: step.name }));
+  const body = [setupIntro, setupHome, setupNames, setupAge, setupBonds, setupHold, setupTokens, setupUmbra][stage];
+  add(panel, body(st, step));
+  add(wrap, panel);
+  return wrap;
 }
+
+/** How far setup may be navigated: a step needs the ones before it. */
+function maxSetupStage(st) {
+  if (!st.family.home) return 1;
+  if (!st.characters.length) return 2;
+  if (st.characters.some((c) => c.hand.length < G.handLimit(c))) return 5;
+  return 7;
+}
+
+function setupNav(st, { back = true, next = 'Next', ok = true, why = '' } = {}) {
+  const i = st.setup.stage;
+  return el('div', { class: 'setupnav' },
+    back && i > 0 ? el('button', { class: 'ghost', text: '← Back', onclick: () => up((s) => { s.setup.stage = i - 1; }) }) : el('span'),
+    el('span', { class: 'grow' }),
+    why ? el('span', { class: 'small muted', text: why }) : null,
+    next ? el('button', { class: 'primary', text: `${next} →`, disabled: !ok, onclick: () => up((s) => { s.setup.stage = i + 1; }) }) : null);
+}
+
+/* ---- 1. Introduction */
+function setupIntro(st, step) {
+  return el('div', {},
+    instr(step.instruction),
+    el('div', { class: 'readaloud' }, step.substeps.map((ss) => el('section', {},
+      el('h3', { text: ss.name }), teach(ss.teaching),
+      ss.name.includes('X-Card') ? el('button', { class: 'xbtn', text: '✕ The X-Card', onclick: xcard }) : null))),
+    setupNav(st, { back: false, next: 'Choose our home' }));
+}
+
+/* ---- 2. Choose Home & Tradition */
+function setupHome(st, step) {
+  const city = st.setup.start === 'city';
+  const box = el('div', {});
+  if (!city) add(box, instr(step.instruction), teach(step.teaching));
+
+  const pickHome = (home, tradition, region) => up((s) => {
+    // Changing our mind: cards already dealt go back to the old deck.
+    for (const c of s.characters) {
+      for (const id of c.hand) G.discard(s, data, id);
+      c.hand = [];
+    }
+    s.inPlay = [];
+    s.decks = {};
+    s.family.home = home;
+    s.family.region = region;
+    s.family.tradition = tradition;
+    G.bringDeckIntoPlay(s, data, tradition);
+    for (const t of data.byLocation.get(home)?.traditions || []) {
+      if (!t.startsWith('ANY:')) G.bringDeckIntoPlay(s, data, t);
+    }
+    s.borough = home === BOROUGH ? { inPlay: true, station: null, isHome: true } : { inPlay: false, station: null, isHome: false };
+    s.setup.stage = Math.max(s.setup.stage, 2);
+  }, `Our family’s home is ${locName(home)}. Our Family Tradition is ${tradition}.`);
+
+  if (!city) {
+    add(box, el('div', { class: 'homes' }, data.startingHomes.map((loc) => {
+      const deck = loc.traditions[0];
+      return homeCard(loc, deck, st.family.home === loc.name, () => pickHome(loc.name, deck, 'Riverlands'));
+    })));
+  } else {
+    add(box, el('div', { class: 'callout' },
+      el('h3', { text: 'Starting in the City' }),
+      // the rule's lead sentence; its list of options is the cards below
+      instr(data.rule('Starting in the City').split(/\n\s*\n/)[0]),
+      details('Plan for a longer setup', instr(data.guidanceText('plan-for-a-longer-setup')))));
+    add(box, el('div', { class: 'homes' }, data.cityStartingOptions.map((o) => {
+      const home = /wandering/i.test(o.home) ? BOROUGH : o.home;
+      const loc = data.byLocation.get(home);
+      return homeCard(loc, o.tradition, st.family.home === home, () => pickHome(home, o.tradition, 'City'), o.text);
+    })));
+  }
+
+  // other ways to begin
+  const variants = el('div', { class: 'variants' });
+  add(variants, el('div', { class: 'segmented', role: 'group', 'aria-label': 'Where the family begins' },
+    el('button', { class: city ? '' : 'on', 'aria-pressed': String(!city), text: 'Begin on the River Scroll',
+      onclick: () => !city || up((s) => { s.setup.start = 'riverlands'; s.variants['Fleeing the City'] = false; resetHome(s); }) }),
+    el('button', { class: city ? 'on' : '', 'aria-pressed': String(city), text: 'Begin in the City',
+      onclick: () => city || up((s) => { s.setup.start = 'city'; resetHome(s); }) })));
+  add(variants, variantToggles(st, ['The Umbra Follows', 'Fleeing the City', 'Solo Play']));
+  const vd = details('Variants and other ways to begin', variants);
+  vd.open = city || Object.values(st.variants).some(Boolean);
+  add(box, vd);
+  add(box, setupNav(st, { next: 'Choose names', ok: !!st.family.home, why: st.family.home ? '' : 'Choose a home to go on.' }));
+  return box;
+}
+
+function resetHome(s) {
+  for (const c of s.characters) c.hand = [];
+  s.family.home = null; s.family.tradition = null; s.family.region = s.setup.start === 'city' ? 'City' : 'Riverlands';
+  s.inPlay = []; s.decks = {};
+  s.borough = { inPlay: false, station: null, isHome: false };
+}
+
+function homeCard(loc, deck, on, onclick, label) {
+  const k = data.byDeck.get(deck);
+  return el('button', { type: 'button', class: `homecard ${on ? 'on' : ''} ${loc.region === 'City' ? 'city' : 'river'}`.trim(), 'aria-pressed': String(on), onclick },
+    el('span', { class: 'cat' }, shapeIcon(k?.shape), label || deck),
+    el('span', { class: 'nm', text: locName(loc.name) }),
+    el('span', { class: 'scenes', text: loc.scenes.join(' · ') }),
+    on ? el('span', { class: 'chosen', text: 'Our home' }) : null);
+}
+
+/** Optional rules, each with the book's own description. */
+function variantToggles(st, names) {
+  return el('div', { class: 'toggles' }, names.map((nm) => {
+    const o = data.optional(nm);
+    const on = !!st.variants[nm];
+    const locked = nm === 'Fleeing the City' && st.setupComplete;
+    return el('div', { class: `toggle ${on ? 'on' : ''}`.trim() },
+      el('label', {},
+        el('input', { type: 'checkbox', checked: on, disabled: locked, onchange: (e) => up((s) => {
+          s.variants[nm] = e.target.checked;
+          if (nm === 'Fleeing the City' && e.target.checked && s.setup.start !== 'city') { s.setup.start = 'city'; resetHome(s); }
+          if (nm === 'The Umbra Follows' && s.setupComplete && s.family.region === 'City') {
+            s.umbraInPlay = e.target.checked;
+            if (e.target.checked) G.bringDeckIntoPlay(s, data, 'Umbra'); else s.inPlay = s.inPlay.filter((d) => d !== 'Umbra');
+          }
+        }, `${nm} is ${e.target.checked ? 'now in play' : 'set aside'}.`) }),
+        el('span', { class: 'tname', text: nm })),
+      instr(o.optionalText),
+      details('The rule', instr(o.text)));
+  }));
+}
+
+/* ---- 3. Choose Names */
+function setupNames(st, step) {
+  const deck = data.byDeck.get(st.family.tradition);
+  const used = new Set([...st.characters.map((c) => c.name), ...st.sideCharacters.map((c) => c.name)]);
+  const name = el('input', { id: 'newname', placeholder: 'a name from the Banner', autocomplete: 'off' });
+  const pron = el('input', { id: 'newpron', placeholder: 'optional' });
+  const submit = () => {
+    const n = name.value.trim();
+    if (!n) { name.focus(); return; }
+    up((s) => {
+      const c = G.newCharacter({ name: n, pronouns: pron.value.trim(), marks: 0, token: G.freeToken(s) });
+      s.characters.push(c);
+      s.turn.order = s.characters.map((x) => x.id);
+    }, `${n} joins the family.`).then(() => $('#newname')?.focus());
+  };
+  name.addEventListener('keydown', (e) => { if (e.key === 'Enter') submit(); });
+  pron.addEventListener('keydown', (e) => { if (e.key === 'Enter') submit(); });
+
+  const move = (i, d) => up((s) => {
+    const j = i + d;
+    [s.characters[i], s.characters[j]] = [s.characters[j], s.characters[i]];
+    s.turn.order = s.characters.map((x) => x.id);
+  });
+
+  return el('div', {},
+    instr(step.instruction), teach(step.teaching),
+    st.variants['Solo Play'] ? el('div', { class: 'callout small' }, instr(data.guidanceText('solo-first-session'))) : null,
+    el('div', { class: 'banner' },
+      el('div', { class: 'bannerhead' }, shapeIcon(deck.shape), el('span', { text: `${deck.banner} Banner` })),
+      el('div', { class: 'namechips' }, deck.names.map((n) => el('button', {
+        type: 'button', class: 'namechip', text: n, disabled: used.has(n),
+        onclick: () => { name.value = n; pron.focus(); },
+      }))),
+      el('div', { class: 'nameprompt', text: deck.namePrompt })),
+    el('div', { class: 'addrow' },
+      el('label', {}, 'Name', name),
+      el('label', {}, 'Pronouns', pron),
+      el('button', { class: 'primary', text: 'Add to the family', onclick: submit })),
+    st.characters.length ? el('div', {},
+      el('h3', { text: 'Our family' }),
+      el('p', { class: 'small muted', text: 'Listed in turn order.' }),
+      el('ol', { class: 'roster' }, st.characters.map((c, i) => el('li', {},
+        tok(c), el('b', { text: c.name }), c.pronouns ? el('span', { class: 'pronouns', text: c.pronouns }) : null,
+        el('span', { class: 'grow' }),
+        el('button', { class: 'tiny ghost', text: '↑', title: 'Earlier in turn order', disabled: i === 0, onclick: () => move(i, -1) }),
+        el('button', { class: 'tiny ghost', text: '↓', title: 'Later in turn order', disabled: i === st.characters.length - 1, onclick: () => move(i, 1) }),
+        el('button', { class: 'tiny ghost', text: 'Remove', onclick: () => up((s) => {
+          const x = find(s, c.id);
+          for (const id of x.hand) G.discard(s, data, id);
+          s.characters = s.characters.filter((y) => y.id !== c.id);
+          s.turn.order = s.characters.map((y) => y.id);
+        }, `${c.name} is removed from the family.`) }))))) : null,
+    setupNav(st, { next: 'Mark Age', ok: st.characters.length > 0, why: st.characters.length ? '' : 'Add at least one character.' }));
+}
+
+/* ---- 4. Mark Age */
+function setupAge(st, step) {
+  return el('div', {},
+    teach(step.teaching),
+    el('div', { class: 'agelist' }, st.characters.map((c) => {
+      const tier = data.tierForMarks(c.marks);
+      const setMarks = (m) => up((s) => {
+        const x = find(s, c.id);
+        x.marks = m;
+        while (x.hand.length > m) G.discard(s, data, x.hand.pop());
+      }, `${c.name} is ${data.tierForMarks(m) === 'Elder' ? 'an' : 'a'} ${data.tierForMarks(m)} — ${m} Mark${m === 1 ? '' : 's'} of Age.`);
+      return el('div', { class: 'agerow' },
+        who(c),
+        el('div', { class: 'segmented', role: 'group', 'aria-label': `${c.name}’s age` }, data.ageTiers.map((t) =>
+          el('button', { class: tier === t.name ? 'on' : '', 'aria-pressed': String(tier === t.name), text: t.name,
+            onclick: () => tier === t.name || setMarks(t.marks[0]) }))),
+        el('div', { class: 'markpick' },
+          (data.ageTiers.find((t) => t.name === tier)?.marks || []).length > 1
+            ? data.ageTiers.find((t) => t.name === tier).marks.map((m) => el('button', {
+              type: 'button', class: `mp ${c.marks === m ? 'on' : ''}`.trim(), 'aria-pressed': String(c.marks === m),
+              title: `${m} Marks`, onclick: () => setMarks(m),
+            }, marksRow(m, 0)))
+            : marksRow(c.marks, 0)));
+    })),
+    setupNav(st, { next: 'Make Bonds' }));
+}
+
+/* ---- 5. Make Bonds */
+function setupBonds(st, step) {
+  const deck = data.byDeck.get(st.family.tradition);
+  const mains = new Set(st.characters.map((c) => c.name));
+  return el('div', {},
+    teach(step.teaching),
+    el('div', { class: 'bondgrid' }, st.characters.map((c) => {
+      const withMain = c.bonds.some((b) => mains.has(b.subject));
+      const status = c.bonds.length < 2 ? `${c.bonds.length} of 2 Bonds`
+        : withMain || st.characters.length === 1 ? 'Two Bonds' : 'Needs a Bond with another main character';
+      const ok = c.bonds.length >= 2 && (withMain || st.characters.length === 1);
+      return el('div', { class: 'bondcard' },
+        el('div', { class: 'bondhead' }, who(c, el('span', { class: 'tierlabel', text: data.tierForMarks(c.marks) })),
+          el('span', { class: `status ${ok ? 'ok' : ''}`.trim(), text: status })),
+        bondList(c),
+        bondComposer(c, { lists: data.bondsAtOrBelow(data.tierForMarks(c.marks)), banners: [deck], exclude: c.name }));
+    })),
+    setupNav(st, { next: 'Hold Traditions' }));
+}
+
+/* ---- 6. Hold Traditions */
+function setupHold(st, step) {
+  const deckName = st.family.tradition;
+  const pool = st.decks[deckName] || [];
+  const choose1 = data.substep(SETUP, 'Hold Traditions', 'Choose Tradition Cards');
+  const gather = data.substep(SETUP, 'Hold Traditions', 'Gather the Tradition Deck');
+  const needing = st.characters.filter((c) => c.hand.length < G.handLimit(c));
+  if (!ui.holdFor || !chById(ui.holdFor) || G.handLimit(chById(ui.holdFor)) === 0) ui.holdFor = (needing[0] || st.characters.find((c) => c.marks > 0) || {}).id || null;
+  const forCh = chById(ui.holdFor);
+
+  const give = (id) => {
+    if (!forCh || forCh.hand.length >= G.handLimit(forCh)) return;
+    up((s) => {
+      const c = find(s, forCh.id);
+      c.hand.push(id);
+      s.decks[deckName] = s.decks[deckName].filter((x) => x !== id);
+    }, `${forCh.name} holds “${card(id).prompt}”.`).then(() => {
+      const me = chById(forCh.id);
+      if (me && me.hand.length >= G.handLimit(me)) {
+        const nxt = S().characters.find((c) => c.hand.length < G.handLimit(c));
+        if (nxt) { ui.holdFor = nxt.id; render(S()); }
+      }
+    });
+  };
+  const putBack = (ch, id) => up((s) => {
+    const c = find(s, ch.id);
+    c.hand = c.hand.filter((x) => x !== id);
+    s.decks[deckName].push(id);
+  }, `${ch.name} puts back “${card(id).prompt}”.`);
+
+  return el('div', {},
+    el('h3', { text: choose1.name }), instr(choose1.instruction), teach(choose1.teaching),
+    el('div', { class: 'holdtabs', role: 'tablist' }, st.characters.map((c) => {
+      const lim = G.handLimit(c);
+      return el('button', {
+        type: 'button', role: 'tab', class: `holdtab ${c.id === ui.holdFor ? 'on' : ''} ${c.hand.length >= lim ? 'full' : ''}`.trim(),
+        'aria-selected': String(c.id === ui.holdFor), disabled: lim === 0,
+        onclick: () => { ui.holdFor = c.id; render(S()); },
+      }, tok(c, { size: 'sm' }), el('span', { class: 'nm', text: c.name }),
+        el('span', { class: 'count', text: lim === 0 ? 'Child' : `${c.hand.length}/${lim}` }));
+    })),
+    forCh ? el('div', { class: 'holding' },
+      el('div', { class: 'small muted', text: forCh.hand.length ? `${forCh.name} holds — choose a card to put it back:` : `${forCh.name} holds nothing yet.` }),
+      el('div', { class: 'cardrow' }, forCh.hand.map((id) => cardEl(card(id), data, { onclick: () => putBack(forCh, id), title: 'Put it back' })))) : null,
+    el('h4', { text: forCh && forCh.hand.length < G.handLimit(forCh) ? `The spread — choosing for ${forCh.name}` : 'The spread' }),
+    el('div', { class: 'cardrow spread' }, pool.map((id) => cardEl(card(id), data, {
+      onclick: forCh && forCh.hand.length < G.handLimit(forCh) ? () => give(id) : undefined,
+    }))),
+    el('h3', { text: gather.name }), instr(gather.instruction),
+    setupNav(st, { next: 'Choose Tokens', ok: !needing.length, why: needing.length ? `${needing.map((c) => c.name).join(', ')} still ${needing.length === 1 ? 'needs' : 'need'} cards.` : '' }));
+}
+
+/* ---- 7. Choose Tokens */
+function setupTokens(st, step) {
+  return el('div', {},
+    instr(step.instruction), teach(step.teaching),
+    el('p', { class: 'small muted', text: 'The boxed Tokens are picture discs; here each character wears a colour and their initial.' }),
+    el('div', { class: 'tokengrid' }, st.characters.map((c) => el('div', { class: 'tokenrow' },
+      who(c),
+      el('div', { class: 'swatches' }, TOKENS.map((t) => {
+        const taken = st.characters.find((x) => x.token === t.id && x.id !== c.id);
+        return el('button', {
+          type: 'button', class: `swatch ${c.token === t.id ? 'on' : ''}`.trim(), style: `--tok:${t.color}`,
+          title: taken ? `${t.name} — ${taken.name}’s` : t.name, 'aria-label': `${t.name} token`,
+          'aria-pressed': String(c.token === t.id), disabled: !!taken,
+          onclick: () => up((s) => { find(s, c.id).token = t.id; }, `${c.name} takes the ${t.name} token.`),
+        });
+      }))))),
+    setupNav(st, { next: 'Introduce the Umbra' }));
+}
+
+/* ---- 8. Introduce the Umbra */
+function setupUmbra(st, step) {
+  const city = st.setup.start === 'city';
+  const fleeing = !!st.variants['Fleeing the City'];
+  const follows = !!st.variants['The Umbra Follows'];
+  const umbra = !city || fleeing || follows;
+  const box = el('div', {});
+  if (!city) {
+    add(box, instr(step.instruction), el('div', { class: 'prelude' }, teach(step.teaching)),
+      instr(step.followUp), teach(step.teachingTwo));
+  } else if (fleeing) {
+    const paras = data.optional('Fleeing the City').text.split(/\n\s*\n/);
+    const prelude = paras[paras.indexOf('New Prelude') + 1];
+    add(box, instr(step.instruction), el('div', { class: 'prelude' }, teach(prelude)),
+      instr(step.followUp), teach(step.teachingTwo));
+  } else {
+    add(box, variantToggles(st, ['The Umbra Follows']),
+      follows ? teach(step.teachingTwo) : null);
+  }
+  add(box, el('div', { class: 'setupnav' },
+    el('button', { class: 'ghost', text: '← Back', onclick: () => up((s) => { s.setup.stage = 6; }) }),
+    el('span', { class: 'grow' }),
+    el('button', {
+      class: 'primary big', text: umbra ? 'Place the Umbra Deck and begin' : 'Begin the first Chapter',
+      onclick: () => up((s) => {
+        s.umbraInPlay = umbra;
+        if (umbra) G.bringDeckIntoPlay(s, data, 'Umbra');
+        s.setupComplete = true;
+        s.turn.order = s.characters.map((c) => c.id);
+        s.turn.current = 0;
+        s.family.chapter = 1;
+        s.turn.phase = 'chapter-start';
+        s.chapterStart = { rolled: {}, borough: null, continuing: false, first: true };
+      }, umbra
+        ? `The Umbra Deck is placed beside the ${city ? 'City Map' : 'River Scroll'}. Chapter 1 begins at ${locName(st.family.home)}.`
+        : `Chapter 1 begins at ${locName(st.family.home)}.`),
+    })));
+  return box;
+}
+
+/* ================================================================== BONDS === */
 
 /** How a stored Bond reads: "Ward of Rye", "Befriended by Dim", "Lost to Vale". */
 export function bondText(b) { return `${b.prompt} ${b.joiner || 'of'} ${b.subject}`; }
 
-/**
- * The Bond picker. Options are keyed by list so the joining word travels with
- * the prompt — the lists do not all join with "of".
- */
-function bondPicker(ch, lists, { label = 'Bond', cityMark = false } = {}) {
-  const opts = [];
-  lists.forEach((l, li) => {
-    const joiner = data.bondJoiner(l);
-    for (const p of l.prompts) opts.push({ key: `${li}|${p}`, prompt: p, joiner, tier: l.tier });
-    opts.push({ key: `${li}|*`, prompt: data.openPromptWord(l), joiner, tier: l.tier, open: true });
-  });
-  const sel = el('select', {}, opts.map((o) =>
-    el('option', { value: o.key, text: `${o.prompt} ${o.joiner}…  (${o.tier})` })));
-  const who = el('input', { placeholder: 'whom…', list: 'allnames', style: 'max-width:150px' });
-  return el('div', { class: 'btnrow', style: 'margin:0.3rem 0 0' }, sel, who,
-    el('button', {
-      class: 'tiny', text: label,
-      onclick: () => {
-        const subject = who.value.trim();
-        if (!subject) return;
-        const o = opts.find((x) => x.key === sel.value);
-        if (!o) return;
-        const prompt = o.open && !o.prompt ? sel.selectedOptions[0].text.split(' ')[0] : o.prompt;
-        up((s) => {
-          const c = s.characters.find((x) => x.id === ch.id);
-          c.bonds.push({ prompt, joiner: o.joiner, subject, city: cityMark });
-          if (!s.sideCharacters.some((x) => x.name === subject) &&
-              !s.characters.some((x) => x.name === subject)) {
-            s.sideCharacters.push({ id: uid(), name: subject, marks: 0 });
-          }
-        }, `${ch.name} is ${prompt} ${o.joiner} ${subject}.`);
-        who.value = '';
-      },
-    }));
+function bondList(ch, { removable = true } = {}) {
+  if (!ch.bonds.length) return el('p', { class: 'small muted nobonds', text: 'No Bonds yet.' });
+  return el('ul', { class: 'bonds' }, ch.bonds.map((b, i) => el('li', { class: b.city ? 'city' : b.memory ? 'memory' : '' },
+    el('span', { text: bondText(b) }),
+    removable ? el('button', { class: 'x', title: 'Remove this Bond', 'aria-label': `Remove ${bondText(b)}`, text: '×',
+      onclick: () => up((s) => { find(s, ch.id).bonds.splice(i, 1); }, `${ch.name} lets go of the Bond “${bondText(b)}”.`) }) : null)));
 }
 
-function bondEditor(ch) {
-  const tier = data.tierForMarks(ch.marks);
-  const lists = data.bondsAtOrBelow(tier);
-  const wrap = el('div', { style: 'margin-top:0.4rem' });
-  wrap.append(el('ul', { class: 'bonds' }, ch.bonds.map((b, i) =>
-    el('li', {}, bondText(b),
-      el('button', {
-        class: 'tiny ghost', style: 'margin-left:0.4rem', text: '×',
-        onclick: () => up((s) => {
-          s.characters.find((c) => c.id === ch.id).bonds.splice(i, 1);
-        }, `${ch.name} loses the Bond “${bondText(b)}”.`),
-      })))));
-  wrap.append(bondPicker(ch, lists));
-  return wrap;
+/**
+ * Compose a Bond: a prompt from the lists this character may use, joined by
+ * that list's own word, to a name. Names the rules point to (the Banner) are
+ * offered as chips; any name may be typed.
+ */
+function bondComposer(ch, { lists, banners = [], exclude, label = 'Make the Bond', city = false, memory = false, onDone } = {}) {
+  const opts = [];
+  const sel = el('select', { 'aria-label': 'Bond prompt' });
+  for (const l of lists) {
+    const joiner = data.bondJoiner(l);
+    const g = el('optgroup', { label: l.kind === 'City Bonds' ? `${l.tier} (City)` : l.kind === 'Memory Bonds' ? 'Memory' : l.tier });
+    for (const p of l.prompts) { opts.push({ prompt: p, joiner }); add(g, el('option', { value: opts.length - 1, text: `${p} ${joiner}…` })); }
+    const open = data.openPromptWord(l);
+    if (open) { opts.push({ prompt: open, joiner }); add(g, el('option', { value: opts.length - 1, text: `${open} ${joiner}…` })); }
+    add(sel, g);
+  }
+  const whom = el('input', { placeholder: 'whom', list: 'allnames', 'aria-label': 'Bond with whom', autocomplete: 'off' });
+  const submit = () => {
+    const subject = whom.value.trim();
+    if (!subject) { whom.focus(); return; }
+    const o = opts[Number(sel.value)];
+    up((s) => {
+      find(s, ch.id).bonds.push({ prompt: o.prompt, joiner: o.joiner, subject, city: city || undefined, memory: memory || undefined });
+      if (!s.sideCharacters.some((x) => x.name === subject) && !s.characters.some((x) => x.name === subject)) {
+        s.sideCharacters.push({ id: 'side-' + Math.random().toString(36).slice(2, 8), name: subject, marks: 0 });
+      }
+    }, `${ch.name} is ${o.prompt} ${o.joiner} ${subject}.`).then(() => onDone && onDone());
+  };
+  whom.addEventListener('keydown', (e) => { if (e.key === 'Enter') submit(); });
+
+  const st = S();
+  const taken = new Set([...st.characters.map((c) => c.name), ...st.sideCharacters.map((c) => c.name)]);
+  const mains = st.characters.filter((c) => c.name !== exclude && !c.forgotten).map((c) => c.name);
+  const chips = el('div', { class: 'namechips small' },
+    mains.map((n) => el('button', { type: 'button', class: 'namechip main', text: n, title: 'a main character', onclick: () => { whom.value = n; } })),
+    banners.flatMap((k) => k.names.filter((n) => !taken.has(n)).map((n) => el('button', {
+      type: 'button', class: 'namechip', text: n, title: `from the ${k.banner} Banner`, onclick: () => { whom.value = n; },
+    }))));
+  return el('div', { class: 'composer' },
+    el('div', { class: 'composerow' }, sel, whom, el('button', { class: 'tiny primary', text: label, onclick: submit })),
+    chips);
 }
 
 /* ============================================================== THE TABLE == */
@@ -266,821 +573,959 @@ function bondEditor(ch) {
 function renderTable(st) {
   const frag = document.createDocumentFragment();
   const cur = G.currentCharacter(st);
-  const loc = homeLoc();
 
-  // --- status bar
-  frag.append(el('div', { class: 'statusbar' },
-    el('div', { class: 'field' }, el('span', { class: 'k', text: 'Home' }),
-      el('span', { class: 'v home', text: st.family.home || '—' })),
-    el('div', { class: 'field' }, el('span', { class: 'k', text: 'Region' }),
-      el('span', { class: 'v', text: st.family.region })),
-    el('div', { class: 'field' }, el('span', { class: 'k', text: 'Chapter' }),
-      el('span', { class: 'v', text: st.family.chapter })),
-    el('div', { class: 'field' }, el('span', { class: 'k', text: 'Session' }),
-      el('span', { class: 'v', text: st.family.session })),
-    st.borough.inPlay
-      ? el('span', { class: 'tag spire', text: `Wandering Borough at ${st.borough.station || '—'}` })
-      : null,
-    st.umbraInPlay ? el('span', { class: 'tag umbra', text: 'Umbra Deck in play' }) : null,
-    el('span', { class: 'grow' }),
-    el('button', { class: 'tiny', text: '🎲 Ask Fate', onclick: askFateDialog }),
-    el('button', { class: 'tiny', text: 'Chapter ▸', onclick: endChapterDialog }),
-    el('button', { class: 'tiny ghost', text: 'Session ▸', onclick: sessionDialog })));
+  add(frag, chronicleBar(st));
 
   const layout = el('div', { class: 'tablelayout' });
-  const main = el('div');
-  const rail = el('div', { class: 'rail' });
-  layout.append(main, rail);
+  const main = el('div', { class: 'mainarea' });
+  const rail = el('aside', { class: 'rail' });
+  add(layout, main, rail);
 
-  // --- the stage
-  main.append(renderStage(st, cur, loc));
+  add(main, renderStage(st, cur));
+  const plateCh = st.turn.phase === 'memory-share' ? chById(st.turn.memoryTarget) : cur;
+  if (!['session-closed'].includes(st.turn.phase)) add(main, plate(st, whereIs(st, plateCh && !plateCh.isMemory ? plateCh : null), cur));
+  add(main, familySection(st, cur));
 
-  // --- characters
-  main.append(el('h2', { text: 'The family' }));
-  main.append(el('div', { class: 'chars' }, st.characters.map((ch) => charCard(st, ch, cur))));
-
-  if (st.sideCharacters.length) {
-    main.append(el('h3', { text: 'Side characters' }),
-      el('p', { class: 'small muted' }, st.sideCharacters.map((s) => s.name).join(' · ')));
+  add(rail, turnOrder(st, cur), decksPanel(st));
+  if (st.pool.length && !['migrate-family', 'end-chapter'].includes(st.turn.phase)) {
+    add(rail, el('section', { class: 'panel' },
+      el('h3', { text: `Face-up on the table · ${st.pool.length}` }),
+      el('div', { class: 'cardrow tight' }, st.pool.map((id) => cardEl(card(id), data, { size: 'sm' })))));
   }
-
-  // --- rail: decks, pool, log
-  rail.append(el('div', { class: 'panel' },
-    el('h3', { text: 'Tradition Decks in play' }),
-    el('div', { class: 'decks' }, st.inPlay.map((d) => {
-      const k = data.byDeck.get(d);
-      return el('div', { class: 'deckchip', title: `${(st.decks[d] || []).length} cards` },
-        el('span', { class: 'n' }, shapeIcon(k?.shape), (st.decks[d] || []).length),
-        el('span', { class: 'nm', text: d }));
-    })),
-    el('p', { class: 'small muted', style: 'margin-bottom:0' , text: 'Cards are never shuffled: discards go to the bottom, and the order shifts naturally from session to session.' })));
-
-  if (st.pool.length) {
-    rail.append(el('div', { class: 'panel' },
-      el('h3', { text: `Face-up on the table (${st.pool.length})` }),
-      el('div', { class: 'pool' }, st.pool.map((id) => cardEl(card(id), data)))));
-  }
-
-  rail.append(el('div', { class: 'panel' },
-    el('h3', { text: 'The record' }),
-    el('ul', { class: 'log' }, (st.log || []).slice(0, 60).map((l) =>
-      el('li', {}, el('span', { class: 'when', text: fmtTime(l.at) }), l.text)))));
-
-  frag.append(layout);
+  add(rail, recordPanel(st));
+  add(frag, layout);
   return frag;
 }
 
-function charCard(st, ch, cur) {
-  const isTurn = cur && cur.id === ch.id;
-  const limit = G.handLimit(ch);
-  const over = ch.hand.length > limit, under = ch.hand.length < limit;
-  const node = el('div', {
-    class: `ch ${isTurn ? 'turn' : ''} ${ch.isMemory ? 'memory' : ''} ${ch.forgotten ? 'forgotten' : ''}`.trim(),
-  },
-    ch.forgotten ? el('span', { class: 'badge', text: 'forgotten' })
-      : ch.isMemory ? el('span', { class: 'badge', text: 'a Memory' })
-      : ch.hadMigrationScene ? el('span', { class: 'badge', text: 'migrating' }) : null,
-    el('h3', {}, ch.name, el('span', { class: 'pronouns', text: ch.pronouns || '' })),
-    el('div', { class: 'row' },
-      el('span', { class: 'tierlabel', text: data.tierForMarks(ch.marks) }),
-      marksRow(ch.marks, ch.crossed),
-      st.family.region === 'City' || ch.cityMarks
-        ? marksRow(ch.cityMarks, ch.cityCrossed, 'city') : null,
-      el('span', { class: `handcount ${over ? 'over' : under ? 'under' : ''}`.trim(),
-        text: `hand ${ch.hand.length}/${limit}` }),
-      ch.scene ? el('span', { class: 'scenechip', text: '❋ ' + ch.scene }) : null),
-    ch.bonds.length ? el('ul', { class: 'bonds' }, ch.bonds.map((b) =>
-      el('li', { text: bondText(b) }))) : null,
-    el('div', { class: 'hand' }, ch.hand.map((id) => cardEl(card(id), data))),
-    el('div', { class: 'btnrow' },
-      el('button', { class: 'tiny ghost', text: 'Bonds…', onclick: () => bondsDialog(ch) }),
-      !ch.forgotten && !isTurn
-        ? el('button', { class: 'tiny ghost', text: 'Take the turn',
-            onclick: () => up((s) => {
-              const i = s.turn.order.indexOf(ch.id);
-              if (i >= 0) { s.turn.current = i; s.turn.phase = 'choose-scene'; s.turn.scene = null; }
-            }, `${ch.name} takes the turn.`) })
-        : null));
-  return node;
+/* ---------------------------------------------------------- chronicle bar -- */
+
+function chronicleBar(st) {
+  const ph = st.turn.phase;
+  const busy = ['end-chapter', 'chapter-start', 'session-closed', 'city-arrival'].includes(ph);
+  const midMigration = G.migrationUnderway(st);
+  return el('div', { class: 'chronicle' },
+    el('div', { class: 'cfield' }, el('span', { class: 'k', text: 'Chapter' }), el('span', { class: 'v', text: st.family.chapter })),
+    el('div', { class: 'cfield' }, el('span', { class: 'k', text: 'Session' }), el('span', { class: 'v', text: st.family.session })),
+    el('div', { class: 'cfield home' }, el('span', { class: 'k', text: st.family.region === 'City' ? 'Home · the City' : 'Home · the Riverlands' }),
+      el('span', { class: 'v', text: locName(st.family.home) || '—' })),
+    el('div', { class: 'ctags' },
+      st.umbraInPlay ? el('span', { class: 'tag umbra', text: 'Umbra Deck in play' }) : null,
+      st.borough.inPlay ? el('span', { class: 'tag spire', text: st.borough.station ? `The Borough is at ${st.borough.station}` : 'The Borough wanders' }) : null,
+      Object.entries(st.variants).filter(([, v]) => v).map(([k]) => el('span', { class: 'tag', text: k }))),
+    el('span', { class: 'grow' }),
+    el('div', { class: 'cactions' },
+      store.canUndo ? el('button', { class: 'tiny ghost', text: '↶ Undo', title: `Undo: ${st.log[0]?.text || ''}`, onclick: () => store.undo() }) : null,
+      el('button', { class: 'tiny', text: '🎲 Ask Fate', onclick: askFateDialog }),
+      el('button', {
+        class: 'tiny', text: 'End the Chapter', disabled: busy || midMigration,
+        title: midMigration ? data.guidanceText('chapters-and-pacing').split(/\n\s*\n/).pop() : '',
+        onclick: async () => {
+          const ok = await choose('End the Chapter?', [{ label: 'Bring the Chapter to a close', value: true, class: 'primary' }],
+            { body: instr(data.proc('Ending a Chapter').instruction) });
+          if (ok) up((s) => G.beginEndingChapter(s), `We bring Chapter ${S().family.chapter} to a close.`);
+        },
+      }),
+      el('button', {
+        class: 'tiny ghost', text: 'End the session', disabled: busy || midMigration,
+        onclick: async () => {
+          const ok = await choose('End the session here?', [{ label: 'End the session — the Chapter continues next time', value: true }],
+            { body: el('div', {}, instr(data.guidanceText('chapters-and-pacing'))) });
+          if (ok) up((s) => G.closeSession(s), `The session ends mid-Chapter.`);
+        },
+      })));
 }
 
-/* ------------------------------------------------------------------ stage -- */
+/* ------------------------------------------------------------ the location -- */
 
-function renderStage(st, cur, loc) {
-  const stage = el('div', { class: 'stage' });
+/** The Location as a plate: its name, Local Traditions, and Scenes with tokens on them. */
+function plate(st, loc, cur) {
+  if (!loc) return el('div');
+  const ph = st.turn.phase;
+  const isBorough = loc.name === BOROUGH;
+  const region = isBorough ? 'borough' : loc.region === 'City' ? 'city' : 'river';
+  const here = (c) => (c.visiting || st.family.home) === loc.name;
+  const onScene = new Map();
+  const atLoc = [];
+  for (const c of G.activeCharacters(st)) {
+    if (c.isMemory || !here(c)) continue;
+    if (c.scene && loc.scenes.includes(c.scene)) onScene.set(c.scene, [...(onScene.get(c.scene) || []), c]);
+    else atLoc.push(c);
+  }
+
+  // who is placing a token, and on whose behalf
+  let pick = null;
+  if (ph === 'choose-scene' && cur && !cur.isMemory && !ui.migrateScene) {
+    pick = (s) => up((x) => G.chooseScene(x, find(x, cur.id), s), `${cur.name} places their token on “${s}”${cur.visiting ? ` at ${locName(cur.visiting)}` : ''}.`);
+  } else if (ph === 'choose-scene' && cur && cur.isMemory && ui.memTarget) {
+    const t = chById(ui.memTarget);
+    pick = (s) => up((x) => G.memoryMoveToken(x, find(x, t.id), s), `${cur.name}, as a Memory, places ${t.name}’s token on “${s}”.`)
+      .then(() => { ui.memTarget = null; });
+  }
+
+  const lines = data.transitLines.filter((l) => l.stations.includes(isBorough ? st.borough.station : loc.name));
+  const icons = data.localDecks(loc.name);
+  return el('section', { class: `plate ${region} ${pick ? 'picking' : ''}`.trim(), 'aria-label': `The location: ${locName(loc.name)}` },
+    el('header', { class: 'platehead' },
+      el('div', {},
+        el('div', { class: 'eyebrow', text: [isBorough ? 'The Wandering Borough' : loc.region === 'City' ? 'The City of Winter' : 'The Riverlands',
+          loc.route ? `by ${loc.route}` : null, cur?.visiting === loc.name ? `${cur.name} is visiting` : (st.family.home === loc.name ? 'Our Home' : null)].filter(Boolean).join(' · ') }),
+        el('h2', { text: locName(loc.name) })),
+      el('div', { class: 'localtrads' }, icons.map((i) => el('span', { class: `ltrad ${i.blank ? 'blank' : ''}`.trim(), title: i.blank ? `Blank ${i.shape} icon: any of ${i.decks.join(', ')}` : i.decks[0] },
+        shapeIcon(i.shape), i.blank ? `any ${i.shape}` : i.decks[0])))),
+    lines.length || isBorough ? el('div', { class: 'lines' },
+      isBorough ? el('span', { class: 'small', text: st.borough.station ? `At ${st.borough.station}’s Station` : 'Not yet at a Station' }) : null,
+      lines.map((l) => el('span', { class: 'line', text: l.name }))) : null,
+    pick ? el('div', { class: 'pickhint', text: ph === 'choose-scene' && cur.isMemory ? `Choose a Scene for ${chById(ui.memTarget)?.name}’s token` : 'Choose a Scene' }) : null,
+    el('div', { class: 'scenegrid' }, loc.scenes.map((s) => {
+      const toks = onScene.get(s) || [];
+      const mine = cur && toks.some((c) => c.id === cur.id);
+      return el(pick ? 'button' : 'div', {
+        type: pick ? 'button' : null, class: `scenetile ${toks.length ? 'taken' : ''} ${mine ? 'mine' : ''}`.trim(),
+        onclick: pick ? () => pick(s) : null,
+      }, el('span', { class: 'sname', text: s }), toks.length ? el('span', { class: 'toks' }, toks.map((c) => tok(c, { size: 'sm' }))) : null);
+    })),
+    atLoc.length ? el('div', { class: 'athome' }, el('span', { class: 'k', text: 'Tokens on the location' }), atLoc.map((c) => tok(c, { size: 'sm' }))) : null);
+}
+
+/* -------------------------------------------------------------- the stage -- */
+
+function renderStage(st, cur) {
+  const ph = st.turn.phase;
+  const stage = el('section', { class: `stage ph-${ph}`, 'aria-live': 'polite' });
+  if (ph === 'chapter-start') return chapterStartStage(st, stage);
+  if (ph === 'end-chapter') return endChapterStage(st, stage);
+  if (ph === 'session-closed') return sessionClosedStage(st, stage);
+  if (ph === 'city-arrival') return cityArrivalStage(st, stage);
+  if (ph === 'who-first') return whoFirstStage(st, stage, data.step('Migrate the Family', 'Migrate the family').instruction.split(/\n\s*\n/).pop());
+  if (ph === 'migrate-family') return migrateStage(st, stage);
+
   if (!cur) {
-    stage.append(el('h2', { text: 'No one can take a turn' }),
-      say('Every character has been forgotten. Follow the Birth rules to bring a new character into the family.'),
-      el('div', { class: 'btnrow' }, el('button', { class: 'primary', text: 'Birth', onclick: birthDialog })));
+    add(stage, stageHead('The family', 'No one can take a turn'),
+      instr(data.rule('Becoming forgotten')),
+      el('div', { class: 'btnrow' }, el('button', { class: 'primary', text: 'Birth', onclick: () => birthDialog() })));
+    return stage;
+  }
+  if (cur.isMemory && ['choose-scene', 'memory-share'].includes(ph)) return memoryStage(st, cur, stage);
+  if (ui.migrateScene && ph === 'choose-scene') return migrationSceneStage(st, cur, stage);
+
+  const TS = 'Tradition Scene';
+  if (ph === 'choose-scene') {
+    const s1 = data.step(TS, 'Choose a Scene');
+    add(stage, stageHead(`${cur.name}’s turn · ${TS}`, s1.name, cur), stepper(TS, 1), instr(s1.instruction));
+    const acts = el('div', { class: 'altacts' });
+    if (st.family.region === 'City') add(acts, travelBox(st, cur));
+    const mig = data.proc('Migration Scene');
+    const canMig = G.canPlayMigrationScene(cur);
+    add(acts, el('div', { class: 'alt' },
+      el('button', { class: 'warm', text: 'Play a Migration Scene instead', disabled: !canMig,
+        onclick: () => { ui.migrateScene = true; ui.carry = null; render(S()); } }),
+      el('div', { class: 'small muted', text: sentence(mig.instruction, 'play a Migration Scene') })));
+    add(stage, acts);
     return stage;
   }
 
-  const phase = st.turn.phase || 'choose-scene';
+  if (ph === 'share-or-witness') {
+    const s2 = data.step(TS, 'Share or witness?');
+    add(stage, stageHead(`${cur.name}’s turn · ${TS}`, st.turn.scene, cur), stepper(TS, 2), instr(s2.instruction));
+    add(stage, el('div', { class: 'options two' }, shareOption(st, cur, s2), witnessOption(st, cur, s2)));
+    add(stage, el('div', { class: 'btnrow' }, el('button', { class: 'ghost tiny', text: '← Choose a different Scene',
+      onclick: () => up((s) => { const c = find(s, cur.id); c.scene = null; s.turn.scene = null; s.turn.phase = 'choose-scene'; }) })));
+    return stage;
+  }
 
-  if (phase === 'choose-scene') {
-    if (cur.isMemory) return memoryStage(st, cur, loc, stage);
-    stage.append(el('div', { class: 'phase', text: `Tradition Scene · step 1 · ${cur.name}’s turn` }),
-      el('h2', { text: 'Choose a Scene' }),
-      say('Each location has several prompts called Scenes. On your turn, move your token to a scene at our family’s current location. You may choose any scene, even if another player’s token is already there.'));
+  if (ph === 'lead') return leadStage(st, cur, stage);
 
-    const where = boroughOrHome(st, cur);
-    stage.append(sceneGrid(st, where, (sceneName) =>
-      up((s) => {
-        const c = s.characters.find((x) => x.id === cur.id);
-        G.chooseScene(s, c, sceneName);
-      }, `${cur.name} places their token on “${sceneName}”.`)));
-
-    // Travel (City) and the Migration Scene are both available at step 1
-    const rowBtns = [];
-    if (st.family.region === 'City') {
-      const reach = G.travelTargets(st, data, cur);
-      rowBtns.push(el('button', {
-        class: 'tiny', text: `Travel… (${cur.cityMarks} City Marks)`,
-        disabled: !reach.length,
-        onclick: () => travelDialog(cur, reach),
-      }));
+  if (ph === 'end-scene') {
+    const nxt = G.nextCharacter(st);
+    const wasMemory = st.turn.sceneKind === 'memory';
+    const text = wasMemory ? data.step('Memory Scene', 'Pass the Turn').instruction : data.step(TS, 'End the Scene').instruction;
+    add(stage, stageHead(`${cur.name}’s turn · ${wasMemory ? 'Memory Scene' : TS}`, wasMemory ? 'Pass the Turn' : 'End the Scene', cur),
+      stepper(wasMemory ? 'Memory Scene' : TS, 5), instr(text));
+    const solo = !!st.variants['Solo Play'];
+    const btns = el('div', { class: 'btnrow' });
+    if (nxt || G.allHadMigrationScene(st)) {
+      add(btns, el('button', { class: 'primary big', onclick: () => up((s) => G.passTurn(s), `${cur.name} ends the scene.`) },
+        nxt ? ['Pass the turn to ', tok(nxt.c, { size: 'sm' }), ` ${nxt.c.name}`] : 'Pass the turn'));
     }
-    if (!cur.hadMigrationScene) {
-      rowBtns.push(el('button', { class: 'tiny warm', text: 'Play a Migration Scene',
-        onclick: () => migrationSceneDialog(cur) }));
-    }
-    stage.append(el('div', { class: 'btnrow' }, rowBtns));
-    return stage;
-  }
-
-  if (phase === 'share-or-witness') {
-    stage.append(el('div', { class: 'phase', text: `Tradition Scene · step 2 · ${cur.name}` }),
-      el('h2', { text: st.turn.scene }),
-      say('During this scene, your character will either share or witness a Tradition.'),
-      el('div', { class: 'btnrow' },
-        el('button', { class: 'primary', text: 'Share a Tradition',
-          disabled: cur.hand.length === 0, onclick: () => shareDialog(cur) }),
-        el('button', { class: 'primary', text: 'Witness a Tradition',
-          onclick: () => witnessDialog(cur) }),
-        cur.hand.length === 0
-          ? el('span', { class: 'small muted', text: 'You must have at least one card in hand to Share.' })
-          : null));
-    return stage;
-  }
-
-  if (phase === 'pass-tradition') {
-    stage.append(el('div', { class: 'phase', text: `Tradition Scene · steps 3–4 · ${cur.name}` }),
-      el('h2', { text: st.turn.scene }),
-      say(st.turn.sceneKind === 'share'
-        ? 'Use the prompt on your card to describe how you share a tradition with another player’s character and pass them the Card to add to their Hand.'
-        : 'It is the receiving player’s job to look for opportunities to introduce this tradition into the scene. When you are done, pass the Card to the player whose turn it is.'));
-
-    const entries = st.table;
-    stage.append(el('div', { class: 'cardrow', style: 'margin:0.7rem 0' },
-      entries.map((t) => cardEl(card(t.cardId), data, {
-        facedown: !t.revealed,
-        selectable: true,
-        onclick: () => up((s) => {
-          const x = s.table.find((y) => y.cardId === t.cardId);
-          if (x) x.revealed = !x.revealed;
-        }),
-      }))));
-    stage.append(el('p', { class: 'small muted', text: 'Click a card to turn it over. In the City you may play several, but only one is passed on — the rest are discarded to the bottom of their decks.' }));
-
-    if (st.turn.sceneKind === 'share') {
-      const t = entries[0];
-      const to = t && t.to ? chById(t.to) : null;
-      stage.append(el('div', { class: 'btnrow' },
-        el('span', { class: 'small muted', text: to ? `Passing to ${to.name}` : 'Pass to:' }),
-        others(cur).map((o) => el('button', {
-          class: t && t.to === o.id ? 'primary tiny' : 'tiny', text: o.name,
-          onclick: () => up((s) => G.setShareRecipient(s, t.cardId, o.id)),
-        }))));
-      stage.append(el('div', { class: 'btnrow' },
-        el('button', {
-          class: 'primary', text: 'Pass on the Tradition', disabled: !t || !t.to,
-          onclick: () => up((s) => G.passOnTradition(s, data, t.cardId),
-            `${cur.name} shares “${card(t.cardId).prompt}” with ${chById(t.to).name}.`),
-        })));
-    } else {
-      stage.append(el('div', { class: 'btnrow' },
-        el('span', { class: 'small muted', text: 'Keep which card?' }),
-        entries.map((t) => el('button', {
-          class: 'tiny', text: card(t.cardId).prompt,
-          onclick: () => up((s) => G.passOnTradition(s, data, t.cardId),
-            `${chById(t.to)?.name || 'A player'} witnesses “${card(t.cardId).prompt}” and passes it to ${cur.name}.`),
-        }))));
+    add(stage, btns);
+    if (solo) {
+      add(stage, el('h4', { text: 'Or act as another main character' }),
+        pickChars(G.activeCharacters(st).filter((c) => c.id !== cur.id && !c.hadMigrationScene), null,
+          (c) => up((s) => G.giveTurnTo(s, c.id), `${cur.name} ends the scene; the story turns to ${c.name}.`)));
     }
     return stage;
   }
 
-  if (phase === 'end-scene') {
-    stage.append(el('div', { class: 'phase', text: `Tradition Scene · step 5 · ${cur.name}` }),
-      el('h2', { text: 'End the Scene' }),
-      say('When you are ready for your scene to end, let the group know. It’s now the next player’s turn.'),
-      el('div', { class: 'btnrow' },
-        el('button', { class: 'primary', text: 'Pass the turn',
-          onclick: () => up((s) => {
-            G.passTurn(s);
-            if (G.allHadMigrationScene(s)) s.turn.phase = 'migrate-family';
-          }, `${cur.name} ends the scene.`) })));
-    return stage;
-  }
-
-  if (phase === 'migrate-family') {
-    return migrateStage(st, stage);
-  }
-
-  if (phase === 'memory-share') return memoryShareStage(st, cur, stage);
-
-  stage.append(el('h2', { text: 'The table is quiet' }),
+  add(stage, stageHead('The table', 'The table is quiet'),
     el('div', { class: 'btnrow' }, el('button', { class: 'primary', text: 'Begin a turn',
       onclick: () => up((s) => { s.turn.phase = 'choose-scene'; }) })));
   return stage;
 }
 
-function boroughOrHome(st, ch) {
-  if (ch.visiting && data.byLocation.get(ch.visiting)) return data.byLocation.get(ch.visiting);
-  return homeLoc();
+/* ---- Travel (City) */
+function travelBox(st, cur) {
+  const reach = G.travelTargets(st, data, cur);
+  const box = el('div', { class: 'alt' });
+  add(box, el('button', {
+    text: ui.travel ? 'Close the Transit map' : `Travel… (${cur.cityMarks} City Mark${cur.cityMarks === 1 ? '' : 's'})`,
+    disabled: !reach.length && !cur.visiting, onclick: () => { ui.travel = !ui.travel; render(S()); },
+  }), el('div', { class: 'small muted', text: sentence(data.rule('Transit Lines & Stations'), 'option to Travel') }));
+  if (ui.travel) {
+    add(box, el('div', { class: 'travel' },
+      instr(data.rule('Travel')),
+      reach.some((r) => r.derived) ? el('p', { class: 'small muted', text: '* Wintermount is absent from the printed distance table; its distances are derived from its Moon Path adjacencies.' }) : null,
+      el('div', { class: 'destgrid' }, reach.map((r) => el('button', {
+        type: 'button', class: `dest ${cur.visiting === r.to ? 'on' : ''}`.trim(),
+        onclick: () => up((s) => { const c = find(s, cur.id); c.visiting = r.to === s.family.home ? null : r.to; c.scene = null; },
+          `${cur.name} travels to ${locName(r.to)}.`).then(() => { ui.travel = false; render(S()); }),
+      }, el('span', { class: 'nm', text: locName(r.to) }), el('span', { class: 'cost', text: `${r.cost}${r.derived ? '*' : ''}` })))),
+      cur.visiting ? el('button', { class: 'ghost tiny', text: `Return Home to ${locName(st.family.home)}`,
+        onclick: () => up((s) => { const c = find(s, cur.id); c.visiting = null; c.scene = null; }, `${cur.name} returns home.`) }) : null));
+  }
+  return box;
 }
 
-function sceneGrid(st, loc, onPick) {
-  if (!loc) return el('p', { class: 'muted', text: 'No location.' });
-  const taken = new Map();
-  for (const c of st.characters) if (c.scene) taken.set(c.scene, (taken.get(c.scene) || []).concat(c.name));
-  return el('div', { class: 'scenes' }, loc.scenes.map((s) =>
-    el('div', { class: `scene ${taken.has(s) ? 'taken' : ''}`.trim(), onclick: () => onPick(s) },
-      s, taken.has(s) ? el('span', { class: 'who', text: taken.get(s).join(', ') }) : null)));
+/* ---- Share / Witness options */
+function shareOption(st, cur, s2) {
+  const o = s2.options.find((x) => x.name === 'Share a Tradition');
+  const can = cur.hand.length > 0;
+  return el('div', { class: `option ${can ? '' : 'off'}`.trim() },
+    el('h3', { text: o.name }), instr(o.instruction),
+    can ? el('div', {},
+      el('div', { class: 'small muted', text: 'Choose the card from your hand:' }),
+      el('div', { class: 'cardrow' }, cur.hand.map((id) => cardEl(card(id), data, {
+        onclick: () => up((s) => G.shareTradition(s, find(s, cur.id), id), `${cur.name} plays a card face down.`),
+      })))) : null);
 }
 
-/* ------------------------------------------------------- share and witness -- */
-
-function shareDialog(ch) {
-  return modal('Share a Tradition', (close) => el('div', {},
-    el('p', { class: 'small muted', text: 'Play a card from your hand, face down onto the table.' }),
-    el('div', { class: 'cardrow' }, ch.hand.map((id) => cardEl(card(id), data, {
-      selectable: true,
-      onclick: async () => {
-        await up((s) => {
-          const c = s.characters.find((x) => x.id === ch.id);
-          G.shareTradition(s, c, id);
-        }, `${ch.name} plays a card face down.`);
-        close();
-      },
-    })))));
-}
-
-function witnessDialog(ch) {
-  const st = S();
-  const loc = boroughOrHome(st, ch);
+function witnessOption(st, cur, s2) {
+  const loc = whereIs(st, cur);
   const opts = G.witnessOptions(st, data, loc.name);
-  const picks = opts.map((o) => (o.decks.length === 1 ? o.decks[0] : null));
-  let recipient = others(ch)[0]?.id || null;
-
-  return modal('Witness a Tradition', (close) => {
-    const body = el('div', {});
-    const rerender = () => {
-      clear(body);
-      body.append(el('p', { class: 'small muted', text: `Draw one Tradition Card for each Local Tradition icon at ${loc.name}, and give all of the cards you have drawn to one other player, who reads them privately.` }));
-      opts.forEach((o, i) => {
-        body.append(el('h4', {}, shapeIcon(o.shape),
-          o.blank ? `Blank ${o.shape} icon — choose a deck` : `${o.decks[0]}`));
-        body.append(el('div', { class: 'btnrow' }, o.decks.map((d) => el('button', {
-          class: picks[i] === d ? 'primary tiny' : 'tiny',
-          onclick: () => { picks[i] = d; rerender(); },
-        }, shapeIcon(data.byDeck.get(d)?.shape), d))));
-      });
-      body.append(el('h4', { text: 'Give the cards to' }));
-      body.append(el('div', { class: 'btnrow' }, others(ch).map((o) => el('button', {
-        class: recipient === o.id ? 'primary tiny' : 'tiny', text: o.name,
-        onclick: () => { recipient = o.id; rerender(); },
-      }))));
-      body.append(el('div', { class: 'btnrow' }, el('button', {
-        class: 'primary', text: 'Draw',
-        disabled: picks.some((p) => !p) || !recipient,
-        onclick: async () => {
-          await up((s) => {
-            const c = s.characters.find((x) => x.id === ch.id);
-            const drawn = G.witnessTradition(s, data, c, recipient, picks);
-            for (const id of drawn) {
-              const cd = data.byCard.get(id);
-              if (cd.isBoroughWanders) s.pendingBorough = true;
-            }
-          }, `${ch.name} draws ${picks.length} card${picks.length === 1 ? '' : 's'} (${picks.join(', ')}) for ${chById(recipient).name}.`);
-          close();
-          if (S().pendingBorough) boroughDialog();
-        },
-      })));
-    };
-    rerender();
-    return body;
+  const inCity = st.family.region === 'City';
+  const solo = !!st.variants['Solo Play'];
+  const recips = G.activeCharacters(st).filter((c) => c.id !== cur.id);
+  if (!ui.witness || ui.witness.loc !== loc.name || ui.witness.n !== opts.length) {
+    ui.witness = { loc: loc.name, n: opts.length, picks: opts.map((o) => (o.blank ? (o.decks.length === 1 ? o.decks[0] : null) : o.decks[0])), to: recips.length === 1 ? recips[0].id : null };
+  }
+  const w = ui.witness;
+  const o = s2.options.find((x) => x.name === 'Witness a Tradition');
+  const box = el('div', { class: 'option' }, el('h3', { text: o.name }));
+  if (inCity) {
+    add(box, instr(data.rule('Witnessing in the City')));
+    if (opts.some((x) => x.blank)) add(box, details('Blank Tradition Icons', instr(data.rule('Blank Tradition Icons'))));
+  } else {
+    add(box, instr(o.instruction));
+  }
+  if (solo) add(box, details('Solo Play', instr(sentence(data.optional('Solo Play').text, 'When you would Witness'))));
+  opts.forEach((op, i) => {
+    add(box, el('div', { class: 'drawrow' },
+      el('span', { class: 'k' }, shapeIcon(op.shape), op.blank ? `Blank ${op.shape} icon` : `${op.decks[0]} icon`),
+      el('div', { class: 'deckpicks' }, op.decks.map((d) => el('button', {
+        type: 'button', class: `deckpick ${w.picks[i] === d ? 'on' : ''} ${d === 'Umbra' ? 'umbra' : ''}`.trim(), 'aria-pressed': String(w.picks[i] === d),
+        onclick: () => { w.picks[i] = d; render(S()); },
+      }, shapeIcon(data.byDeck.get(d)?.shape), d)))));
   });
+  add(box, el('div', { class: 'k small', text: solo ? 'Give the cards to (optional in Solo Play)' : 'Give the cards to' }),
+    pickChars(recips, w.to, (c) => { w.to = w.to === c.id ? null : c.id; render(S()); }),
+    details('Juggling roles', instr(data.guidanceText('role-juggling'))));
+  const ready = w.picks.every(Boolean) && (w.to || solo);
+  add(box, el('div', { class: 'btnrow' }, el('button', {
+    class: 'primary', text: `Draw ${w.picks.length} card${w.picks.length === 1 ? '' : 's'}`, disabled: !ready,
+    onclick: () => up((s) => G.witnessTradition(s, data, find(s, cur.id), w.to, w.picks),
+      `${cur.name} draws from ${w.picks.join(', ')}${w.to ? ` and gives ${w.picks.length === 1 ? 'it' : 'them'} to ${chById(w.to).name}` : ''}.`)
+      .then(() => { ui.witness = null; ui.passPick = null; }),
+  })));
+  return box;
 }
 
-/* -------------------------------------------------------------- migration -- */
+/* ---- Steps 3–4: lead the scene, pass on the Tradition */
+function leadStage(st, cur, stage) {
+  const TS = 'Tradition Scene';
+  const s3 = data.step(TS, 'Lead the scene');
+  const kind = st.turn.sceneKind;
+  add(stage, stageHead(`${cur.name}’s turn · ${TS}`, st.turn.scene, cur), stepper(TS, [3, 4]),
+    el('h4', { text: s3.name }), instr(s3.instruction),
+    details('Scene Advice', el('div', { class: 'lore', html: miniMarkdown(data.loreByTitle('Scene Advice').markdown.replace(/^# .*\n/, '')) })));
 
-function migrationSceneDialog(ch) {
-  return modal('Migration Scene', (close) => {
-    const body = el('div', {});
-    const keep = new Set(ch.hand.slice(0, G.handLimit(ch)));
-    const rerender = () => {
-      clear(body);
-      body.append(
-        el('h4', { text: '1. Why You Must Leave' }),
-        el('p', { class: 'small muted', text: 'Place your Token on your Notecard and describe why your character knows it is time to leave.' }),
-        el('h4', { text: '2. What You Carry' }),
-        el('p', { class: 'small muted', text: `If you hold more Tradition Cards than Marks of Age, decide which you will carry on the journey, and place the extras face-up on the table. ${ch.name} may carry ${G.handLimit(ch)}.` }),
-        el('div', { class: 'cardrow' }, ch.hand.map((id) => cardEl(card(id), data, {
-          selectable: true, chosen: keep.has(id),
+  const s4 = data.step(TS, 'Pass on the Tradition');
+  add(stage, el('h4', { text: s4.name }), instr(s4.instruction));
+  const entries = st.table;
+
+  if (kind === 'share') {
+    const t = entries[0];
+    const o = s4.options.find((x) => x.name === 'Share the Tradition');
+    const recips = G.livingCharacters(st).filter((c) => c.id !== cur.id);
+    add(stage, el('div', { class: 'tablecards' }, entries.map((e) => el('div', { class: 'tslot' },
+      cardEl(card(e.cardId), data, { facedown: !e.revealed, onclick: () => up((s) => { const x = s.table.find((y) => y.cardId === e.cardId); x.revealed = !x.revealed; }),
+        title: e.revealed ? 'Turn it face down' : 'Turn it over' }),
+      el('span', { class: 'small muted', text: e.revealed ? 'played' : 'face down — turn it over when you share it' })))),
+    instr(o.instruction),
+    el('div', { class: 'k small', text: 'Share it with' }),
+    pickChars(recips, t?.to, (c) => up((s) => G.setShareRecipient(s, t.cardId, c.id))),
+    el('div', { class: 'btnrow' }, el('button', {
+      class: 'primary big', text: t?.to ? `Pass the card to ${chById(t.to)?.name}` : 'Pass on the Tradition', disabled: !t || !t.to,
+      onclick: () => up((s) => G.passOnTradition(s, data, t.cardId), `${cur.name} shares “${card(t.cardId).prompt}” with ${chById(t.to).name}.`),
+    })));
+    return stage;
+  }
+
+  // Witness
+  const o = s4.options.find((x) => x.name === 'Witness the Tradition');
+  const holder = entries[0]?.to ? chById(entries[0].to) : null;
+  const inCity = st.family.region === 'City';
+  // A face-down card must not give itself away: only a revealed Borough card is marked unpassable.
+  const passable = entries.filter((e) => !(card(e.cardId).isBoroughWanders && e.revealed));
+  if (!passable.some((e) => e.cardId === ui.passPick)) ui.passPick = passable.length === 1 ? passable[0].cardId : null;
+
+  add(stage, holder
+    ? el('p', { class: 'holder' }, who(holder), ` holds ${entries.length === 1 ? 'the card' : `${entries.length} cards`} and reads ${entries.length === 1 ? 'it' : 'them'} privately.`)
+    : null,
+  instr(o.instruction),
+  inCity && entries.length > 1 ? details('During a scene (City)', instr(data.rule('During a scene'))) : null);
+
+  add(stage, el('div', { class: 'tablecards' }, entries.map((e) => {
+    const c = card(e.cardId);
+    const peeking = ui.peek === e.cardId;
+    const slot = el('div', { class: `tslot ${ui.passPick === e.cardId ? 'kept' : ''}`.trim() },
+      cardEl(c, data, { facedown: !e.revealed && !peeking }));
+    const peekBtn = el('button', { class: 'tiny ghost', text: peeking ? 'Reading…' : 'Hold to read privately', disabled: e.revealed });
+    const on = (ev) => { ev.preventDefault(); ui.peek = e.cardId; render(S()); };
+    const off = () => { if (ui.peek) { ui.peek = null; render(S()); } };
+    peekBtn.addEventListener('pointerdown', on);
+    for (const ev of ['pointerup', 'pointerleave', 'pointercancel', 'blur']) peekBtn.addEventListener(ev, off);
+    add(slot, el('div', { class: 'slotacts' },
+      e.revealed ? null : peekBtn,
+      el('button', { class: 'tiny', text: e.revealed ? 'Played' : 'Play it', disabled: e.revealed,
+        onclick: () => up((s) => { s.table.find((y) => y.cardId === e.cardId).revealed = true; },
+          `${holder?.name || 'The holder'} plays “${c.prompt}”.`).then(() => { if (c.isBoroughWanders) boroughPanel(); }) }),
+      entries.length > 1 && !(c.isBoroughWanders && e.revealed) ? el('button', { class: `tiny ${ui.passPick === e.cardId ? 'primary' : 'ghost'}`, text: ui.passPick === e.cardId ? 'Passed on' : 'Pass this one',
+        onclick: () => { ui.passPick = e.cardId; render(S()); } }) : null,
+      c.isBoroughWanders && e.revealed ? el('span', { class: 'small muted', text: 'See The Borough Wanders, below.' }) : null));
+    return slot;
+  })));
+
+  if (entries.some((e) => card(e.cardId).isBoroughWanders && e.revealed)) {
+    add(stage, el('div', { class: 'callout borough' }, instr(data.rule('The Borough Wanders')),
+      el('div', { class: 'btnrow' }, el('button', { class: 'tiny', text: 'The Wandering Borough…', onclick: boroughPanel }))));
+  }
+
+  const pick = ui.passPick;
+  add(stage, el('div', { class: 'btnrow' }, el('button', {
+    class: 'primary big',
+    text: pick ? `Pass the card to ${cur.name}` : passable.length ? 'Choose the card to pass on' : 'End the scene — nothing to pass on',
+    disabled: passable.length > 0 && !pick,
+    onclick: () => up((s) => G.passOnTradition(s, data, pick),
+      pick && !card(pick).isBoroughWanders ? `${holder?.name || 'The locals'} pass${holder ? 'es' : ''} “${card(pick).prompt}” to ${cur.name}.` : 'The witnessed cards go to the bottom of their decks.')
+      .then(() => { ui.passPick = null; }),
+  })));
+  return stage;
+}
+
+/* ---- Migration Scene */
+function migrationSceneStage(st, cur, stage) {
+  const MS = 'Migration Scene';
+  const proc = data.proc(MS);
+  const lim = G.handLimit(cur);
+  if (!ui.carry) ui.carry = new Set(cur.hand.slice(0, lim));
+  const over = cur.hand.length > lim;
+  add(stage, stageHead(`${cur.name}’s turn`, MS, cur), stepper(MS, [1, 2, 3]),
+    details('What a Migration Scene is', instr(proc.instruction)),
+    stepBlock(1, proc.steps[0].name, '', instr(proc.steps[0].instruction)),
+    stepBlock(2, proc.steps[1].name, '', instr(proc.steps[1].instruction),
+      over ? el('div', {},
+        el('p', { class: 'small', text: `${cur.name} may carry ${lim} — carrying ${ui.carry.size}.` }),
+        el('div', { class: 'cardrow' }, cur.hand.map((id) => cardEl(card(id), data, {
+          chosen: ui.carry.has(id), dim: !ui.carry.has(id),
+          onclick: () => { if (ui.carry.has(id)) ui.carry.delete(id); else if (ui.carry.size < lim) ui.carry.add(id); render(S()); },
+        }))))
+        : el('p', { class: 'small muted', text: `${cur.name} holds ${cur.hand.length} of ${lim} and carries everything.` })),
+    stepBlock(3, proc.steps[2].name, '', instr(proc.steps[2].instruction),
+      el('div', { class: 'btnrow' },
+        el('button', { class: 'ghost', text: '← Not yet', onclick: () => { ui.migrateScene = false; render(S()); } }),
+        el('button', {
+          class: 'primary big', text: 'Pass the turn', disabled: over && ui.carry.size !== lim,
           onclick: () => {
-            if (keep.has(id)) keep.delete(id);
-            else if (keep.size < G.handLimit(ch)) keep.add(id);
-            rerender();
-          },
-        }))),
-        el('p', { class: 'small', text: `Carrying ${keep.size} of ${G.handLimit(ch)}.` }),
-        el('div', { class: 'btnrow' }, el('button', {
-          class: 'primary', text: '3. Pass the turn',
-          disabled: keep.size > G.handLimit(ch),
-          onclick: async () => {
-            await up((s) => {
-              const c = s.characters.find((x) => x.id === ch.id);
-              const laid = G.layDownExcess(s, c, [...keep]);
+            const keep = over ? [...ui.carry] : cur.hand.slice();
+            const laid = cur.hand.length - keep.length;
+            ui.migrateScene = false; ui.carry = null;
+            up((s) => {
+              const c = find(s, cur.id);
+              G.layDownExcess(s, c, keep);
               G.finishMigrationScene(s, c);
               G.passTurn(s);
-              if (G.allHadMigrationScene(s)) s.turn.phase = 'migrate-family';
-              s._laid = laid.length;
-            }, `${ch.name} plays a Migration Scene and lays down ${ch.hand.length - keep.size} card(s).`);
-            close();
+            }, `${cur.name} plays a Migration Scene${laid ? ` and lays down ${laid} card${laid === 1 ? '' : 's'}` : ''}.`);
           },
-        })));
-    };
-    rerender();
-    return body;
-  });
+        }))));
+  return stage;
 }
 
+/* ---- Migrate the Family */
 function migrateStage(st, stage) {
+  const MF = 'Migrate the Family';
+  const proc = data.proc(MF);
+  const [s1, s2, s3, s4] = proc.steps;
   const dests = G.migrationDestinations(st, data);
-  stage.append(el('div', { class: 'phase', text: 'Migrate the Family' }),
-    el('h2', { text: 'The family moves' }),
-    say('After each player has had a Migration Scene, we Migrate the Family as a group.'));
+  const m = st.migration || { destination: null, entrance: null };
+  const dest = m.destination;
+  const arrival = dest && G.isArrival(data, dest);
+  const destLoc = dest ? data.byLocation.get(dest) : null;
+  const short = G.livingCharacters(st).filter((c) => c.hand.length < G.handLimit(c));
 
-  // step 2 — what is saved
-  const short = st.characters.filter((c) => !c.forgotten && !c.isMemory && c.hand.length < G.handLimit(c));
-  if (st.pool.length && short.length) {
-    stage.append(el('h4', { text: '2. What is saved' }),
-      el('p', { class: 'small muted', text: 'Players holding fewer cards than their Marks of Age may take from the face-up cards left behind. Describe how they save or preserve these traditions.' }));
-    for (const c of short) {
-      stage.append(el('div', { class: 'btnrow' },
-        el('span', { class: 'small', text: `${c.name} (${c.hand.length}/${G.handLimit(c)})` }),
-        st.pool.map((id) => el('button', {
-          class: 'tiny', text: card(id).prompt,
-          onclick: () => up((s) => {
-            const cc = s.characters.find((x) => x.id === c.id);
-            G.saveTradition(s, cc, id);
-          }, `${c.name} saves “${card(id).prompt}”.`),
-        }))));
+  add(stage, stageHead('The whole family', MF), stepper(MF, [!dest || (arrival && !m.entrance) ? 1 : st.pool.length ? (short.length ? 2 : 3) : 4]),
+    instr(proc.instruction));
+
+  // 1. destination
+  add(stage, stepBlock(1, s1.name, dest && (!arrival || m.entrance) ? 'done' : '',
+    instr(st.family.region === 'City' ? data.rule('Migration in the City') : s1.instruction),
+    dests.some((d) => d.route) ? details('By ship or by caravan', instr(data.guidanceText('by-ship-or-by-caravan'))) : null,
+    el('div', { class: 'destgrid' }, dests.map((d) => el('button', {
+      type: 'button', class: `dest ${dest === d.to ? 'on' : ''}`.trim(), 'aria-pressed': String(dest === d.to),
+      onclick: () => up((s) => { s.migration = { destination: d.to, entrance: null }; }),
+    }, el('span', { class: 'nm', text: locName(d.to) }), el('span', { class: 'why', text: d.why }),
+      el('span', { class: 'trads' }, (data.byLocation.get(d.to)?.traditions || []).map((t) => shapeIcon(t.startsWith('ANY:') ? t.slice(4) : data.byDeck.get(t)?.shape)))))),
+    arrival ? el('div', { class: 'entrances' },
+      el('h4', { text: locName(dest) }),
+      el('div', { class: 'destgrid' }, destLoc.entrances.map((e) => el('button', {
+        type: 'button', class: `dest entrance ${m.entrance === e.target ? 'on' : ''}`.trim(), 'aria-pressed': String(m.entrance === e.target),
+        onclick: () => up((s) => { s.migration.entrance = e.target; }),
+      }, el('span', { class: 'nm', text: e.text }))))) : null));
+
+  // 2. what is saved
+  const saveable = st.pool.length && short.length;
+  add(stage, stepBlock(2, s2.name, !saveable ? 'done' : '', instr(s2.instruction),
+    saveable ? el('div', { class: 'poolsave' }, st.pool.map((id) => el('div', { class: 'tslot' },
+      cardEl(card(id), data),
+      el('div', { class: 'slotacts' }, short.map((c) => el('button', {
+        class: 'tiny', title: `${c.name} saves it`,
+        onclick: () => up((s) => G.saveTradition(s, find(s, c.id), id), `${c.name} saves “${card(id).prompt}”.`),
+      }, tok(c, { size: 'xs' }), ` ${c.name}`)))))) : el('p', { class: 'small muted', text: st.pool.length ? 'Every hand is full.' : 'Nothing was left face-up.' })));
+
+  // 3. what is left
+  add(stage, stepBlock(3, s3.name, !st.pool.length ? 'done' : '', instr(s3.instruction),
+    st.pool.length ? el('div', { class: 'poolsave' }, st.pool.map((id) => el('div', { class: 'tslot' },
+      cardEl(card(id), data),
+      el('div', { class: 'slotacts' }, el('button', { class: 'tiny danger', text: 'Left behind',
+        onclick: () => up((s) => G.leaveBehind(s, data, id), `“${card(id).prompt}” is left behind.`) }))))) : null));
+
+  // 4. migrate
+  const target = arrival ? m.entrance : dest;
+  const ready = target && !st.pool.length;
+  add(stage, stepBlock(4, s4.name, '', instr(s4.instruction),
+    el('div', { class: 'btnrow' }, el('button', {
+      class: 'primary big', disabled: !ready,
+      text: ready ? `Migrate to ${locName(target)}` : !dest ? 'Choose a destination first' : arrival && !m.entrance ? 'Choose how we enter the City' : 'Save or leave behind every face-up card first',
+      onclick: () => up((s) => {
+        const r = G.migrateFamily(s, data, target);
+        s.turn.phase = r.entering ? 'city-arrival' : 'who-first';
+      }, arrival ? `At last we reach the City of Winter ${destLoc.entrances.find((e) => e.target === target).text.replace(/^\.\.\./, '…')}` : `The family migrates to ${locName(target)}.`),
+    }))));
+  return stage;
+}
+
+function cityArrivalStage(st, stage) {
+  const P = data.proc('Migrating to the City');
+  add(stage, stageHead('The City of Winter', P.name), instr(P.instruction),
+    P.steps.map((s) => stepBlock(s.n, s.name, 'done', instr(s.instruction))),
+    el('div', { class: 'btnrow' }, el('button', { class: 'primary big', text: 'Open the City Map', onclick: () => up((s) => { s.turn.phase = 'who-first'; }) })));
+  return stage;
+}
+
+function whoFirstStage(st, stage, text) {
+  add(stage, stageHead(locName(st.family.home), 'Who takes the first turn?'), instr(text),
+    pickChars(G.activeCharacters(st), null, (c) => up((s) => G.giveTurnTo(s, c.id), `${c.name} takes the first turn.`)));
+  return stage;
+}
+
+/* ---- Memory Scene */
+function memoryStage(st, cur, stage) {
+  const MS = 'Memory Scene';
+  const proc = data.proc(MS);
+  const [s1, s2, s3, s4] = proc.steps;
+  const ph = st.turn.phase;
+  const targets = G.livingCharacters(st).filter((c) => c.id !== cur.id);
+
+  if (ph === 'choose-scene') {
+    add(stage, stageHead(`${cur.name}’s turn · a Memory`, MS, cur), stepper(MS, 1),
+      details('Playing a Memory', instr(proc.instruction)), instr(s1.instruction));
+    if (!targets.length) {
+      add(stage, el('p', { class: 'muted', text: 'There is no living character whose token could be moved.' }),
+        el('div', { class: 'btnrow' }, el('button', { class: 'primary', text: 'Pass the turn', onclick: () => up((s) => G.passTurn(s)) })));
+      return stage;
+    }
+    if (!targets.some((t) => t.id === ui.memTarget)) ui.memTarget = targets.length === 1 ? targets[0].id : null;
+    add(stage, el('div', { class: 'k small', text: 'Whose token?' }),
+      pickChars(targets, ui.memTarget, (c) => { ui.memTarget = c.id; render(S()); }),
+      ui.memTarget ? el('p', { class: 'small muted', text: `Now choose a Scene below for ${chById(ui.memTarget).name}.` }) : null);
+    return stage;
+  }
+
+  // memory-share
+  const target = chById(st.turn.memoryTarget);
+  const played = st.table.find((t) => t.kind === 'memory');
+  add(stage, stageHead(`${cur.name}’s turn · a Memory`, st.turn.scene, cur), stepper(MS, played ? [3, 4] : 2),
+    stepBlock(2, s2.name, played ? 'done' : '', instr(s2.instruction),
+      played ? el('div', { class: 'tablecards' }, el('div', { class: 'tslot' }, cardEl(card(played.cardId), data, {
+        facedown: !played.revealed, onclick: () => up((s) => { const x = s.table.find((y) => y.kind === 'memory'); x.revealed = !x.revealed; }),
+      })))
+        : el('div', { class: 'cardrow' }, cur.hand.map((id) => cardEl(card(id), data, {
+          onclick: () => up((s) => G.memoryPlay(s, find(s, cur.id), id), `${cur.name}’s memory plays a card face down for ${target.name}.`),
+        })))),
+    played ? stepBlock(3, s3.name, '', instr(s3.instruction)) : null,
+    played ? stepBlock(4, s4.name, '', instr(s4.instruction),
+      el('div', { class: 'btnrow' }, el('button', { class: 'primary big', text: `Give the card to ${target.name}`,
+        onclick: () => up((s) => {
+          const r = G.memoryGive(s);
+          s.turn.sceneKind = 'memory';
+          if (r?.forgotten) s.log.unshift({ at: new Date().toISOString(), text: `${cur.name} has shared their last Tradition and is forgotten.`, ch: s.family.chapter });
+        }, `${cur.name}’s memory shares “${card(played.cardId).prompt}” with ${target.name}.`) }))) : null);
+  return stage;
+}
+
+/* ---- Ending a Chapter */
+function endChapterStage(st, stage) {
+  const EC = 'Ending a Chapter';
+  const proc = data.proc(EC);
+  const [s1, s2, s3, s4] = proc.steps;
+  const ce = st.chapterEnd || { marked: {}, held: {} };
+  const living = G.livingCharacters(st);
+  const inCity = st.family.region === 'City';
+  const allMarked = living.every((c) => ce.marked[c.id]);
+  const gained = living.filter((c) => ['age', 'city'].includes(ce.marked[c.id]));
+  const overs = living.filter((c) => c.hand.length > G.handLimit(c));
+  const unders = living.filter((c) => c.hand.length < G.handLimit(c));
+  const at = !allMarked ? 1 : overs.length || st.pool.length ? 3 : 4;
+
+  add(stage, stageHead(`Chapter ${st.family.chapter}`, EC), stepper(EC, at === 1 ? 1 : at === 3 ? [2, 3] : 4), instr(proc.instruction));
+
+  // 1. Mark Age
+  add(stage, stepBlock(1, s1.name, allMarked ? 'done' : '', instr(s1.instruction),
+    inCity ? details('City Marks', instr(data.concept('City Marks'))) : null,
+    el('div', { class: 'markrows' }, living.map((c) => {
+      const done = ce.marked[c.id];
+      const elder = G.isElder(c);
+      const doMark = (opts = {}) => up((s) => {
+        const x = find(s, c.id);
+        const r = G.markAge(s, x, opts);
+        s.chapterEnd.marked[c.id] = r.kind;
+      }, elder ? `${c.name} crosses off a ${opts.crossCityMark ? 'City ' : ''}Mark.` : `${c.name} gains a ${inCity ? 'City ' : ''}Mark.`);
+      return el('div', { class: `markrow ${done ? 'done' : ''}`.trim() },
+        who(c), el('span', { class: 'tierlabel', text: data.tierForMarks(c.marks) }),
+        el('span', { class: 'mk' }, marksRow(c.marks, c.crossed), c.cityMarks ? marksRow(c.cityMarks, c.cityCrossed, 'city') : null),
+        el('span', { class: 'grow' }),
+        done
+          ? el('span', { class: 'did' }, { age: 'gained a Mark', city: 'gained a City Mark', cross: 'crossed off a Mark', 'cross-city': 'crossed off a City Mark' }[done],
+            el('button', { class: 'x', title: 'Undo', text: '↶', onclick: () => up((s) => { G.unmarkAge(find(s, c.id), done); delete s.chapterEnd.marked[c.id]; }) }))
+          : el('span', { class: 'btnrow tight' },
+            el('button', { class: 'tiny primary', text: elder ? 'Cross off a Mark' : inCity ? 'Add a City Mark' : 'Add a Mark', onclick: () => doMark() }),
+            elder && c.cityMarks > c.cityCrossed ? el('button', { class: 'tiny', text: 'Cross off a City Mark', onclick: () => doMark({ crossCityMark: true }) }) : null));
+    }))));
+
+  // 2. New Bonds
+  add(stage, stepBlock(2, s2.name, '', instr(s2.instruction),
+    gained.length ? el('div', { class: 'bondgrid' }, gained.map((c) => el('div', { class: 'bondcard' },
+      el('div', { class: 'bondhead' }, who(c, el('span', { class: 'tierlabel', text: data.tierForMarks(c.marks) }))),
+      bondList(c),
+      bondComposer(c, { lists: data.bondsAtOrBelow(data.tierForMarks(c.marks)), banners: G.bondBanners(st, data, c), exclude: c.name }),
+      c.cityMarks >= 1 ? details('Or a City Bond', instr(data.rule('City Bonds')),
+        bondComposer(c, { lists: data.cityBondsAtOrBelow(c.cityMarks), banners: G.bondBanners(st, data, c), exclude: c.name, label: 'Make the City Bond', city: true })) : null)))
+      : el('p', { class: 'small muted', text: allMarked ? 'No one gained a Mark this Chapter.' : 'Mark Age first.' })));
+
+  // 3. Hold Traditions
+  const hold = el('div', {});
+  for (const c of overs) {
+    const lim = G.handLimit(c);
+    if (!ui.keep[c.id]) ui.keep[c.id] = new Set(c.hand.slice(0, lim));
+    const keep = ui.keep[c.id];
+    add(hold, el('div', { class: 'holdrow' },
+      el('div', { class: 'small' }, who(c), ` carries ${lim} of ${c.hand.length} — choose which:`),
+      el('div', { class: 'cardrow' }, c.hand.map((id) => cardEl(card(id), data, { chosen: keep.has(id), dim: !keep.has(id), size: 'sm',
+        onclick: () => { if (keep.has(id)) keep.delete(id); else if (keep.size < lim) keep.add(id); render(S()); } }))),
+      el('div', { class: 'btnrow' }, el('button', { class: 'tiny primary', text: 'Place the extras face-up', disabled: keep.size !== lim,
+        onclick: () => up((s) => G.holdTraditions(s, find(s, c.id), [...keep]), `${c.name} places ${c.hand.length - lim} card${c.hand.length - lim === 1 ? '' : 's'} face-up.`)
+          .then(() => { delete ui.keep[c.id]; }) }))));
+  }
+  if (st.pool.length) {
+    const takers = unders.filter((c) => !overs.includes(c));
+    add(hold, el('div', { class: 'poolsave' }, st.pool.map((id) => el('div', { class: 'tslot' },
+      cardEl(card(id), data, { size: 'sm' }),
+      el('div', { class: 'slotacts' }, takers.map((c) => el('button', { class: 'tiny', title: `${c.name} takes it`,
+        onclick: () => up((s) => G.saveTradition(s, find(s, c.id), id), `${c.name} takes “${card(id).prompt}”.`) }, tok(c, { size: 'xs' }), ` ${c.name}`)))))),
+    el('div', { class: 'btnrow' }, el('button', { class: 'tiny danger', text: `Discard the remaining ${st.pool.length}`, disabled: overs.length > 0,
+      onclick: () => up((s) => G.discardPool(s, data), `The remaining ${S().pool.length} card${S().pool.length === 1 ? ' is' : 's are'} discarded.`) })));
+  }
+  if (!overs.length && !st.pool.length) add(hold, el('p', { class: 'small muted', text: 'Every hand is within its Marks of Age.' }));
+  add(stage, stepBlock(3, s3.name, !overs.length && !st.pool.length ? 'done' : '', instr(s3.instruction), hold));
+
+  // 4. New Chapter or End the session?
+  const ready = allMarked && !overs.length && !st.pool.length;
+  const [newCh, reflect] = s4.options;
+  add(stage, stepBlock(4, s4.name, '', instr(s4.instruction),
+    el('div', { class: 'options two' },
+      el('div', { class: 'option' }, el('h3', { text: newCh.name }), instr(newCh.instruction),
+        el('button', { class: 'primary', text: `Begin Chapter ${st.family.chapter + 1}`, disabled: !ready,
+          onclick: () => up((s) => { G.closeChapter(s, data); G.startNewChapter(s); }, `Chapter ${S().family.chapter} closes. Chapter ${S().family.chapter + 1} begins.`) })),
+      el('div', { class: 'option' }, el('h3', { text: reflect.name }), instr(reflect.instruction),
+        el('button', { class: '', text: 'End the session', disabled: !ready,
+          onclick: () => up((s) => { G.closeChapter(s, data); G.closeSession(s); }, `Chapter ${S().family.chapter} closes, and the session ends.`) }))),
+    !ready ? el('p', { class: 'small muted', text: !allMarked ? 'Everyone marks age first.' : 'Hold Traditions first.' }) : null,
+    el('div', { class: 'btnrow' }, el('button', { class: 'ghost tiny', text: '← Not yet — back to the Chapter',
+      disabled: Object.keys(ce.marked).length > 0,
+      title: Object.keys(ce.marked).length ? 'Undo the Marks first' : '',
+      onclick: () => up((s) => { s.chapterEnd = null; s.turn.phase = 'choose-scene'; }, 'The Chapter goes on.') }))));
+  return stage;
+}
+
+/* ---- The start of a Chapter */
+function chapterStartStage(st, stage) {
+  const cs = st.chapterStart || { rolled: {}, continuing: false };
+  const rolls = !cs.continuing && !cs.first;
+  const elders = rolls ? G.livingCharacters(st).filter((c) => G.isElder(c)) : [];
+  const died = st.characters.filter((c) => cs.rolled[c.id]?.died);
+  const allRolled = elders.every((c) => cs.rolled[c.id]);
+  const boroughDue = !cs.continuing && st.borough.isHome;
+  const boroughDone = !boroughDue || !!cs.borough?.station;
+
+  add(stage, stageHead(`Session ${st.family.session}`, cs.continuing ? `Chapter ${st.family.chapter} continues` : `Chapter ${st.family.chapter} begins`));
+  if (cs.fromSession) {
+    const NS = data.proc('New Session Setup');
+    add(stage, el('div', { class: 'steps compact' }, NS.steps.map((s) => stepBlock(s.n, s.name, '', instr(s.instruction)))));
+  } else if (!cs.first) {
+    add(stage, instr(data.step('Ending a Chapter', 'New Chapter or End the session?').options[0].instruction));
+  }
+
+  // Death & Memory
+  if (elders.length) {
+    const WD = data.proc('When You Die');
+    add(stage, stepBlock('☾', 'The Elders roll', allRolled ? 'done' : '', instr(WD.instruction.split(/\n\s*\n/).slice(0, 2).join('\n\n')),
+      el('div', { class: 'markrows' }, elders.map((c) => {
+        const r = cs.rolled[c.id];
+        return el('div', { class: `markrow ${r ? 'done' : ''}`.trim() },
+          who(c), el('span', { class: 'mk' }, marksRow(c.marks, c.crossed)),
+          el('span', { class: 'small muted', text: `${c.crossed} crossed off` }),
+          el('span', { class: 'grow' }),
+          r ? el('span', { class: 'rolled' }, dieFace(r.roll, { size: 34 }), el('span', { text: r.died ? 'dies of old age' : 'lives on' }))
+            : el('button', { class: 'tiny primary', text: '🎲 Roll the Die', onclick: () => {
+              const res = G.rollForDeath({ ...c });
+              up((s) => {
+                s.chapterStart.rolled[c.id] = { roll: res.roll, died: res.died };
+                const x = find(s, c.id);
+                x.deathRolled = true;
+                if (res.died) G.becomeMemory(s, x);
+              }, `${c.name} rolls ${res.roll} against ${c.crossed} crossed-off Mark${c.crossed === 1 ? '' : 's'} — ${res.died ? 'and dies of old age, passing into memory.' : 'and lives on.'}`);
+            } }));
+      }))));
+    for (const c of died) {
+      const madeBond = c.bonds.some((b) => b.memory);
+      add(stage, stepBlock('☾', `${c.name} becomes a Memory`, madeBond ? 'done' : '',
+        WD.steps.map((s) => el('div', {}, el('b', { text: s.name }), instr(s.instruction))),
+        bondList(c, { removable: false }),
+        madeBond ? null : bondComposer(c, { lists: [data.memoryBonds()], exclude: c.name, label: 'Make the Memory Bond', memory: true })));
     }
   }
 
-  // step 3 — what is left
-  if (st.pool.length) {
-    stage.append(el('h4', { text: '3. What is Left' }),
-      el('p', { class: 'small muted', text: 'For each remaining card, one of us must describe how this Tradition is left behind, forgotten, or practiced for the last time, and discard that card.' }),
-      el('div', { class: 'btnrow' }, st.pool.map((id) => el('button', {
-        class: 'tiny danger', text: `Leave “${card(id).prompt}”`,
-        onclick: () => up((s) => G.leaveBehind(s, data, id),
-          `“${card(id).prompt}” is left behind.`),
-      }))));
+  // Living on the Borough
+  if (boroughDue) {
+    add(stage, stepBlock('⌂', 'Living on the Borough', boroughDone ? 'done' : '', instr(data.rule('Living on the Borough')), boroughRoller(st, 'chapter')));
   }
 
-  // step 4 — destination
-  stage.append(el('h4', { text: '1. / 4. Choose a destination' }),
-    el('p', { class: 'small muted', text: st.family.region === 'City'
-      ? 'We may always choose an adjacent Location, and any Location a migrating family member could reach through Travel with their City Marks.'
-      : 'We may travel to any location that is connected by a river or other path to our current location.' }),
-    el('div', { class: 'btnrow' }, dests.map((d) => el('button', {
-      class: 'primary tiny', title: d.why,
-      onclick: async () => {
-        const target = data.byLocation.get(d.to);
-        if (target && target.entrances && target.entrances.length) {
-          const pick = await choose('At last we reach the City of Winter…',
-            target.entrances.map((e) => ({ label: e.text, value: e.target })));
-          if (!pick) return;
-          await up((s) => {
-            const r = G.migrateFamily(s, data, pick);
-            s.pendingCityArrival = r.entering;
-          }, `The family reaches the City of Winter — ${pick}.`);
-          return;
-        }
-        await up((s) => G.migrateFamily(s, data, d.to),
-          `The family migrates to ${d.to}.`);
-      },
-    }, d.to, el('span', { class: 'small muted', text: ` — ${d.why}` })))));
-
-  if (st.pool.length) {
-    stage.append(el('p', { class: 'small muted', text: 'Unclaimed cards must be saved or left behind before the family moves on.' }));
+  // Birth
+  const bornFor = st.characters.filter((c) => c.isMemory || c.forgotten);
+  if (!cs.first) {
+    const B = data.proc('Birth');
+    add(stage, stepBlock('✦', B.name, '', instr(B.instruction),
+      details(bornFor.length ? `A new character for ${bornFor.map((c) => c.name).join(', ')}’s player` : 'A new player joins the family',
+        birthForm(), instr(data.guidanceText('rejoining-as-children')))));
   }
+
+  // who goes first
+  const ready = allRolled && boroughDone && died.every((c) => c.bonds.some((b) => b.memory));
+  add(stage, stepBlock('→', 'Who takes the first turn?', '', instr(data.rule('Starting a New Chapter')),
+    ready ? pickChars(G.activeCharacters(st), null, (c) => up((s) => { G.giveTurnTo(s, c.id); s.chapterStart = null; }, `${c.name} takes the first turn of Chapter ${S().family.chapter}.`))
+      : el('p', { class: 'small muted', text: !allRolled ? 'Every Elder rolls first.' : !boroughDone ? 'Roll for the Borough first.' : 'Make the Memory Bond first.' })));
   return stage;
 }
 
-function travelDialog(ch, reach) {
-  return modal('Travel', (close) => el('div', {},
-    el('p', { class: 'small muted', text: 'To Travel, pick up your token and describe your character’s journey. Then place your token on any Scene at your destination, and continue your turn as normal. Traveling distance is always measured from Home.' }),
-    reach.some((r) => r.derived)
-      ? el('p', { class: 'small muted', text: '* Wintermount is absent from the printed distance table; that distance is derived from its Moon Path adjacencies.' })
-      : null,
-    el('div', { class: 'btnrow' }, reach.map((r) => el('button', {
-      class: 'tiny', text: `${r.to} (${r.cost})${r.derived ? ' *' : ''}`,
-      title: r.derived ? 'distance derived — Wintermount is absent from the printed table' : '',
-      onclick: async () => {
-        await up((s) => {
-          const c = s.characters.find((x) => x.id === ch.id);
-          c.visiting = r.to;
-          c.scene = null;
-        }, `${ch.name} travels to ${r.to} (${r.cost} Stations + transfers).`);
-        close();
-      },
-    }))),
-    ch.visiting ? el('div', { class: 'btnrow' }, el('button', {
-      class: 'ghost tiny', text: 'Return home',
-      onclick: async () => {
-        await up((s) => { s.characters.find((x) => x.id === ch.id).visiting = null; },
-          `${ch.name} returns home.`);
-        close();
-      },
-    })) : null));
+function sessionClosedStage(st, stage) {
+  const reflect = data.step('Ending a Chapter', 'New Chapter or End the session?').options.find((o) => o.name === 'Closing Reflection');
+  add(stage, stageHead(`Session ${st.family.session}`, reflect.name), instr(reflect.instruction),
+    details('Ending a Campaign', instr(data.guidanceText('ending-a-campaign'))),
+    details('Storing the game', instr(data.rule('Storing the Game'))),
+    el('div', { class: 'btnrow' }, el('button', { class: 'primary big', text: `Begin Session ${st.family.session + 1}`,
+      onclick: () => up((s) => { G.newSession(s); s.chapterStart.fromSession = true; }, `Session ${S().family.session + 1} begins at ${locName(S().family.home)}.`) })),
+    el('p', { class: 'small muted', text: st.family.chapterClosed ? `The next session begins Chapter ${st.family.chapter + 1}.` : `Chapter ${st.family.chapter} is still open; the next session continues it.` }));
+  return stage;
 }
 
-/* ------------------------------------------------------ chapters & sessions */
-
-function endChapterDialog() {
+/* ---- Birth */
+function birthForm() {
   const st = S();
-  return modal('Ending a Chapter', (close) => {
-    const body = el('div', {});
-    const rerender = () => {
-      clear(body);
-      const s2 = S();
-      body.append(el('p', { class: 'small muted', text: 'At the end of each Chapter, time passes and our characters grow older.' }));
+  const givers = G.livingCharacters(st);
+  const childList = data.bondLists.find((b) => b.kind === 'Bonds' && b.tier === 'Child');
+  const joiner = data.bondJoiner(childList);
+  const name = el('input', { placeholder: 'the name they give you', autocomplete: 'off' });
+  const pron = el('input', { placeholder: 'optional' });
+  const giver = el('select', {}, givers.map((g) => el('option', { value: g.id, text: g.name })));
+  const bond = el('select', {}, [...childList.prompts, data.openPromptWord(childList)].map((p) => el('option', { value: p, text: `${p} ${joiner}…` })));
+  const B = data.proc('Birth');
+  return el('div', { class: 'birth' },
+    el('ol', { class: 'plain' }, B.steps.map((s) => el('li', {}, s.instruction.startsWith(s.name) ? null : el('b', { text: `${s.name}. ` }), s.instruction))),
+    el('div', { class: 'addrow' },
+      el('label', {}, 'Chosen player', giver),
+      el('label', {}, 'Name', name),
+      el('label', {}, 'Pronouns', pron),
+      el('label', {}, 'Child Bond', bond),
+      el('button', { class: 'primary', text: 'Born into the family', disabled: !givers.length, onclick: () => {
+        if (!name.value.trim()) { name.focus(); return; }
+        const g = givers.find((x) => x.id === giver.value);
+        up((s) => G.birth(s, { name: name.value.trim(), pronouns: pron.value.trim(), giverId: g.id, bondPrompt: bond.value, joiner }),
+          `${name.value.trim()} is born into the family — ${bond.value} ${joiner} ${g.name}.`);
+      } })));
+}
 
-      body.append(el('h4', { text: '1. Mark Age' }));
-      for (const ch of s2.characters.filter((c) => !c.forgotten)) {
-        const elder = G.isElder(ch);
-        body.append(el('div', { class: 'btnrow' },
-          el('span', { style: 'min-width:8rem' }, ch.name, ' ', marksRow(ch.marks, ch.crossed),
-            ch.cityMarks ? marksRow(ch.cityMarks, ch.cityCrossed, 'city') : null),
-          el('button', {
-            class: 'tiny', text: elder ? 'Cross off a Mark' : (s2.family.region === 'City' ? 'Add a City Mark' : 'Add a Mark'),
-            onclick: async () => {
-              await up((s) => {
-                const c = s.characters.find((x) => x.id === ch.id);
-                const r = G.markAge(s, c);
-                c._gained = r.gained;
-              }, elder ? `${ch.name} crosses off a Mark.` : `${ch.name} gains a Mark.`);
-              rerender();
-            },
-          }),
-          elder && ch.cityMarks > ch.cityCrossed ? el('button', {
-            class: 'tiny ghost', text: 'Cross off a City Mark',
-            onclick: async () => {
-              await up((s) => {
-                const c = s.characters.find((x) => x.id === ch.id);
-                G.markAge(s, c, { crossCityMark: true });
-              }, `${ch.name} crosses off a City Mark.`);
-              rerender();
-            },
-          }) : null));
-      }
+/* ---- The Wandering Borough */
+function boroughRoller(st, why) {
+  const cs = st.chapterStart;
+  const r = why === 'chapter' ? cs?.borough : null;
+  if (r?.station) return el('p', { class: 'small', text: `The Borough settles at ${r.station}.` });
+  if (r?.roll) {
+    return el('div', {}, el('div', { class: 'rolled' }, dieFace(r.roll, { size: 40 }), el('b', { text: r.line })),
+      el('div', { class: 'destgrid' }, r.stations.map((loc) => el('button', { type: 'button', class: 'dest',
+        onclick: () => up((s) => { G.boroughArrives(s, loc); s.chapterStart.borough.station = loc; }, `The Wandering Borough settles at ${loc}.`),
+      }, el('span', { class: 'nm', text: loc })))));
+  }
+  return el('button', { class: 'primary tiny', text: '🎲 Roll the Die', onclick: () => {
+    const w = G.boroughWanders(data);
+    up((s) => { s.chapterStart.borough = { roll: w.roll, line: w.line, stations: w.stations }; }, `The Die shows ${w.roll}: the Borough wanders along ${w.line}.`);
+  } });
+}
 
-      body.append(el('h4', { text: '2. New Bonds' }),
-        el('p', { class: 'small muted', text: 'When your character gains a Mark, make a Bond. You may use names from our Family Tradition Banners, or any other Banner matching a Tradition Card that you hold.' }));
-      for (const ch of s2.characters.filter((c) => !c.forgotten)) {
-        body.append(el('div', { class: 'well', style: 'margin-bottom:0.4rem' },
-          el('b', { text: ch.name }), bondEditor(ch)));
-      }
-
-      body.append(el('h4', { text: '3. Hold Traditions' }),
-        el('p', { class: 'small muted', text: 'If you hold more cards than Marks of Age, place the extras face-up. If you hold fewer, you may fill up from the face-up cards. Remaining cards are discarded.' }));
-      for (const ch of s2.characters.filter((c) => !c.forgotten)) {
-        const over = ch.hand.length - G.handLimit(ch);
-        if (over > 0) {
-          body.append(el('div', { class: 'btnrow' },
-            el('span', { class: 'small', text: `${ch.name} must lay down ${over}` }),
-            ch.hand.map((id) => el('button', {
-              class: 'tiny', text: card(id).prompt,
-              onclick: async () => {
-                await up((s) => {
-                  const c = s.characters.find((x) => x.id === ch.id);
-                  G.holdTraditions(s, c, c.hand.filter((x) => x !== id));
-                }, `${ch.name} lays down “${card(id).prompt}”.`);
-                rerender();
-              },
-            }))));
-        } else if (ch.hand.length < G.handLimit(ch) && s2.pool.length) {
-          body.append(el('div', { class: 'btnrow' },
-            el('span', { class: 'small', text: `${ch.name} may take ${G.handLimit(ch) - ch.hand.length}` }),
-            s2.pool.map((id) => el('button', {
-              class: 'tiny', text: card(id).prompt,
-              onclick: async () => {
-                await up((s) => {
-                  const c = s.characters.find((x) => x.id === ch.id);
-                  G.saveTradition(s, c, id);
-                }, `${ch.name} takes “${card(id).prompt}”.`);
-                rerender();
-              },
-            }))));
-        }
-      }
-      if (s2.pool.length) {
-        body.append(el('div', { class: 'btnrow' }, el('button', {
-          class: 'tiny danger', text: `Discard the remaining ${s2.pool.length}`,
-          onclick: async () => {
-            await up((s) => { G.discardPool(s, data); }, 'The remaining cards are discarded.');
-            rerender();
-          },
-        })));
-      }
-
-      body.append(el('h4', { text: '4. New Chapter or End the session?' }),
-        el('div', { class: 'btnrow' },
-          el('button', {
-            class: 'primary', text: 'Start a New Chapter',
-            onclick: async () => {
-              await up((s) => {
-                G.startNewChapter(s);
-                if (s.borough.inPlay && !s.borough.isHome) { s.borough.inPlay = false; s.borough.station = null; }
-              }, `Chapter ${S().family.chapter + 1} begins. Everyone places their Token on our Home.`);
-              close();
-              await deathChecks();
-            },
-          }),
-          el('button', {
-            class: 'ghost', text: 'Closing Reflection',
-            onclick: () => { close(); closingReflection(); },
-          })));
-    };
-    rerender();
+function boroughPanel() {
+  const st = S();
+  const cur = G.currentCharacter(st);
+  const at = whereIs(st, cur)?.name;
+  return modal('The Wandering Borough', (close) => {
+    const body = el('div', {}, instr(data.rule('The Wandering Borough')));
+    if (st.borough.isHome) {
+      add(body, instr(data.rule('Living on the Borough')));
+      let res = null;
+      const out = el('div', {});
+      add(body, out, el('div', { class: 'btnrow' }, el('button', { class: 'primary', text: '🎲 Roll the Die', onclick: () => {
+        res = G.boroughWanders(data);
+        add(clear(out), el('div', { class: 'rolled' }, dieFace(res.roll, { size: 44 }), el('b', { text: res.line })),
+          el('div', { class: 'destgrid' }, res.stations.map((loc) => el('button', { type: 'button', class: 'dest',
+            onclick: () => up((s) => G.boroughArrives(s, loc), `The Die shows ${res.roll} — the Borough wanders along ${res.line} to ${loc}.`).then(() => close()),
+          }, el('span', { class: 'nm', text: loc })))));
+      } })));
+    } else if (st.borough.inPlay) {
+      add(body, instr(data.rule('The Borough Leaves')),
+        el('div', { class: 'btnrow' }, el('button', { class: 'primary', text: 'The Borough departs',
+          onclick: () => up((s) => G.boroughLeaves(s, data), 'The Wandering Borough departs.').then(() => close()) })));
+    } else {
+      const station = at === BOROUGH ? null : at;
+      add(body, instr(data.rule('The Borough Wanders').split(/\n\s*\n/).slice(1).join('\n\n')),
+        el('div', { class: 'btnrow' }, el('button', { class: 'primary', text: `The Borough arrives near ${station}`, disabled: !station,
+          onclick: () => up((s) => G.boroughArrives(s, station), `The Wandering Borough arrives near ${station}.`).then(() => close()) })),
+        details('Transit and the Borough', instr(data.rule('Transit and The Borough'))));
+    }
+    add(body, el('div', { class: 'btnrow' }, el('button', { class: 'ghost', text: 'Close', onclick: () => close() })));
     return body;
   });
 }
 
-function closingReflection() {
-  return modal('Closing Reflection', (close) => el('div', {},
-    el('p', { class: 'small muted', text: 'Go around the circle and give each player space to reflect on their experience. Some things to consider sharing:' }),
-    el('ul', {}, ['A moment you enjoyed', 'How you are feeling right now',
-      'An appreciation of another player', 'Something you found challenging or difficult',
-      'A moment of silence'].map((t) => el('li', { text: t }))),
-    el('div', { class: 'btnrow' }, el('button', { class: 'primary', text: 'End the session', onclick: () => { close(); } }))));
+/* ---------------------------------------------------------------- family -- */
+
+function familySection(st, cur) {
+  const sec = el('section', { class: 'family' },
+    el('div', { class: 'sechead' }, el('h2', { text: 'The family' }),
+      el('span', { class: 'small muted', text: data.guidanceText('keep-cards-face-down') })));
+  add(sec, el('div', { class: 'notecards' }, st.characters.map((c) => notecard(st, c, cur))));
+  add(sec, sideCharacters(st));
+  return sec;
 }
 
-function sessionDialog() {
-  return modal('New Session Setup', (close) => el('div', {},
-    el('p', { class: 'small muted', text: '1. Distribute the Character Notecards and Tradition Cards saved from the previous Session. 2. Place the Tokens on the Location that was our Home in the previous Chapter. 3. Any player may take the first turn.' }),
-    el('div', { class: 'btnrow' },
-      el('button', {
-        class: 'primary', text: 'Begin the session',
-        onclick: async () => { await up((s) => G.newSession(s), `Session ${S().family.session + 1} begins at ${S().family.home}.`); close(); await deathChecks(); },
-      }))));
+/** Phases in which someone is taking a turn (and so is highlighted). */
+const TURN_PHASES = ['choose-scene', 'share-or-witness', 'lead', 'end-scene', 'memory-share'];
+
+function notecard(st, c, cur) {
+  const isTurn = cur && cur.id === c.id && TURN_PHASES.includes(st.turn.phase);
+  const lim = G.handLimit(c);
+  const looking = ui.look.has(c.id);
+  const state = c.forgotten ? 'forgotten' : c.isMemory ? 'a Memory' : c.leaving ? 'leaving' : c.hadMigrationScene ? 'migrating' : c.visiting ? `visiting ${locName(c.visiting)}` : null;
+  return el('article', { class: `notecard ${isTurn ? 'turn' : ''} ${c.isMemory ? 'memory' : ''} ${c.forgotten ? 'forgotten' : ''}`.trim(),
+    style: `--tok:${(TOKENS.find((t) => t.id === c.token) || {}).color || 'var(--edge)'}` },
+    el('header', {},
+      tok(c, { size: 'lg' }),
+      el('div', { class: 'nmblock' },
+        el('h3', {}, c.name, c.pronouns ? el('span', { class: 'pronouns', text: c.pronouns }) : null),
+        el('div', { class: 'sub' }, el('span', { class: 'tierlabel', text: data.tierForMarks(c.marks) }),
+          state ? el('span', { class: 'state', text: state }) : null,
+          isTurn ? el('span', { class: 'turnflag', text: 'their turn' }) : null)),
+      el('button', { class: 'menu', title: 'More', 'aria-label': `More for ${c.name}`, text: '⋯', onclick: () => characterMenu(c) })),
+    el('div', { class: 'marksline' }, marksRow(c.marks, c.crossed), c.cityMarks ? marksRow(c.cityMarks, c.cityCrossed, 'city') : null),
+    c.scene && !c.isMemory ? el('div', { class: 'onscene' }, el('span', { class: 'k', text: 'On' }), ` ${c.scene}`) : null,
+    c.bonds.length ? el('ul', { class: 'bonds' }, c.bonds.map((b) => el('li', { class: b.city ? 'city' : b.memory ? 'memory' : '', text: bondText(b) }))) : null,
+    el('div', { class: 'handhead' },
+      el('span', { class: `handcount ${c.hand.length > lim ? 'over' : ''}`.trim(), text: `Holds ${c.hand.length} of ${lim}` }),
+      c.hand.length ? el('button', { class: 'tiny ghost', text: looking ? 'Turn face down' : 'Look', 'aria-pressed': String(looking),
+        onclick: () => { if (looking) ui.look.delete(c.id); else ui.look.add(c.id); render(S()); } }) : null),
+    c.hand.length ? el('div', { class: `hand ${looking ? 'up' : 'down'}` }, c.hand.map((id) => cardEl(card(id), data, { facedown: !looking, size: 'sm' }))) : null);
 }
 
-/** Death & Memory: every Elder rolls at the start of a new Chapter (p.32). */
-async function deathChecks() {
-  for (const ch of S().characters.filter((c) => G.isElder(c) && !c.isMemory && !c.forgotten && !c.deathRolled)) {
-    let result = null;
-    await modal(`${ch.name} is an Elder`, (close) => {
-      const body = el('div', {},
-        el('p', { class: 'small muted', text: 'If your character is an Elder (has 6 Marks), roll the Die at the start of each new Chapter. If your roll is equal to or less than the crossed-off Marks, your character has died of old age and becomes a Memory.' }),
-        el('p', {}, `Crossed-off Marks: `, marksRow(ch.marks, ch.crossed)));
-      const out = el('div', {});
-      body.append(out, el('div', { class: 'btnrow' }, el('button', {
-        class: 'primary', text: '🎲 Roll the Die',
-        onclick: async () => {
-          const r = G.rollForDeath(ch);
-          result = r;
-          clear(out).append(el('p', { class: 'fate', text: r.roll }),
-            el('p', { text: r.died ? `${ch.name} has died of old age and becomes a Memory.` : `${ch.name} lives on.` }));
-          await up((s) => {
-            const c = s.characters.find((x) => x.id === ch.id);
-            c.deathRolled = true;
-            if (r.died) G.becomeMemory(s, c);
-          }, `${ch.name} rolls a ${r.roll} against ${ch.crossed} crossed-off Marks — ${r.died ? 'and passes into memory.' : 'and lives on.'}`);
-          out.append(el('div', { class: 'btnrow' }, el('button', { class: 'primary', text: 'Continue', onclick: () => close() })));
-        },
+function characterMenu(c) {
+  const st = S();
+  return modal(c.name, (close) => {
+    const body = el('div', { class: 'charmenu' });
+    const living = !c.isMemory && !c.forgotten;
+    add(body, el('h3', { text: 'Bonds' }), bondList(c));
+    if (!c.forgotten) {
+      add(body, bondComposer(c, { lists: c.isMemory ? [data.memoryBonds()] : data.bondsAtOrBelow(data.tierForMarks(c.marks)), banners: G.bondBanners(st, data, c), exclude: c.name,
+        memory: c.isMemory, onDone: () => { close(); characterMenu(chById(c.id)); } }));
+      if (c.cityMarks >= 1) add(body, details('City Bonds', instr(data.rule('City Bonds')),
+        bondComposer(c, { lists: data.cityBondsAtOrBelow(c.cityMarks), banners: G.bondBanners(st, data, c), exclude: c.name, label: 'Make the City Bond', city: true,
+          onDone: () => { close(); characterMenu(chById(c.id)); } })));
+    }
+    if (living) {
+      add(body, el('h3', { text: 'Token' }), el('div', { class: 'swatches' }, TOKENS.map((t) => {
+        const taken = st.characters.find((x) => x.token === t.id && x.id !== c.id);
+        return el('button', { type: 'button', class: `swatch ${c.token === t.id ? 'on' : ''}`.trim(), style: `--tok:${t.color}`, title: t.name,
+          disabled: !!taken, onclick: () => up((s) => { find(s, c.id).token = t.id; }).then(() => close()) });
       })));
-      return body;
-    });
-    if (result && result.died) await memoryBondDialog(ch);
-  }
+    }
+    const acts = el('div', { class: 'menuacts' });
+    const turnPhases = ['choose-scene', 'share-or-witness'];
+    if (!c.forgotten && !c.leaving && turnPhases.includes(st.turn.phase) && G.currentCharacter(st)?.id !== c.id && !c.hadMigrationScene) {
+      add(acts, el('div', { class: 'act' }, el('button', { text: 'Take the turn', onclick: () => up((s) => G.giveTurnTo(s, c.id), `${c.name} takes the turn.`).then(() => close()) }),
+        el('span', { class: 'small muted', text: 'Out of order — for when the table agrees.' })));
+    }
+    if (living) {
+      add(acts, el('div', { class: 'act' },
+        el('button', { class: 'ghost', text: 'Pass into memory', onclick: async () => {
+          close();
+          const ok = await choose(`${c.name} dies`, [{ label: `${c.name} becomes a Memory`, value: true, class: 'primary' }],
+            { body: el('div', {}, instr(data.guidanceText('other-ways-to-die')), instr(data.proc('When You Die').steps.map((s) => s.instruction).join('\n\n'))) });
+          if (!ok) return;
+          await up((s) => G.becomeMemory(s, find(s, c.id)), `${c.name} dies and becomes a Memory.`);
+          modal(`${c.name} becomes a Memory`, (cl) => el('div', {}, instr(data.step('When You Die', 'Make a Memory Bond').instruction),
+            bondComposer(chById(c.id), { lists: [data.memoryBonds()], exclude: c.name, label: 'Make the Memory Bond', memory: true, onDone: () => cl() })));
+        } }),
+        el('span', { class: 'small muted', text: sentence(data.guidanceText('other-ways-to-die'), 'you always decide') })));
+      add(acts, el('div', { class: 'act' },
+        el('button', { class: 'ghost', text: c.leaving ? 'Staying after all' : 'Leaving the game', onclick: () => up((s) => { find(s, c.id).leaving = !c.leaving; },
+          c.leaving ? `${c.name} stays with the family.` : `${c.name}’s player must leave; ${c.name} will become a side-character.`).then(() => close()) }),
+        el('span', { class: 'small muted', text: data.guidanceText('leaving-mid-game') })));
+    }
+    if (acts.childNodes.length) add(body, el('h3', { text: 'At the table' }), acts);
+    add(body, el('div', { class: 'btnrow' }, el('button', { class: 'ghost', text: 'Close', onclick: () => close() })));
+    return body;
+  });
 }
 
-function memoryBondDialog(ch) {
-  const list = data.memoryBonds();
-  return modal(`${ch.name} becomes a Memory`, (close) => el('div', {},
-    el('p', { class: 'small muted', text: 'Remove your token and return it to the box. Make a final bond using this list:' }),
-    bondPicker(ch, [list], { label: 'Make the Memory Bond' }),
+function sideCharacters(st) {
+  const input = el('input', { placeholder: 'a new side-character', list: 'allnames', autocomplete: 'off' });
+  const submit = () => {
+    const n = input.value.trim();
+    if (!n) return;
+    up((s) => { if (!s.sideCharacters.some((x) => x.name === n)) s.sideCharacters.push({ id: 'side-' + Math.random().toString(36).slice(2, 8), name: n, marks: 0 }); },
+      `${n} enters the story.`);
+  };
+  input.addEventListener('keydown', (e) => { if (e.key === 'Enter') submit(); });
+  return el('div', { class: 'sides' },
+    el('h3', { text: 'Side-Characters' }),
+    details('About side-characters', instr(data.guidanceText('side-characters')), instr(data.guidanceText('side-characters-and-age'))),
+    el('div', { class: 'sidechips' }, st.sideCharacters.map((s) => el('span', { class: 'sidechip' }, s.name,
+      el('button', { class: 'x', title: `Remove ${s.name}`, text: '×', onclick: () => up((x) => { x.sideCharacters = x.sideCharacters.filter((y) => y.id !== s.id); }) }))),
+      el('span', { class: 'addside' }, input, el('button', { class: 'tiny', text: 'Add', onclick: submit }))));
+}
+
+/* ------------------------------------------------------------------ rail -- */
+
+function turnOrder(st, cur) {
+  if (!TURN_PHASES.includes(st.turn.phase)) cur = null;
+  const order = st.turn.order.map(chById).filter((c) => c && !c.forgotten);
+  return el('section', { class: 'panel turnorder' },
+    el('h3', { text: 'Turn order' }),
+    el('ol', {}, order.map((c) => el('li', { class: `${cur && cur.id === c.id ? 'now' : ''} ${c.hadMigrationScene ? 'skip' : ''} ${c.isMemory ? 'mem' : ''}`.trim() },
+      tok(c, { size: 'sm' }),
+      el('span', { class: 'nm', text: c.name }),
+      el('span', { class: 'note', text: c.hadMigrationScene ? 'migrating' : c.isMemory ? 'Memory' : c.leaving ? 'leaving' : '' })))));
+}
+
+function decksPanel(st) {
+  return el('section', { class: 'panel' },
+    el('h3', { text: 'Tradition Decks in play' }),
+    el('div', { class: 'decks' }, st.inPlay.map((d) => {
+      const k = data.byDeck.get(d);
+      const n = (st.decks[d] || []).length;
+      return el('div', { class: `deckchip ${data.palette(d)}`, title: `${n} cards in the deck` },
+        el('span', { class: 'stack' }, shapeIcon(k?.shape)), el('span', { class: 'nm', text: d }), el('span', { class: 'n', text: n }));
+    })),
+    details('Shuffling', instr(data.substep(SETUP, 'Hold Traditions', 'Gather the Tradition Deck').instruction.split(/\n\s*\n/).pop())));
+}
+
+function recordPanel(st) {
+  const items = [];
+  let lastCh = null;
+  for (const l of (st.log || []).slice(0, 80)) {
+    if (l.ch && l.ch !== lastCh) { items.push(el('li', { class: 'chsep', text: `Chapter ${l.ch}` })); lastCh = l.ch; }
+    items.push(el('li', { class: l.undo ? 'undo' : '' }, el('span', { class: 'when', text: fmtTime(l.at) }), l.text));
+  }
+  return el('section', { class: 'panel' }, el('h3', { text: 'The record' }), el('ul', { class: 'log' }, items));
+}
+
+/* ---------------------------------------------------------------- dialogs -- */
+
+function askFateDialog() {
+  const AF = data.proc('Ask Fate');
+  const [s1, s2, s3] = AF.steps;
+  return modal('Ask Fate', (close) => {
+    const q = el('input', { placeholder: 'the question for Fate', class: 'wide' });
+    const fields = data.askFate.map((o) => ({ o, input: el('textarea', { rows: 2, placeholder: o.definition }) }));
+    const out = el('div', { class: 'fateout' });
+    return el('div', { class: 'fate' },
+      instr(AF.instruction),
+      stepBlock(1, s1.name, '', instr(s1.instruction), q),
+      stepBlock(2, s2.name, '', instr(s2.instruction.split(/\n\s*\n/)[0]),
+        el('div', { class: 'outcomes' }, fields.map(({ o, input }) => el('label', { class: 'outcome', dataset: { band: o.roll } },
+          el('span', { class: 'band', text: o.roll }), el('span', { class: 'oname', text: o.outcome }), input)))),
+      stepBlock(3, s3.name, '', out,
+        el('div', { class: 'btnrow' },
+          el('button', { class: 'primary big', text: '🎲 Roll the Die', onclick: async () => {
+            const r = G.askFate(data);
+            const chosen = fields.find((f) => f.o.roll === r.band);
+            for (const f of fields) f.input.closest('.outcome').classList.toggle('hit', f === chosen);
+            add(clear(out), el('div', { class: 'rolled big' }, dieFace(r.roll, { size: 64 }),
+              el('div', {}, el('b', { text: r.outcome.outcome }), el('p', { text: chosen.input.value.trim() || r.outcome.definition }))));
+            await up(() => {}, `Fate is asked${q.value.trim() ? ` “${q.value.trim()}”` : ''} and answers ${r.roll}: ${r.outcome.outcome.toLowerCase()}${chosen.input.value.trim() ? ` — ${chosen.input.value.trim()}` : ''}.`);
+          } }),
+          el('button', { class: 'ghost', text: 'Close', onclick: () => close() }))),
+      details('Advice on asking Fate', instr(data.guidanceText('fate-advice'))));
+  });
+}
+
+function settingsDialog() {
+  const st = S();
+  return modal('Table settings', (close) => el('div', { class: 'settings' },
+    el('h3', { text: 'Variants' }),
+    variantToggles(st, st.setupComplete ? ['The Umbra Follows', 'Solo Play'] : ['The Umbra Follows', 'Fleeing the City', 'Solo Play']),
+    st.setupComplete && st.variants['Fleeing the City'] ? el('p', { class: 'small muted', text: 'Fleeing the City was chosen at setup.' }) : null,
+    el('h3', { text: 'This table' }),
+    el('p', { class: 'small muted', text: `Room “${st.room}”, saved in this browser only. Add ?room=another-name to the address to keep a second family.` }),
     el('div', { class: 'btnrow' },
-      el('button', { class: 'primary', text: 'Done', onclick: () => close() }))));
-}
-
-function memoryStage(st, cur, loc, stage) {
-  stage.append(el('div', { class: 'phase', text: `Memory Scene · ${cur.name}` }),
-    el('h2', { text: 'Move another Player’s Token' }),
-    say('Move another character’s Token to any scene they would normally have access to.'));
-  const target = others(cur).filter((c) => !c.isMemory)[0];
-  if (!target) {
-    stage.append(el('p', { class: 'muted', text: 'There is no other character to move.' }),
-      el('div', { class: 'btnrow' }, el('button', { class: 'primary', text: 'Pass the turn', onclick: () => up((s) => G.passTurn(s)) })));
-    return stage;
-  }
-  stage.append(el('div', { class: 'btnrow' }, el('span', { class: 'small muted', text: 'Moving ' + target.name })));
-  stage.append(sceneGrid(st, loc, (sceneName) =>
-    up((s) => {
-      const t = s.characters.find((x) => x.id === target.id);
-      G.memoryMoveToken(s, t, sceneName);
-      s.turn.memoryTarget = target.id;
-    }, `${cur.name}, as a memory, places ${target.name}’s token on “${sceneName}”.`)));
-  return stage;
-}
-
-function memoryShareStage(st, cur, stage) {
-  const target = chById(st.turn.memoryTarget);
-  stage.append(el('div', { class: 'phase', text: `Memory Scene · ${cur.name}` }),
-    el('h2', { text: st.turn.scene }),
-    say('Choose a Tradition Card to share with this player’s character, and play it face down on the table. Lead the scene, roleplaying as our memory of your character. Before the end of the scene, describe how you share your tradition and give your Tradition Card to the other player.'),
-    el('div', { class: 'cardrow' }, cur.hand.map((id) => cardEl(card(id), data, {
-      selectable: true,
-      onclick: async () => {
-        await up((s) => {
-          const c = s.characters.find((x) => x.id === cur.id);
-          const t = s.characters.find((x) => x.id === target.id);
-          c.hand = c.hand.filter((x) => x !== id);
-          t.hand.push(id);
-          G.checkForgotten(c);
-          G.passTurn(s);
-        }, `${cur.name}’s memory shares “${card(id).prompt}” with ${target.name}.`);
-        const me = chById(cur.id);
-        if (me && me.forgotten) {
-          await modal('Becoming forgotten', (close) => el('div', {},
-            el('p', { class: 'small muted', text: 'When you have shared your last Tradition Card, remove your Notecard from play. You may no longer take turns. At the start of the next Chapter, follow the Birth rules to create a new character.' }),
-            el('div', { class: 'btnrow' }, el('button', { class: 'primary', text: 'Birth', onclick: () => { close(); birthDialog(); } }),
-              el('button', { class: 'ghost', text: 'Later', onclick: () => close() }))));
-        }
-      },
-    }))),
-    cur.hand.length === 0
-      ? el('div', { class: 'btnrow' }, el('button', { class: 'primary', text: 'Pass the turn', onclick: () => up((s) => G.passTurn(s)) }))
-      : null);
-  return stage;
+      el('button', { class: 'danger', text: 'Reset this table…', onclick: async () => {
+        close();
+        const ok = await choose('Reset the table?', [{ label: 'Yes, put everything back in the box', value: true, class: 'danger' }],
+          { body: el('p', { class: 'small muted', text: 'This clears the family, the decks and the record for this room.' }) });
+        if (ok) { Object.assign(ui, { look: new Set(), holdFor: null, witness: null, memTarget: null, carry: null, keep: {}, passPick: null, travel: false, migrateScene: false }); store.reset(); }
+      } }),
+      el('button', { class: 'ghost', text: 'Close', onclick: () => close() }))));
 }
 
 function birthDialog() {
-  const st = S();
-  const givers = st.characters.filter((c) => !c.forgotten);
-  const childList = data.bondLists.find((b) => b.kind === 'Bonds' && b.tier === 'Child');
-  return modal('Birth', (close) => {
-    const name = el('input', { placeholder: 'the name you are given' });
-    const pron = el('input', { placeholder: 'they/them' });
-    const giver = el('select', {}, givers.map((g) => el('option', { value: g.id, text: g.name })));
-    const bond = el('select', {}, [...childList.prompts, childList.openPrompt].map((p) =>
-      el('option', { value: p, text: p })));
-    return el('div', {},
-      el('p', { class: 'small muted', text: '1. Choose another player. 2. That player gives you a name. 3. The player you chose gives you a Child Bond with their character. 4. Choose a Token and place it on our family’s Home.' }),
-      el('div', { class: 'charform' },
-        el('div', {}, el('label', { text: 'Name' }), el('br'), name),
-        el('div', {}, el('label', { text: 'Pronouns' }), el('br'), pron),
-        el('div', {}, el('label', { text: 'Chosen player' }), el('br'), giver),
-        el('div', {}, el('label', { text: 'Child Bond' }), el('br'), bond)),
-      el('div', { class: 'btnrow' }, el('button', {
-        class: 'primary', text: 'A new character joins the family',
-        onclick: async () => {
-          if (!name.value.trim()) return;
-          await up((s) => G.birth(s, {
-            name: name.value.trim(), pronouns: pron.value.trim(),
-            giverId: giver.value,
-            bondPrompt: bond.value.replace(/^or /, '').replace(/\.\.\.$/, '').replace(/ of$/, ''),
-          }), `${name.value.trim()} is born into the family.`);
-          close();
-        },
-      })));
-  });
+  return modal('Birth', (close) => el('div', {}, instr(data.proc('Birth').instruction), birthForm(),
+    el('div', { class: 'btnrow' }, el('button', { class: 'ghost', text: 'Close', onclick: () => close() }))));
 }
 
-/* --------------------------------------------------------------- the Borough */
-
-function boroughDialog() {
-  const st = S();
-  return modal('The Borough Wanders', (close) => {
-    const body = el('div', {},
-      el('p', { class: 'small muted', text: st.borough.inPlay
-        ? 'If “The Borough Wanders” card is drawn while the Borough is already in play, the Borough now leaves. Describe the Borough departing at some point during the scene and then remove it from play.'
-        : 'During a scene, we treat this card like a normal Tradition prompt, using it to inspire a description of the arrival of the Borough. Place the Wandering Borough Location Card next to the edge of the map near where the scene took place.' }));
-    if (st.borough.inPlay) {
-      body.append(el('div', { class: 'btnrow' }, el('button', {
-        class: 'primary', text: 'The Borough leaves',
-        onclick: async () => {
-          await up((s) => { G.boroughLeaves(s); s.pendingBorough = false; },
-            'The Wandering Borough departs.');
-          close();
-        },
-      })));
-    } else {
-      body.append(el('div', { class: 'btnrow' },
-        [S().family.home, ...data.transitLines.flatMap((t) => t.stations)]
-          .filter((v, i, a) => v && a.indexOf(v) === i)
-          .map((loc) => el('button', {
-            class: 'tiny', text: loc,
-            onclick: async () => {
-              await up((s) => { G.boroughArrives(s, loc); s.pendingBorough = false; },
-                `The Wandering Borough appears at ${loc}.`);
-              close();
-            },
-          }))));
-    }
-    body.append(el('div', { class: 'btnrow' }, el('button', {
-      class: 'ghost', text: 'Roll to see where it wanders',
-      onclick: async () => {
-        const r = G.boroughWanders(S(), data);
-        await up((s) => { s.pendingBorough = false; },
-          `The Die shows ${r.roll} — ${r.line || 'no line'}. Choose any location along it.`);
-        clear(body).append(el('p', { class: 'fate', text: r.roll }),
-          el('p', {}, el('b', { text: r.line || '—' })),
-          el('div', { class: 'btnrow' }, r.stations.map((loc) => el('button', {
-            class: 'tiny', text: loc,
-            onclick: async () => {
-              await up((s) => G.boroughArrives(s, loc), `The Wandering Borough moves to ${loc}.`);
-              close();
-            },
-          }))));
-      },
-    })));
-    return body;
-  });
-}
-
-/* ---------------------------------------------------------------- Ask Fate */
-
-function askFateDialog() {
-  return modal('Ask Fate', (close) => {
-    const out = el('div', {});
-    const likely = el('input', { placeholder: 'a likely outcome' });
-    const unlikely = el('input', { placeholder: 'an unlikely outcome' });
-    const fateful = el('input', { placeholder: 'a fateful outcome' });
-    return el('div', {},
-      el('p', { class: 'small muted', text: 'When a question arises that no one wants to answer, ask Fate. As a group, agree to a likely, an unlikely, and a fateful outcome.' }),
-      el('div', { style: 'display:grid;gap:0.4rem' },
-        el('div', {}, el('label', { text: 'Likely (1–3)' }), el('br'), likely),
-        el('div', {}, el('label', { text: 'Unlikely (4–5)' }), el('br'), unlikely),
-        el('div', {}, el('label', { text: 'Fateful (6)' }), el('br'), fateful)),
-      out,
-      el('div', { class: 'btnrow' }, el('button', {
-        class: 'primary', text: '🎲 Fate Answers',
-        onclick: async () => {
-          const r = G.askFate(data);
-          const chosen = { '1-3': likely.value, '4-5': unlikely.value, '6': fateful.value }[r.band];
-          clear(out).append(el('p', { class: 'fate', text: r.roll }),
-            el('p', {}, el('b', { text: r.outcome.outcome }), ' — ', chosen || r.outcome.definition));
-          await up(() => {}, `Fate is asked and answers ${r.roll}: ${r.outcome.outcome}${chosen ? ` — ${chosen}` : ''}.`);
-        },
-      }), el('button', { class: 'ghost', text: 'Close', onclick: () => close() })));
-  });
-}
-
-function bondsDialog(ch) {
-  return modal(`${ch.name}’s Bonds`, () => {
-    const body = el('div', {}, bondEditor(ch));
-    if (ch.cityMarks >= 1) {
-      body.append(el('h4', { text: 'City Bonds' }),
-        el('p', { class: 'small muted', text: 'If your character has at least one City Mark, you may alternately choose a prompt from the City Bonds list when making a Bond. The prompts are organized by number of Marks, and you may only choose from a list that has the same or fewer number of City Marks as your character.' }),
-        bondPicker(ch, data.cityBondsAtOrBelow(ch.cityMarks), { label: 'City Bond', cityMark: true }));
-    }
-    return body;
-  });
-}
-
-/* ------------------------------------------------------------------ render */
-
-function render(st) {
-  clear(root);
-  root.append(el('datalist', { id: 'allnames' },
-    [...st.characters.map((c) => c.name), ...st.sideCharacters.map((c) => c.name),
-     ...data.decks.flatMap((k) => k.names || [])]
-      .filter((v, i, a) => v && a.indexOf(v) === i)
-      .map((n) => el('option', { value: n }))));
-
-  if (!st.setupComplete) {
-    root.append(el('h2', { text: 'First Session Setup' }));
-    root.append(renderSetup(st));
-  } else {
-    root.append(renderTable(st));
-  }
-
-  root.append(el('div', { class: 'btnrow', style: 'margin-top:2rem' },
-    el('button', {
-      class: 'ghost tiny', text: 'Reset this table',
-      onclick: async () => {
-        const ok = await choose('Reset the table?',
-          [{ label: 'Yes, put everything back in the box', value: true, class: 'danger' }],
-          { body: el('p', { class: 'small muted', text: 'This clears the family, the decks and the record for this room.' }) });
-        if (ok) store.reset();
-      },
-    }),
-    el('span', { class: 'small muted', text: `room “${st.room}” · saved in this browser` })));
-}
-
+// Last, so every const above exists before the first render.
+store.subscribe(render);
+render(store.state);
 mountFooter();

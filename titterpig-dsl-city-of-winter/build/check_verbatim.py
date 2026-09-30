@@ -20,7 +20,16 @@ import sys
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 CORPUS = os.path.join(os.path.dirname(ROOT), "0.5")
-SRC = os.path.abspath(os.path.join(ROOT, "..", "..", "..", "source"))
+# The published game lives beside the repo, never in it (not ours to publish):
+# <campaign>/city-of-winter-support/archive/sourcebooks/City of Winter/.
+# COW_SOURCE overrides; the pre-2026-09 sibling ../source is the fallback.
+SRC = os.environ.get("COW_SOURCE") or next(
+    (p for p in (
+        os.path.join(ROOT, "..", "..", "..", "city-of-winter-support", "archive", "sourcebooks", "City of Winter"),
+        os.path.join(ROOT, "..", "..", "..", "source"),
+    ) if os.path.isdir(p)),
+    os.path.join(ROOT, "..", "..", "..", "source"))
+SRC = os.path.abspath(SRC)
 PDFS = [os.path.join(SRC, "CoW-Instructions.pdf"), os.path.join(SRC, "CoW-Atlas.pdf"),
         os.path.join(SRC, "CoW-Cards-Banners-PnP-v1.pdf")]
 

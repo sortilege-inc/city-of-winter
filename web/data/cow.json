@@ -3996,6 +3996,26 @@
    "text": "Choose your Home & Tradition from of the following options:\n\nMoonbee of the Palace of the Moon\n\nFox of the Refuge\n\nBrass Ones of Lantern Gate\n\nGlowdog of the Dust\n\nCrow of the Drift\n\nMask Maker of the Wandering Borough"
   }
  ],
+ "concepts": {
+  "Memory": "For the rest of the Chapter you will play as our family’s memory of your character.\n\nA character who is a Memory does not participate in the Migration Scene procedure or in another character’s Share a Tradition Scene.\n\nOtherwise, continue to participate fully in other players’ turns, offering suggestions and playing side characters, or roleplaying a tradition in a Witness a Tradition Scene, as normal.\n\nOn your turn, follow the Memory Scene procedure.",
+  "Session": "A single sitting of play. A game can last just one session (a one-shot) or run as an ongoing campaign lasting many sessions.",
+  "Chapter": "City of Winter is played in Chapters. During a Chapter, we take turns leading the group in a Tradition Scene. To start a new Chapter, decide who will go first then continue taking turns, clockwise.",
+  "Campaign": "A Campaign is the fullest way to experience City of Winter. You can start a Campaign by planning in advance, or evolve a one-shot into a Campaign by simply playing more Sessions.",
+  "River Scroll": "A map of connected Locations we unroll as we migrate from the Riverlands on the left, to the City of Winter at the far end of the scroll.",
+  "City Map": "When we arrive at the City of Winter, the River Scroll is replaced by the City Map that shows its numerous Locations and Transit System in detail.",
+  "Token": "Double-sided Tokens represent our characters in the story.",
+  "Die": "City of Winter uses a single, six-sided Die.",
+  "X-Card": "A safety tool used to address anything causing discomfort or spoiling our fun in our game.",
+  "Wandering Borough Card": "An additional location that is used with the City Map.",
+  "Notecard": "Each player needs a Notecard (or small piece of paper) to track information about their character. This is also called a Character Card.",
+  "Writing Utensils": "Everyone will need something to write with. Pencils, pens, colored markers are all fine.",
+  "Tradition Deck": "The Tradition Cards are separated into 11 Tradition Decks. Every card has an icon on the back showing which deck it belongs to.",
+  "Tradition Banner": "Each Tradition Deck has a Banner that goes with it. These Banners contain name-lists and are also used as dividers to keep the Tradition Decks organized.",
+  "Marks of Age": "We track our character’s age by drawing circles called Marks of Age. There is no direct correlation between the number of Marks and the exact age of a character in years. We can decide for ourselves what they mean as we play.",
+  "City Marks": "If our family’s Home is in the City of Winter, we mark age with diamond-shaped City Marks instead of a circles. City Marks represent both your age, and how much you’ve adapted to life in the city.\n\nIf an Elder has both regular and City Marks, they may cross off either when we Mark Age.",
+  "Bond": "Our characters begin with two Bonds. A Bond represents an important relationship that helps to define your character’s role in our family.\n\nTo create a Bond, combine a prompt from the Bonds List with the name of another character and write it on your Notecard.\n\nThe prompts are organized by age, and you may only choose prompts at your age or younger.",
+  "Scene": "Each location has several prompts called Scenes. On your turn, move your token to a scene at our family’s current location. You may choose any scene, even if another player’s token is already there."
+ },
  "optionalRules": [
   {
    "name": "The Umbra Follows",

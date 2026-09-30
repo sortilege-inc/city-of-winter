@@ -110,6 +110,7 @@ body::before{
 .topnav a:hover{ color:var(--chalk); background:rgba(244,241,232,0.07); }
 .topnav a.active{ color:var(--ice); box-shadow:inset 0 -2px 0 var(--ice-deep); }
 .topnav .spacer{ flex:1 1 auto; }
+.topnav .links{ display:contents; }
 .topnav .xcard{ color:var(--magenta); border:1px solid rgba(232,72,155,0.4); }
 .topnav .xcard:hover{ background:rgba(232,72,155,0.14); color:var(--pink); }
 
@@ -195,36 +196,142 @@ a:hover{ color:var(--chalk); }
 }
 
 /* ------------------------------------------------------------ tradition card */
+/* A card in the game's own printing: pale ice for the Riverlands, sand for the
+   City, ash for the Umbra, each with an inset printed border. Face down, the
+   back shows the deck's icon (p.8). */
 .tcard{
-  position:relative; display:flex; flex-direction:column; justify-content:flex-start;
-  align-items:center; text-align:center;
-  min-height:132px; padding:0.85rem 0.7rem 0.7rem;
-  border-radius:4px; border:1px solid rgba(0,0,0,0.5);
-  font-family:var(--serif); font-size:0.98rem; line-height:1.22;
-  box-shadow:0 4px 14px rgba(0,0,0,0.5);
-  cursor:default; user-select:none;
+  position:relative; display:flex; flex-direction:column; align-items:center; justify-content:space-between;
+  width:100%; aspect-ratio:5/7; padding:0.75rem 0.55rem 0.5rem; margin:0;
+  border-radius:8px; border:1px solid rgba(0,0,0,0.55);
+  font-family:var(--serif); font-variant:normal; letter-spacing:normal; text-align:center; line-height:1.18;
+  box-shadow:0 5px 14px rgba(0,0,0,0.5), inset 0 0 0 4px rgba(255,255,255,0.22), inset 0 0 0 5px rgba(0,0,0,0.14);
+  cursor:default; user-select:none; color:inherit;
+  transition:transform .14s ease, box-shadow .14s ease, opacity .14s ease;
 }
-.tcard .prompt{ font-size:1.02rem; }
+.tcard .prompt{ font-size:1.02rem; margin:auto 0; text-wrap:balance; }
 .tcard .deck{
-  margin-top:auto; padding-top:0.5rem;
-  font-family:var(--caps); font-variant:small-caps; letter-spacing:0.1em;
-  font-size:0.76rem; opacity:0.72;
+  display:flex; align-items:center; justify-content:center; gap:0.15em;
+  font-family:var(--caps); font-variant:small-caps; letter-spacing:0.08em;
+  font-size:0.72rem; opacity:0.78; line-height:1.1;
 }
-/* Riverlands decks: pale ice face, steel ink */
-.tcard[data-palette="river"]{ background:linear-gradient(#cfe3ec,#b3cfdd); color:#26404f; }
-/* City decks: sand face, rust ink */
-.tcard[data-palette="city"]{ background:linear-gradient(#efd7ae,#e2c391); color:#7c3d18; }
-/* the Umbra: ash face, charcoal ink */
-.tcard[data-palette="umbra"]{ background:linear-gradient(#e6e5e2,#cfcecb); color:#2a2a2e; }
-.tcard.facedown{ background:repeating-linear-gradient(45deg,#1d2a33,#1d2a33 6px,#22313b 6px,#22313b 12px); color:transparent; }
-.tcard.selectable{ cursor:pointer; }
-.tcard.selectable:hover{ transform:translateY(-3px); box-shadow:0 8px 22px rgba(0,0,0,0.6); }
-.tcard.chosen{ outline:2px solid var(--amber); outline-offset:2px; }
+.tcard .deck .shape{ width:0.8em; height:0.8em; border-width:1.5px; }
+.tcard[data-palette="river"]{ background:linear-gradient(170deg,#d7e8f0,#b3cfdd); color:#23404f; }
+.tcard[data-palette="city"]{ background:linear-gradient(170deg,#f3dcb3,#e0bf8a); color:#74391a; }
+.tcard[data-palette="umbra"]{ background:linear-gradient(170deg,#ecebe8,#c9c8c4); color:#26262a; }
+.tcard.facedown{
+  justify-content:center;
+  background:
+    radial-gradient(circle at 50% 42%, rgba(255,255,255,0.06), transparent 55%),
+    repeating-linear-gradient(45deg,#18222b 0 7px,#1d2a34 7px 14px);
+  color:var(--ice);
+  box-shadow:0 5px 14px rgba(0,0,0,0.5), inset 0 0 0 4px rgba(188,216,230,0.16), inset 0 0 0 5px rgba(0,0,0,0.4);
+}
+.tcard.facedown[data-palette="city"]{
+  background:radial-gradient(circle at 50% 42%, rgba(255,255,255,0.06), transparent 55%), repeating-linear-gradient(45deg,#2b1a12 0 7px,#34200f 7px 14px);
+  color:var(--sand); box-shadow:0 5px 14px rgba(0,0,0,0.5), inset 0 0 0 4px rgba(232,203,158,0.18), inset 0 0 0 5px rgba(0,0,0,0.4);
+}
+.tcard.facedown[data-palette="umbra"]{
+  background:radial-gradient(circle at 50% 42%, rgba(255,255,255,0.05), transparent 55%), repeating-linear-gradient(45deg,#161618 0 7px,#1f1f22 7px 14px);
+  color:var(--umbra-lit);
+}
+.tcard .back{ display:flex; flex-direction:column; align-items:center; gap:0.45rem; }
+.tcard .back .shape{ width:1.6em; height:1.6em; border-width:2px; }
+.tcard .back .deck{ opacity:0.85; font-size:0.72rem; }
+button.tcard{ cursor:pointer; }
+button.tcard:hover, button.tcard:focus-visible{ transform:translateY(-3px); box-shadow:0 10px 22px rgba(0,0,0,0.6), inset 0 0 0 4px rgba(255,255,255,0.3), inset 0 0 0 5px rgba(0,0,0,0.14); }
+button.tcard:focus-visible{ outline:2px solid var(--gold-lit); outline-offset:3px; }
+.tcard.chosen{ outline:2px solid var(--amber); outline-offset:3px; }
+.tcard.dim{ opacity:0.55; }
+.tcard.sz-sm{ padding:0.5rem 0.4rem 0.35rem; border-radius:6px; }
+.tcard.sz-sm .prompt{ font-size:0.84rem; }
+.tcard.sz-sm .deck{ font-size:0.62rem; }
+.tcard.sz-sm .back .shape{ width:1.2em; height:1.2em; }
+.tcard.sz-sm .back .deck{ display:none; }
 .tcard .borough{
-  position:absolute; top:0.3rem; right:0.4rem; font-size:0.7rem;
-  font-family:var(--caps); font-variant:small-caps; letter-spacing:0.08em; opacity:0.8;
+  position:absolute; top:0.35rem; right:0.5rem; font-size:0.85rem; opacity:0.8;
 }
-.cardrow{ display:grid; gap:0.6rem; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); }
+.tcard .cbadge{
+  position:absolute; top:-0.55rem; left:50%; transform:translateX(-50%);
+  font-family:var(--caps); font-variant:small-caps; font-size:0.72rem; letter-spacing:0.08em;
+  background:var(--amber); color:#1a1208; padding:0 0.45rem; border-radius:99px;
+}
+.cardrow{ display:grid; gap:0.7rem; grid-template-columns:repeat(auto-fill,128px); }
+.cardrow.tight{ gap:0.45rem; grid-template-columns:repeat(auto-fill,88px); }
+
+/* ------------------------------------------------------------------- tokens */
+/* The app's stand-in for the boxed picture Tokens: a colour, with an initial. */
+.token{
+  display:inline-grid; place-items:center; flex:none;
+  width:1.75rem; height:1.75rem; border-radius:50%;
+  background:radial-gradient(circle at 34% 28%, color-mix(in srgb, var(--tok) 55%, white), var(--tok) 58%, color-mix(in srgb, var(--tok) 62%, black));
+  color:#15151b; font-family:var(--disp); font-size:0.92rem; line-height:1;
+  box-shadow:0 0 0 1.5px rgba(10,10,12,0.8), 0 0 0 2.5px color-mix(in srgb, var(--tok) 60%, transparent), 0 3px 8px rgba(0,0,0,0.55);
+}
+.token.xs{ width:1.05rem; height:1.05rem; font-size:0.6rem; box-shadow:0 0 0 1px rgba(10,10,12,0.8); }
+.token.sm{ width:1.4rem; height:1.4rem; font-size:0.76rem; }
+.token.lg{ width:2.6rem; height:2.6rem; font-size:1.3rem; }
+.token.memorytok{ --tok:#5a5a70; color:var(--chalk); font-family:var(--serif); }
+
+/* ------------------------------------------------ eyebrow and step blocks */
+.eyebrow{
+  font-family:var(--caps); font-variant:small-caps; letter-spacing:0.16em;
+  font-size:0.86rem; color:var(--gold);
+}
+.stepblock{
+  position:relative; padding:0.1rem 0 0.9rem 2.3rem; margin:0.4rem 0 0.2rem;
+  border-left:1px solid var(--edge-soft); margin-left:0.8rem;
+}
+.stepblock:last-child{ border-left-color:transparent; }
+.stepblock > h4{ display:flex; align-items:center; gap:0.5rem; margin:0 0 0.2rem; color:var(--chalk); font-size:1.1rem; }
+.stepblock > h4 .n{
+  position:absolute; left:-0.82rem; top:0;
+  display:grid; place-items:center; width:1.6rem; height:1.6rem; border-radius:50%;
+  background:var(--night-3); border:1px solid var(--edge-hair); color:var(--gold-lit);
+  font-family:var(--serif); font-variant:normal; font-size:0.88rem;
+}
+.stepblock.done > h4 .n{ background:var(--slate); border-color:var(--ice-deep); color:var(--ice); }
+.stepblock.done > h4{ color:var(--chalk-2); }
+.stepblock .tick{ color:var(--ice); font-size:0.9rem; }
+.steps.compact .stepblock{ padding-bottom:0.3rem; }
+
+
+/* ---------------------------------------------------------------- rule text */
+/* The book's words. Instructions read as body text; the "teaching" passages —
+   the ones a player reads out — sit in a quiet quoted column. */
+.rtext p{ margin:0 0 0.6rem; }
+.rtext p:last-child{ margin-bottom:0; }
+.rtext ul{ margin:0.2rem 0 0.6rem; padding-left:1.2rem; }
+.rtext li{ margin:0.15rem 0; }
+.rtext.instr{ color:var(--chalk-2); margin:0.35rem 0 0.75rem; }
+.rtext.teach.aloud::before{
+  content:"Read aloud"; display:block; font-style:normal; font-family:var(--caps); font-variant:small-caps;
+  letter-spacing:0.12em; font-size:0.78rem; color:var(--ice-deep); margin-bottom:0.2rem;
+}
+.rtext.teach{
+  color:var(--chalk); font-style:italic; font-size:1.06rem;
+  border-left:2px solid var(--ice-deep); padding:0.1rem 0 0.1rem 1rem; margin:0.5rem 0 0.9rem;
+}
+
+details.aside{ margin:0.45rem 0 0.7rem; }
+details.aside > summary{
+  cursor:pointer; list-style:none; display:inline-flex; align-items:center; gap:0.4rem;
+  font-family:var(--caps); font-variant:small-caps; letter-spacing:0.09em; font-size:0.9rem; color:var(--ice-deep);
+}
+details.aside > summary::-webkit-details-marker{ display:none; }
+details.aside > summary::before{ content:"▸"; font-size:0.75rem; transition:transform .15s ease; }
+details.aside[open] > summary::before{ transform:rotate(90deg); }
+details.aside > summary:hover{ color:var(--ice); }
+details.aside[open]{ background:rgba(0,0,0,0.18); border:1px solid var(--edge-soft); border-radius:5px; padding:0.45rem 0.8rem 0.6rem; }
+details.aside[open] > summary{ margin-bottom:0.4rem; }
+details.aside .rtext.instr{ margin-bottom:0.2rem; font-size:0.96rem; }
+
+/* ---------------------------------------------------------------------- die */
+svg.die rect{ fill:var(--chalk); stroke:rgba(0,0,0,0.4); }
+svg.die circle{ fill:var(--night); }
+.rolled{ display:inline-flex; align-items:center; gap:0.6rem; }
+.rolled svg.die{ filter:drop-shadow(0 4px 10px rgba(0,0,0,0.55)); animation:settle .5s cubic-bezier(.2,1.4,.4,1); }
+@keyframes settle{ from{ transform:rotate(-40deg) scale(.6); opacity:0; } to{ transform:none; opacity:1; } }
+@media (prefers-reduced-motion: reduce){ .rolled svg.die{ animation:none; } }
 
 /* -------------------------------------------------------------- shape icons */
 .shape{ display:inline-block; width:0.86em; height:0.86em; vertical-align:-0.08em; margin-right:0.18em; }
@@ -243,6 +350,7 @@ a:hover{ color:var(--chalk); }
 }
 .mark.city{ border-radius:2px; transform:rotate(45deg) scale(0.9); border-color:var(--magenta); }
 .mark.city.off{ border-color:var(--chalk-faint); }
+.marks .nomarks{ font-family:var(--caps); font-variant:small-caps; letter-spacing:0.08em; font-size:0.82rem; color:var(--chalk-faint); }
 
 /* ------------------------------------------------------------------ buttons */
 button, .btn{
@@ -255,6 +363,8 @@ button, .btn{
 }
 button:hover, .btn:hover{ background:#2b2b3a; border-color:var(--edge-hair); }
 button:disabled{ opacity:0.4; cursor:not-allowed; }
+button:focus-visible, .btn:focus-visible, a:focus-visible, summary:focus-visible{ outline:2px solid var(--gold-lit); outline-offset:2px; }
+button.big{ font-size:1.08rem; padding:0.55rem 1.2rem; }
 button.primary{ background:linear-gradient(var(--steel),var(--slate)); border-color:var(--ice-deep); color:var(--chalk); }
 button.primary:hover{ background:linear-gradient(#5b7d96,#354c5e); }
 button.warm{ background:linear-gradient(var(--rust),#8d4a24); border-color:var(--amber); }
@@ -334,6 +444,13 @@ dialog .close{ float:right; }
 @media (max-width:820px){
   body{ font-size:17px; }
   .wrap{ padding:1.4rem 0.9rem 3rem; }
-  .topnav{ padding:0.5rem 0.7rem; }
-  .topnav .brand{ width:100%; margin-bottom:0.2rem; }
+  .topnav{ padding:0.45rem 0.7rem 0.2rem; align-items:center; }
+  .topnav .brand{ margin-right:0.5rem; font-size:1.02rem; }
+  .topnav .xcard{ font-size:0.9rem; padding:0.15rem 0.5rem; }
+  .topnav .links{
+    display:flex; order:3; width:100%; overflow-x:auto; scrollbar-width:none;
+    margin:0.25rem -0.7rem 0; padding:0 0.45rem;
+  }
+  .topnav .links::-webkit-scrollbar{ display:none; }
+  .topnav .links a{ white-space:nowrap; font-size:0.92rem; padding:0.3rem 0.5rem; }
 }

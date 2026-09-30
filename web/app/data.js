@@ -143,5 +143,20 @@ function index(raw) {
     return k.region === 'City' ? 'city' : 'river';
   };
 
+  /* ---- rules text, always the book's own words, looked up by name ---- */
+  const must = (v, what) => { if (v == null) throw new Error(`feed has no ${what}`); return v; };
+  d.proc = (name) => must(d.byProcedure.get(name), `procedure ${name}`);
+  d.step = (procName, stepName) =>
+    must(d.proc(procName).steps.find((s) => s.name === stepName), `step ${procName} / ${stepName}`);
+  d.option = (procName, stepName, optName) =>
+    must((d.step(procName, stepName).options || []).find((o) => o.name === optName), `option ${optName}`);
+  d.substep = (procName, stepName, subName) =>
+    must((d.step(procName, stepName).substeps || []).find((o) => o.name === subName), `substep ${subName}`);
+  d.rule = (name) => must(d.byRule.get(name), `rule ${name}`).text;
+  d.concept = (name) => must((raw.concepts || {})[name], `concept ${name}`);
+  d.guidanceText = (label) => must(raw.guidance.find((g) => g.label === label), `guidance ${label}`).text;
+  d.optional = (name) => must(raw.optionalRules.find((o) => o.name === name), `optional rule ${name}`);
+  d.loreByTitle = (title) => must(raw.lore.find((l) => l.title === title), `lore ${title}`);
+
   return d;
 }

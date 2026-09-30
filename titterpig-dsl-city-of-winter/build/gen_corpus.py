@@ -20,6 +20,11 @@ ROOT = os.path.dirname(os.path.abspath(__file__))
 REPO = os.path.dirname(ROOT)
 OUT = os.path.join(REPO, "0.5")
 SPEC_VERSION = "0.5"
+# Content revisions within spec 0.5, per file id (the patch digit). Bump the
+# file you edit; the others stay at VERSION.
+FILE_VERSION = {
+    "CityOfWinter_Core_Base": "0.5.1",   # paragraph breaks in City Marks, Bond, Memory
+}
 VERSION = "0.5"
 RELEASE_DATE = "2026-08-12"
 BASE_ID = "CityOfWinter_Core_Base"
@@ -105,10 +110,17 @@ def header(w, kind, fid, name, parent=None):
     else:
         w.open(f'{kind} {q(fid)} {{')
     w.line(f'NAME {q(name)}')
-    w.line(f'VERSION {q(VERSION)}')
+    w.line(f'VERSION {q(FILE_VERSION.get(fid, VERSION))}')
     w.line(f'SPEC_VERSION {q(SPEC_VERSION)}')
     w.line(f'RELEASE_DATE {q(RELEASE_DATE)}')
     w.line()
+
+
+CONCEPTS = {}
+def concept(name, text):
+    """A DESCRIPTION the app also shows (Marks of Age, City Marks, Bond...)."""
+    CONCEPTS[name] = smarten(text)
+    return q(text)
 
 
 def sep(w, title):
@@ -197,7 +209,7 @@ w.line()
 
 w.open(f'#{decl("actor", "Memory")} ACTOR "Memory" DEF {{')
 w.line(f'EXTENDS {ref("actor", "Main Character")}')
-w.line(f'DESCRIPTION {q("For the rest of the Chapter you will play as our family\'s memory of your character.\\n\\nA character who is a Memory does not participate in the Migration Scene procedure or in another character\'s Share a Tradition Scene.\\n\\nOtherwise, continue to participate fully in other players\' turns, offering suggestions and playing side characters, or roleplaying a tradition in a Witness a Tradition Scene, as normal.\\n\\nOn your turn, follow the Memory Scene procedure.")}')
+w.line(f'DESCRIPTION {concept('Memory', "For the rest of the Chapter you will play as our family\'s memory of your character.\n\nA character who is a Memory does not participate in the Migration Scene procedure or in another character\'s Share a Tradition Scene.\n\nOtherwise, continue to participate fully in other players\' turns, offering suggestions and playing side characters, or roleplaying a tradition in a Witness a Tradition Scene, as normal.\n\nOn your turn, follow the Memory Scene procedure.")}')
 w.open("PROPERTIES {")
 w.line(f'{caret("Is Memory")} BOOLEAN true')
 w.close()
@@ -217,7 +229,7 @@ for nm, desc in [
     ("Campaign", "A Campaign is the fullest way to experience City of Winter. You can start a Campaign by planning in advance, or evolve a one-shot into a Campaign by simply playing more Sessions."),
 ]:
     w.open(f'#{decl("structure", nm)} {caret(nm)} DEF {{')
-    w.line(f'DESCRIPTION {q(desc)}')
+    w.line(f'DESCRIPTION {concept(nm, desc)}')
     w.close()
     w.line()
 
@@ -234,7 +246,7 @@ components = [
 ]
 for nm, desc in components:
     w.open(f'#{decl("component", nm)} {caret(nm)} DEF {{')
-    w.line(f'DESCRIPTION {q(desc)}')
+    w.line(f'DESCRIPTION {concept(nm, desc)}')
     w.open("PROPERTIES {")
     w.line(f'{caret("Page")} INTEGER 8')
     w.close()
@@ -251,7 +263,7 @@ w.close()
 w.line()
 
 w.open(f'#{decl("type", "Tradition Deck")} {caret("Tradition Deck")} DEF {{')
-w.line(f'DESCRIPTION {q("The Tradition Cards are separated into 11 Tradition Decks. Every card has an icon on the back showing which deck it belongs to.")}')
+w.line(f'DESCRIPTION {concept('Tradition Deck', "The Tradition Cards are separated into 11 Tradition Decks. Every card has an icon on the back showing which deck it belongs to.")}')
 w.open("PROPERTIES {")
 w.line(f'{caret("Shape")} {caret("Tradition Icon Shape")} REQUIRED')
 w.line(f'{caret("Region")} ENUM ["Riverlands", "City"]')
@@ -272,7 +284,7 @@ w.close()
 w.line()
 
 w.open(f'#{decl("type", "Tradition Banner")} {caret("Tradition Banner")} DEF {{')
-w.line(f'DESCRIPTION {q("Each Tradition Deck has a Banner that goes with it. These Banners contain name-lists and are also used as dividers to keep the Tradition Decks organized.")}')
+w.line(f'DESCRIPTION {concept('Tradition Banner', "Each Tradition Deck has a Banner that goes with it. These Banners contain name-lists and are also used as dividers to keep the Tradition Decks organized.")}')
 w.open("PROPERTIES {")
 w.line(f'{caret("Names")} LIST OF STRING')
 w.line(f'{caret("Open Prompt")} STRING')
@@ -339,13 +351,13 @@ for d in data["decks"]:
 
 sep(w, "MARKS OF AGE & AGE TIERS")
 w.open(f'#{decl("type", "Marks of Age")} {caret("Marks of Age")} DEF {{')
-w.line(f'DESCRIPTION {q("We track our character\'s age by drawing circles called Marks of Age. There is no direct correlation between the number of Marks and the exact age of a character in years. We can decide for ourselves what they mean as we play.")}')
+w.line(f'DESCRIPTION {concept('Marks of Age', "We track our character\'s age by drawing circles called Marks of Age. There is no direct correlation between the number of Marks and the exact age of a character in years. We can decide for ourselves what they mean as we play.")}')
 w.line("INTEGER MIN 0 MAX 6")
 w.close()
 w.line()
 
 w.open(f'#{decl("type", "City Marks")} {caret("City Marks")} DEF {{')
-w.line(f'DESCRIPTION {q("If our family\'s Home is in the City of Winter, we mark age with diamond-shaped City Marks instead of a circles. City Marks represent both your age, and how much you\'ve adapted to life in the city.\\n\\nIf an Elder has both regular and City Marks, they may cross off either when we Mark Age.")}')
+w.line(f'DESCRIPTION {concept('City Marks', "If our family\'s Home is in the City of Winter, we mark age with diamond-shaped City Marks instead of a circles. City Marks represent both your age, and how much you\'ve adapted to life in the city.\n\nIf an Elder has both regular and City Marks, they may cross off either when we Mark Age.")}')
 w.line("INTEGER MIN 0")
 w.close()
 w.line()
@@ -370,7 +382,7 @@ for t in data["ageTiers"]:
 
 sep(w, "BONDS")
 w.open(f'#{decl("type", "Bond")} {caret("Bond")} DEF {{')
-w.line(f'DESCRIPTION {q("Our characters begin with two Bonds. A Bond represents an important relationship that helps to define your character\'s role in our family.\\n\\nTo create a Bond, combine a prompt from the Bonds List with the name of another character and write it on your Notecard.\\n\\nThe prompts are organized by age, and you may only choose prompts at your age or younger.")}')
+w.line(f'DESCRIPTION {concept('Bond', "Our characters begin with two Bonds. A Bond represents an important relationship that helps to define your character\'s role in our family.\n\nTo create a Bond, combine a prompt from the Bonds List with the name of another character and write it on your Notecard.\n\nThe prompts are organized by age, and you may only choose prompts at your age or younger.")}')
 w.open("PROPERTIES {")
 w.line(f'{caret("Prompt")} STRING REQUIRED')
 w.line(f'{caret("Subject")} STRING REQUIRED')
@@ -412,7 +424,7 @@ w.close()
 w.line()
 
 w.open(f'#{decl("type", "Scene")} {caret("Scene")} DEF {{')
-w.line(f'DESCRIPTION {q("Each location has several prompts called Scenes. On your turn, move your token to a scene at our family\'s current location. You may choose any scene, even if another player\'s token is already there.")}')
+w.line(f'DESCRIPTION {concept('Scene', "Each location has several prompts called Scenes. On your turn, move your token to a scene at our family\'s current location. You may choose any scene, even if another player\'s token is already there.")}')
 w.open("PROPERTIES {")
 w.line(f'{caret("Prompt")} STRING REQUIRED')
 w.close()
@@ -1102,6 +1114,7 @@ feed = {
     "askFate": data["askFate"],
     "procedures": proc["procedures"],
     "rules": proc["rules"],
+    "concepts": CONCEPTS,
     "optionalRules": proc["optionalRules"],
     "soloModules": proc["soloModules"],
     "guidance": proc["guidance"],

@@ -1,6 +1,6 @@
 BASE "CityOfWinter_Core_Base" {
     NAME "City of Winter — core components, characters, and vocabulary"
-    VERSION "0.5"
+    VERSION "0.5.1"
     SPEC_VERSION "0.5"
     RELEASE_DATE "2026-08-12"
 
@@ -47,7 +47,7 @@ BASE "CityOfWinter_Core_Base" {
 
     #COW6a7b002765e49a0e3ce44 ACTOR "Memory" DEF {
         EXTENDS #COW1dd4fd9f091792c9b2980 ^"Main Character"
-        DESCRIPTION "For the rest of the Chapter you will play as our family’s memory of your character.\\n\\nA character who is a Memory does not participate in the Migration Scene procedure or in another character’s Share a Tradition Scene.\\n\\nOtherwise, continue to participate fully in other players’ turns, offering suggestions and playing side characters, or roleplaying a tradition in a Witness a Tradition Scene, as normal.\\n\\nOn your turn, follow the Memory Scene procedure."
+        DESCRIPTION "For the rest of the Chapter you will play as our family’s memory of your character.\n\nA character who is a Memory does not participate in the Migration Scene procedure or in another character’s Share a Tradition Scene.\n\nOtherwise, continue to participate fully in other players’ turns, offering suggestions and playing side characters, or roleplaying a tradition in a Witness a Tradition Scene, as normal.\n\nOn your turn, follow the Memory Scene procedure."
         PROPERTIES {
             ^"Is Memory" BOOLEAN true
         }
@@ -420,7 +420,7 @@ BASE "CityOfWinter_Core_Base" {
     }
 
     #COW1d67848dae70cef1f61f7 ^"City Marks" DEF {
-        DESCRIPTION "If our family’s Home is in the City of Winter, we mark age with diamond-shaped City Marks instead of a circles. City Marks represent both your age, and how much you’ve adapted to life in the city.\\n\\nIf an Elder has both regular and City Marks, they may cross off either when we Mark Age."
+        DESCRIPTION "If our family’s Home is in the City of Winter, we mark age with diamond-shaped City Marks instead of a circles. City Marks represent both your age, and how much you’ve adapted to life in the city.\n\nIf an Elder has both regular and City Marks, they may cross off either when we Mark Age."
         INTEGER MIN 0
     }
 
@@ -469,7 +469,7 @@ BASE "CityOfWinter_Core_Base" {
     # ====================================================================
 
     #COW712f1f579806f60d7898f ^"Bond" DEF {
-        DESCRIPTION "Our characters begin with two Bonds. A Bond represents an important relationship that helps to define your character’s role in our family.\\n\\nTo create a Bond, combine a prompt from the Bonds List with the name of another character and write it on your Notecard.\\n\\nThe prompts are organized by age, and you may only choose prompts at your age or younger."
+        DESCRIPTION "Our characters begin with two Bonds. A Bond represents an important relationship that helps to define your character’s role in our family.\n\nTo create a Bond, combine a prompt from the Bonds List with the name of another character and write it on your Notecard.\n\nThe prompts are organized by age, and you may only choose prompts at your age or younger."
         PROPERTIES {
             ^"Prompt" STRING REQUIRED
             ^"Subject" STRING REQUIRED

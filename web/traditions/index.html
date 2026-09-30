@@ -32,7 +32,8 @@
 
 <script type="module">
 import { loadData } from '../app/data.js';
-import { $, el, clear, mountNav, mountFooter, cardEl, shapeIcon } from '../app/ui.js';
+import { $, el, clear, mountNav, mountFooter, cardEl, shapeIcon, ruleText } from '../app/ui.js';
+const instr = (t) => ruleText(t, { cls: 'instr' });
 
 mountNav('traditions');
 const data = await loadData();
@@ -52,7 +53,7 @@ function render() {
 
   root.append(el('div', { class: 'panel' },
     el('h3', { style: 'margin-top:0', text: 'Blank Tradition Icons' }),
-    el('p', { class: 'small', text: 'In the City, some Local Tradition icons are just blank shapes with no image. A blank icon means that each time you would draw a Tradition Card, you may choose from any of the Tradition Decks with the matching shape.' }),
+    instr(data.rule('Blank Tradition Icons')),
     Object.keys(data.shapeFamilies).map(shapeNote)));
 
   const bar = el('div', { class: 'deckbar' },
@@ -74,7 +75,7 @@ function render() {
 
   root.append(el('div', { class: 'flourish' }));
   root.append(el('h2', { text: 'Banners' }));
-  root.append(el('p', { class: 'small muted', text: 'Each Tradition Deck has a Banner that goes with it. These Banners contain name-lists and are also used as dividers to keep the Tradition Decks organized. Use these prompts to inspire other characters we meet in our story.' }));
+  root.append(instr(data.concept('Tradition Banner')), instr(data.guidanceText('tradition-banners-in-play')));
   root.append(el('div', { class: 'grid' },
     data.decks.filter((k) => k.names && k.names.length).map((k) =>
       el('div', { class: 'banner' },

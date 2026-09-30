@@ -38,6 +38,21 @@ def check(label, got, want):
         problems.append(f"{label}: corpus has {want!r}, feed has {got!r}")
 
 
+def dsl_unescape(t):
+    return t.replace('\\"', '"').replace("\\n", "\n").replace("\\\\", "\\")
+
+
+# --- concepts: each is the DESCRIPTION of the DEF of that name ----------------
+for name, text in (feed.get("concepts") or {}).items():
+    m = re.search(r'\^"' + re.escape(name) + r'" (?:DEF|ACTOR[^{]*DEF) \{\s*(?:EXTENDS [^\n]*\n\s*)?DESCRIPTION "((?:[^"\\]|\\.)*)"', ALL)
+    if not m:
+        m = re.search(r'ACTOR "' + re.escape(name) + r'" DEF \{\s*(?:EXTENDS [^\n]*\n\s*)?DESCRIPTION "((?:[^"\\]|\\.)*)"', ALL)
+    if not m:
+        problems.append(f"concept {name!r}: no DEF with a DESCRIPTION in the corpus")
+    else:
+        check(f"concept {name!r}", text, dsl_unescape(m.group(1)))
+
+
 # --- cards: one DEF per card, per deck file -----------------------------------
 for deck in feed["decks"]:
     fn = "cityofwinter-0.5-cards-" + re.sub(r"[^a-z0-9]+", "-", deck["name"].lower()).strip("-") + ".ttrpg"

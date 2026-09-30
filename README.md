@@ -28,8 +28,10 @@ parses every app module and every inline page script.
 ## Serving the app
 
 ```bash
-python3 -m http.server 8731 --directory web
+python3 web/serve.py
 ```
+
+(http.server with caching turned off — see `web/README.md`.)
 
 ## Rights
 
