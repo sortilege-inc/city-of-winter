@@ -101,6 +101,13 @@ Procedures, in play order:
   a player leaving mid-game (their character becomes a side-character and their cards join the pool at
   the next Migration or Chapter's end), side-characters, and the variants — *The Umbra Follows*,
   *Fleeing the City*, *Solo Play*.
+- **Migrate Apart** (City) — when the turn reaches someone who has had their Migration Scene, they may
+  wait (the turn passes) or Migrate Apart, with anyone at the same Home who has also had theirs. The
+  group follows Migrate the Family on its own; those staying may save the cards the leavers laid down.
+  From then on each character has a Home: households migrate separately (a household migrates when all
+  its members have had their Migration Scene), Travel and City Marks follow your own Home, and a family
+  that migrates back to the same Location is one household again. Face-up cards remember who laid them,
+  so a migration only touches its own group's cards.
 
 Bond prompts carry their own joining word — the lists are not all "of": *Ward **of** Rye*,
 *Befriended **by** Dim*, *Lost **to** Cornflower* — taken from each list's own open prompt.

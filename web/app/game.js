@@ -91,6 +91,39 @@ export function bondBanners(st, data, ch) {
   return [...new Set(decks.filter(Boolean))].map((d) => data.byDeck.get(d)).filter((k) => k && k.names?.length);
 }
 
+/* ---------------------------------------------------- homes and households -- */
+
+/**
+ * Where a character lives. Empty means "with the family", at the family's
+ * Home; a character who has Migrated Apart (p.43) carries a Home of their own.
+ */
+export function homeOf(st, ch) { return (ch && ch.home) || st.family.home; }
+
+/** The region of a character's Home — the City rules follow where you live. */
+export function regionOf(st, data, ch) {
+  return data.byLocation.get(homeOf(st, ch))?.region || st.family.region;
+}
+
+/** Living characters grouped by Home, the family's own Home first. */
+export function households(st) {
+  const map = new Map();
+  for (const c of livingCharacters(st)) {
+    const h = homeOf(st, c);
+    if (!map.has(h)) map.set(h, []);
+    map.get(h).push(c);
+  }
+  return [...map.entries()].map(([home, members]) => ({ home, members }))
+    .sort((a, b) => (a.home === st.family.home ? -1 : b.home === st.family.home ? 1 : 0));
+}
+
+/**
+ * "While living apart, Migration mechanics affect each group separately."
+ * A household whose every member has had their Migration Scene migrates now.
+ */
+export function completeHousehold(st) {
+  return households(st).find((h) => h.members.length && h.members.every((c) => c.hadMigrationScene)) || null;
+}
+
 /* ------------------------------------------------------- the turn sequence -- */
 
 export function currentCharacter(st) {
@@ -103,29 +136,71 @@ function liveOrder(st) {
   return st.turn.order.filter((id) => activeCharacters(st).some((c) => c.id === id));
 }
 
-/** Who would take the next turn. Characters who have had a Migration Scene are skipped (p.24). */
-export function nextCharacter(st) {
+/**
+ * What passing the turn will do (p.24, p.43):
+ *   { kind: 'migrate', household }  — a household has all had their Migration Scene;
+ *   { kind: 'offer', idx, c }       — the turn reaches someone who has had theirs: in
+ *                                     the City they "may choose to Migrate Apart
+ *                                     instead of skipping a future turn";
+ *   { kind: 'turn', idx, c }        — the next player takes their turn.
+ * Elsewhere, characters who have had a Migration Scene are simply skipped.
+ */
+export function peekPass(st, data) {
+  const household = completeHousehold(st);
+  if (household) return { kind: 'migrate', household };
   const order = liveOrder(st);
   for (let i = 1; i <= order.length; i++) {
     const idx = (st.turn.current + i) % order.length;
     const c = st.characters.find((x) => x.id === order[idx]);
-    if (c && !c.hadMigrationScene) return { idx, c };
+    if (!c) continue;
+    if (!c.hadMigrationScene) return { kind: 'turn', idx, c };
+    if (!c.isMemory && data && regionOf(st, data, c) === 'City') return { kind: 'offer', idx, c };
   }
   return null;
 }
 
-export function passTurn(st) {
-  const n = nextCharacter(st);
-  if (n) st.turn.current = n.idx;
-  st.turn.phase = 'choose-scene';
+/** Who would take the next turn — for "Pass the turn to …" labels. */
+export function nextCharacter(st, data) {
+  const p = peekPass(st, data);
+  return p && p.kind === 'turn' ? { idx: p.idx, c: p.c } : null;
+}
+
+export function passTurn(st, data) {
+  const p = peekPass(st, data);
   st.turn.scene = null;
   st.turn.sceneKind = null;
   st.turn.memoryTarget = null;
-  if (allHadMigrationScene(st)) {
-    st.turn.phase = 'migrate-family';
-    st.migration = { destination: null, entrance: null };
-    retireLeavers(st);   // their cards join the face-up pool, to be saved or left
-  }
+  st.turn.offer = null;
+  if (p && p.kind === 'migrate') { beginMigration(st, p.household.home, p.household.members, false); return; }
+  if (p) st.turn.current = p.idx;
+  st.turn.phase = p && p.kind === 'offer' ? 'apart-offer' : 'choose-scene';
+  if (p && p.kind === 'offer') st.turn.offer = p.c.id;
+}
+
+/** Start the Migrate the Family procedure for a household, or a group Migrating Apart. */
+export function beginMigration(st, from, members, apart) {
+  st.turn.phase = 'migrate-family';
+  st.migration = { from, group: members.map((c) => c.id), apart, destination: null, entrance: null };
+  st.turn.offer = null;
+  retireLeavers(st);   // their cards join the face-up pool, to be saved or left
+}
+
+/**
+ * Migrate Apart (p.43): instead of skipping this turn, the character — and any
+ * who "have also had their Migration Scene" and wish to join — follow the rest
+ * of Migrate the Family on their own.
+ */
+export function migrateApart(st, leaderId, joinerIds = []) {
+  const leader = st.characters.find((c) => c.id === leaderId);
+  if (!leader) return;
+  const from = homeOf(st, leader);
+  const group = [leader, ...st.characters.filter((c) => joinerIds.includes(c.id) && c.id !== leaderId)];
+  beginMigration(st, from, group, true);
+}
+
+/** Who may join a character Migrating Apart: those at the same Home who have also had their Migration Scene. */
+export function apartCompanions(st, leader) {
+  return livingCharacters(st).filter((c) => c.id !== leader.id && c.hadMigrationScene && homeOf(st, c) === homeOf(st, leader));
 }
 
 /** "Any player may take the first turn" — choose who begins. */
@@ -139,11 +214,8 @@ export function giveTurnTo(st, chId) {
   st.turn.memoryTarget = null;
 }
 
-/** Everyone has had their Migration Scene → the family migrates as a group (p.24). */
-export function allHadMigrationScene(st) {
-  const eligible = livingCharacters(st);
-  return eligible.length > 0 && eligible.every((c) => c.hadMigrationScene);
-}
+/** Everyone at a Home has had their Migration Scene → that household migrates (p.24). */
+export function allHadMigrationScene(st) { return !!completeHousehold(st); }
 
 /** The Migration Scene procedure is under way: it must finish before a Chapter can end (p.26). */
 export function migrationUnderway(st) {
@@ -248,8 +320,44 @@ export function layDownExcess(st, ch, keepIds) {
   const keep = new Set(keepIds);
   const laid = ch.hand.filter((id) => !keep.has(id));
   ch.hand = ch.hand.filter((id) => keep.has(id));
-  st.pool.push(...laid);
+  toPool(st, laid, ch);
   return laid;
+}
+
+/**
+ * Face-up cards remember who laid them and where: a migrating group may only
+ * draw on what its own members left, and "Characters who are staying may Save
+ * Traditions left by characters who are leaving" (p.43).
+ */
+function toPool(st, ids, ch) {
+  st.pool.push(...ids);
+  st.poolBy = st.poolBy || {};
+  for (const id of ids) st.poolBy[id] = { by: ch.id, home: homeOf(st, ch) };
+}
+
+function fromPool(st, cardId) {
+  st.pool = st.pool.filter((id) => id !== cardId);
+  if (st.poolBy) delete st.poolBy[cardId];
+}
+
+/** The face-up cards this migration deals with (steps 2 and 3). */
+export function migrationCards(st) {
+  const m = st.migration;
+  if (!m || !m.group) return st.pool.slice();
+  const by = st.poolBy || {};
+  return st.pool.filter((id) => {
+    const o = by[id];
+    if (m.apart) return !!o && m.group.includes(o.by);
+    return !o || o.home === m.from;
+  });
+}
+
+/** Who may save those cards: short-handed members of the group — and, when Migrating Apart, those staying behind. */
+export function migrationSavers(st) {
+  const m = st.migration;
+  const short = (c) => c.hand.length < handLimit(c);
+  if (!m || !m.group) return livingCharacters(st).filter(short);
+  return livingCharacters(st).filter((c) => short(c) && (m.group.includes(c.id) || (m.apart && homeOf(st, c) === m.from)));
 }
 
 export function finishMigrationScene(st, ch) {
@@ -262,14 +370,14 @@ export function finishMigrationScene(st, ch) {
 export function saveTradition(st, ch, cardId) {
   if (ch.hand.length >= handLimit(ch)) return false;
   if (!st.pool.includes(cardId)) return false;
-  st.pool = st.pool.filter((id) => id !== cardId);
+  fromPool(st, cardId);
   ch.hand.push(cardId);
   return true;
 }
 
 /** Migrate the Family step 3: whatever is unclaimed is left behind (p.25). */
 export function leaveBehind(st, data, cardId) {
-  st.pool = st.pool.filter((id) => id !== cardId);
+  fromPool(st, cardId);
   discard(st, data, cardId);
 }
 
@@ -278,15 +386,33 @@ export function isArrival(data, locName) { return !!data.byLocation.get(locName)
 
 /**
  * Migrate the Family step 4 (p.25). Also handles arriving in the City (p.37)
- * and, under "Fleeing the City" (p.53), leaving it.
+ * and, under "Fleeing the City" (p.53), leaving it. Moves the migrating group
+ * only: the whole household at the family's Home moves the family's Home; a
+ * group Migrating Apart takes a Home of its own (p.43).
  */
 export function migrateFamily(st, data, destination) {
+  const m = st.migration || {};
+  const from = m.from || st.family.home;
+  const group = m.group
+    ? st.characters.filter((c) => m.group.includes(c.id))
+    : livingCharacters(st).filter((c) => homeOf(st, c) === from);
   const dest = data.byLocation.get(destination);
-  const from = st.family.region;
-  const entering = !!dest && dest.region === 'City' && from !== 'City';
-  const leaving = !!dest && dest.region === 'Riverlands' && from === 'City';
-  st.family.home = destination;
-  if (dest) st.family.region = dest.region;
+  const fromRegion = data.byLocation.get(from)?.region || st.family.region;
+  const entering = !!dest && dest.region === 'City' && fromRegion !== 'City';
+  const leaving = !!dest && dest.region === 'Riverlands' && fromRegion === 'City';
+  const wholeFamily = !m.apart && from === st.family.home;
+
+  if (wholeFamily) {
+    st.family.home = destination;
+    if (dest) st.family.region = dest.region;
+  }
+  for (const c of group) {
+    c.home = wholeFamily ? null : destination;
+    c.hadMigrationScene = false;
+    c.scene = null;
+    c.visiting = null;
+  }
+  settleHomes(st, data);
 
   if (entering) {
     // Migrating to the City: the River Scroll and the Umbra Deck go back in the
@@ -304,26 +430,39 @@ export function migrateFamily(st, data, destination) {
   for (const t of dest ? dest.traditions : []) {
     if (!t.startsWith('ANY:')) bringDeckIntoPlay(st, data, t);
   }
-  if (destination === data.wanderingBorough.name) st.borough.isHome = true;
-  else if (st.borough.isHome) st.borough.isHome = false;
-
-  for (const c of st.characters) {
-    c.hadMigrationScene = false;
-    c.scene = null;
-    c.visiting = null;
-  }
   retireLeavers(st);
   st.migration = null;
   st.turn.phase = 'choose-scene';
   st.turn.scene = null;
-  return { entering, leaving };
+  return { entering, leaving, apart: !!m.apart, wholeFamily };
 }
 
-/** Destinations available to the family right now. */
+/**
+ * Keep Homes tidy after a migration: a character whose Home is the family's
+ * is simply "with the family" again; if nobody living is left at the family's
+ * Home, the largest household becomes the family's Home; and the Borough is a
+ * Home while anyone lives there (p.45).
+ */
+export function settleHomes(st, data) {
+  const living = livingCharacters(st);
+  if (living.length && !living.some((c) => homeOf(st, c) === st.family.home)) {
+    const counts = new Map();
+    for (const c of living) counts.set(homeOf(st, c), (counts.get(homeOf(st, c)) || 0) + 1);
+    const [home] = [...counts.entries()].sort((a, b) => b[1] - a[1])[0];
+    st.family.home = home;
+    st.family.region = data.byLocation.get(home)?.region || st.family.region;
+  }
+  for (const c of st.characters) if (c.home === st.family.home) c.home = null;
+  st.borough.isHome = st.characters.some((c) => !c.forgotten && homeOf(st, c) === data.wanderingBorough.name);
+}
+
+/** Destinations available to the migrating group right now. */
 export function migrationDestinations(st, data) {
-  const home = st.family.home;
+  const m = st.migration || {};
+  const home = m.from || st.family.home;
   if (!home) return [];
-  if (st.family.region !== 'City') {
+  const group = m.group ? livingCharacters(st).filter((c) => m.group.includes(c.id)) : livingCharacters(st);
+  if ((data.byLocation.get(home)?.region || st.family.region) !== 'City') {
     return data.adjacent(home).map((to) => ({
       to, why: isArrival(data, to) ? 'the road into the City' : 'connected by a river or other path',
       route: data.byLocation.get(to)?.route || null,
@@ -341,7 +480,7 @@ export function migrationDestinations(st, data) {
       if (to && to !== home) out.set(to, { to, why: `adjacent on ${line.name}` });
     }
   }
-  for (const c of livingCharacters(st)) {
+  for (const c of group) {
     for (const r of data.travelReach(at, c.cityMarks)) {
       if (r.to !== home && !out.has(r.to)) out.set(r.to, { to: r.to, why: `${c.name} can Travel ${r.cost}`, derived: r.derived });
     }
@@ -366,11 +505,12 @@ export function migrationDestinations(st, data) {
 
 /** Travel to another Location on your turn (p.42). Distance is measured from Home. */
 export function travelTargets(st, data, ch) {
-  if (st.family.region !== 'City' || !st.family.home) return [];
-  const home = st.family.home === data.wanderingBorough.name ? st.borough.station : st.family.home;
+  const myHome = homeOf(st, ch);
+  if (regionOf(st, data, ch) !== 'City' || !myHome) return [];
+  const home = myHome === data.wanderingBorough.name ? st.borough.station : myHome;
   if (!home) return [];
   const reach = data.travelReach(home, ch.cityMarks);
-  if (st.borough.inPlay && st.borough.station && st.family.home !== data.wanderingBorough.name) {
+  if (st.borough.inPlay && st.borough.station && myHome !== data.wanderingBorough.name) {
     // "The Borough occupies the same Station in the Transit Line as the Location
     // where it appeared. Any character who could interact with that Location may
     // interact in the same way with the Wandering Borough" (p.45).
@@ -379,7 +519,7 @@ export function travelTargets(st, data, ch) {
       reach.push({ to: data.wanderingBorough.name, cost: reach.find((r) => r.to === at)?.cost ?? 0 });
     }
   }
-  if (st.family.home === data.wanderingBorough.name && st.borough.station) {
+  if (myHome === data.wanderingBorough.name && st.borough.station) {
     reach.unshift({ to: st.borough.station, cost: 0 });
   }
   return reach;
@@ -399,8 +539,8 @@ export function beginEndingChapter(st) {
  * In the City we mark age with City Marks (p.40), and an Elder with both kinds
  * may cross off either.
  */
-export function markAge(st, ch, opts = {}) {
-  const inCity = st.family.region === 'City';
+export function markAge(st, data, ch, opts = {}) {
+  const inCity = regionOf(st, data, ch) === 'City';
   if (isElder(ch)) {
     if (opts.crossCityMark && ch.cityMarks > ch.cityCrossed) { ch.cityCrossed += 1; return { gained: false, kind: 'cross-city' }; }
     ch.crossed = Math.min(ch.marks, ch.crossed + 1);
@@ -424,13 +564,14 @@ export function holdTraditions(st, ch, keepIds) {
   const keep = new Set(keepIds);
   const laid = ch.hand.filter((id) => !keep.has(id));
   ch.hand = ch.hand.filter((id) => keep.has(id));
-  st.pool.push(...laid);
+  toPool(st, laid, ch);
 }
 
 /** Step 3, second half: "Remaining cards are discarded." (p.27) */
 export function discardPool(st, data) {
   const left = st.pool.slice();
   st.pool = [];
+  st.poolBy = {};
   for (const id of left) discard(st, data, id);
   return left;
 }
@@ -554,7 +695,7 @@ export function birth(st, { name, pronouns, giverId, bondPrompt, joiner = 'of', 
  */
 export function retireLeavers(st) {
   for (const c of st.characters.filter((x) => x.leaving)) {
-    st.pool.push(...c.hand);
+    toPool(st, c.hand, c);
     c.hand = [];
     if (!st.sideCharacters.some((s) => s.name === c.name)) {
       st.sideCharacters.push({ id: c.id, name: c.name, marks: c.marks });

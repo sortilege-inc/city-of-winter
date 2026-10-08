@@ -63,8 +63,25 @@ experience.
    City. The book says City Marks "represent both your age, and how much you've adapted to life in the
    city", but every hand rule says "Marks of Age". *Recommendation:* keep as is (the literal rule) unless
    you rule otherwise — it is a one-line change in `handLimit()`.
-2. **Migrate Apart (City) is not implemented.** It needs a Home per group of characters rather than one
-   family Home — a state-model change, not a UI one. *Recommendation:* do it as its own piece of work.
+
+## 2026-09-30 · Migrate Apart
+
+Owner: implement it. Done and exercised in the browser (City family of three: two migrate apart, the
+one staying saves a leaver's card, the stayer's own household later migrates alone and rejoins them;
+Riverlands migration re-run unchanged).
+
+| # | Decision | Why |
+|---|---|---|
+| 14 | Each character has a Home; empty = the family's Home | Migrate Apart splits the family; "Migration mechanics affect each group separately." |
+| 15 | The offer comes when the turn reaches someone who has had their Migration Scene | "…you may choose to Migrate Apart instead of skipping a future turn." |
+| 16 | Companions: those at the same Home who have also had their Migration Scene | "Characters who have also had their Migration Scene may join you if they wish." |
+| 17 | Face-up cards record who laid them; a migration deals only with its own group's cards, and stayers may save leavers' | "Characters who are staying may Save Traditions left by characters who are leaving." / "you can Save Traditions left by a family member only if they currently share a Home." |
+| 18 | Migrating Apart uses that character's turn; play continues with the next player | It is chosen "instead of skipping" the turn. |
+| 19 | A household migrates on its own once all its members have had their Migration Scene | Each group separately. |
+| 20 | Moving to a Location where other family members live makes one household again | Same Home, same group. |
+| 21 | If nobody living is left at the family's Home, the largest household becomes it | Keeps "the family's Home" meaningful for Memories, setup text and the chronicle. |
+| 22 | City-only | The rule sits under *Migration in the City*. |
+| 23 | Ending a Chapter's Hold Traditions still shares one face-up pool across Homes | It is not a Migration mechanic. |
 
 ### Deferred and pending
 

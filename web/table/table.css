@@ -381,3 +381,8 @@ dialog .charmenu h3:first-child{ margin-top:0; }
 
 /* step headings inside the stage sit level with their number */
 .stage .stepblock > h4, dialog .stepblock > h4{ margin:0 0 0.2rem; min-height:1.6rem; }
+
+/* the chronicle bar once the family lives apart */
+.homes-list{ display:flex; flex-wrap:wrap; gap:0.2rem 1rem; }
+.homes-list .hh{ display:inline-flex; align-items:center; gap:0.35rem; }
+.homes-list .hhtoks{ display:inline-flex; gap:0.15rem; }

@@ -64,8 +64,15 @@ function sentence(text, needle) {
 
 /** The Location a character is at right now: where they travelled, or Home. */
 function whereIs(st, ch) {
-  const name = (ch && ch.visiting) || st.family.home;
+  const name = (ch && ch.visiting) || G.homeOf(st, ch);
   return data.byLocation.get(name) || null;
+}
+
+/** "Our Home", or whose Home it is when the family lives apart. */
+function homeLabel(st, name) {
+  if (name === st.family.home) return G.households(st).length > 1 ? 'The family’s Home' : 'Our Home';
+  const there = G.livingCharacters(st).filter((c) => G.homeOf(st, c) === name);
+  return there.length ? `Home to ${there.map((c) => c.name).join(' & ')}` : null;
 }
 
 function locName(name) { return name === BOROUGH ? data.wanderingBorough.printedTitle || name : name; }
@@ -75,11 +82,12 @@ function who(ch, extra) {
   return el('span', { class: 'who' }, tok(ch, { size: 'sm' }), el('span', { text: ch.name }), extra || null);
 }
 
-/** Buttons for choosing a character, each wearing their token. */
-function pickChars(chars, selectedId, onPick, { disabled = () => false, note = () => '' } = {}) {
+/** Buttons for choosing a character (or several: pass a Set), each wearing their token. */
+function pickChars(chars, selected, onPick, { disabled = () => false, note = () => '' } = {}) {
+  const on = (c) => (selected instanceof Set ? selected.has(c.id) : c.id === selected);
   return el('div', { class: 'pickrow' }, chars.map((c) => el('button', {
-    type: 'button', class: `pick ${c.id === selectedId ? 'on' : ''}`.trim(),
-    'aria-pressed': String(c.id === selectedId), disabled: disabled(c),
+    type: 'button', class: `pick ${on(c) ? 'on' : ''}`.trim(),
+    'aria-pressed': String(on(c)), disabled: disabled(c),
     onclick: () => onPick(c),
   }, tok(c, { size: 'sm' }), el('span', { text: c.name }), note(c) ? el('span', { class: 'note', text: note(c) }) : null)));
 }
@@ -582,7 +590,8 @@ function renderTable(st) {
   add(layout, main, rail);
 
   add(main, renderStage(st, cur));
-  const plateCh = st.turn.phase === 'memory-share' ? chById(st.turn.memoryTarget) : cur;
+  const plateCh = st.turn.phase === 'memory-share' ? chById(st.turn.memoryTarget)
+    : cur && cur.isMemory && ui.memTarget ? chById(ui.memTarget) : cur;
   if (!['session-closed'].includes(st.turn.phase)) add(main, plate(st, whereIs(st, plateCh && !plateCh.isMemory ? plateCh : null), cur));
   add(main, familySection(st, cur));
 
@@ -606,8 +615,7 @@ function chronicleBar(st) {
   return el('div', { class: 'chronicle' },
     el('div', { class: 'cfield' }, el('span', { class: 'k', text: 'Chapter' }), el('span', { class: 'v', text: st.family.chapter })),
     el('div', { class: 'cfield' }, el('span', { class: 'k', text: 'Session' }), el('span', { class: 'v', text: st.family.session })),
-    el('div', { class: 'cfield home' }, el('span', { class: 'k', text: st.family.region === 'City' ? 'Home · the City' : 'Home · the Riverlands' }),
-      el('span', { class: 'v', text: locName(st.family.home) || '—' })),
+    homesField(st),
     el('div', { class: 'ctags' },
       st.umbraInPlay ? el('span', { class: 'tag umbra', text: 'Umbra Deck in play' }) : null,
       st.borough.inPlay ? el('span', { class: 'tag spire', text: st.borough.station ? `The Borough is at ${st.borough.station}` : 'The Borough wanders' }) : null,
@@ -635,6 +643,18 @@ function chronicleBar(st) {
       })));
 }
 
+/** The Home in the chronicle bar — or each household's, once the family lives apart. */
+function homesField(st) {
+  const hh = G.households(st);
+  if (hh.length <= 1) {
+    return el('div', { class: 'cfield home' }, el('span', { class: 'k', text: st.family.region === 'City' ? 'Home · the City' : 'Home · the Riverlands' }),
+      el('span', { class: 'v', text: locName(st.family.home) || '—' }));
+  }
+  return el('div', { class: 'cfield home' }, el('span', { class: 'k', text: 'Homes · living apart' }),
+    el('span', { class: 'homes-list' }, hh.map((h) => el('span', { class: 'hh' },
+      el('span', { class: 'v', text: locName(h.home) }), el('span', { class: 'hhtoks' }, h.members.map((c) => tok(c, { size: 'xs' })))))));
+}
+
 /* ------------------------------------------------------------ the location -- */
 
 /** The Location as a plate: its name, Local Traditions, and Scenes with tokens on them. */
@@ -643,7 +663,7 @@ function plate(st, loc, cur) {
   const ph = st.turn.phase;
   const isBorough = loc.name === BOROUGH;
   const region = isBorough ? 'borough' : loc.region === 'City' ? 'city' : 'river';
-  const here = (c) => (c.visiting || st.family.home) === loc.name;
+  const here = (c) => (c.visiting || G.homeOf(st, c)) === loc.name;
   const onScene = new Map();
   const atLoc = [];
   for (const c of G.activeCharacters(st)) {
@@ -668,7 +688,7 @@ function plate(st, loc, cur) {
     el('header', { class: 'platehead' },
       el('div', {},
         el('div', { class: 'eyebrow', text: [isBorough ? 'The Wandering Borough' : loc.region === 'City' ? 'The City of Winter' : 'The Riverlands',
-          loc.route ? `by ${loc.route}` : null, cur?.visiting === loc.name ? `${cur.name} is visiting` : (st.family.home === loc.name ? 'Our Home' : null)].filter(Boolean).join(' · ') }),
+          loc.route ? `by ${loc.route}` : null, cur?.visiting === loc.name ? `${cur.name} is visiting` : homeLabel(st, loc.name)].filter(Boolean).join(' · ') }),
         el('h2', { text: locName(loc.name) })),
       el('div', { class: 'localtrads' }, icons.map((i) => el('span', { class: `ltrad ${i.blank ? 'blank' : ''}`.trim(), title: i.blank ? `Blank ${i.shape} icon: any of ${i.decks.join(', ')}` : i.decks[0] },
         shapeIcon(i.shape), i.blank ? `any ${i.shape}` : i.decks[0])))),
@@ -698,6 +718,7 @@ function renderStage(st, cur) {
   if (ph === 'city-arrival') return cityArrivalStage(st, stage);
   if (ph === 'who-first') return whoFirstStage(st, stage, data.step('Migrate the Family', 'Migrate the family').instruction.split(/\n\s*\n/).pop());
   if (ph === 'migrate-family') return migrateStage(st, stage);
+  if (ph === 'apart-offer') return apartOfferStage(st, stage);
 
   if (!cur) {
     add(stage, stageHead('The family', 'No one can take a turn'),
@@ -713,7 +734,7 @@ function renderStage(st, cur) {
     const s1 = data.step(TS, 'Choose a Scene');
     add(stage, stageHead(`${cur.name}’s turn · ${TS}`, s1.name, cur), stepper(TS, 1), instr(s1.instruction));
     const acts = el('div', { class: 'altacts' });
-    if (st.family.region === 'City') add(acts, travelBox(st, cur));
+    if (G.regionOf(st, data, cur) === 'City') add(acts, travelBox(st, cur));
     const mig = data.proc('Migration Scene');
     const canMig = G.canPlayMigrationScene(cur);
     add(acts, el('div', { class: 'alt' },
@@ -736,16 +757,18 @@ function renderStage(st, cur) {
   if (ph === 'lead') return leadStage(st, cur, stage);
 
   if (ph === 'end-scene') {
-    const nxt = G.nextCharacter(st);
+    const peek = G.peekPass(st, data);
     const wasMemory = st.turn.sceneKind === 'memory';
     const text = wasMemory ? data.step('Memory Scene', 'Pass the Turn').instruction : data.step(TS, 'End the Scene').instruction;
     add(stage, stageHead(`${cur.name}’s turn · ${wasMemory ? 'Memory Scene' : TS}`, wasMemory ? 'Pass the Turn' : 'End the Scene', cur),
       stepper(wasMemory ? 'Memory Scene' : TS, 5), instr(text));
     const solo = !!st.variants['Solo Play'];
     const btns = el('div', { class: 'btnrow' });
-    if (nxt || G.allHadMigrationScene(st)) {
-      add(btns, el('button', { class: 'primary big', onclick: () => up((s) => G.passTurn(s), `${cur.name} ends the scene.`) },
-        nxt ? ['Pass the turn to ', tok(nxt.c, { size: 'sm' }), ` ${nxt.c.name}`] : 'Pass the turn'));
+    if (peek) {
+      add(btns, el('button', { class: 'primary big', onclick: () => up((s) => G.passTurn(s, data), `${cur.name} ends the scene.`) },
+        peek.kind === 'turn' ? ['Pass the turn to ', tok(peek.c, { size: 'sm' }), ` ${peek.c.name}`]
+          : peek.kind === 'migrate' ? (G.households(st).length > 1 ? `Pass the turn — ${peek.household.members.map((c) => c.name).join(' & ')} migrate` : 'Pass the turn — the family migrates')
+            : 'Pass the turn'));
     }
     add(stage, btns);
     if (solo) {
@@ -776,10 +799,10 @@ function travelBox(st, cur) {
       reach.some((r) => r.derived) ? el('p', { class: 'small muted', text: '* Wintermount is absent from the printed distance table; its distances are derived from its Moon Path adjacencies.' }) : null,
       el('div', { class: 'destgrid' }, reach.map((r) => el('button', {
         type: 'button', class: `dest ${cur.visiting === r.to ? 'on' : ''}`.trim(),
-        onclick: () => up((s) => { const c = find(s, cur.id); c.visiting = r.to === s.family.home ? null : r.to; c.scene = null; },
+        onclick: () => up((s) => { const c = find(s, cur.id); c.visiting = r.to === G.homeOf(s, c) ? null : r.to; c.scene = null; },
           `${cur.name} travels to ${locName(r.to)}.`).then(() => { ui.travel = false; render(S()); }),
       }, el('span', { class: 'nm', text: locName(r.to) }), el('span', { class: 'cost', text: `${r.cost}${r.derived ? '*' : ''}` })))),
-      cur.visiting ? el('button', { class: 'ghost tiny', text: `Return Home to ${locName(st.family.home)}`,
+      cur.visiting ? el('button', { class: 'ghost tiny', text: `Return Home to ${locName(G.homeOf(st, cur))}`,
         onclick: () => up((s) => { const c = find(s, cur.id); c.visiting = null; c.scene = null; }, `${cur.name} returns home.`) }) : null));
   }
   return box;
@@ -801,7 +824,7 @@ function shareOption(st, cur, s2) {
 function witnessOption(st, cur, s2) {
   const loc = whereIs(st, cur);
   const opts = G.witnessOptions(st, data, loc.name);
-  const inCity = st.family.region === 'City';
+  const inCity = G.regionOf(st, data, cur) === 'City';
   const solo = !!st.variants['Solo Play'];
   const recips = G.activeCharacters(st).filter((c) => c.id !== cur.id);
   if (!ui.witness || ui.witness.loc !== loc.name || ui.witness.n !== opts.length) {
@@ -872,7 +895,7 @@ function leadStage(st, cur, stage) {
   // Witness
   const o = s4.options.find((x) => x.name === 'Witness the Tradition');
   const holder = entries[0]?.to ? chById(entries[0].to) : null;
-  const inCity = st.family.region === 'City';
+  const inCity = G.regionOf(st, data, cur) === 'City';
   // A face-down card must not give itself away: only a revealed Borough card is marked unpassable.
   const passable = entries.filter((e) => !(card(e.cardId).isBoroughWanders && e.revealed));
   if (!passable.some((e) => e.cardId === ui.passPick)) ui.passPick = passable.length === 1 ? passable[0].cardId : null;
@@ -952,7 +975,7 @@ function migrationSceneStage(st, cur, stage) {
               const c = find(s, cur.id);
               G.layDownExcess(s, c, keep);
               G.finishMigrationScene(s, c);
-              G.passTurn(s);
+              G.passTurn(s, data);
             }, `${cur.name} plays a Migration Scene${laid ? ` and lays down ${laid} card${laid === 1 ? '' : 's'}` : ''}.`);
           },
         }))));
@@ -969,18 +992,27 @@ function migrateStage(st, stage) {
   const dest = m.destination;
   const arrival = dest && G.isArrival(data, dest);
   const destLoc = dest ? data.byLocation.get(dest) : null;
-  const short = G.livingCharacters(st).filter((c) => c.hand.length < G.handLimit(c));
+  const short = G.migrationSavers(st);
+  const cards = G.migrationCards(st);
+  const group = (m.group || []).map(chById).filter(Boolean);
+  const whole = !m.apart && G.households(st).length <= 1;
+  const fromRegion = data.byLocation.get(m.from || st.family.home)?.region;
+  const setDest = (s, to) => { s.migration = { ...s.migration, destination: to, entrance: null }; };
 
-  add(stage, stageHead('The whole family', MF), stepper(MF, [!dest || (arrival && !m.entrance) ? 1 : st.pool.length ? (short.length ? 2 : 3) : 4]),
-    instr(proc.instruction));
+  add(stage, stageHead(m.apart ? `${group.map((c) => c.name).join(' & ')} · from ${locName(m.from)}` : whole ? 'The whole family' : `${group.map((c) => c.name).join(' & ')} · from ${locName(m.from)}`,
+    m.apart ? 'Migrate Apart' : MF),
+  stepper(MF, [!dest || (arrival && !m.entrance) ? 1 : cards.length ? (short.length ? 2 : 3) : 4]),
+  m.apart ? el('div', { class: 'callout' }, el('h3', { text: 'Migrate apart' }), instr(data.rule('Migrate apart')), details('Living apart', instr(data.guidanceText('different-homes'))))
+    : whole ? instr(proc.instruction) : el('div', {}, instr(proc.instruction), details('Living apart', instr(data.guidanceText('different-homes')))),
+  group.length ? el('div', { class: 'pickrow' }, group.map((c) => el('span', { class: 'pick on' }, tok(c, { size: 'sm' }), el('span', { text: c.name })))) : null);
 
   // 1. destination
   add(stage, stepBlock(1, s1.name, dest && (!arrival || m.entrance) ? 'done' : '',
-    instr(st.family.region === 'City' ? data.rule('Migration in the City') : s1.instruction),
+    instr(fromRegion === 'City' ? data.rule('Migration in the City') : s1.instruction),
     dests.some((d) => d.route) ? details('By ship or by caravan', instr(data.guidanceText('by-ship-or-by-caravan'))) : null,
     el('div', { class: 'destgrid' }, dests.map((d) => el('button', {
       type: 'button', class: `dest ${dest === d.to ? 'on' : ''}`.trim(), 'aria-pressed': String(dest === d.to),
-      onclick: () => up((s) => { s.migration = { destination: d.to, entrance: null }; }),
+      onclick: () => up((s) => setDest(s, d.to)),
     }, el('span', { class: 'nm', text: locName(d.to) }), el('span', { class: 'why', text: d.why }),
       el('span', { class: 'trads' }, (data.byLocation.get(d.to)?.traditions || []).map((t) => shapeIcon(t.startsWith('ANY:') ? t.slice(4) : data.byDeck.get(t)?.shape)))))),
     arrival ? el('div', { class: 'entrances' },
@@ -991,34 +1023,69 @@ function migrateStage(st, stage) {
       }, el('span', { class: 'nm', text: e.text }))))) : null));
 
   // 2. what is saved
-  const saveable = st.pool.length && short.length;
+  const saveable = cards.length && short.length;
   add(stage, stepBlock(2, s2.name, !saveable ? 'done' : '', instr(s2.instruction),
-    saveable ? el('div', { class: 'poolsave' }, st.pool.map((id) => el('div', { class: 'tslot' },
+    saveable ? el('div', { class: 'poolsave' }, cards.map((id) => el('div', { class: 'tslot' },
       cardEl(card(id), data),
       el('div', { class: 'slotacts' }, short.map((c) => el('button', {
         class: 'tiny', title: `${c.name} saves it`,
         onclick: () => up((s) => G.saveTradition(s, find(s, c.id), id), `${c.name} saves “${card(id).prompt}”.`),
-      }, tok(c, { size: 'xs' }), ` ${c.name}`)))))) : el('p', { class: 'small muted', text: st.pool.length ? 'Every hand is full.' : 'Nothing was left face-up.' })));
+      }, tok(c, { size: 'xs' }), ` ${c.name}`)))))) : el('p', { class: 'small muted', text: cards.length ? 'Every hand is full.' : 'Nothing was left face-up.' })));
 
   // 3. what is left
-  add(stage, stepBlock(3, s3.name, !st.pool.length ? 'done' : '', instr(s3.instruction),
-    st.pool.length ? el('div', { class: 'poolsave' }, st.pool.map((id) => el('div', { class: 'tslot' },
+  add(stage, stepBlock(3, s3.name, !cards.length ? 'done' : '', instr(s3.instruction),
+    cards.length ? el('div', { class: 'poolsave' }, cards.map((id) => el('div', { class: 'tslot' },
       cardEl(card(id), data),
       el('div', { class: 'slotacts' }, el('button', { class: 'tiny danger', text: 'Left behind',
         onclick: () => up((s) => G.leaveBehind(s, data, id), `“${card(id).prompt}” is left behind.`) }))))) : null));
 
   // 4. migrate
   const target = arrival ? m.entrance : dest;
-  const ready = target && !st.pool.length;
+  const ready = target && !cards.length;
   add(stage, stepBlock(4, s4.name, '', instr(s4.instruction),
     el('div', { class: 'btnrow' }, el('button', {
       class: 'primary big', disabled: !ready,
       text: ready ? `Migrate to ${locName(target)}` : !dest ? 'Choose a destination first' : arrival && !m.entrance ? 'Choose how we enter the City' : 'Save or leave behind every face-up card first',
       onclick: () => up((s) => {
         const r = G.migrateFamily(s, data, target);
-        s.turn.phase = r.entering ? 'city-arrival' : 'who-first';
-      }, arrival ? `At last we reach the City of Winter ${destLoc.entrances.find((e) => e.target === target).text.replace(/^\.\.\./, '…')}` : `The family migrates to ${locName(target)}.`),
+        // A group Migrating Apart used its turn to do so; play goes on from there.
+        if (r.apart) G.passTurn(s, data);
+        else s.turn.phase = r.entering ? 'city-arrival' : 'who-first';
+      }, arrival ? `At last we reach the City of Winter ${destLoc.entrances.find((e) => e.target === target).text.replace(/^\.\.\./, '…')}`
+        : m.apart ? `${group.map((c) => c.name).join(' & ')} migrate${group.length === 1 ? 's' : ''} apart, to ${locName(target)}.`
+          : whole ? `The family migrates to ${locName(target)}.` : `${group.map((c) => c.name).join(' & ')} migrate${group.length === 1 ? 's' : ''} to ${locName(target)}.`),
     }))));
+  return stage;
+}
+
+/**
+ * Migrate Apart (p.43): the turn has reached someone who has had their
+ * Migration Scene. They wait — skipping the turn — or Migrate Apart, with any
+ * who have also had theirs.
+ */
+function apartOfferStage(st, stage) {
+  const c = chById(st.turn.offer) || G.currentCharacter(st);
+  const MS = data.proc('Migration Scene');
+  const companions = G.apartCompanions(st, c);
+  if (!ui.apart || ui.apart.for !== c.id) ui.apart = { for: c.id, join: new Set() };
+  const join = ui.apart.join;
+  add(stage, stageHead(`${c.name}’s turn · waiting to migrate`, 'Migrate Apart?', c),
+    instr(MS.steps[2].instruction),
+    el('div', { class: 'callout' }, instr(data.rule('Migrate apart')), details('Living apart', instr(data.guidanceText('different-homes')))),
+    el('div', { class: 'options two' },
+      el('div', { class: 'option' }, el('h3', { text: 'Wait for the family' }),
+        el('p', { class: 'small muted', text: `${c.name}’s turn passes to the next player.` }),
+        el('button', { text: 'Skip the turn', onclick: () => up((s) => G.passTurn(s, data), `${c.name} waits for the family.`) })),
+      el('div', { class: 'option' }, el('h3', { text: 'Migrate Apart' }),
+        companions.length ? el('div', {}, el('div', { class: 'k small', text: 'Who joins them?' }),
+          pickChars(companions, join, (x) => { if (join.has(x.id)) join.delete(x.id); else join.add(x.id); render(S()); },
+            { note: (x) => (join.has(x.id) ? 'joins' : '') })) : el('p', { class: 'small muted', text: 'No one else has had their Migration Scene yet.' }),
+        el('button', { class: 'warm', text: join.size ? `Migrate Apart — ${[c, ...companions.filter((x) => join.has(x.id))].map((x) => x.name).join(' & ')}` : `${c.name} migrates apart`,
+          onclick: () => {
+            const ids = [...join];
+            ui.apart = null;
+            up((s) => G.migrateApart(s, c.id, ids), `${[c, ...companions.filter((x) => ids.includes(x.id))].map((x) => x.name).join(' & ')} choose${ids.length ? '' : 's'} to Migrate Apart.`);
+          } }))));
   return stage;
 }
 
@@ -1049,7 +1116,7 @@ function memoryStage(st, cur, stage) {
       details('Playing a Memory', instr(proc.instruction)), instr(s1.instruction));
     if (!targets.length) {
       add(stage, el('p', { class: 'muted', text: 'There is no living character whose token could be moved.' }),
-        el('div', { class: 'btnrow' }, el('button', { class: 'primary', text: 'Pass the turn', onclick: () => up((s) => G.passTurn(s)) })));
+        el('div', { class: 'btnrow' }, el('button', { class: 'primary', text: 'Pass the turn', onclick: () => up((s) => G.passTurn(s, data)) })));
       return stage;
     }
     if (!targets.some((t) => t.id === ui.memTarget)) ui.memTarget = targets.length === 1 ? targets[0].id : null;
@@ -1088,7 +1155,8 @@ function endChapterStage(st, stage) {
   const [s1, s2, s3, s4] = proc.steps;
   const ce = st.chapterEnd || { marked: {}, held: {} };
   const living = G.livingCharacters(st);
-  const inCity = st.family.region === 'City';
+  const cityOf = (c) => G.regionOf(st, data, c) === 'City';
+  const inCity = living.some(cityOf);
   const allMarked = living.every((c) => ce.marked[c.id]);
   const gained = living.filter((c) => ['age', 'city'].includes(ce.marked[c.id]));
   const overs = living.filter((c) => c.hand.length > G.handLimit(c));
@@ -1103,9 +1171,10 @@ function endChapterStage(st, stage) {
     el('div', { class: 'markrows' }, living.map((c) => {
       const done = ce.marked[c.id];
       const elder = G.isElder(c);
+      const inCity = cityOf(c);
       const doMark = (opts = {}) => up((s) => {
         const x = find(s, c.id);
-        const r = G.markAge(s, x, opts);
+        const r = G.markAge(s, data, x, opts);
         s.chapterEnd.marked[c.id] = r.kind;
       }, elder ? `${c.name} crosses off a ${opts.crossCityMark ? 'City ' : ''}Mark.` : `${c.name} gains a ${inCity ? 'City ' : ''}Mark.`);
       return el('div', { class: `markrow ${done ? 'done' : ''}`.trim() },
@@ -1344,13 +1413,15 @@ function familySection(st, cur) {
 }
 
 /** Phases in which someone is taking a turn (and so is highlighted). */
-const TURN_PHASES = ['choose-scene', 'share-or-witness', 'lead', 'end-scene', 'memory-share'];
+const TURN_PHASES = ['choose-scene', 'share-or-witness', 'lead', 'end-scene', 'memory-share', 'apart-offer'];
 
 function notecard(st, c, cur) {
   const isTurn = cur && cur.id === c.id && TURN_PHASES.includes(st.turn.phase);
   const lim = G.handLimit(c);
   const looking = ui.look.has(c.id);
-  const state = c.forgotten ? 'forgotten' : c.isMemory ? 'a Memory' : c.leaving ? 'leaving' : c.hadMigrationScene ? 'migrating' : c.visiting ? `visiting ${locName(c.visiting)}` : null;
+  const apart = c.home && c.home !== st.family.home && !c.isMemory;
+  const state = c.forgotten ? 'forgotten' : c.isMemory ? 'a Memory' : c.leaving ? 'leaving' : c.hadMigrationScene ? 'migrating'
+    : c.visiting ? `visiting ${locName(c.visiting)}` : apart ? `lives at ${locName(c.home)}` : null;
   return el('article', { class: `notecard ${isTurn ? 'turn' : ''} ${c.isMemory ? 'memory' : ''} ${c.forgotten ? 'forgotten' : ''}`.trim(),
     style: `--tok:${(TOKENS.find((t) => t.id === c.token) || {}).color || 'var(--edge)'}` },
     el('header', {},
