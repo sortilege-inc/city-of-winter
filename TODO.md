@@ -86,5 +86,4 @@ Riverlands migration re-run unchanged).
 ### Deferred and pending
 
 - Multi-device play: the `RemoteAdapter` in `web/app/store.js` is a documented stub.
-- `cityofwinter.sortilege.online` resolves and serves over HTTPS (checked 2026-09-29); **HTTPS enforcement is
-  still off** — `gh api -X PUT repos/sortilege-inc/city-of-winter/pages -F https_enforced=true`.
+- `cityofwinter.sortilege.online` is live over HTTPS, with HTTPS enforced (2026-09-29).
