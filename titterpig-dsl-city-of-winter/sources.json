@@ -60,6 +60,50 @@
     "cityofwinter-0.5-scene-advice.lore",
     "cityofwinter-0.5-what-this-is.lore"
   ],
+  "sources": [
+    {
+      "id": "rules",
+      "title": "City of Winter \u2014 Rules V2",
+      "kind": "rules",
+      "ttrpg_files": [
+        "cityofwinter-0.5-core-base.ttrpg",
+        "cityofwinter-0.5-procedures.ttrpg"
+      ],
+      "lore_files": [
+        "cityofwinter-0.5-credits.lore",
+        "cityofwinter-0.5-design-notes.lore",
+        "cityofwinter-0.5-formatting-conventions.lore",
+        "cityofwinter-0.5-scene-advice.lore",
+        "cityofwinter-0.5-what-this-is.lore"
+      ]
+    },
+    {
+      "id": "atlas",
+      "title": "City of Winter \u2014 Atlas Edition",
+      "kind": "atlas",
+      "frame_files": [
+        "cityofwinter-0.5-city.frame",
+        "cityofwinter-0.5-riverlands.frame"
+      ]
+    },
+    {
+      "id": "cards",
+      "title": "City of Winter \u2014 Tradition Cards",
+      "kind": "cards",
+      "ttrpg_files": [
+        "cityofwinter-0.5-cards-brass-ones.ttrpg",
+        "cityofwinter-0.5-cards-fox-of-the-towers.ttrpg",
+        "cityofwinter-0.5-cards-glowdog.ttrpg",
+        "cityofwinter-0.5-cards-lantern-crow.ttrpg",
+        "cityofwinter-0.5-cards-lion-of-the-citadel.ttrpg",
+        "cityofwinter-0.5-cards-mask-maker.ttrpg",
+        "cityofwinter-0.5-cards-moonbee.ttrpg",
+        "cityofwinter-0.5-cards-ox-of-rivertown.ttrpg",
+        "cityofwinter-0.5-cards-temple-heron.ttrpg",
+        "cityofwinter-0.5-cards-umbra.ttrpg"
+      ]
+    }
+  ],
   "generatedBy": "build/gen_corpus.py",
   "sourceAnomalies": [
     "The Mask Maker deck contains 24 cards where every other deck contains 25 (249 tradition cards total). Confirmed independently against CoW-TraditionCards.pdf, whose 250 pages are the 249 tradition cards plus the X-Card. Owner-confirmed 2026-08-12.",

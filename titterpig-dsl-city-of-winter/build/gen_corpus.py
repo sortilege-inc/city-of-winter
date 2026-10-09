@@ -1047,6 +1047,17 @@ sources = {
         {"file": "CoW-VTT-Photos/CoW-Banners-Burrough-Color.pdf", "title": "Banners and Wandering Borough (colour)", "pages": 10},
     ],
     "files": sorted(written),
+    # the three published documents as books, in the shape the sortilege-vtt build reads
+    # (one data/<book>.js per entry; kinds are the VTT's: rules, atlas, cards)
+    "sources": [
+        {"id": "rules", "title": "City of Winter — Rules V2", "kind": "rules",
+         "ttrpg_files": [f for f in sorted(written) if f.endswith(".ttrpg") and "-cards-" not in f],
+         "lore_files": [f for f in sorted(written) if f.endswith(".lore")]},
+        {"id": "atlas", "title": "City of Winter — Atlas Edition", "kind": "atlas",
+         "frame_files": [f for f in sorted(written) if f.endswith(".frame")]},
+        {"id": "cards", "title": "City of Winter — Tradition Cards", "kind": "cards",
+         "ttrpg_files": [f for f in sorted(written) if "-cards-" in f]},
+    ],
     "generatedBy": "build/gen_corpus.py",
     "sourceAnomalies": data["sourceAnomalies"],
 }
