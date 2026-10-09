@@ -1135,7 +1135,7 @@ feed = {
               "markdown": smarten(body)} for fn, body in LORE.items()],
     "sourceAnomalies": data["sourceAnomalies"],
 }
-FEED = os.path.abspath(os.path.join(REPO, "..", "web", "data", "cow.json"))
+FEED = os.path.join(REPO, "build", "cow-feed.json")   # the generator's JSON feed (the first app's data; the feed↔corpus gate's fixture)
 os.makedirs(os.path.dirname(FEED), exist_ok=True)
 with open(FEED, "w") as f:
     json.dump(feed, f, indent=1, ensure_ascii=False)

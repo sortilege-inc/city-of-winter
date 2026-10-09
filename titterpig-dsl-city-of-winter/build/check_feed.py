@@ -18,7 +18,7 @@ from collections import Counter
 ROOT = os.path.dirname(os.path.abspath(__file__))
 REPO = os.path.dirname(ROOT)
 CORPUS = os.path.join(REPO, "0.5")
-FEED = os.path.abspath(os.path.join(REPO, "..", "web", "data", "cow.json"))
+FEED = os.path.join(REPO, "build", "cow-feed.json")   # the generator's JSON feed (the first app's data; the feed↔corpus gate's fixture)
 
 if not os.path.exists(FEED):
     sys.exit(f"feed missing: {FEED} — run build/gen_corpus.py")

@@ -1,5 +1,7 @@
 # City of Winter — work log
 
+> **2026-10-09 — `web/` retired.** The play surface moved to `sortilege-inc/sortilege-vtt-cityofwinter` (live at cityofwinter.sortilege.online); the `web/` entries below are history (repo up to `e551b6e`).
+
 ## 2026-09-29 · UX/UI pass on the play surface, against the rules
 
 Owner's ask: look at the rules and clean up the UX/UI so every step of the game is a good, good-looking

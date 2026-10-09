@@ -5,10 +5,9 @@ Two things, in one repo:
 | | |
 |---|---|
 | [`titterpig-dsl-city-of-winter/`](titterpig-dsl-city-of-winter/) | The Titterpig DSL corpus for **City of Winter** (Heart of the Deernicorn, 2022) — spec v0.5, content `0.5/`. Generated from the print-and-play source set, gated for validity, verbatim fidelity and source coverage. |
-| [`web/`](web/) | A buildless web app that plays the game from that corpus — the table, the atlas, the decks, and the rules. |
+| *(the play surface)* | Moved 2026-10-09 to [`sortilege-inc/sortilege-vtt-cityofwinter`](https://github.com/sortilege-inc/sortilege-vtt-cityofwinter), the Sortilege VTT for this game, live at [cityofwinter.sortilege.online](https://cityofwinter.sortilege.online/). Its `build/` reads this corpus by path (`titterpig-dsl-city-of-winter/0.5`). The first app, `web/`, is retired; it is in this repo's history up to `e551b6e`. |
 
-The corpus is the source of truth. The app's data feed (`web/data/cow.json`) is emitted by the same
-generator that writes the DSL, and a gate checks the two agree.
+The corpus is the source of truth. The generator also emits a JSON feed (`titterpig-dsl-city-of-winter/build/cow-feed.json`, the first app's data), and a gate checks the two agree.
 
 ## Gates
 
@@ -19,19 +18,6 @@ titterpig-dsl-city-of-winter/build/gates.sh
 regenerate → DSL validator → `check_references` → `check_constructs` → verbatim → feed↔corpus →
 rebuild source inventory → coverage.
 
-```bash
-python3 web/check_js.py
-```
-
-parses every app module and every inline page script.
-
-## Serving the app
-
-```bash
-python3 web/serve.py
-```
-
-(http.server with caching turned off — see `web/README.md`.)
 
 ## Rights
 
